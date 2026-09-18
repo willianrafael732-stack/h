@@ -1,0 +1,173 @@
+/* =========================
+   NAVBAR GLOBAL (INFERNAL / DIABLO STYLE)
+========================= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1200;
+
+    background: linear-gradient(
+        180deg,
+        rgba(20, 0, 0, 0.95),
+        rgba(0, 0, 0, 0.95)
+    );
+
+    backdrop-filter: blur(10px);
+
+    border-bottom: 2px solid #5a0000;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.8),
+        0 0 20px rgba(255,0,0,0.12);
+}
+
+.container-nav {
+    max-width: 1200px;
+    margin: auto;
+    padding: 14px 24px;
+}
+
+.navbar .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: center;
+}
+
+/* LINKS INFERNAIS */
+.navbar .links a {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    color: #d6b98c;
+
+    position: relative;
+    padding: 6px 4px;
+
+    transition: all .25s ease;
+    text-shadow: 0 0 4px rgba(0,0,0,0.6);
+}
+
+/* linha infernal */
+.navbar .links a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+
+    background: linear-gradient(90deg, #ff0000, #8b0000);
+
+    transition: .25s ease;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(255,0,0,0.4);
+}
+
+.navbar .links a:hover {
+    color: #ff2a2a;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+.navbar .links a:hover::after {
+    width: 100%;
+}
+
+/* =========================
+   NAV INTERNA DO SISTEMA (GRIMÓRIO SECUNDÁRIO)
+========================= */
+
+body > nav:not(.navbar) {
+    background: linear-gradient(
+        180deg,
+        rgba(20,0,0,0.85),
+        rgba(0,0,0,0.95)
+    );
+
+    border-bottom: 1px solid #3a0000;
+
+    box-shadow:
+        inset 0 -1px 0 rgba(255,0,0,0.05),
+        0 5px 20px rgba(0,0,0,0.6);
+}
+
+body > nav:not(.navbar) a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+
+    color: #b8a88a;
+
+    transition: .2s ease;
+}
+
+body > nav:not(.navbar) a:hover {
+    color: #ff4d4d;
+    text-shadow: 0 0 8px rgba(255,0,0,0.5);
+}
+
+/* =========================
+   SECTIONS – GRIMÓRIO VIVO
+========================= */
+
+section {
+    transition: transform .25s ease, box-shadow .25s ease;
+
+    background: rgba(10,0,0,0.75);
+
+    border: 1px solid #3a0000;
+
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+/* sensação de “página viva / amaldiçoada” */
+section:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.9),
+        0 0 25px rgba(255,0,0,0.15);
+}
+
+/* =========================
+   TABELAS – ESTILO RPG SOMBRIO
+========================= */
+
+table tr:hover {
+    background: rgba(255,0,0,0.04);
+}
+
+td {
+    color: #e6d6b8;
+}
+
+/* borda infernal opcional para tabelas */
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border-bottom: 1px solid rgba(90,0,0,0.4);
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.4rem;
+        text-shadow: 0 0 10px rgba(255,0,0,0.3);
+    }
+
+    .navbar .links {
+        gap: 12px;
+    }
+
+    section {
+        padding: 25px;
+    }
+}

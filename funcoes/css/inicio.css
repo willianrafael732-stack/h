@@ -1,0 +1,565 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+
+    --bg: #090909;
+    --bg2: #111111;
+    --card: #171717;
+    --card2: #1f1a17;
+
+    --gold: #d6b36a;
+    --gold2: #8e6b30;
+
+    --red: #7b0d0d;
+    --red2: #bb2020;
+
+    --text: #d9d4cb;
+    --text2: #8c867d;
+
+    --border: #3b3027;
+
+    --shadow: 0 15px 40px rgba(0, 0, 0, .8);
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+
+    background:
+        linear-gradient(rgba(5, 5, 5, .70),
+            rgba(5, 5, 5, .90)),
+        url("/funcoes/maps/nexales.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    line-height: 1.8;
+    padding: 30px;
+
+}
+
+/*==========================
+NAVBAR
+===========================*/
+
+.navbar {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 999;
+
+    background: linear-gradient(#1b1715, #0d0d0d);
+
+    border: 1px solid #56432b;
+
+    box-shadow:
+        0 0 30px black,
+        inset 0 0 30px rgba(255, 180, 60, .05);
+
+    margin-bottom: 40px;
+
+}
+
+.container-nav {
+
+    display: flex;
+
+    justify-content: center;
+
+    padding: 18px;
+
+    flex-wrap: wrap;
+
+}
+
+.links {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 12px;
+
+}
+
+.links a {
+
+    font-family: 'Cinzel', serif;
+
+    color: var(--gold);
+
+    text-decoration: none;
+
+    text-transform: uppercase;
+
+    font-size: .85rem;
+
+    letter-spacing: 2px;
+
+    padding: 10px 16px;
+
+    transition: .35s;
+
+}
+
+.links a:hover {
+
+    color: #fff;
+
+    text-shadow:
+        0 0 12px var(--gold);
+
+    background: rgba(214, 179, 106, .08);
+
+}
+
+/*==========================
+CONTAINER
+===========================*/
+
+.content {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+}
+
+/*==========================
+HEADER
+===========================*/
+
+.main-header {
+
+    text-align: center;
+
+    padding: 80px 20px;
+
+    margin-bottom: 50px;
+
+    background:
+
+        linear-gradient(rgba(20, 20, 20, .75), rgba(10, 10, 10, .92));
+
+    border: 2px solid var(--gold2);
+
+    box-shadow:
+
+        inset 0 0 70px black,
+
+        0 0 40px rgba(0, 0, 0, .8);
+
+}
+
+.main-header h1 {
+
+    font-family: 'Cinzel';
+
+    font-size: 4rem;
+
+    letter-spacing: 5px;
+
+    color: var(--gold);
+
+    text-shadow:
+
+        0 0 15px rgba(214, 179, 106, .6);
+
+}
+
+.main-header::after {
+
+    content: "";
+
+    display: block;
+
+    margin: 30px auto 0;
+
+    width: 250px;
+
+    height: 4px;
+
+    background:
+
+        linear-gradient(90deg,
+
+            transparent,
+
+            var(--gold),
+
+            transparent);
+
+}
+
+/*==========================
+SECTIONS
+===========================*/
+
+section {
+
+    background:
+
+        linear-gradient(180deg, #191715, #111111);
+
+    margin-bottom: 40px;
+
+    padding: 35px;
+
+    border: 1px solid var(--border);
+
+    border-left: 8px solid var(--gold);
+
+    box-shadow:
+
+        0 20px 40px rgba(0, 0, 0, .7),
+
+        inset 0 0 40px rgba(255, 255, 255, .02);
+
+    transition: .35s;
+
+}
+
+section:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+
+        0 25px 50px black;
+
+}
+
+section h2,
+section h3 {
+
+    font-family: 'Cinzel';
+
+    color: var(--gold);
+
+    margin-bottom: 20px;
+
+    letter-spacing: 3px;
+
+    text-shadow: 0 0 10px rgba(214, 179, 106, .3);
+
+}
+
+section p {
+
+    color: var(--text);
+
+    margin-bottom: 18px;
+
+    font-size: 1rem;
+
+}
+
+/*==========================
+CARDS
+===========================*/
+
+.cards-herois {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+    gap: 25px;
+
+    margin-top: 25px;
+
+}
+
+.card {
+
+    background:
+
+        linear-gradient(180deg, #222, #161616);
+
+    border: 1px solid #5d4628;
+
+    padding: 25px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition: .35s;
+
+}
+
+.card::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        linear-gradient(135deg,
+
+            rgba(255, 255, 255, .05),
+
+            transparent);
+
+    pointer-events: none;
+
+}
+
+.card:hover {
+
+    transform: translateY(-8px);
+
+    border-color: var(--gold);
+
+    box-shadow:
+
+        0 0 30px rgba(214, 179, 106, .25);
+
+}
+
+.card h3 {
+
+    font-family: 'Cinzel';
+
+    color: var(--gold);
+
+    margin-bottom: 15px;
+
+}
+
+.card p {
+
+    color: #bdb6aa;
+
+}
+
+/*==========================
+IMAGENS
+===========================*/
+
+img {
+
+    width: 100%;
+
+    display: block;
+
+    margin: 30px auto;
+
+    border: 2px solid var(--gold2);
+
+    box-shadow:
+
+        0 10px 35px rgba(0, 0, 0, .8);
+
+    transition: .4s;
+
+}
+
+img:hover {
+
+    transform: scale(1.02);
+
+}
+
+/*==========================
+LISTAS
+===========================*/
+
+ul {
+
+    padding-left: 22px;
+
+}
+
+li {
+
+    margin-bottom: 18px;
+
+}
+
+li strong {
+
+    font-family: 'Cinzel';
+
+    color: var(--gold);
+
+}
+
+/*==========================
+MOEDAS
+===========================*/
+
+.moedas {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 20px;
+
+    margin-top: 25px;
+
+}
+
+.moeda-item {
+
+    flex: 1;
+
+    min-width: 220px;
+
+    padding: 20px;
+
+    background:
+
+        linear-gradient(#202020, #111);
+
+    border: 1px solid #6a5128;
+
+    font-family: 'Cinzel';
+
+    font-size: 18px;
+
+    color: var(--gold);
+
+    text-align: center;
+
+    transition: .35s;
+
+}
+
+.moeda-item:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+
+        0 0 25px rgba(214, 179, 106, .3);
+
+}
+
+/*==========================
+LINGUAS
+===========================*/
+
+.grid-linguas {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 30px;
+
+    margin-top: 25px;
+
+}
+
+.coluna-linguas {
+
+    background: #111;
+
+    padding: 20px;
+
+    border: 1px solid #3b3027;
+
+}
+
+/*==========================
+SCROLLBAR
+===========================*/
+
+::-webkit-scrollbar {
+
+    width: 12px;
+
+}
+
+::-webkit-scrollbar-track {
+
+    background: #111;
+
+}
+
+::-webkit-scrollbar-thumb {
+
+    background: #5a4526;
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+
+    background: #b69045;
+
+}
+
+/*==========================
+SELEÇÃO
+===========================*/
+
+::selection {
+
+    background: #7d1a1a;
+
+    color: white;
+
+}
+
+/*==========================
+RESPONSIVO
+===========================*/
+
+@media(max-width:900px) {
+
+    body {
+
+        padding: 15px;
+
+    }
+
+    .main-header h1 {
+
+        font-size: 2.5rem;
+
+    }
+
+    section {
+
+        padding: 25px;
+
+    }
+
+    .links {
+
+        gap: 5px;
+
+    }
+
+    .links a {
+
+        font-size: .7rem;
+
+        padding: 8px;
+
+    }
+
+}

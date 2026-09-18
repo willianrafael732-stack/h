@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <link href="../site.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Clérigo - Sistema de RPG</title>
+    <link href="../raca/csss/clerigo.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        .skills-highlight-container {
+            background: rgba(255, 250, 205, 0.05);
+            border: 2px solid #e5c100;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 0 15px rgba(229, 193, 0, 0.2);
+        }
+
+        .skills-section h3 {
+            color: #e5c100;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #e5c100;
+            display: inline-block;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+
+        .skill-item strong {
+            color: #fff;
+        }
+    </style>
+    <meta content="strict-origin-when-cross-origin" name="referrer" />
+
+<link rel="stylesheet" href="../souls-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container-nav">
+            <div class="links">
+                <a href="../funcoes/inicio.html">historia </a>
+                <a href="../funcoes/racaeclasses.html">Raças e Classes</a>
+                <a href="../armas/armas.html">Armas</a>
+                <a href="../funcoes/sistema-completo.html">sistema</a>
+                <a href="../funcoes/npcs.html">NPCs</a>
+                <a href="../funcoes/grimorio-elemental-legado.html">Função elemental</a>
+                <a href="../funcoes/magia.html">magias</a>
+                <a href="../funcoes/porcao.html">porção</a>
+                <a href="../funcoes/INGREDIENTES.HTML">ingredinte</a>
+                <a href="../funcoes/mapas.html">mapas</a>
+                <a href="../funcoes/clan.html">Criação de Ficha</a>
+            </div>
+        </div>
+    </nav>
+    <main class="content">
+        <article class="race-card">
+            <h2>Classe: Clérigo</h2>
+            <div class="race-grid">
+                <div class="info-block">
+                    <h3>História</h3>
+                    <p>Os clérigos de Nexalis são líderes espirituais e curandeiros, dedicados aos deuses e às
+                        comunidades que servem. Atuam como guias, curadores e defensores dos valores religiosos através
+                        da fé inabalável.</p>
+                    <h3>Artes e Magia</h3>
+                    <div class="skill-item"><strong>Curandeirismo:</strong> Magias de restauração, cura de ferimentos
+                        graves e ressurreição.</div>
+                    <div class="skill-item"><strong>Magia Divina:</strong> Bênçãos e maldições invocadas diretamente do
+                        panteão sagrado.</div>
+                    <h4 class="evolution-title" style="margin-top: 20px;">Caminhos de Evolução</h4>
+                    <p>• <strong>Sacerdote:</strong> Especialista em cura pura, milagres e suporte espiritual.<br />
+                        • <strong>Paladino:</strong> Guerreiro da fé, focado em combate, armaduras pesadas e proteção.
+                    </p>
+                </div>
+                <aside class="sidebar">
+                    <div class="stats-box">
+                        <h4>Status Inicial</h4>
+                        <ul>
+                            <li><span class="bonus">+1 Carisma</span></li>
+                            <li><span class="bonus">+1 Inteligência</span></li>
+                            <li><span class="penalty">-1 Res. Sombria</span></li>
+                        </ul>
+                    </div>
+                    <div class="stats-box">
+                        <h4>Sacerdote</h4>
+                        <ul>
+                            <li><span class="bonus">+2 Carisma</span></li>
+                            <li><span class="bonus">+1 Inteligência</span></li>
+                            <li><span class="penalty">-1 Força -1 Resistencia
+                                    Sombria</span></li>
+                            <h4>Paladino</h4>
+                            <ul>
+                                <li><span class="bonus"> +2 Vigor</span></li>
+                                <li><span class="bonus"> +1 Magia Sagrada</span></li>
+                                <li><span class="penalty">-3 Res. Sombria</span></li>
+                            </ul>
+                        </ul>
+                    </div>
+                    <div class="stats-box">
+                        <h4>Equipamento</h4>
+                        <ul>
+                            <li><strong>Magia:</strong> Maças, Cajados e Relíquias</li>
+                            <li><strong>Defesa:</strong> Escudos Sagrados</li>
+                            <li><strong>Armadura:</strong> Leve (Pesada para Paladinos)</li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+            <hr class="stats-divider" />
+            <div class="skills-highlight-container">
+                <section class="skills-section">
+                    <h3>Habilidades Ativas</h3>
+                    <h4 class="evolution-title">Fase 1: Clérigo Iniciante</h4>
+                    <div class="race-grid">
+                        <div class="skill-item"><strong>Bênção da Vitalidade:</strong> <small>Iniciante: +5 Vitalidade
+                                por 3 turnos.</small></div>
+                        <div class="skill-item"><strong>Cura em Grupo:</strong> <small>Iniciante: Cura 2 de Vitalidade
+                                para até 3 aliados (Raio 1).</small></div>
+                        <div class="skill-item"><strong>Prece Revigorante:</strong> <small>Iniciante: Restaura 1 de
+                                Força de Vontade (1x por mesa).</small></div>
+                    </div>
+                    <div class="race-grid" style="margin-top: 40px;">
+                        <div class="evolution-column">
+                            <h4 class="evolution-title">Fase 2 (V1): Sacerdote</h4>
+                            <div class="skill-item"><strong>Luz Curativa:</strong> <small>Mestre: Cura até 30 de vida do
+                                    alvo.</small></div>
+                            <div class="skill-item"><strong>Escudo Divino:</strong> <small>Profissional: +3 de Vigor por
+                                    2 turnos.</small></div>
+                            <div class="skill-item"><strong>Raio de Luz:</strong> <small>Profissional: +150% de Dano
+                                    Sagrado.</small></div>
+                            <h4 class="evolution-title" style="margin-top: 30px;">Fase 3 (V1): Sumo Sacerdote</h4>
+                            <div class="skill-item"><strong>Purificação:</strong> <small>Mestre: Remove todos os debuffs
+                                    de um aliado.</small></div>
+                            <div class="skill-item"><strong>Bênção de Haris:</strong> <small>Mestre: Remove todos os
+                                    buffs do inimigo.</small></div>
+                            <div class="skill-item"><strong>Supernova:</strong> <small>Mestre: +200% dano sagrado em
+                                    área e cura 50 aliados.</small></div>
+                        </div>
+                        <div class="evolution-column">
+                            <h4 class="evolution-title">Fase 2 (V2): Paladino</h4>
+                            <div class="skill-item"><strong>Justiça Celestial:</strong> <small>Profissional: +100% dano
+                                    base (+50% se alvo tiver debuff).</small></div>
+                            <div class="skill-item"><strong>Proteção Divina:</strong> <small>Profissional: +100% de
+                                    Vigor por 3 turnos.</small></div>
+                            <div class="skill-item"><strong>Punição de Thor:</strong> <small>Profissional: 150% dano e
+                                    empurra 2 turnos de distância.</small></div>
+                            <h4 class="evolution-title" style="margin-top: 30px;">Fase 3 (V2): Cavaleiro Sagrado</h4>
+                            <div class="skill-item"><strong>Aura de Proteção:</strong> <small>Mestre: +50% de Vigor para
+                                    aliados (3 turnos).</small></div>
+                            <div class="skill-item"><strong>Vingança de Deus:</strong> <small>Mestre: Acumula magia
+                                    sagrada igual ao dano sombrio recebido.</small></div>
+                            <div class="skill-item"><strong>Vingança Sagrada:</strong> <small>Mestre: Ataque poderoso
+                                    (100% dano base por acerto).</small></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </article>
+    </main>
+</body>
+
+</html>

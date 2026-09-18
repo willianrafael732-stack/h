@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <link href="../site.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Lanceiro de Nexalis - Sistema RPG</title>
+    <link href="../raca/csss/lanceiro.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        .skills-highlight-container {
+            background: rgba(40, 60, 80, 0.1);
+            border: 2px solid #4682b4;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 0 15px rgba(70, 130, 180, 0.2);
+        }
+
+        .skills-section h3 {
+            color: #87ceeb;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #4682b4;
+            display: inline-block;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+
+        .skill-item strong {
+            color: #add8e6;
+        }
+
+        .stats-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .stats-box li {
+            margin-bottom: 8px;
+        }
+    </style>
+    <meta content="strict-origin-when-cross-origin" name="referrer" />
+
+<link rel="stylesheet" href="../souls-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+
+<body>
+   <nav class="navbar">
+        <div class="container-nav">
+            <div class="links">
+                <a href="../funcoes/inicio.html">historia </a>
+                <a href="../funcoes/racaeclasses.html">Raças e Classes</a>
+                <a href="../armas/armas.html">Armas</a>
+                <a href="../funcoes/sistema-completo.html">sistema</a>
+                <a href="../funcoes/npcs.html">NPCs</a>
+                <a href="../funcoes/grimorio-elemental-legado.html">Função elemental</a>
+                <a href="../funcoes/magia.html">magias</a>
+                <a href="../funcoes/porcao.html">porção</a>
+                <a href="../funcoes/INGREDIENTES.HTML">ingredinte</a>
+                <a href="../funcoes/mapas.html">mapas</a>
+                <a href="../funcoes/clan.html">Criação de Ficha</a>
+            </div>
+        </div>
+    </nav>
+    <main class="content">
+        <article class="race-card">
+            <header>
+                <h2>Classe: Lanceiro</h2>
+                <p style="text-align: center; color: #aaa; margin-top: -15px;">Mestres da Haste e Defensores da Realeza
+                </p>
+            </header>
+            <div class="race-grid">
+                <div class="info-block">
+                    <h3>História</h3>
+                    <p>Os lanceiros de Nexalis são mestres na arte da guerra com lanças e outras armas de haste longa.
+                        Originários de tradições militares antigas, são conhecidos por sua disciplina e habilidade
+                        incomparável em combate corpo a corpo, servindo como a linha de frente intransponível de seus
+                        exércitos.</p>
+                    <h3>Artes e Magia</h3>
+                    <div class="skill-item"><strong>Táticas de Batalha:</strong> Especialistas em táticas defensivas e
+                        ofensivas, usando o alcance para perfurar formações e proteger aliados.</div>
+                    <div class="skill-item"><strong>Magia de Combate:</strong> Estudos que ampliam a luta, fortalecendo
+                        o gume da arma ou criando proteções místicas temporárias.</div>
+                    <h4 class="evolution-title" style="margin-top: 20px;">Caminhos de Evolução</h4>
+                    <p>• <strong>Mestre das Lanças:</strong> Alcance de maestria suprema, encontrando brechas mínimas
+                        nas defesas inimigas.<br />
+                        • <strong>Campeão Real:</strong> A elite da guarda suprema, protegendo os valores e a segurança
+                        máxima do reino.</p>
+                </div>
+                <aside class="sidebar">
+                    <div class="stats-box">
+                        <h4>Status Inicial</h4>
+                        <ul>
+                            <li><strong>Lanceiro Iniciante:</strong></li>
+                            <li><span class="bonus">+1 Força, +1 Destreza</span></li>
+                            <li><span class="penalty">-1 Inteligência</span></li>
+                        </ul>
+                    </div>
+                    <div class="stats-box">
+                        <h4>Status das Evoluções</h4>
+                        <ul>
+                            <li><strong>Mestre das Lanças:</strong><br />
+                                <span class="bonus">+2 Destreza, +1 Força</span><br />
+                                <span class="penalty">-2 Inteligência</span>
+                            </li>
+                            <li style="margin-top:10px;"><strong>Campeão Real:</strong><br />
+                                <span class="bonus">+2 Força, +2 Carisma</span><br />
+                                <span class="penalty">-2 Agilidade</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="stats-box">
+                        <h4>Equipamento</h4>
+                        <ul>
+                            <li><strong>Armas:</strong> Lanças 1H e 2H (Médio Alcance)</li>
+                            <li><strong>Defesa:</strong> Todo tipo de Escudo</li>
+                            <li><strong>Armadura:</strong> Média (Couro) ou Pesada (Defesa)</li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+            <hr class="stats-divider" />
+            <div class="skills-highlight-container">
+                <section class="skills-section">
+                    <h3>Habilidades Ativas</h3>
+                    <h4 class="evolution-title">Fase 1: Lanceiro Iniciante</h4>
+                    <div class="race-grid">
+                        <div class="skill-item"><strong>Estocada Rápida:</strong> <small>Aprendiz: Ataque em ponto
+                                vital. Causa +100% do dano base.</small></div>
+                        <div class="skill-item"><strong>Investida com Lança:</strong> <small>Aprendiz: Perfurante em
+                                linha reta. +100% dano base (alcance baseado no nível de investida).</small></div>
+                        <div class="skill-item"><strong>Arremesso de Lança:</strong> <small>Aprendiz: Dano à distância
+                                (+100% base). A lança retorna magicamente à mão.</small></div>
+                    </div>
+                    <div class="race-grid" style="margin-top: 40px;">
+                        <div class="evolution-column">
+                            <h4 class="evolution-title">Fase 2: Mestre das Lanças</h4>
+                            <div class="skill-item"><strong>Dança das Lanças:</strong> <small>Profissional: +200% dano
+                                    base em até 3 inimigos (1 turno de distância).</small></div>
+                            <div class="skill-item"><strong>Campo de Lanças:</strong> <small>Profissional: Conjura
+                                    lanças do solo. 150% dano base em área (8 turnos de distância).</small></div>
+                            <div class="skill-item"><strong>Ciclone de Lança:</strong> <small>Profissional: 150% dano
+                                    base em raio de 3m. Empurra inimigos para trás.</small></div>
+                        </div>
+                        <div class="evolution-column">
+                            <h4 class="evolution-title">Fase 3: Campeão Real</h4>
+                            <div class="skill-item"><strong>Lança Impiedosa:</strong> <small>Profissional: Causa 200% do
+                                    dano base e ignora 100% da armadura do inimigo.</small></div>
+                            <div class="skill-item"><strong>Vanguarda Real:</strong> <small>Mestre: +150% Ataque e
+                                    Defesa para aliados (4 turnos). Requer teste Liderança + Carisma.</small></div>
+                            <div class="skill-item"><strong>Lança Divina:</strong> <small>Mestre: 300% dano base +
+                                    sangramento (15 dano/turno por 3 turnos).</small></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </article>
+    </main>
+</body>
+
+</html>

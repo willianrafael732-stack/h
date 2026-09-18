@@ -1,0 +1,155 @@
+body {
+    margin: 0;
+    font-family: 'Cinzel', serif;
+    background: radial-gradient(circle at center, #1a0000, #000000 70%);
+    color: #f5d6d6;
+    overflow-x: hidden;
+}
+
+/* ===== TOP HUD BAR ===== */
+.container-nav {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 30px;
+
+    background: linear-gradient(90deg, #120000, #2a0000, #120000);
+    border-bottom: 2px solid #8b0000;
+    box-shadow: 0 0 25px #ff000055;
+}
+
+.links a {
+    color: #ffb3b3;
+    margin: 0 12px;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+.links a:hover {
+    color: #fff;
+    text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000;
+}
+
+/* ===== TITULO ESTILO DIABLO ===== */
+h1 {
+    text-align: center;
+    font-size: 3.5rem;
+    margin-top: 20px;
+    color: #ff1a1a;
+    text-shadow:
+        0 0 10px #ff0000,
+        0 0 20px #8b0000,
+        0 0 40px #ff0000;
+    letter-spacing: 3px;
+}
+
+h2 {
+    color: #ff4d4d;
+    border-left: 4px solid #8b0000;
+    padding-left: 12px;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+/* ===== HUD FICHA (PARECE INVENTÁRIO DIABLO) ===== */
+.ficha {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 25px;
+
+    background: linear-gradient(180deg, #0a0000, #1a0000);
+    border: 2px solid #5a0000;
+    box-shadow:
+        0 0 40px #ff000033,
+        inset 0 0 30px #000;
+}
+
+/* ===== LINHAS ESTILO RPG / DIABLO STATS ===== */
+.linha {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 10px;
+    margin: 6px 0;
+
+    background: rgba(0, 0, 0, 0.4);
+    border-left: 3px solid #8b0000;
+    transition: 0.2s;
+}
+
+.linha:hover {
+    background: rgba(139, 0, 0, 0.2);
+    transform: translateX(4px);
+}
+
+.nome-atributo {
+    width: 200px;
+    color: #ffb3b3;
+}
+
+.valor {
+    color: #ff3b3b;
+    font-weight: bold;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+.bonus {
+    color: #ffd966;
+}
+
+/* ===== BOTÕES DIABLO ===== */
+button {
+    background: linear-gradient(180deg, #3a0000, #1a0000);
+    border: 2px solid #8b0000;
+    color: #fff;
+    padding: 12px 22px;
+    margin: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+button:hover {
+    box-shadow: 0 0 20px #ff0000;
+    transform: scale(1.05);
+}
+
+/* ===== INPUT HUD STYLE ===== */
+input, select {
+    background: #0a0000;
+    border: 1px solid #8b0000;
+    color: #ffdddd;
+    padding: 8px;
+    margin: 5px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 10px #ff0000;
+}
+
+/* ===== SCROLL BAR DIABLO ===== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8b0000;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+.linha::before {
+    content: "";
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(#8b0000, transparent);
+    position: absolute;
+    left: 0;
+}

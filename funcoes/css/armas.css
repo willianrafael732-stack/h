@@ -1,0 +1,124 @@
+body{
+    background:#0a0a12;
+    color:#e0e0e0;
+    font-family:Segoe UI, Georgia, serif;
+    margin:0;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+/* NAVBAR */
+.navbar{
+    background:#0f0f1a;
+    border-bottom:1px solid #222;
+}
+.container-nav{
+    max-width:1200px;
+    margin:auto;
+    padding:10px 20px;
+}
+.navbar .links a{
+    color:#ddd;
+    margin-right:15px;
+    text-decoration:none;
+}
+.navbar .links a:hover{
+    color:#f2c94c;
+}
+
+/* TABS */
+.tabs{
+    margin-bottom:15px;
+}
+.tabs button,
+.tab-btn{
+    background:#1a1a2e;
+    color:#fff;
+    border:1px solid #333;
+    padding:8px 12px;
+    margin:3px;
+    cursor:pointer;
+}
+.tabs button.active{
+    background:#6b5cff;
+}
+
+/* CONTENT */
+.tab{
+    display:none;
+    padding:20px;
+    background:rgba(0,0,0,.4);
+}
+.tab.active{
+    display:block;
+}
+
+h1,h2{
+    color:#f2c94c;
+}
+h3{
+    color:#9bd3ff;
+}
+
+p{
+    background:rgba(0,0,0,.35);
+    border-left:3px solid #6b5cff;
+    padding:10px 14px;
+    margin-bottom:12px;
+    border-radius:4px;
+}
+
+/* GRID (caso use) */
+.grid{
+    display:flex;
+    gap:20px;
+}
+.menu{
+    width:35%;
+}
+.menu button{
+    width:100%;
+    margin-bottom:4px;
+    background:#1f1f30;
+    color:#ddd;
+    border:1px solid #333;
+    cursor:pointer;
+}
+.content{
+    width:65%;
+    background:rgba(0,0,0,.4);
+    padding:15px;
+}
+
+/* TABLE */
+table{
+    border-collapse:collapse;
+    width:100%;
+}
+td,th{
+    border:1px solid #444;
+    padding:6px;
+}
+
+/* LISTS */
+ul{
+    padding-left:20px;
+}
+li{
+    margin-bottom:8px;
+}
+
+/* RESPONSIVO */
+@media (max-width:768px){
+    .grid{
+        flex-direction:column;
+    }
+    .menu,
+    .content{
+        width:100%;
+    }
+}

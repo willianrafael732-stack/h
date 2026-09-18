@@ -1,0 +1,130 @@
+/* Hurras Fantasy — tema unificado dark fantasy / soulslike */
+:root{
+  --hf-bg:#050505;
+  --hf-bg-2:#090806;
+  --hf-panel:#11100e;
+  --hf-panel-2:#19150f;
+  --hf-panel-3:#201910;
+  --hf-ink:#e7dfd1;
+  --hf-muted:#a69c8d;
+  --hf-gold:#b99a5e;
+  --hf-gold-bright:#e2c98f;
+  --hf-gold-dark:#665033;
+  --hf-ember:#8d2e20;
+  --hf-ember-bright:#c45835;
+  --hf-line:rgba(185,154,94,.38);
+  --hf-line-soft:rgba(185,154,94,.18);
+  --hf-shadow:0 20px 55px rgba(0,0,0,.52);
+}
+html{scroll-behavior:smooth;background:#030303!important}
+body{
+  margin:0!important;
+  color:var(--hf-ink)!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  background:
+    radial-gradient(circle at 50% -12%,rgba(135,70,28,.22),transparent 30rem),
+    radial-gradient(circle at 8% 26%,rgba(84,31,25,.14),transparent 32rem),
+    linear-gradient(155deg,#0b0907 0%,#050505 50%,#090604 100%)!important;
+  background-attachment:fixed!important;
+}
+body:after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.09;background-image:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.28) 4px 4px)}
+body,button,input,select,textarea{font-family:Georgia,"Times New Roman",serif}
+a{color:var(--hf-gold)!important;text-decoration-color:rgba(185,154,94,.45)!important}
+a:hover{color:#f2dfb4!important}
+h1,h2,h3,h4,h5,h6{font-family:Georgia,"Times New Roman",serif!important;color:var(--hf-gold-bright)!important;letter-spacing:.035em;text-shadow:0 1px 8px rgba(0,0,0,.65)}
+p,li,td,th,label,small{color:inherit}
+
+/* Navegação unificada */
+.navbar,.topbar,header.navbar,nav.navbar{
+  background:linear-gradient(180deg,rgba(17,13,10,.98),rgba(7,7,7,.98))!important;
+  border-bottom:1px solid var(--hf-line)!important;
+  box-shadow:0 10px 32px rgba(0,0,0,.58)!important;
+  backdrop-filter:blur(12px);
+}
+.container-nav,.links,.nav-links{gap:5px!important}
+.links a,.nav-links a,.navbar a{
+  color:#c5b8a4!important;
+  background:transparent!important;
+  border:1px solid transparent!important;
+  border-radius:2px!important;
+  text-transform:uppercase!important;
+  letter-spacing:.07em!important;
+  font-weight:700!important;
+}
+.links a:hover,.nav-links a:hover,.navbar a:hover,.links a.active,.nav-links a.active{
+  color:#f0dbad!important;
+  background:linear-gradient(180deg,#211810,#100d0a)!important;
+  border-color:#57462f!important;
+}
+
+/* Superfícies */
+main,.content,.container{color:var(--hf-ink)}
+main > section:not(.sheet-page),.content > section:not(.sheet-page),
+.race-card,.item-card,.info-block,.stats-box,.skill-item,.evolution-column,
+.card,.map-card,.panel,.manager-card,.weapon,.ritual-card,.spell-card,.origin-card,.npc-card,
+[class*="card"]:not(.sheet-page):not(.ledger-card){
+  background:linear-gradient(155deg,rgba(24,20,15,.94),rgba(10,10,9,.96))!important;
+  border-color:var(--hf-line)!important;
+  box-shadow:var(--hf-shadow)!important;
+}
+.info-block,.stats-box,.skill-item,.card,.panel,[class*="box"]:not(.search-box):not(.xpbox){border-radius:2px!important}
+
+/* Controles */
+button,input[type="button"],input[type="submit"],.btn,.button,.action{
+  border:1px solid #675235!important;
+  border-radius:2px!important;
+  background:linear-gradient(180deg,#211910,#100d0a)!important;
+  color:#e5d7bf!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.025),0 6px 18px rgba(0,0,0,.28)!important;
+  font-weight:700!important;
+}
+button:hover,.btn:hover,.button:hover,.action:hover{border-color:var(--hf-gold)!important;color:#fff0c8!important;background:linear-gradient(180deg,#302116,#17110d)!important}
+button.primary,.primary,.action.primary,input[type="submit"].primary{
+  background:linear-gradient(180deg,#c0a167,#806235)!important;
+  color:#130f09!important;
+  border-color:#ddc18b!important;
+}
+button.danger,.danger{background:linear-gradient(180deg,#341511,#170b09)!important;border-color:#74372d!important;color:#e49b8b!important}
+input,select,textarea{
+  background:#080807!important;
+  border:1px solid #4f4333!important;
+  color:#eee3d2!important;
+  border-radius:2px!important;
+  box-shadow:inset 0 1px 10px rgba(0,0,0,.42)!important;
+}
+input::placeholder,textarea::placeholder{color:#746c61!important}
+input:focus,select:focus,textarea:focus{outline:1px solid var(--hf-gold)!important;outline-offset:1px!important;border-color:var(--hf-gold)!important}
+
+/* Tabelas e listas */
+table{border-collapse:collapse!important;background:#0b0b0a!important;color:var(--hf-ink)!important;box-shadow:0 12px 28px rgba(0,0,0,.28)}
+th{background:#17120d!important;color:#d9bf8a!important;text-transform:uppercase;letter-spacing:.06em}
+th,td{border:1px solid #40372b!important}
+tr:nth-child(even) td{background:#0f0e0c!important}
+hr{border:0;border-top:1px solid var(--hf-line)!important}
+
+/* Imagens e detalhes */
+img:not(.sheet-page img){filter:saturate(.82) contrast(1.05)}
+::selection{background:#a3834b;color:#100c08}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:#070706}
+::-webkit-scrollbar-thumb{background:#4c3a25;border:2px solid #090807}
+::-webkit-scrollbar-thumb:hover{background:#765a32}
+
+/* Rodapé e avisos */
+footer,.footer{background:#080706!important;border-top:1px solid var(--hf-line)!important;color:#978d7f!important}
+.alert,.notice,.message,.status{border-color:var(--hf-line)!important;background:#0c0b09!important}
+
+/* Ficha — não altera a geometria A4; só mantém coerência fora da impressão */
+.sheet-page{font-family:Georgia,"Times New Roman",serif!important}
+.builder,.manager-grid,.controls,.storage-panel{isolation:isolate}
+
+@media(max-width:760px){
+  .navbar,.topbar{position:static!important}
+  .links a,.nav-links a,.navbar a{font-size:.68rem!important;padding:.48rem .58rem!important}
+  main,.content,.container{width:min(100% - 1rem,1120px)!important}
+}
+
+@media print{
+  body{background:#000!important}
+  .navbar,.topbar{display:none!important}
+}

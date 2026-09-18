@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <link href="../site.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Arqueiro - Sistema de RPG</title>
+    <link href="../raca/csss/aqueiro.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <meta content="strict-origin-when-cross-origin" name="referrer" />
+
+<link rel="stylesheet" href="../souls-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container-nav">
+            <div class="links">
+                <a href="../funcoes/inicio.html">historia </a>
+                <a href="../funcoes/racaeclasses.html">Raças e Classes</a>
+                <a href="../armas/armas.html">Armas</a>
+                <a href="../funcoes/sistema-completo.html">sistema</a>
+                <a href="../funcoes/npcs.html">NPCs</a>
+                <a href="../funcoes/grimorio-elemental-legado.html">Função elemental</a>
+                <a href="../funcoes/magia.html">magias</a>
+                <a href="../funcoes/porcao.html">porção</a>
+                <a href="../funcoes/INGREDIENTES.HTML">ingredinte</a>
+                <a href="../funcoes/mapas.html">mapas</a>
+                <a href="../funcoes/clan.html">Criação de Ficha</a>
+            </div>
+        </div>
+    </nav>
+    <main class="content">
+        <article class="race-card">
+            <h2>Classe: Arqueiro</h2>
+            <div class="race-grid">
+                <div class="info-block">
+                    <h3>História</h3>
+                    <p>Os arqueiros dominam a precisão absoluta. Treinados para serem os olhos do exército, utilizam o
+                        ambiente e a distância como suas maiores defesas.</p>
+                    <h4 class="evolution-title" style="margin-top: 20px;">Trilhas de Classe</h4>
+                    <p>• <strong>Patrulheiro:</strong> Foco em Sobrevivência e Emboscada.<br />
+                        • <strong>Atirador:</strong> Foco em Velocidade e Dano em Área.</p>
+                </div>
+                <aside class="sidebar">
+                    <div class="stats-box">
+                        <h4>Status Iniciais</h4>
+                        <ul>
+                            <li><span class="bonus">+1 Destreza</span></li>
+                            <li><span class="bonus">+1 Armas à Distância</span></li>
+                            <li><span class="penalty">-1 Briga</span></li>
+                        </ul>
+                    </div>
+                    <div class="stats-box">
+                        <h4>Status das Variações</h4>
+                        <ul>
+                            <li><strong>Patrulheiro:</strong><br /><span class="bonus">Bônus: +2 Destreza, +1 Armas a
+                                    Distância</span><br /><span class="penalty">Fraqueza: -1 Briga, -1 Vigor</span></li>
+                            <li style="margin-top: 15px;"><strong>Atirador:</strong><br /><span class="bonus">Bônus: +2
+                                    Armas a Distância, +1 Crítico</span><br /><span class="penalty">Fraqueza: -1 Vigor,
+                                    -1 Bloqueio</span></li>
+                        </ul>
+                    </div>
+                    <div class="stats-box">
+                        <h4>Equipamento</h4>
+                        <ul>
+                            <li><strong>Primário:</strong> Arcos e Bestas</li>
+                            <li><strong>Secundário:</strong> Adagas</li>
+                            <li><strong>Armadura:</strong> Leve/Média</li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+            <hr class="stats-divider" />
+            <section class="skills-section">
+                <h3>Habilidades Ativas</h3>
+                <h4 class="evolution-title">Fase 1: Arqueiro Iniciante</h4>
+                <div class="race-grid">
+                    <div class="skill-item"><strong>Flecha Perfurante:</strong> <small>Aprendiz: +50% de dano
+                            base.</small></div>
+                    <div class="skill-item"><strong>Precisão:</strong> <small>Aprendiz: +1 Destreza e Dificuldade
+                            Inimiga +1.</small></div>
+                    <div class="skill-item"><strong>Tiro Rápido:</strong> <small>Aprendiz: Dispara duas flechas
+                            rapidamente.</small></div>
+                </div>
+                <div class="race-grid" style="margin-top: 40px;">
+                    <div class="evolution-column">
+                        <h4 class="evolution-title">Fase 2 (V1): Patrulheiro</h4>
+                        <div class="skill-item"><strong>Flecha Ácida:</strong> <small>Profissional: +100% dano e -1
+                                Defesa permanente (2 turnos).</small></div>
+                        <div class="skill-item"><strong>Emboscada:</strong> <small>Profissional: +150% dano se
+                                oculto.</small></div>
+                        <div class="skill-item"><strong>Disparo Veloz:</strong> <small>Profissional: Dano base e reduz
+                                reação do alvo.</small></div>
+                        <h4 class="evolution-title" style="margin-top: 30px;">Fase 3 (V1): Mestre dos Arcos</h4>
+                        <div class="skill-item"><strong>Flecha da Tempestade:</strong> <small>Mestre: +150% dano
+                                elétrico em área.</small></div>
+                        <div class="skill-item"><strong>Flecha Penetrante:</strong> <small>Mestre: +200% dano e ignora
+                                100% de defesa.</small></div>
+                        <div class="skill-item"><strong>Tiro Preciso:</strong> <small>Mestre: Remove 50% da vida atual
+                                do alvo.</small></div>
+                    </div>
+                    <div class="evolution-column">
+                        <h4 class="evolution-title">Fase 2 (V2): Atirador</h4>
+                        <div class="skill-item"><strong>Chuva de Flechas:</strong> <small>Profissional: 100% dano em
+                                área (raio 1).</small></div>
+                        <div class="skill-item"><strong>Flecha Envenenada:</strong> <small>Profissional: +50% dano e
+                                veneno por 2 turnos.</small></div>
+                        <div class="skill-item"><strong>Flecha Explosiva:</strong> <small>Profissional: +100% dano em
+                                área (raio 2).</small></div>
+                        <h4 class="evolution-title" style="margin-top: 30px;">Fase 3 (V2): Franco Atirador</h4>
+                        <div class="skill-item"><strong>Tiro Perfeito:</strong> <small>Mestre: +200% dano e Esquiva
+                                Inimiga +3 dificuldade.</small></div>
+                        <div class="skill-item"><strong>Flecha Anti-Magia:</strong> <small>Mestre: 200% dano e anula
+                                defesas mágicas.</small></div>
+                        <div class="skill-item"><strong>Flecha de Luz:</strong> <small>Mestre: Cega o alvo por 3 turnos
+                                (Dificuldade +3).</small></div>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>

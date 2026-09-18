@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <link href="../site.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Transmutador - Nexalis</title>
+    <link href="../raca/csss/transmutador.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        .skills-highlight-container {
+            background: rgba(218, 165, 32, 0.05);
+            border: 2px solid #daa520;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 0 15px rgba(218, 165, 32, 0.2);
+        }
+
+        .skills-section h3 {
+            color: #ffd700;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #daa520;
+            display: inline-block;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+
+        .skill-item strong {
+            color: #fff8dc;
+        }
+
+        .stats-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .stats-box li {
+            margin-bottom: 8px;
+        }
+
+        .material-rule {
+            font-size: 0.85em;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-top: 5px;
+            display: block;
+            border-left: 2px solid #daa520;
+        }
+    </style>
+    <meta content="strict-origin-when-cross-origin" name="referrer" />
+
+<link rel="stylesheet" href="../souls-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container-nav">
+            <div class="links">
+                <a href="../funcoes/inicio.html">historia </a>
+                <a href="../funcoes/racaeclasses.html">Raças e Classes</a>
+                <a href="../armas/armas.html">Armas</a>
+                <a href="../funcoes/sistema-completo.html">sistema</a>
+                <a href="../funcoes/npcs.html">NPCs</a>
+                <a href="../funcoes/grimorio-elemental-legado.html">Função elemental</a>
+                <a href="../funcoes/magia.html">magias</a>
+                <a href="../funcoes/porcao.html">porção</a>
+                <a href="../funcoes/INGREDIENTES.HTML">ingredinte</a>
+                <a href="../funcoes/mapas.html">mapas</a>
+                <a href="../funcoes/clan.html">Criação de Ficha</a>
+            </div>
+        </div>
+    </nav>
+    <main class="content">
+        <article class="race-card">
+            <header>
+                <h2>Classe: Transmutador</h2>
+                <p style="text-align: center; color: #aaa; margin-top: -15px;">Arquitetos da Matéria e Alquimia Prática
+                </p>
+            </header>
+            <div class="race-grid">
+                <div class="info-block">
+                    <h3>História</h3>
+                    <p>Evoluídos dos antigos alquimistas que buscavam a vida eterna, os Transmutadores focam na
+                        manipulação prática da matéria. Através de runas e fórmulas, transformam o ambiente ao seu
+                        redor, sendo peças fundamentais em academias de magia como Valdorheim.</p>
+                    <h3>Artes e Magia</h3>
+                    <div class="skill-item"><strong>Transmutação Elementar:</strong> Capacidade de alterar a natureza
+                        molecular de um objeto em outro elemento.</div>
+                    <div class="skill-item"><strong>Desmontagem e Análise:</strong> Desintegração de objetos para
+                        identificação de propriedades químicas e mágicas.</div>
+                    <h4 class="evolution-title" style="margin-top: 20px;">Caminhos de Evolução</h4>
+                    <p>• <strong>Mestre da Transmutação:</strong> Especialista em controle de terreno, criação de
+                        barreiras e abrigos cristalinos.<br />
+                        • <strong>Arquimestre da Guerra:</strong> Domínio absoluto, capaz de criar tempestades
+                        elementais e transmutar matéria bruta em itens valiosos.</p>
+                </div>
+                <aside class="sidebar">
+                    <div class="stats-box">
+                        <h4>Status Inicial</h4>
+                        <ul>
+                            <li><strong>Alquimista Iniciante:</strong></li>
+                            <li><span class="bonus">+1 Medicina, +1 Ciência</span></li>
+                            <li><span class="penalty">-1 Força</span></li>
+                        </ul>
+                    </div>
+                    <div class="stats-box">
+                        <h4>Status das Evoluções</h4>
+                        <ul>
+                            <li><strong>Mestre da Transmutação:</strong><br />
+                                <span class="bonus">+2 Ciência, +1 Tecnologia</span><br />
+                                <span class="penalty">-1 Força, -1 Vigor</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="stats-box">
+                        <h4>Equipamento</h4>
+                        <ul>
+                            <li><strong>Armas:</strong> Espadas 1H (Converte Força em Intel), Média Distância 1H, Armas
+                                Mágicas</li>
+                            <li><strong>Defesa:</strong> Todo tipo de Escudo</li>
+                            <li><strong>Armadura:</strong> Média (Couro)</li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+            <hr class="stats-divider" />
+            <div class="skills-highlight-container">
+                <section class="skills-section">
+                    <h3>Habilidades Ativas</h3>
+                    <h4 class="evolution-title">Fase 1: Transmutador Iniciante</h4>
+                    <div class="race-grid">
+                        <div class="skill-item">
+                            <strong>Moldar Terra:</strong> <small>Aprendiz: Cria barreiras baseadas no material do
+                                solo/parede.</small>
+                            <span class="material-rule">
+                                <b>Pedra:</b> 50% vigor | <b>Metal:</b> 100% vigor | <b>Cristal:</b> 200% vigor do
+                                usuário.
+                            </span>
+                        </div>
+                        <div class="skill-item"><strong>Armadura de Pedra:</strong> <small>Aprendiz: Envolve-se em
+                                camadas minerais. Aumenta o vigor em 50% por 2 turnos.</small></div>
+                        <div class="skill-item"><strong>Lâmina de Gelo:</strong> <small>Aprendiz: Condensa umidade em
+                                uma lâmina afiada. Causa 50% do dano base do transmutador.</small></div>
+                    </div>
+                    <div class="race-grid" style="margin-top: 40px;">
+                        <div class="evolution-column">
+                            <h4 class="evolution-title">Fase 2: Mestre da Transmutação</h4>
+                            <div class="skill-item"><strong>Caminho de Lava:</strong> <small>Profissional: Fissuras que
+                                    impedem investidas. Dificuldade de deslocamento +2 para inimigos.</small></div>
+                            <div class="skill-item"><strong>Fortaleza de Cristal:</strong> <small>Profissional: Abrigo
+                                    com 100% do vigor do lançador (Alcance 3 turnos, dura 3 turnos).</small></div>
+                            <div class="skill-item"><strong>Tornado de Areia:</strong> <small>Profissional: Causa 100%
+                                    dano base e reduz visibilidade (Dificuldade +2 em ações de visão).</small></div>
+                        </div>
+                        <div class="evolution-column">
+                            <h4 class="evolution-title">Fase 3: Arquimestre da Guerra</h4>
+                            <div class="skill-item"><strong>Tempestade Elemental:</strong> <small>Mestre: Combina Fogo,
+                                    Água e Terra. +50% do dano base de todos os elementos somados (Área 4
+                                    turnos).</small></div>
+                            <div class="skill-item"><strong>Lança de Diamante:</strong> <small>Mestre: Ataque perfurante
+                                    supremo. Causa 200% de dano ignorando fraquezas materiais.</small></div>
+                            <div class="skill-item">
+                                <strong>Degustador de Matéria:</strong> <small>Mestre: Permite transmutar materiais
+                                    brutos (pedra em ouro, etc).</small>
+                                <span class="material-rule">Requer teste de <b>Inteligência + Ciência</b> para sucesso
+                                    na transmutação de valor.</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </article>
+    </main>
+</body>
+
+</html>

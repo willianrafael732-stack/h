@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta
+        content="width=device-width, initial-scale=1.0"
+        name="viewport"
+    />
+
+    <title>
+        Nexalis RPG — Arsenal do Aventureiro
+    </title>
+
+    <link
+        href="../site.css"
+        rel="stylesheet"
+    />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=MedievalSharp&display=swap"
+        rel="stylesheet"
+    />
+
+    <style>
+
+        /* =========================================================
+           ⚔️ NEXALIS RPG
+           TEMA DIABLO / INFERNAL
+           
+           ESTRUTURA:
+           NAVBAR → CONTEÚDO → FIM DA PÁGINA
+        ========================================================= */
+
+
+        /* =========================================================
+           VARIÁVEIS
+        ========================================================= */
+
+        :root {
+
+            --inferno: #070303;
+            --sombra: #0d0605;
+
+            --sangue: #7a0000;
+            --vermelho: #b31313;
+            --brasa: #ff3c00;
+
+            --ouro: #b88624;
+            --ouro-claro: #e0b84f;
+
+            --bronze: #65452c;
+
+            --pedra: #211816;
+
+            --cinza: #9b9189;
+
+            --texto: #d6d0c8;
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+
+            box-sizing: border-box;
+
+            margin: 0;
+
+            padding: 0;
+        }
+
+
+        html {
+
+            scroll-behavior: smooth;
+        }
+
+
+        /* =========================================================
+           BODY
+        ========================================================= */
+
+        body {
+
+            background:
+
+                radial-gradient(
+                    circle at 50% 0%,
+                    #321414 0%,
+                    #160b0b 30%,
+                    #090607 65%,
+                    #030303 100%
+                );
+
+            color: #d6d0c8;
+
+            font-family:
+                'Cinzel',
+                Georgia,
+                serif;
+
+            margin: 0;
+
+            padding: 0;
+
+            line-height: 1.6;
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================================================
+           EFEITO DE FUNDO
+        ========================================================= */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+
+                radial-gradient(
+                    circle at 50% 20%,
+                    rgba(120, 20, 10, 0.12),
+                    transparent 45%
+                );
+
+            z-index: -1;
+        }
+
+
+        /* =========================================================
+           ⚔️ NAVBAR
+        ========================================================= */
+
+        .navbar {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            width: 100%;
+
+            background:
+
+                linear-gradient(
+                    180deg,
+                    rgba(30, 5, 3, .98),
+                    rgba(8, 2, 2, .98)
+                );
+
+            border-bottom:
+
+                1px solid #452018;
+
+            border-top:
+
+                2px solid #720000;
+
+            box-shadow:
+
+                0 8px 25px rgba(0, 0, 0, .8),
+
+                inset 0 -1px 0
+                rgba(255, 60, 0, .08);
+
+            overflow: visible;
+        }
+
+
+        /* =========================================================
+           LINHA INFERNAL DA NAVBAR
+        ========================================================= */
+
+        .navbar::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 3px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #720000,
+                    #ff3c00,
+                    #e0b84f,
+                    #ff3c00,
+                    #720000,
+                    transparent
+                );
+
+            box-shadow:
+
+                0 0 15px
+                rgba(255, 60, 0, .8);
+
+            animation:
+
+                linhaInfernal 4s infinite linear;
+        }
+
+
+        @keyframes linhaInfernal {
+
+            0% {
+
+                opacity: .35;
+
+                filter: brightness(.7);
+            }
+
+            50% {
+
+                opacity: 1;
+
+                filter: brightness(1.5);
+            }
+
+            100% {
+
+                opacity: .35;
+
+                filter: brightness(.7);
+            }
+        }
+
+
+        /* =========================================================
+           LINHA INFERIOR
+        ========================================================= */
+
+        .navbar::after {
+
+            content: "";
+
+            position: absolute;
+
+            bottom: 0;
+
+            left: 10%;
+
+            width: 80%;
+
+            height: 1px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #720000,
+                    #e0b84f,
+                    #720000,
+                    transparent
+                );
+
+            box-shadow:
+
+                0 0 10px #720000;
+        }
+
+
+        /* =========================================================
+           CONTAINER DA NAVBAR
+        ========================================================= */
+
+        .container-nav {
+
+            max-width: 1400px;
+
+            margin: auto;
+
+            padding: 12px 25px;
+
+            min-height: 72px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        /* =========================================================
+           LOGO
+        ========================================================= */
+
+        .navbar-logo {
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-right: 25px;
+
+            color: var(--ouro-claro);
+
+            text-decoration: none;
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            text-shadow:
+
+                0 0 5px #6b150d,
+
+                0 0 15px
+                rgba(180, 0, 0, .7),
+
+                0 0 25px
+                rgba(255, 69, 0, .25);
+
+            transition: .3s ease;
+        }
+
+
+        .navbar-logo:hover {
+
+            color: #fff0a6;
+
+            transform: scale(1.03);
+
+            text-shadow:
+
+                0 0 8px #ff4500,
+
+                0 0 20px
+                rgba(255, 69, 0, .7),
+
+                0 0 35px
+                rgba(255, 69, 0, .4);
+        }
+
+
+        /* =========================================================
+           LINKS DA NAVBAR
+        ========================================================= */
+
+        .navbar-links {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 4px;
+        }
+
+
+        .navbar-links a {
+
+            color: #a99a90;
+
+            text-decoration: none;
+
+            padding: 10px 12px;
+
+            font-size: 11px;
+
+            letter-spacing: .5px;
+
+            border: 1px solid transparent;
+
+            border-left: 2px solid transparent;
+
+            transition: .3s ease;
+
+            text-transform: uppercase;
+        }
+
+
+        .navbar-links a:hover {
+
+            color: var(--ouro-claro);
+
+            border-color: #542018;
+
+            border-left-color: var(--brasa);
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    rgba(130, 0, 0, .35),
+                    transparent
+                );
+
+            text-shadow:
+
+                0 0 8px
+                rgba(255, 60, 0, .6);
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================================================
+           LINK ATIVO
+        ========================================================= */
+
+        .navbar-links a.ativo {
+
+            color: var(--ouro-claro);
+
+            background:
+
+                linear-gradient(
+                    180deg,
+                    rgba(120, 10, 5, .35),
+                    rgba(50, 5, 3, .25)
+                );
+
+            border-color: #6b3024;
+
+            box-shadow:
+
+                inset 0 0 15px
+                rgba(139, 0, 0, .18),
+
+                0 0 12px
+                rgba(139, 0, 0, .2);
+        }
+
+
+        .navbar-links a.ativo::after {
+
+            content: "";
+
+            display: block;
+
+            width: 60%;
+
+            height: 2px;
+
+            margin:
+
+                3px auto 0;
+
+            background:
+
+                var(--brasa);
+
+            box-shadow:
+
+                0 0 8px
+                var(--brasa);
+        }
+
+
+        /* =========================================================
+           CONTAINER PRINCIPAL
+        ========================================================= */
+
+        .container-principal {
+
+            max-width: 1050px;
+
+            margin: 45px auto;
+
+            padding: 20px;
+        }
+
+
+        /* =========================================================
+           ABA PRINCIPAL
+        ========================================================= */
+
+        .tab {
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    rgba(25, 16, 16, 0.97),
+                    rgba(8, 7, 7, 0.98)
+                );
+
+            border:
+
+                1px solid #4b3026;
+
+            border-radius: 3px;
+
+            padding: 35px;
+
+            margin-bottom: 50px;
+
+            box-shadow:
+
+                0 15px 45px
+                rgba(0, 0, 0, 0.8),
+
+                inset 0 0 50px
+                rgba(90, 20, 10, 0.05);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        /* =========================================================
+           BORDA INFERNAL
+        ========================================================= */
+
+        .tab::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 2px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #7e1e13,
+                    #b53a20,
+                    #7e1e13,
+                    transparent
+                );
+
+            box-shadow:
+
+                0 0 12px
+                rgba(150, 30, 15, 0.7);
+        }
+
+
+        .tab::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 8px;
+
+            border:
+
+                1px solid
+                rgba(130, 70, 45, 0.08);
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================================
+           TÍTULO
+        ========================================================= */
+
+        .tab h1 {
+
+            color: #d8b36a;
+
+            text-shadow:
+
+                0 0 8px
+                rgba(150, 70, 25, 0.6),
+
+                2px 2px 3px #000;
+
+            font-size: 2.4rem;
+
+            text-align: center;
+
+            margin:
+
+                0 0 15px;
+
+            border-bottom:
+
+                1px solid #4a2b22;
+
+            padding-bottom: 18px;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================================================
+           DESCRIÇÃO
+        ========================================================= */
+
+        .descricao {
+
+            text-align: center;
+
+            color: #806f61;
+
+            font-family:
+                'MedievalSharp',
+                cursive;
+
+            font-size: 14px;
+
+            font-style: italic;
+
+            margin:
+
+                0 0 35px;
+        }
+
+
+        /* =========================================================
+           DIVISOR
+        ========================================================= */
+
+        .divisor {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin:
+
+                35px 0;
+        }
+
+
+        .divisor::before {
+
+            content: "✦";
+
+            color: #8d291b;
+
+            font-size: 18px;
+
+            text-shadow:
+
+                0 0 8px
+                rgba(160, 40, 20, 0.7);
+        }
+
+
+        /* =========================================================
+           ITENS RPG
+        ========================================================= */
+
+        .item-rpg {
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    rgba(70, 35, 25, 0.20),
+                    rgba(255, 255, 255, 0.015)
+                );
+
+            border-left:
+
+                3px solid #70432d;
+
+            border-bottom:
+
+                1px solid
+                rgba(100, 60, 40, 0.12);
+
+            padding:
+
+                18px 20px;
+
+            margin-bottom:
+
+                15px;
+
+            border-radius:
+
+                2px 8px 8px 2px;
+
+            transition:
+
+                0.3s;
+
+            position: relative;
+        }
+
+
+        .item-rpg:hover {
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    rgba(100, 35, 20, 0.28),
+                    rgba(255, 255, 255, 0.035)
+                );
+
+            transform:
+
+                translateX(6px);
+
+            border-left:
+
+                3px solid #a83220;
+
+            box-shadow:
+
+                0 5px 20px
+                rgba(0, 0, 0, 0.5);
+        }
+
+
+        /* =========================================================
+           TÍTULO DOS ITENS
+        ========================================================= */
+
+        .item-rpg b {
+
+            color: #c69a58;
+
+            font-size: 1.15rem;
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            text-shadow:
+
+                1px 1px 2px #000;
+        }
+
+
+        /* =========================================================
+           TEXTO
+        ========================================================= */
+
+        .item-rpg span {
+
+            color: #b8afa6;
+        }
+
+
+        .lore {
+
+            color: #81776e;
+
+            font-style: italic;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           STATUS POSITIVO
+        ========================================================= */
+
+        .status-valor {
+
+            color: #65a65c;
+
+            font-weight: bold;
+
+            text-shadow:
+
+                0 0 5px
+                rgba(80, 150, 60, 0.25);
+        }
+
+
+        /* =========================================================
+           PENALIDADE
+        ========================================================= */
+
+        .status-penalidade {
+
+            color: #b84a3b;
+
+            font-weight: bold;
+
+            text-shadow:
+
+                0 0 5px
+                rgba(160, 40, 25, 0.25);
+        }
+
+
+        /* =========================================================
+           STATUS ESPECIAL
+        ========================================================= */
+
+        .status-especial {
+
+            color: #d3a548;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================================================
+           TÍTULO DE CATEGORIA
+        ========================================================= */
+
+        .categoria {
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    rgba(90, 25, 15, 0.35),
+                    transparent
+                );
+
+            border-left:
+
+                4px solid #8e291c;
+
+            padding:
+
+                12px 18px;
+
+            margin:
+
+                35px 0 20px;
+
+            color: #b9955b;
+
+            font-size: 1.25rem;
+
+            text-shadow:
+
+                1px 1px 3px #000;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================================================
+           RESPONSIVIDADE
+        ========================================================= */
+
+        @media (max-width: 1100px) {
+
+            .container-nav {
+
+                padding:
+
+                    12px 15px;
+            }
+
+
+            .navbar-logo {
+
+                margin-right: 10px;
+            }
+
+
+            .navbar-links a {
+
+                font-size: 10px;
+
+                padding:
+
+                    9px 9px;
+            }
+        }
+
+
+        @media (max-width: 800px) {
+
+            .container-nav {
+
+                flex-direction: column;
+
+                gap: 10px;
+            }
+
+
+            .navbar-logo {
+
+                margin-right: 0;
+            }
+
+
+            .navbar-links {
+
+                width: 100%;
+
+                justify-content: center;
+            }
+
+
+            .container-principal {
+
+                margin:
+
+                    20px auto;
+
+                padding:
+
+                    10px;
+            }
+
+
+            .tab {
+
+                padding:
+
+                    22px 18px;
+
+                margin-bottom:
+
+                    30px;
+            }
+
+
+            .item-rpg {
+
+                padding:
+
+                    15px;
+            }
+        }
+
+
+        @media (max-width: 500px) {
+
+            .tab h1 {
+
+                font-size:
+
+                    1.7rem;
+            }
+
+
+            .navbar-links {
+
+                gap: 2px;
+            }
+
+
+            .navbar-links a {
+
+                font-size:
+
+                    9px;
+
+                padding:
+
+                    7px 6px;
+            }
+
+
+            .tab {
+
+                padding:
+
+                    18px 14px;
+            }
+
+
+            .categoria {
+
+                font-size:
+
+                    1.05rem;
+            }
+        }
+
+
+        /* =========================================================
+           SELEÇÃO
+        ========================================================= */
+
+        ::selection {
+
+            background: #720000;
+
+            color: #f0c75e;
+        }
+
+    </style>
+
+    <meta
+        content="strict-origin-when-cross-origin"
+        name="referrer"
+    />
+
+
+<link rel="stylesheet" href="../souls-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         ⚔️ NAVBAR PRINCIPAL
+    ========================================================= -->
+
+    <header class="navbar">
+
+        <div class="container-nav">
+
+            <a
+                href="../funcoes/inicio.html"
+                class="navbar-logo"
+            >
+                ⚔️ NEXALIS
+            </a>
+
+
+            <nav class="navbar-links">
+
+                <a href="../funcoes/inicio.html">
+                    Início
+                </a>
+
+
+                <a href="../funcoes/racaeclasses.html">
+                    Raças & Classes
+                </a>
+
+
+                <a
+                    href="../armas/armas.html"
+                    class="ativo"
+                >
+                    ⚔️ Armas
+                </a>
+
+
+                <a href="../funcoes/sistema-completo.html">
+                    Sistema
+                </a>
+
+
+                <a href="../funcoes/npcs.html">NPCs</a>
+
+
+                <a href="../funcoes/criacao-de-ficha.html">
+                    Ficha
+                </a>
+
+
+                <a href="../funcoes/magia.html">
+                    Magia
+                </a><a href="../funcoes/habilidades.html">Habilidades</a>
+
+
+                <a href="../funcoes/porcao.html">
+                    Alquimia
+                </a>
+
+
+                <a href="../funcoes/INGREDIENTES.HTML">
+                    Ingredientes
+                </a>
+
+
+                <a href="../funcoes/mapas.html">
+                    Mapas
+                </a>
+
+
+                <a href="../funcoes/clan.html">
+                    Clãs
+                </a>
+
+
+                <a href="../funcoes/minerios.html">
+                    Mineiro
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         ⚔️ CONTEÚDO PRINCIPAL
+    ========================================================= -->
+
+    <main class="container-principal">
+
+
+        <!-- =====================================================
+             ARSENAL
+        ====================================================== -->
+
+        <section
+            class="tab"
+            id="arsenal"
+        >
+
+            <h1>
+                ⚔️ Arsenal do Aventureiro
+            </h1>
+
+
+            <p class="descricao">
+
+                "Dos metais comuns surgem armas;
+                das lendas surgem relíquias."
+
+            </p>
+
+
+            <!-- =================================================
+                 DEFESA
+            ================================================== -->
+
+            <div class="categoria">
+
+                🛡️ Defesa e Proteção
+
+            </div>
+
+
+            <!-- =================================================
+                 ARMADURA LEVE
+            ================================================== -->
+
+            <div class="item-rpg">
+
+                <b>
+                    Armadura Leve
+                </b>
+
+
+                <span class="status-valor">
+
+                    +1 Armadura
+
+                </span>
+
+
+                <p class="lore">
+
+                    Ideal para ladinos e arqueiros
+                    que prezam pela agilidade.
+
+                </p>
+
+
+                <span>
+
+                    Sem penalidades aplicadas.
+
+                </span>
+
+            </div>
+
+
+            <!-- =================================================
+                 ARMADURA MÉDIA
+            ================================================== -->
+
+            <div class="item-rpg">
+
+                <b>
+                    Armadura Média
+                </b>
+
+
+                <span class="status-valor">
+
+                    +4 Armadura
+
+                </span>
+
+
+                <p class="status-penalidade">
+
+                    ⚠️ -2 Esquiva, -1 Reação
+
+                </p>
+
+
+                <p class="lore">
+
+                    O equilíbrio entre o aço
+                    e a mobilidade do guerreiro.
+
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 ARMADURA PESADA
+            ================================================== -->
+
+            <div class="item-rpg">
+
+                <b>
+                    Armadura Pesada
+                </b>
+
+
+                <span class="status-especial">
+
+                    Alta Defesa
+
+                </span>
+
+
+                <p class="status-penalidade">
+
+                    ⚠️ +2 Dificuldade Mobilidade
+
+                </p>
+
+
+                <p class="status-penalidade">
+
+                    ⚠️ -2 Reação,
+                    -2 Res. Fogo/Raio
+
+                </p>
+
+
+                <p class="lore">
+
+                    Um tanque de metal ambulante,
+                    quase impenetrável.
+
+                </p>
+
+            </div>
+
+
+            <div class="divisor"></div>
+
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>
+

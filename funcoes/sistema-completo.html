@@ -1,0 +1,1953 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+   <meta charset="utf-8" />
+   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+   <title>Nexalis — Grimório das Trevas</title>
+   <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=IM+Fell+English:ital@0;1&display=swap');
+
+      :root {
+         --bg: #0a0605;
+         --panel: #120c0a;
+         --panel2: #1a100c;
+         --border: #4a2018;
+         --border-glow: #8b2e1a;
+         --text: #d4c4a8;
+         --muted: #7a6a58;
+         --blood: #8b1a1a;
+         --blood-bright: #c41e1e;
+         --ember: #e85d04;
+         --ember-light: #f48c06;
+         --gold: #c9a227;
+         --gold-light: #e8c547;
+         --ash: #2a1a14;
+      }
+
+      * {
+         box-sizing: border-box;
+      }
+
+      html {
+         scroll-behavior: smooth;
+      }
+
+      body {
+         margin: 0;
+         min-height: 100vh;
+         color: var(--text);
+         background:
+            radial-gradient(ellipse at 50% 0%, rgba(139, 26, 26, .25) 0%, transparent 50%),
+            radial-gradient(ellipse at 80% 60%, rgba(232, 93, 4, .08) 0%, transparent 40%),
+            radial-gradient(ellipse at 20% 80%, rgba(139, 26, 26, .12) 0%, transparent 45%),
+            linear-gradient(180deg, #0a0605 0%, #120808 40%, #0a0605 100%);
+         font-family: "IM Fell English", Georgia, "Times New Roman", serif;
+      }
+
+      body::before {
+         content: "";
+         position: fixed;
+         inset: 0;
+         pointer-events: none;
+         opacity: .15;
+         background-image:
+            radial-gradient(circle at 20% 30%, rgba(196, 30, 30, .4) 0%, transparent 2%),
+            radial-gradient(circle at 70% 60%, rgba(232, 93, 4, .3) 0%, transparent 1.5%),
+            radial-gradient(circle at 40% 80%, rgba(196, 30, 30, .25) 0%, transparent 1%),
+            radial-gradient(circle at 85% 20%, rgba(232, 93, 4, .2) 0%, transparent 1%);
+         background-size: 100% 100%;
+         animation: embers 8s ease-in-out infinite alternate;
+      }
+
+      body::after {
+         content: "";
+         position: fixed;
+         inset: 0;
+         pointer-events: none;
+         background:
+            linear-gradient(90deg, rgba(10, 6, 5, .7) 0%, transparent 8%, transparent 92%, rgba(10, 6, 5, .7) 100%),
+            linear-gradient(0deg, rgba(10, 6, 5, .5) 0%, transparent 5%, transparent 95%, rgba(10, 6, 5, .3) 100%);
+         z-index: 1;
+      }
+
+      @keyframes embers {
+         0% {
+            opacity: .12;
+         }
+
+         100% {
+            opacity: .22;
+         }
+      }
+
+      .layout {
+         display: grid;
+         grid-template-columns: 270px 1fr;
+         min-height: 100vh;
+         position: relative;
+         z-index: 2;
+      }
+
+      .sidebar {
+         position: sticky;
+         top: 0;
+         height: 100vh;
+         padding: 25px 16px;
+         background:
+            linear-gradient(180deg, rgba(18, 10, 8, .98) 0%, rgba(10, 6, 5, .99) 100%);
+         border-right: 1px solid var(--border);
+         box-shadow:
+            8px 0 40px rgba(0, 0, 0, .6),
+            inset -1px 0 0 rgba(196, 30, 30, .15);
+         z-index: 10;
+         overflow-y: auto;
+      }
+
+      .sidebar::-webkit-scrollbar {
+         width: 4px;
+      }
+
+      .sidebar::-webkit-scrollbar-track {
+         background: var(--ash);
+      }
+
+      .sidebar::-webkit-scrollbar-thumb {
+         background: var(--blood);
+         border-radius: 2px;
+      }
+
+      .logo {
+         text-align: center;
+         padding: 10px 0 25px;
+         border-bottom: 1px solid var(--border);
+         position: relative;
+      }
+
+      .logo::after {
+         content: "";
+         position: absolute;
+         bottom: -1px;
+         left: 20%;
+         right: 20%;
+         height: 1px;
+         background: linear-gradient(90deg, transparent, var(--blood-bright), transparent);
+      }
+
+      .logo-symbol {
+         font-size: 48px;
+         color: var(--blood-bright);
+         text-shadow:
+            0 0 20px rgba(196, 30, 30, .8),
+            0 0 40px rgba(232, 93, 4, .4),
+            0 0 60px rgba(139, 26, 26, .3);
+         animation: pulse-glow 3s ease-in-out infinite;
+      }
+
+      @keyframes pulse-glow {
+
+         0%,
+         100% {
+            text-shadow: 0 0 20px rgba(196, 30, 30, .8), 0 0 40px rgba(232, 93, 4, .4);
+         }
+
+         50% {
+            text-shadow: 0 0 30px rgba(196, 30, 30, 1), 0 0 60px rgba(232, 93, 4, .6), 0 0 80px rgba(139, 26, 26, .4);
+         }
+      }
+
+      .logo h1 {
+         margin: 8px 0 4px;
+         color: var(--gold-light);
+         font-family: "Cinzel", serif;
+         letter-spacing: 8px;
+         font-size: 26px;
+         font-weight: 900;
+         text-shadow:
+            0 0 10px rgba(201, 162, 39, .4),
+            0 2px 4px rgba(0, 0, 0, .8);
+      }
+
+      .logo p {
+         margin: 0;
+         color: var(--blood-bright);
+         font-size: 10px;
+         letter-spacing: 3px;
+         text-transform: uppercase;
+         font-family: "Cinzel", serif;
+         opacity: .85;
+      }
+
+      .menu-title {
+         margin: 24px 10px 8px;
+         color: var(--ember);
+         font-size: 10px;
+         letter-spacing: 3px;
+         text-transform: uppercase;
+         font-family: "Cinzel", serif;
+         text-shadow: 0 0 8px rgba(232, 93, 4, .3);
+      }
+
+      .menu a {
+         display: block;
+         width: 100%;
+         margin: 3px 0;
+         padding: 11px 14px;
+         color: var(--text);
+         background: transparent;
+         border: 1px solid transparent;
+         border-radius: 2px;
+         text-align: left;
+         cursor: pointer;
+         font-family: inherit;
+         text-decoration: none;
+         transition: .25s;
+         position: relative;
+      }
+
+      .menu a:hover {
+         color: var(--gold-light);
+         background: linear-gradient(90deg, rgba(139, 26, 26, .35), transparent);
+         border-color: var(--border);
+         border-left: 3px solid var(--blood-bright);
+         transform: translateX(4px);
+         text-shadow: 0 0 8px rgba(201, 162, 39, .4);
+      }
+
+      .main {
+         min-width: 0;
+      }
+
+      .hero {
+         padding: 55px clamp(20px, 6vw, 75px) 45px;
+         border-bottom: 1px solid var(--border);
+         background:
+            linear-gradient(180deg, rgba(10, 6, 5, .3) 0%, rgba(10, 6, 5, .9) 100%),
+            radial-gradient(ellipse at 70% 20%, rgba(196, 30, 30, .35) 0%, transparent 50%),
+            radial-gradient(ellipse at 30% 80%, rgba(232, 93, 4, .12) 0%, transparent 40%),
+            url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+         position: relative;
+      }
+
+      .hero::after {
+         content: "";
+         position: absolute;
+         bottom: 0;
+         left: 0;
+         right: 0;
+         height: 2px;
+         background: linear-gradient(90deg, transparent 5%, var(--blood) 30%, var(--ember) 50%, var(--blood) 70%, transparent 95%);
+         box-shadow: 0 0 15px rgba(196, 30, 30, .5);
+      }
+
+      .badge {
+         display: inline-block;
+         padding: 6px 14px;
+         color: var(--ember-light);
+         border: 1px solid rgba(232, 93, 4, .5);
+         border-radius: 2px;
+         font-size: 10px;
+         letter-spacing: 3px;
+         text-transform: uppercase;
+         font-family: "Cinzel", serif;
+         background: rgba(139, 26, 26, .2);
+         box-shadow: 0 0 12px rgba(196, 30, 30, .2);
+      }
+
+      .hero h2 {
+         margin: 18px 0 8px;
+         color: #f0e6d0;
+         font-family: "Cinzel", serif;
+         font-size: clamp(42px, 8vw, 78px);
+         letter-spacing: 10px;
+         font-weight: 900;
+         text-shadow:
+            0 0 20px rgba(196, 30, 30, .5),
+            0 0 40px rgba(139, 26, 26, .3),
+            0 4px 8px rgba(0, 0, 0, .9);
+      }
+
+      .hero p {
+         max-width: 780px;
+         color: var(--muted);
+         line-height: 1.8;
+         font-size: 16px;
+      }
+
+      .toolbar {
+         position: sticky;
+         top: 0;
+         z-index: 5;
+         padding: 12px clamp(20px, 6vw, 75px);
+         background: rgba(10, 6, 5, .92);
+         backdrop-filter: blur(12px);
+         border-bottom: 1px solid var(--border);
+         box-shadow: 0 4px 20px rgba(0, 0, 0, .5);
+      }
+
+      #busca {
+         width: 100%;
+         max-width: 650px;
+         padding: 12px 16px;
+         color: var(--text);
+         background: var(--ash);
+         border: 1px solid var(--border);
+         border-radius: 2px;
+         outline: none;
+         font-family: "IM Fell English", serif;
+         font-size: 15px;
+         transition: .25s;
+      }
+
+      #busca::placeholder {
+         color: var(--muted);
+      }
+
+      #busca:focus {
+         border-color: var(--blood-bright);
+         box-shadow:
+            0 0 0 2px rgba(196, 30, 30, .15),
+            0 0 20px rgba(196, 30, 30, .2);
+      }
+
+      .documento-area {
+         padding: 35px clamp(12px, 6vw, 75px) 70px;
+      }
+
+      .documento-container {
+         width: min(100%, 1050px);
+         margin: auto;
+         padding: clamp(24px, 4vw, 52px);
+         background:
+            linear-gradient(160deg, rgba(26, 16, 12, .98) 0%, rgba(14, 8, 6, .99) 100%);
+         border: 1px solid var(--border);
+         border-radius: 2px;
+         box-shadow:
+            0 0 0 1px rgba(139, 26, 26, .1),
+            0 25px 80px rgba(0, 0, 0, .6),
+            inset 0 1px 0 rgba(232, 93, 4, .05);
+         position: relative;
+      }
+
+      .documento-container::before {
+         content: "";
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         height: 3px;
+         background: linear-gradient(90deg, transparent, var(--blood), var(--ember), var(--blood), transparent);
+         opacity: .7;
+      }
+
+      section {
+         margin-bottom: 50px;
+         scroll-margin-top: 80px;
+      }
+
+      h1 {
+         color: var(--gold-light);
+         font-family: "Cinzel", serif;
+         border-bottom: 1px solid var(--border);
+         padding-bottom: 12px;
+         margin-top: 40px;
+         letter-spacing: 4px;
+         font-weight: 700;
+         text-shadow: 0 0 15px rgba(201, 162, 39, .25);
+         position: relative;
+      }
+
+      h1::after {
+         content: "";
+         position: absolute;
+         bottom: -1px;
+         left: 0;
+         width: 120px;
+         height: 2px;
+         background: linear-gradient(90deg, var(--blood-bright), transparent);
+         box-shadow: 0 0 8px rgba(196, 30, 30, .5);
+      }
+
+      h2 {
+         color: var(--ember-light);
+         font-family: "Cinzel", serif;
+         margin-top: 30px;
+         letter-spacing: 1px;
+         text-shadow: 0 0 10px rgba(232, 93, 4, .2);
+      }
+
+      h3 {
+         color: var(--gold);
+         margin-top: 20px;
+         font-family: "Cinzel", serif;
+         font-size: 1.05em;
+      }
+
+      h4 {
+         color: var(--ember);
+         margin-top: 12px;
+         font-family: "Cinzel", serif;
+      }
+
+      p,
+      li {
+         line-height: 1.75;
+         color: var(--text);
+      }
+
+      strong {
+         color: #f0e6d0;
+         text-shadow: 0 0 4px rgba(201, 162, 39, .15);
+      }
+
+      .card {
+         background:
+            linear-gradient(135deg, rgba(26, 16, 12, .9) 0%, rgba(18, 10, 8, .95) 100%);
+         border: 1px solid var(--border);
+         border-left: 3px solid var(--blood);
+         border-radius: 2px;
+         padding: 18px 22px;
+         margin: 16px 0;
+         transition: .3s;
+         box-shadow: inset 0 0 30px rgba(0, 0, 0, .3);
+      }
+
+      .card:hover {
+         border-color: var(--border-glow);
+         border-left-color: var(--blood-bright);
+         box-shadow:
+            inset 0 0 30px rgba(0, 0, 0, .3),
+            0 0 20px rgba(196, 30, 30, .1),
+            -3px 0 12px rgba(196, 30, 30, .15);
+         transform: translateX(2px);
+      }
+
+      .menu-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+         gap: 10px;
+         margin: 20px 0;
+      }
+
+      .menu-grid a {
+         display: block;
+         padding: 13px;
+         background: var(--ash);
+         color: var(--text);
+         text-decoration: none;
+         border-radius: 2px;
+         border: 1px solid var(--border);
+         transition: .25s;
+         text-align: center;
+         font-family: "Cinzel", serif;
+         font-size: 13px;
+         letter-spacing: .5px;
+      }
+
+      .menu-grid a:hover {
+         background: linear-gradient(180deg, rgba(139, 26, 26, .5), rgba(90, 15, 15, .6));
+         color: var(--gold-light);
+         border-color: var(--blood-bright);
+         box-shadow:
+            0 0 15px rgba(196, 30, 30, .3),
+            inset 0 0 20px rgba(196, 30, 30, .1);
+         transform: translateY(-2px);
+         text-shadow: 0 0 8px rgba(201, 162, 39, .4);
+      }
+
+      table {
+         width: 100%;
+         border-collapse: collapse;
+         margin: 20px 0;
+         font-size: 14px;
+      }
+
+      th,
+      td {
+         border: 1px solid var(--border);
+         padding: 11px 14px;
+         text-align: left;
+      }
+
+      th {
+         background: linear-gradient(180deg, rgba(139, 26, 26, .3), rgba(26, 16, 12, .9));
+         color: var(--gold-light);
+         font-family: "Cinzel", serif;
+         letter-spacing: 1px;
+         text-shadow: 0 0 6px rgba(201, 162, 39, .2);
+      }
+
+      tr:nth-child(even) td {
+         background: rgba(18, 10, 8, .5);
+      }
+
+      tr:hover td {
+         background: rgba(139, 26, 26, .12);
+      }
+
+      ul {
+         padding-left: 25px;
+      }
+
+      li {
+         margin-bottom: 6px;
+      }
+
+      li::marker {
+         color: var(--blood-bright);
+      }
+
+      .voltar {
+         display: inline-block;
+         margin-top: 12px;
+         color: var(--ember);
+         text-decoration: none;
+         font-size: 13px;
+      }
+
+      .voltar:hover {
+         color: var(--gold-light);
+         text-shadow: 0 0 8px rgba(232, 93, 4, .4);
+      }
+
+      .footer {
+         padding: 30px;
+         text-align: center;
+         color: var(--muted);
+         border-top: 1px solid var(--border);
+         font-size: 11px;
+         letter-spacing: 4px;
+         font-family: "Cinzel", serif;
+         background: linear-gradient(0deg, rgba(10, 6, 5, .9), transparent);
+         text-shadow: 0 0 10px rgba(139, 26, 26, .3);
+      }
+
+      @media (max-width: 800px) {
+         .layout {
+            display: block;
+         }
+
+         .sidebar {
+            position: relative;
+            height: auto;
+            border-right: 0;
+            border-bottom: 1px solid var(--border);
+         }
+
+         .menu {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4px;
+         }
+
+         .menu-title {
+            grid-column: 1 / -1;
+         }
+      }
+
+      @media (max-width: 480px) {
+         .menu {
+            grid-template-columns: 1fr;
+         }
+
+         .hero {
+            padding-top: 35px;
+         }
+
+         .hero h2 {
+            letter-spacing: 4px;
+         }
+
+         .documento-container {
+            padding: 16px 12px;
+         }
+      }
+
+      navbar {
+         position: sticky;
+         top: 0;
+         z-index: 1000;
+         background: linear-gradient(180deg, #0a0000, #000);
+         border-bottom: 2px solid var(--blood);
+         box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
+      }
+
+      .container-nav {
+         padding: 12px;
+         text-align: center;
+      }
+
+      .links {
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+         gap: 8px;
+      }
+
+      .links a {
+         color: var(--gold);
+         text-decoration: none;
+         padding: 10px 16px;
+         font-weight: bold;
+         text-transform: uppercase;
+         font-size: 13px;
+         letter-spacing: 1px;
+      }
+
+      .links a:hover {
+         color: var(--blood2);
+         text-shadow: 0 0 12px var(--blood2);
+      }
+   </style>
+
+<body>
+   <div class="layout">
+      <aside class="sidebar">
+         <div class="logo">
+            <div class="logo-symbol">✦</div>
+            <h1>NEXALIS</h1>
+            <p>Sistema de RPG</p>
+             <nav class="navbar">
+        <div class="container-nav">
+            <div class="links">
+                <div class="nav-links">
+                    <a href="../funcoes/inicio.html">Player</a>
+                    <a href="../funcoes/racaeclasses.html">Raças & Classes</a>
+                    <a href="../armas/armas.html">Armas</a>
+                    <a href="../funcoes/sistema-completo.html">Sistema</a>
+                    <a href="../funcoes/npcs.html">NPCs</a>
+                    <a href="../funcoes/criacao-de-ficha.html">Ficha</a>
+                    <a href="../funcoes/magia.html">Magia</a><a href="../funcoes/habilidades.html">Habilidades</a>
+                    <a href="../funcoes/porcao.html">Alquimia</a>
+                    <a href="../funcoes/INGREDIENTES.HTML">Ingredientes</a>
+                    <a href="../funcoes/mapas.html">Mapas</a>
+                    <a href="../funcoes/clan.html">Criação de Ficha</a>
+                    <a href="../funcoes/minerios.html">Mineiro</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+            <div class="menu">
+               <div class="menu-title">Navegação</div>
+               <a href="#arquetipos">⚔ Arquétipos</a>
+               <a href="#profissoes">⚒ Profissões</a>
+               <a href="#atributos">◈ Atributos</a>
+               <a href="#talentos">◆ Talentos</a>
+               <a href="#pericias">◇ Perícias</a>
+               <a href="#conhecimentos">✧ Conhecimentos</a>
+               <a href="#amizade">♥ Amizade</a>
+               <a href="#proficiencia">◆ Proficiência</a>
+               <a href="#sistemas">⚙ Sistemas</a>
+               <a href="#movimento">→ Movimento</a>
+               <a href="#voo">✈ Voo</a>
+               <a href="#queda">↓ Queda</a>
+            </div>
+         </div>
+      </aside>
+      <div class="main">
+         <header class="hero">
+            <span class="badge">Livro de Regras</span>
+            <h2>NEXALIS</h2>
+            <p>Sistema completo de RPG — Arquétipos, Profissões, Atributos, Talentos, Perícias, Itens, Armas, Magia e
+               mecânicas de combate.</p>
+         </header>
+         <div class="toolbar">
+            <input id="busca" onkeydown="buscar(event)" placeholder="Buscar seção... (pressione Enter)" type="text" />
+         </div>
+         <div class="documento-area">
+            <div class="documento-container">
+               <!-- ===================== ARQUÉTIPOS ===================== -->
+               <section id="arquetipos">
+                  <h1>Arquétipos</h1>
+                  <p>Os arquétipos representam a personalidade, filosofia e estilo de interpretação do personagem.</p>
+                  <div class="menu-grid">
+                     <a href="#anti-heroi">Anti-Herói</a>
+                     <a href="#artista">Artista</a>
+                     <a href="#aventureiro">Aventureiro</a>
+                     <a href="#bon-vivant">Bon Vivant</a>
+                     <a href="#bravo">Bravo</a>
+                     <a href="#cacador-recompensas">Caçador de Recompensas</a>
+                     <a href="#cavaleiro">Cavaleiro</a>
+                     <a href="#cetico">Cético</a>
+                     <a href="#contrabandista">Contrabandista</a>
+                     <a href="#curador">Curador</a>
+                     <a href="#desbravador">Desbravador</a>
+                     <a href="#destruidor">Destruidor</a>
+                     <a href="#diplomata">Diplomata</a>
+                     <a href="#dissimulado">Dissimulado</a>
+                     <a href="#enganador">Enganador</a>
+                     <a href="#errante">Errante</a>
+                     <a href="#estrategista">Estrategista</a>
+                     <a href="#explorador-urbano">Explorador Urbano</a>
+                     <a href="#fanatico">Fanático</a>
+                     <a href="#filantropo">Filantropo</a>
+                     <a href="#filosofo">Filósofo</a>
+                     <a href="#guerreiro">Guerreiro</a>
+                     <a href="#hedonista">Hedonista</a>
+                     <a href="#heroi">Herói</a>
+                     <a href="#inventor">Inventor</a>
+                     <a href="#investigador">Investigador</a>
+                     <a href="#lider">Líder</a>
+                     <a href="#martir">Mártir</a>
+                     <a href="#mentor">Mentor</a>
+                     <a href="#otimista">Otimista</a>
+                     <a href="#paria">Pária</a>
+                     <a href="#perfeccionista">Perfeccionista</a>
+                     <a href="#pirata">Pirata</a>
+                     <a href="#poeta">Poeta</a>
+                     <a href="#protetor">Protetor</a>
+                     <a href="#realista">Realista</a>
+                     <a href="#recluso">Recluso</a>
+                     <a href="#revolucionario">Revolucionário</a>
+                     <a href="#romantico">Romântico</a>
+                     <a href="#sabio">Sábio</a>
+                     <a href="#sobrevivente">Sobrevivente</a>
+                     <a href="#solitario">Solitário</a>
+                     <a href="#vilao">Vilão</a>
+                     <a href="#vingador">Vingador</a>
+                     <a href="#visionario">Visionário</a>
+                  </div>
+                  <div class="card" id="anti-heroi">
+                     <h2>Anti-Herói</h2>
+                     <p>Não busca prejudicar pessoas inocentes, mas acredita que criminosos e indivíduos malignos devem
+                        ser
+                        punidos de forma severa. Pode recorrer à violência, tortura ou execução quando acredita que isso
+                        representa justiça.</p>
+                  </div>
+                  <div class="card" id="artista">
+                     <h2>Artista</h2>
+                     <p>Expressa sua personalidade e visão de mundo por meio da arte. Busca criar obras capazes de
+                        transmitir beleza, emoções, ideias ou significados.</p>
+                  </div>
+                  <div class="card" id="aventureiro">
+                     <h2>Aventureiro</h2>
+                     <p>Busca constantemente novas experiências, desafios e situações perigosas. Sente-se atraído pelo
+                        desconhecido e dificilmente recusa uma oportunidade de explorar algo novo.</p>
+                  </div>
+                  <div class="card" id="bon-vivant">
+                     <h2>Bon Vivant</h2>
+                     <p>Valoriza intensamente o prazer, o conforto e a diversão. Procura aproveitar cada momento da
+                        vida.
+                     </p>
+                  </div>
+                  <div class="card" id="bravo">
+                     <h2>Bravo</h2>
+                     <p>Enfrenta perigos e desafios diretamente, demonstrando coragem mesmo diante de situações
+                        extremamente arriscadas.</p>
+                  </div>
+                  <div class="card" id="cacador-recompensas">
+                     <h2>Caçador de Recompensas</h2>
+                     <p>Persegue criminosos, fugitivos ou alvos específicos em troca de dinheiro, favores ou outras
+                        recompensas.</p>
+                  </div>
+                  <div class="card" id="cavaleiro">
+                     <h2>Cavaleiro</h2>
+                     <p>É um guerreiro disciplinado que segue um código de honra. Demonstra lealdade aos seus aliados e
+                        procura proteger pessoas indefesas.</p>
+                  </div>
+                  <div class="card" id="cetico">
+                     <h2>Cético</h2>
+                     <p>Questiona informações, crenças, autoridades e acontecimentos aparentemente inexplicáveis.
+                        Prefere
+                        evidências concretas.</p>
+                  </div>
+                  <div class="card" id="contrabandista">
+                     <h2>Contrabandista</h2>
+                     <p>Transporta mercadorias ilegais, proibidas ou restritas através de fronteiras e territórios
+                        perigosos.</p>
+                  </div>
+                  <div class="card" id="curador">
+                     <h2>Curador</h2>
+                     <p>Dedica-se a ajudar e proteger outras pessoas, utilizando seus conhecimentos para tratar
+                        ferimentos,
+                        doenças e sofrimentos.</p>
+                  </div>
+                  <div class="card" id="desbravador">
+                     <h2>Desbravador</h2>
+                     <p>Explora regiões desconhecidas e territórios perigosos, buscando abrir novos caminhos e descobrir
+                        lugares inexplorados.</p>
+                  </div>
+                  <div class="card" id="destruidor">
+                     <h2>Destruidor</h2>
+                     <p>Possui uma forte necessidade de destruir ou quebrar aquilo que considera um obstáculo.</p>
+                  </div>
+                  <div class="card" id="diplomata">
+                     <h2>Diplomata</h2>
+                     <p>Busca resolver conflitos por meio da negociação e da comunicação.</p>
+                  </div>
+                  <div class="card" id="dissimulado">
+                     <h2>Dissimulado</h2>
+                     <p>Esconde suas verdadeiras intenções e prefere agir por meio de manipulação e estratégias
+                        indiretas.
+                     </p>
+                  </div>
+                  <div class="card" id="enganador">
+                     <h2>Enganador</h2>
+                     <p>Utiliza mentiras, disfarces, truques e manipulação para alcançar seus objetivos.</p>
+                  </div>
+                  <div class="card" id="errante">
+                     <h2>Errante</h2>
+                     <p>Não possui um lugar fixo para viver. Viaja constantemente em busca de novas experiências.</p>
+                  </div>
+                  <div class="card" id="estrategista">
+                     <h2>Estrategista</h2>
+                     <p>Prefere analisar cuidadosamente uma situação antes de agir e planeja seus movimentos.</p>
+                  </div>
+                  <div class="card" id="explorador-urbano">
+                     <h2>Explorador Urbano</h2>
+                     <p>Conhece profundamente cidades, becos, mercados, tavernas e regiões perigosas.</p>
+                  </div>
+                  <div class="card" id="fanatico">
+                     <h2>Fanático</h2>
+                     <p>Dedica-se completamente a uma causa, crença, religião, pessoa ou ideologia.</p>
+                  </div>
+                  <div class="card" id="filantropo">
+                     <h2>Filantropo</h2>
+                     <p>Busca melhorar a vida das outras pessoas e contribuir para o bem-estar da sociedade.</p>
+                  </div>
+                  <div class="card" id="filosofo">
+                     <h2>Filósofo</h2>
+                     <p>Busca compreender questões relacionadas à existência, moralidade, conhecimento, destino e
+                        natureza
+                        do universo.</p>
+                  </div>
+                  <div class="card" id="guerreiro">
+                     <h2>Guerreiro</h2>
+                     <p>Encontra propósito, identidade e honra no combate.</p>
+                  </div>
+                  <div class="card" id="hedonista">
+                     <h2>Hedonista</h2>
+                     <p>Coloca o prazer e a satisfação pessoal entre suas maiores prioridades.</p>
+                  </div>
+                  <div class="card" id="heroi">
+                     <h2>Herói</h2>
+                     <p>Busca proteger aqueles que precisam de ajuda e combater injustiças.</p>
+                  </div>
+                  <div class="card" id="inventor">
+                     <h2>Inventor</h2>
+                     <p>Possui grande criatividade e conhecimento técnico. Cria ferramentas, máquinas, armas e
+                        dispositivos.</p>
+                  </div>
+                  <div class="card" id="investigador">
+                     <h2>Investigador</h2>
+                     <p>É curioso, observador e analítico. Busca descobrir segredos, solucionar mistérios e revelar
+                        informações escondidas.</p>
+                  </div>
+                  <div class="card" id="lider">
+                     <h2>Líder</h2>
+                     <p>Naturalmente assume a iniciativa diante de situações difíceis. Organiza, orienta e inspira
+                        outras
+                        pessoas.</p>
+                  </div>
+                  <div class="card" id="martir">
+                     <h2>Mártir</h2>
+                     <p>Está disposto a sacrificar seus próprios interesses, segurança ou até a própria vida por outras
+                        pessoas ou por uma causa maior.</p>
+                  </div>
+                  <div class="card" id="mentor">
+                     <h2>Mentor</h2>
+                     <p>Gosta de ensinar, orientar e desenvolver outras pessoas.</p>
+                  </div>
+                  <div class="card" id="otimista">
+                     <h2>Otimista</h2>
+                     <p>Mantém uma visão positiva mesmo diante de situações difíceis e inspira esperança nos demais.</p>
+                  </div>
+                  <div class="card" id="paria">
+                     <h2>Pária</h2>
+                     <p>É alguém excluído, rejeitado ou marginalizado pela sociedade.</p>
+                  </div>
+                  <div class="card" id="perfeccionista">
+                     <h2>Perfeccionista</h2>
+                     <p>Busca realizar todas as suas ações da melhor maneira possível e é extremamente crítico consigo
+                        mesmo.</p>
+                  </div>
+                  <div class="card" id="pirata">
+                     <h2>Pirata</h2>
+                     <p>Navega pelos mares em busca de riquezas, aventuras e oportunidades.</p>
+                  </div>
+                  <div class="card" id="poeta">
+                     <h2>Poeta</h2>
+                     <p>Utiliza palavras para expressar sentimentos, pensamentos e percepções sobre o mundo.</p>
+                  </div>
+                  <div class="card" id="protetor">
+                     <h2>Protetor</h2>
+                     <p>Sente uma forte necessidade de proteger aqueles ao seu redor.</p>
+                  </div>
+                  <div class="card" id="realista">
+                     <h2>Realista</h2>
+                     <p>Enxerga o mundo de maneira prática e objetiva.</p>
+                  </div>
+                  <div class="card" id="recluso">
+                     <h2>Recluso</h2>
+                     <p>Prefere manter distância da sociedade e passar grande parte do tempo sozinho.</p>
+                  </div>
+                  <div class="card" id="revolucionario">
+                     <h2>Revolucionário</h2>
+                     <p>Deseja transformar profundamente a sociedade e desafiar estruturas consideradas injustas.</p>
+                  </div>
+                  <div class="card" id="romantico">
+                     <h2>Romântico</h2>
+                     <p>Busca paixão, amor e conexões emocionais profundas.</p>
+                  </div>
+                  <div class="card" id="sabio">
+                     <h2>Sábio</h2>
+                     <p>Possui amplo conhecimento e grande capacidade de compreender situações complexas.</p>
+                  </div>
+                  <div class="card" id="sobrevivente">
+                     <h2>Sobrevivente</h2>
+                     <p>Faz o necessário para continuar vivo diante de situações adversas.</p>
+                  </div>
+                  <div class="card" id="solitario">
+                     <h2>Solitário</h2>
+                     <p>Prefere trabalhar e tomar decisões sozinho.</p>
+                  </div>
+                  <div class="card" id="vilao">
+                     <h2>Vilão</h2>
+                     <p>Acredita que o mundo é corrompido e busca alcançar seus objetivos por meios extremos.</p>
+                  </div>
+                  <div class="card" id="vingador">
+                     <h2>Vingador</h2>
+                     <p>É movido pelo desejo de vingança contra aqueles que lhe causaram sofrimento ou injustiça.</p>
+                  </div>
+                  <div class="card" id="visionario">
+                     <h2>Visionário</h2>
+                     <p>Enxerga possibilidades que ainda não existem e trabalha para transformar suas ideias em
+                        realidade.
+                     </p>
+                  </div>
+               </section>
+               <!-- ===================== PROFISSÕES ===================== -->
+               <section id="profissoes">
+                  <h1>Profissões</h1>
+                  <p>As profissões representam especializações utilizadas pelo sistema de Ofício de Nexalis.</p>
+                  <div class="card" id="alquimista">
+                     <h2>Alquimista</h2>
+                     <p>Especialista na transformação e combinação de materiais para criar substâncias valiosas. Produz
+                        poções, elixires e compostos com diferentes efeitos.</p>
+                  </div>
+                  <div class="card" id="armeiro">
+                     <h2>Armeiro</h2>
+                     <p>Profissional especializado na criação e manutenção de armas e armaduras.</p>
+                  </div>
+                  <div class="card" id="artifice">
+                     <h2>Artífice</h2>
+                     <p>Especialista na criação de itens mágicos e artefatos. Utiliza técnicas de fabricação e runas.
+                     </p>
+                  </div>
+                  <div class="card" id="encantador">
+                     <h2>Encantador</h2>
+                     <p>Especialista em aplicar magia a equipamentos e objetos, concedendo novas propriedades e efeitos.
+                     </p>
+                  </div>
+                  <div class="card" id="engenheiro">
+                     <h2>Engenheiro</h2>
+                     <p>Profissional especializado na criação, manutenção e reparo de mecanismos complexos.</p>
+                  </div>
+                  <div class="card" id="medico">
+                     <h2>Médico</h2>
+                     <p>Profissional especializado no tratamento de doenças e ferimentos. Utiliza conhecimentos médicos
+                        combinados com Mana.</p>
+                  </div>
+               </section>
+               <!-- ===================== ATRIBUTOS ===================== -->
+               <section id="atributos">
+                  <h1>Atributos</h1>
+                  <h2>Atributos Físicos</h2>
+                  <div class="card">
+                     <h3>Força</h3>
+                     <p>Força é o principal modificador de dano das classes guerreiras. Também é utilizada em ações que
+                        exigem força física, como saltar, levantar peso, empurrar, quebrar objetos e realizar ataques
+                        físicos.</p>
+                  </div>
+                  <div class="card">
+                     <h3>Destreza</h3>
+                     <p>Destreza é o principal modificador de dano das classes Rangers. Também é utilizada em ações que
+                        exigem precisão, coordenação, agilidade e furtividade, como atirar, manejar ferramentas
+                        delicadas
+                        ou mover-se sem ser percebido.</p>
+                  </div>
+                  <div class="card">
+                     <h3>Vigor</h3>
+                     <p>Vigor representa a resistência física e a capacidade natural do personagem de suportar danos e
+                        condições adversas. Seu valor influencia diretamente a quantidade de dano que o personagem
+                        consegue
+                        absorver.</p>
+                     <p>Também é utilizado em ações que exigem resistência física, como nadar, correr longas distâncias,
+                        suportar esforço prolongado ou resistir a condições extremas.</p>
+                     <p>O nível de Vigor determina a quantidade de dano absorvido após um teste bem-sucedido.</p>
+                  </div>
+                  <h2>Atributos Sociais</h2>
+                  <div class="card">
+                     <h3>Carisma</h3>
+                     <p>Carisma representa a capacidade do personagem de cativar, envolver e causar uma boa impressão
+                        nos
+                        outros. É utilizado em ações como contar piadas, narrar histórias, cantar, dançar, tocar
+                        instrumentos e estabelecer conexões sociais.</p>
+                  </div>
+                  <div class="card">
+                     <h3>Manipulação</h3>
+                     <p>Manipulação representa a capacidade de influenciar outras pessoas de maneira intencional e,
+                        muitas
+                        vezes, enganosa. É utilizada para mentir, induzir alguém ao erro, convencer outras pessoas a
+                        agir
+                        em benefício próprio ou manipular situações de acordo com os interesses do personagem.</p>
+                  </div>
+                  <div class="card">
+                     <h3>Persuasão</h3>
+                     <p>Persuasão representa a capacidade de influenciar outras pessoas por meio de argumentos, charme e
+                        atração. Pode ser utilizada em situações de sedução, convencimento e negociação, permitindo ao
+                        personagem alcançar seus objetivos através de sua presença e capacidade de influência.</p>
+                  </div>
+                  <h2>Atributos Mentais</h2>
+                  <div class="card">
+                     <h3>Percepção</h3>
+                     <p>Percepção representa a capacidade do personagem de observar e identificar detalhes importantes
+                        ao
+                        seu redor. É utilizada para perceber acontecimentos que exigem atenção, encontrar pistas,
+                        identificar perigos e acompanhar rastros.</p>
+                     <p>É um atributo fundamental para investigações, exploração e rastreamento, permitindo ao
+                        personagem
+                        perceber informações que poderiam passar despercebidas.</p>
+                  </div>
+                  <div class="card">
+                     <h3>Inteligência</h3>
+                     <p>Inteligência é o principal modificador de dano dos personagens mágicos. Também é utilizada em
+                        ações
+                        que exigem conhecimento, raciocínio e capacidade de resolver problemas complexos.</p>
+                     <p>Pode ser utilizada para traduzir idiomas, operar tecnologias, compreender informações e resistir
+                        a
+                        determinadas formas de influência social.</p>
+                  </div>
+                  <div class="card">
+                     <h3>Reação</h3>
+                     <p>Reação representa a velocidade dos reflexos e a capacidade do personagem de responder
+                        rapidamente a
+                        situações inesperadas.</p>
+                     <p>É utilizada em ações que exigem rapidez, como esquivar, bloquear ataques, reagir a perigos ou
+                        agir
+                        antes que uma ameaça consiga alcançá-lo.</p>
+                  </div>
+               </section>
+               <!-- ===================== TALENTOS ===================== -->
+               <section id="talentos">
+                  <h1>Talentos</h1>
+                  <div class="card">
+                     <h2>Intimidação</h2>
+                     <p>Utilizada sempre que o personagem tentar intimidar, ameaçar ou pressionar outra pessoa por meio
+                        de
+                        medo ou coerção.</p>
+                     <p><strong>Sistema:</strong> Intimidação + Manipulação.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Liderança</h2>
+                     <p>Talento indispensável para personagens que desejam liderar, organizar e coordenar companheiros
+                        de
+                        qualquer tipo.</p>
+                     <p><strong>Sistema:</strong> Liderança + (Atributo Social desejado).</p>
+                  </div>
+                  <div class="card">
+                     <h2>Manha</h2>
+                     <p>Representa o conhecimento das ruas e dos meios clandestinos. Permite reconhecer rotas de
+                        contrabando, atalhos, mercadores específicos, contatos e outras informações do submundo.</p>
+                     <p><strong>Sistema:</strong> Manha + Inteligência.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Lábia</h2>
+                     <p>Utilizada em conjunto com os Atributos Sociais para persuadir, manipular, convencer ou seduzir
+                        outras pessoas.</p>
+                     <p><strong>Sistema:</strong> Lábia + (Atributo Social desejado).</p>
+                  </div>
+                  <div class="card">
+                     <h2>Esquiva</h2>
+                     <p>Utilizada exclusivamente para evitar ataques, armadilhas e outros perigos que possam atingir o
+                        personagem.</p>
+                     <p><strong>Sistema:</strong> Esquiva + Reação.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Briga</h2>
+                     <p>Utilizada em diferentes formas de combate corpo a corpo, incluindo golpes, agarrões,
+                        imobilizações
+                        e tentativas de escapar de uma contenção.</p>
+                     <p><strong>Sistema:</strong> Briga + Força ou Destreza.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Investida</h2>
+                     <p>Permite ao personagem percorrer uma distância maior durante uma única ação, de acordo com seu
+                        nível
+                        de Investida.</p>
+                     <p><strong>Sistema:</strong> Investida + Força ou Destreza.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Crítico</h2>
+                     <p>Permite ao personagem tentar causar dano adicional após realizar um ataque bem-sucedido.</p>
+                     <p><strong>Condição:</strong> O ataque deve obter no mínimo <strong>3 sucessos na dificuldade
+                           7</strong> para permitir a tentativa de dano crítico.</p>
+                     <p><strong>Efeito:</strong> Quando o teste de crítico for bem-sucedido, o dano causado pelo ataque
+                        é
+                        <strong>dobrado</strong>.
+                     </p>
+                     <p><strong>Teste do Golpe Crítico:</strong> Destreza + Crítico, dificuldade 7.</p>
+                     <p><strong>Teste de Resistência:</strong> O alvo deve realizar Vigor + Armadura, dificuldade 7, e
+                        obter uma quantidade de sucessos superior à do atacante para resistir ao dano crítico.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Bloqueio</h2>
+                     <p>Pode ser utilizado com espadas e outras armas, mas é especialmente eficiente quando o personagem
+                        utiliza um escudo. Permite reduzir ou evitar o dano de ataques recebidos.</p>
+                     <p><strong>Sistema:</strong> Bloqueio + Reação.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Avaliação</h2>
+                     <p>Utilizada para descobrir informações sobre pessoas, criaturas e itens, permitindo ao personagem
+                        identificar características que normalmente permaneceriam ocultas.</p>
+                     <p><strong>Sistema:</strong> Avaliação + Percepção.</p>
+                     <h3>Regra de Avaliação e Ocultação</h3>
+                     <p>O nível de Avaliação deve ser igual ou superior ao nível de Ocultação do alvo.</p>
+                     <ul>
+                        <li>Se a <strong>Ocultação</strong> do alvo for superior ao nível de Avaliação, a dificuldade
+                           padrão passa a ser <strong>7</strong>.</li>
+                        <li>Se o nível de <strong>Avaliação</strong> for superior à Ocultação do alvo, a dificuldade do
+                           teste de resistência do alvo passa a ser <strong>7</strong>.</li>
+                     </ul>
+                  </div>
+               </section>
+               <!-- ===================== PERÍCIAS ===================== -->
+               <section id="pericias">
+                  <h1>Perícias</h1>
+                  <div class="card">
+                     <h2>Adestramento</h2>
+                     <p>Representa a capacidade do personagem de compreender, acalmar e estabelecer uma relação de
+                        confiança com animais.</p>
+                     <p>Um personagem que tentar se aproximar de um animal sem possuir essa perícia pode provocar uma
+                        reação hostil da criatura.</p>
+                     <p><strong>Sistema:</strong> Adestramento + Carisma, dificuldade 7.</p>
+                     <p>O personagem precisa obter no mínimo <strong>3 sucessos</strong> para concluir a ação.</p>
+                     <h3>Teste de Resistência</h3>
+                     <p><strong>Sistema:</strong> Inteligência + Consciência, dificuldade 5.</p>
+                     <p>A criatura precisa superar a quantidade de sucessos obtida pelo adestrador.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Cavalgada</h2>
+                     <p>Representa a habilidade do personagem de montar e conduzir animais, além de determinar a
+                        velocidade
+                        com que a montaria consegue percorrer uma determinada distância.</p>
+                     <p>Montarias de nível elevado possuem maior velocidade, menor necessidade de pausas e maior
+                        resistência.</p>
+                     <p><strong>Sistema:</strong> Ao ativar o modo Cavalgada, o personagem compromete <strong>metade de
+                           sua
+                           Mana total</strong>. Essa Mana não pode ser recuperada por nenhum meio enquanto o modo
+                        permanecer ativo.</p>
+                     <p>O modo Cavalgada também pode ser aplicado a habilidades de <strong>voo ou corrida</strong>,
+                        quando
+                        permitido pelo sistema.</p>
+                     <p>Cada nível de Cavalgada adiciona <strong>30 km/h</strong> à velocidade da montaria ou do
+                        deslocamento utilizado.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Ofício</h2>
+                     <p>Representa a profissão escolhida pelo personagem e o nível de habilidade com que ele consegue
+                        executar as tarefas relacionadas à profissão.</p>
+                     <p><strong>Sistema:</strong> Ofício + atributo ou habilidade correspondente à profissão.</p>
+                     <h3>Especializações</h3>
+                     <ul>
+                        <li><strong>Alquimia:</strong> Ciência.</li>
+                        <li><strong>Armaria:</strong> Nível da arma ou nível de proficiência correspondente à armadura.
+                        </li>
+                        <li><strong>Artificiaria:</strong> Runas.</li>
+                        <li><strong>Encantador:</strong> Encantamento.</li>
+                        <li><strong>Engenharia:</strong> Tecnologia.</li>
+                        <li><strong>Médico:</strong> Medicina.</li>
+                     </ul>
+                  </div>
+               </section>
+               <!-- ===================== CONHECIMENTOS ===================== -->
+               <section id="conhecimentos">
+                  <h1>Conhecimentos</h1>
+                  <div class="card">
+                     <h2>Acadêmicos</h2>
+                     <p>Mede a capacidade do personagem de ler, escrever e compreender diferentes idiomas.</p>
+                     <p><strong>Sistema:</strong> Acadêmicos + Inteligência.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Finanças</h2>
+                     <p>Permite ao personagem obter melhores condições em negociações, comprando mais barato e vendendo
+                        por
+                        valores maiores.</p>
+                     <p><strong>Sistema:</strong> Finanças + Manipulação.</p>
+                     <p>A cada nível, o personagem recebe <strong>5% de desconto em compras</strong> e pode
+                        <strong>aumentar em 5% o valor dos itens vendidos</strong>.
+                     </p>
+                  </div>
+                  <div class="card">
+                     <h2>Encantamento</h2>
+                     <p>Permite aprimorar armas, armaduras e outros equipamentos, concedendo propriedades e vantagens
+                        únicas.</p>
+                     <p>O conhecimento acima do <strong>nível 1</strong> é restrito à profissão de
+                        <strong>Encantador</strong>.
+                     </p>
+                     <p><strong>Sistema:</strong> Encantamento + Ofício.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Runas</h2>
+                     <p>O personagem que domina esta habilidade é capaz de criar itens lendários e entalhes rúnicos,
+                        concedendo habilidades únicas que podem ser utilizadas em combate ou fora dele.</p>
+                     <p>O conhecimento acima do <strong>nível 1</strong> é restrito à profissão de
+                        <strong>Artífice</strong>.
+                     </p>
+                     <p><strong>Sistema:</strong> Runas + Ofício.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Medicina</h2>
+                     <p>Utilizada em ações relacionadas à cura e ao conhecimento biológico, incluindo suas causas e
+                        efeitos.</p>
+                     <p>O conhecimento acima do <strong>nível 1</strong> é restrito à profissão de
+                        <strong>Médico</strong>.
+                     </p>
+                     <p><strong>Sistema:</strong> Medicina + Ofício.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Ciências</h2>
+                     <p>Abrange conhecimentos relacionados à fauna, flora e aos fenômenos naturais.</p>
+                     <p><strong>Sistema:</strong> Ciências + Inteligência.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Tecnologia</h2>
+                     <p>Conhecimento complexo e dominado por poucos. Permite compreender, utilizar e explorar
+                        tecnologias
+                        para obter vantagens, além de identificar formas de combatê-las.</p>
+                     <p>O conhecimento acima do <strong>nível 1</strong> é restrito à profissão de
+                        <strong>Engenheiro</strong>.
+                     </p>
+                     <p><strong>Sistema:</strong> Tecnologia + Ofício.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Linguística</h2>
+                     <p>Indispensável para personagens que desejam dominar diferentes idiomas.</p>
+                     <p><strong>Sistema:</strong> Não exige teste. Cada nível de Linguística concede ao personagem
+                        conhecimento de <strong>uma língua adicional</strong>.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Investigação</h2>
+                     <p>Permite analisar situações, encontrar pistas e identificar detalhes que poderiam passar
+                        despercebidos. Um investigador competente sabe observar, conectar informações e desvendar
+                        mistérios.</p>
+                     <p><strong>Sistema:</strong> Investigação + Percepção.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Ocultação</h2>
+                     <p>Permite esconder informações sobre o personagem, seus itens ou suas características,
+                        dificultando
+                        que outros obtenham informações por meio da Avaliação.</p>
+                     <p><strong>Sistema:</strong> Ocultação + Manipulação.</p>
+                     <p><strong>Regra:</strong> O nível de Avaliação deve ser igual ou superior ao nível de Ocultação do
+                        alvo. Caso a Ocultação seja superior à Avaliação, a dificuldade padrão passa a ser
+                        <strong>7</strong>.
+                     </p>
+                  </div>
+               </section>
+               <!-- ===================== AMIZADE ===================== -->
+               <section id="amizade">
+                  <h1>Amizade</h1>
+                  <p>O sistema de Amizade complementa a <strong>Mecânica de Interpretação</strong>, recompensando
+                     jogadores
+                     que desenvolvem laços narrativos entre seus personagens.</p>
+                  <p>Dependendo da <strong>profissão</strong> dos personagens, pode ser mais fácil alcançar níveis
+                     elevados
+                     de Amizade.</p>
+                  <div class="card">
+                     <h2>Nível 0 — Desconhecidos</h2>
+                     <ul>
+                        <li>Não recebem bônus.</li>
+                        <li>Não podem realizar ataques combinados.</li>
+                     </ul>
+                  </div>
+                  <div class="card">
+                     <h2>Nível 1 — Conhecidos</h2>
+                     <ul>
+                        <li>Ataques combinados funcionam com <strong>50% de eficiência</strong>.</li>
+                        <li><strong>+1 em Coordenação</strong>, podendo ser aplicado em testes de Iniciativa ou Reação.
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="card">
+                     <h2>Nível 2 — Colegas</h2>
+                     <ul>
+                        <li>Ataques combinados funcionam normalmente.</li>
+                        <li><strong>+2 em Precisão Conjunta</strong>, adicionando dados aos testes de Destreza ou
+                           Percepção
+                           quando os personagens agirem juntos.</li>
+                     </ul>
+                  </div>
+                  <div class="card">
+                     <h2>Nível 3 — Amigos</h2>
+                     <ul>
+                        <li>Ataques combinados recebem <strong>+10% de efeito</strong>.</li>
+                        <li><strong>+2 em Defesa Mútua/Suporte</strong>, podendo ser aplicado ao Vigor ou Bloqueio ao
+                           defender um aliado.</li>
+                     </ul>
+                  </div>
+                  <div class="card">
+                     <h2>Nível 4 — Amizade Forte</h2>
+                     <ul>
+                        <li>Ataques combinados recebem <strong>+20% de poder</strong>.</li>
+                        <li>Permite utilizar <strong>Ação Dupla</strong>, ignorando a restrição de uma ação por turno
+                           para
+                           apoiar um aliado no mesmo turno.</li>
+                     </ul>
+                  </div>
+                  <div class="card">
+                     <h2>Nível 5 — Irmãos de Alma</h2>
+                     <p>Nível máximo de Amizade.</p>
+                     <ul>
+                        <li>Ataques combinados recebem <strong>+35% de poder</strong>.</li>
+                        <li>Permite realizar <strong>ataques exclusivos</strong>.</li>
+                        <li><strong>+3 em Inteligência Conjunta</strong>, aplicado aos testes de lançamento de magias ou
+                           técnicas.</li>
+                        <li><strong>+3 em Proteção</strong>, aplicado diretamente à absorção de dano ou Vigor.</li>
+                        <li><strong>Senso Compartilhado:</strong> concede um bônus passivo de Percepção para identificar
+                           perigos iminentes.</li>
+                     </ul>
+                  </div>
+                  <h2>Sistema de Ataque Combinado</h2>
+                  <p>Esta técnica utiliza as regras de <strong>Magia/Técnica</strong>, nas quais o dano base é
+                     determinado
+                     pela soma das maestrias dos participantes.</p>
+                  <div class="card">
+                     <h3>1. Cálculo de Dados</h3>
+                     <p>O teste do ataque combinado soma os atributos relevantes dos participantes e os níveis das
+                        respectivas magias ou técnicas utilizadas.</p>
+                     <p><strong>Exemplo:</strong></p>
+                     <ul>
+                        <li><strong>P1:</strong> Inteligência 3 + Fogo 5</li>
+                        <li><strong>P2:</strong> Inteligência 4 + Gelo 5</li>
+                     </ul>
+                  </div>
+                  <div class="card">
+                     <h3>2. Dano Base</h3>
+                     <p>O dano base é determinado pela soma dos níveis elementais utilizados pelos participantes.</p>
+                     <ul>
+                        <li><strong>P1:</strong> Fogo Nível 5</li>
+                        <li><strong>P2:</strong> Gelo Nível 5</li>
+                        <li><strong>Dano Base:</strong> 10</li>
+                     </ul>
+                     <p>O bônus correspondente ao <strong>Nível de Amizade</strong> é aplicado posteriormente ao dano
+                        base.
+                     </p>
+                  </div>
+                  <div class="card">
+                     <h3>3. Distância</h3>
+                     <p>O ataque combinado segue a tabela de <strong>Turnos de Distância</strong>. Os participantes
+                        devem
+                        estar dentro do alcance necessário para coordenar e executar a ação combinada.</p>
+                  </div>
+                  <h3>Exemplo Prático — Explosão Térmica</h3>
+                  <div class="card">
+                     <p><strong>Elementos:</strong> Fogo + Gelo + Inteligência</p>
+                     <p><strong>Participantes:</strong> P1 e P2</p>
+                     <p><strong>Nível de Amizade:</strong> Nível 4 — Amizade Forte (+20% de poder)</p>
+                     <p><strong>P1:</strong> Inteligência 3 + Fogo 5</p>
+                     <p><strong>P2:</strong> Inteligência 4 + Gelo 5</p>
+                     <p><strong>Dano Base:</strong> Fogo 5 + Gelo 5 = 10</p>
+                     <p>Após calcular o dano base, aplica-se o bônus de <strong>+20% de poder</strong>.</p>
+                  </div>
+               </section>
+               <!-- ===================== PROFICIÊNCIA ===================== -->
+               <section id="proficiencia">
+                  <h1>Proficiência</h1>
+                  <p>A Proficiência determina o nível máximo de habilidades, atributos, magias e equipamentos que um
+                     personagem pode utilizar. Um personagem não pode usar qualquer habilidade ou item que esteja em um
+                     nível superior à sua própria Proficiência.</p>
+                  <p>Atributos, Habilidades, Magias e outros elementos possuem limite máximo de evolução no nível 10,
+                     mesmo
+                     quando o personagem possui uma Proficiência superior. Entretanto, equipamentos, encantamentos,
+                     runas e
+                     outros bônus podem elevar esses valores além do limite natural.</p>
+                  <h2>Níveis de Proficiência</h2>
+                  <table>
+                     <thead>
+                        <tr>
+                           <th>Nível</th>
+                           <th>Status Máximo</th>
+                           <th>Descrição</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>1</td>
+                           <td>1</td>
+                           <td>Nível Aprendiz</td>
+                        </tr>
+                        <tr>
+                           <td>2</td>
+                           <td>2</td>
+                           <td>—</td>
+                        </tr>
+                        <tr>
+                           <td>3</td>
+                           <td>3</td>
+                           <td>Nível Profissional</td>
+                        </tr>
+                        <tr>
+                           <td>4</td>
+                           <td>4</td>
+                           <td>—</td>
+                        </tr>
+                        <tr>
+                           <td>5</td>
+                           <td>5</td>
+                           <td>—</td>
+                        </tr>
+                        <tr>
+                           <td>6</td>
+                           <td>6</td>
+                           <td>Nível Mestre</td>
+                        </tr>
+                        <tr>
+                           <td>7</td>
+                           <td>7</td>
+                           <td>Evolução da Raça e Nível Aprendiz da 2ª Classe</td>
+                        </tr>
+                        <tr>
+                           <td>8</td>
+                           <td>8</td>
+                           <td>—</td>
+                        </tr>
+                        <tr>
+                           <td>9</td>
+                           <td>9</td>
+                           <td>Nível Profissional da 2ª Classe</td>
+                        </tr>
+                        <tr>
+                           <td>10</td>
+                           <td>10</td>
+                           <td>—</td>
+                        </tr>
+                        <tr>
+                           <td>11</td>
+                           <td>10</td>
+                           <td>—</td>
+                        </tr>
+                        <tr>
+                           <td>12</td>
+                           <td>10</td>
+                           <td>Nível Mestre da 2ª Classe</td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <h2>Pré-Requisitos de Equipamentos</h2>
+                  <ul>
+                     <li><strong>Proficiência Nível 1:</strong> Itens Básicos.</li>
+                     <li><strong>Proficiência Nível 3:</strong> Itens Épicos.</li>
+                     <li><strong>Proficiência Nível 6:</strong> Itens Lendários.</li>
+                     <li><strong>Proficiência Nível 10:</strong> Itens Mitológicos.</li>
+                  </ul>
+                  <h2>Qualidade dos Equipamentos</h2>
+                  <div class="card">
+                     <h3>Básica</h3>
+                     <p>Mantém os atributos originais.</p>
+                  </div>
+                  <div class="card">
+                     <h3>Épico</h3>
+                     <p>Aumenta as vantagens do equipamento em +2. (Ex.: espada com +1 Força passa a ter +3.)</p>
+                  </div>
+                  <div class="card">
+                     <h3>Lendário</h3>
+                     <p>Aumenta as vantagens do equipamento em +3. (Ex.: +1 Força → +4.)</p>
+                  </div>
+                  <div class="card">
+                     <h3>Mitológico</h3>
+                     <p>Aumenta as vantagens do equipamento em +4. (Ex.: +1 Força → +5.) Encontrado principalmente entre
+                        os
+                        Deuses.</p>
+                  </div>
+                  <p>As armas de qualidade avançada possuem vantagens superiores, porém suas desvantagens não aumentam.
+                  </p>
+               </section>
+               <!-- ===================== SISTEMAS ===================== -->
+               <section id="sistemas">
+                  <h1>Sistemas Gerais</h1>
+                  <h2>Bônus e Penalidades</h2>
+                  <div class="card">
+                     <p>Bônus e Penalidades representam todos os modificadores recebidos ou perdidos que não sejam
+                        pontos
+                        investidos diretamente pelo personagem durante a evolução.</p>
+                     <ul>
+                        <li><strong>Força:</strong> 1 + 4 de Bônus = 5 de Força.</li>
+                        <li><strong>Destreza:</strong> 1 + 0 de Bônus = 1 de Destreza.</li>
+                        <li><strong>Vigor:</strong> 1 - 4 de Penalidade = -3 de Vigor.</li>
+                     </ul>
+                     <p>O limite de pontos investidos diretamente em qualquer atributo é <strong>10</strong>. Esse valor
+                        pode ser ultrapassado por bônus de Raça, Classe, Equipamentos, Encantamentos, Runas e
+                        Aprimoramentos.</p>
+                     <p>Personagens com nível 10 em um atributo podem tê-lo reduzido até zero caso acumulem Penalidades
+                        suficientes.</p>
+                  </div>
+                  <h2>Força de Vontade</h2>
+                  <div class="card">
+                     <p>Recurso poderoso e escasso. Permite reduzir a dificuldade de uma ação ou rerrolar dados de erro
+                        crítico (1 ponto por dado).</p>
+                     <p>Não possui níveis. É um recurso único e pessoal de cada personagem.</p>
+                     <h3>Recuperação</h3>
+                     <ol>
+                        <li>Interpretar fielmente o personagem de acordo com seus Arquétipos.</li>
+                        <li>Utilizar XP.</li>
+                        <li>Utilizar Pontos de Benção (restauram toda a Força de Vontade gasta desde o último uso da
+                           mesa).
+                        </li>
+                     </ol>
+                  </div>
+                  <h2>Mana</h2>
+                  <div class="card">
+                     <p>Energia vital utilizada pelos seres de Nexalis. Cada espécie pode possuir um nome diferente:</p>
+                     <ul>
+                        <li><strong>Magos:</strong> Mana.</li>
+                        <li><strong>Bárbaros:</strong> Fúria.</li>
+                        <li><strong>Monges:</strong> Chí.</li>
+                     </ul>
+                     <p>Utilizada principalmente para lançar Magias e Técnicas. Cada habilidade possui um custo
+                        específico.
+                     </p>
+                  </div>
+                  <h2>Benção (Pontos de Bênção)</h2>
+                  <div class="card">
+                     <p>Só podem ser concedidos por divindades. Permitem garantir sucesso em praticamente qualquer ação,
+                        além de:</p>
+                     <ul>
+                        <li>Recuperar Força de Vontade.</li>
+                        <li>Recuperar Mana.</li>
+                        <li>Recuperar Vitalidade.</li>
+                        <li>Reviver personagens mortos.</li>
+                     </ul>
+                  </div>
+                  <h2>Maldições</h2>
+                  <div class="card">
+                     <p>Penalidades que podem durar desde uma única mesa até uma crônica inteira. Adquiridas através de
+                        criaturas poderosas, seres com poderes divinos ou como consequência de atos hediondos.</p>
+                  </div>
+                  <h2>Vitalidade e Estados de Dor</h2>
+                  <div class="card">
+                     <p>A Vitalidade representa a quantidade de vida de cada personagem e usa uma escala única de <strong>0 a 100</strong>. A Vitalidade máxima é definida exclusivamente pelo nível: <strong>Nível 1 = 10, Nível 2 = 20</strong> e assim por diante, somando <strong>+10 por nível</strong> até <strong>Nível 10 = 100</strong>. Ao chegar a 0, o personagem fica Caído. Conforme sofre dano suficiente, também pode adquirir penalidades conhecidas como <strong>DOR</strong>.</p>
+                     <table>
+                        <thead><tr><th>Nível</th><th>Vitalidade Máxima</th><th>Regra</th></tr></thead>
+                        <tbody>
+                           <tr><td>1</td><td>10</td><td rowspan="10">Vitalidade máxima = Nível × 10</td></tr>
+                           <tr><td>2</td><td>20</td></tr><tr><td>3</td><td>30</td></tr><tr><td>4</td><td>40</td></tr><tr><td>5</td><td>50</td></tr>
+                           <tr><td>6</td><td>60</td></tr><tr><td>7</td><td>70</td></tr><tr><td>8</td><td>80</td></tr><tr><td>9</td><td>90</td></tr><tr><td>10</td><td>100</td></tr>
+                        </tbody>
+                     </table>
+                     <table>
+                        <thead>
+                           <tr>
+                              <th>Estado</th>
+                              <th>Aumento de Dificuldade</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>Saudável</td>
+                              <td>+0</td>
+                           </tr>
+                           <tr>
+                              <td>Escoriado</td>
+                              <td>+1</td>
+                           </tr>
+                           <tr>
+                              <td>Arranhado</td>
+                              <td>+1</td>
+                           </tr>
+                           <tr>
+                              <td>Machucado</td>
+                              <td>+2</td>
+                           </tr>
+                           <tr>
+                              <td>Ferido</td>
+                              <td>+2</td>
+                           </tr>
+                           <tr>
+                              <td>Ferido Gravemente</td>
+                              <td>+2</td>
+                           </tr>
+                           <tr>
+                              <td>Espancado</td>
+                              <td>+5</td>
+                           </tr>
+                           <tr>
+                              <td>Aleijado</td>
+                              <td>+5</td>
+                           </tr>
+                           <tr>
+                              <td>Caído</td>
+                              <td>+7</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <p>Quando o personagem atinge o estado de morte, está definitivamente morto, a menos que receba uma
+                        Benção.</p>
+                  </div>
+                  <h2>XP — Experiência</h2>
+                  <div class="card">
+                     <p>Concedido exclusivamente aos jogadores. NPCs não evoluem com XP.</p>
+                     <table>
+                        <thead>
+                           <tr>
+                              <th>Aspecto</th>
+                              <th>Custo</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>Atributos</td>
+                              <td>Nível atual × 4</td>
+                           </tr>
+                           <tr>
+                              <td>Habilidades</td>
+                              <td>Nível atual × 2</td>
+                           </tr>
+                           <tr>
+                              <td>Virtudes</td>
+                              <td>Nível atual × 2</td>
+                           </tr>
+                           <tr>
+                              <td>Proficiência</td>
+                              <td>Nível atual × 10</td>
+                           </tr>
+                           <tr>
+                              <td>Força de Vontade</td>
+                              <td>Nível atual × 2</td>
+                           </tr>
+                           <tr>
+                              <td>Magia/Resistência</td>
+                              <td>Nível atual × 3</td>
+                           </tr>
+                           <tr>
+                              <td>Nova Magia/Técnica — Aprendiz</td>
+                              <td>10 XP</td>
+                           </tr>
+                           <tr>
+                              <td>Nova Magia/Técnica — Profissional</td>
+                              <td>30 XP</td>
+                           </tr>
+                           <tr>
+                              <td>Nova Magia/Técnica — Mestre</td>
+                              <td>60 XP</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <h2>Sistema de Testes</h2>
+                  <div class="card">
+                     <p>Toda ação é realizada utilizando um Atributo junto com uma Habilidade (exceto em situações
+                        específicas). A quantidade de dados é a soma dos pontos investidos.</p>
+                     <p><strong>Exemplos:</strong></p>
+                     <ul>
+                        <li>Golpear: Força (3) + Briga (2) = 5 dados.</li>
+                        <li>Mentir: Manipulação (2) + Lábia (1) = 3 dados.</li>
+                        <li>Operar máquina: Inteligência (5) + Tecnologia (3) = 8 dados.</li>
+                     </ul>
+                     <p><strong>Dificuldade padrão:</strong> 5. Normalmente são necessários <strong>3 sucessos</strong>.
+                     </p>
+                     <p>Ausência de Atributo ou Habilidade aumenta a dificuldade em +1. Níveis negativos aumentam
+                        proporcionalmente.</p>
+                  </div>
+               </section>
+               <!-- ===================== MOVIMENTO ===================== -->
+               <section id="movimento">
+                  <h1>Movimento e Ações em Turnos de Distância</h1>
+                  <p>Combate e movimento são gerenciados por <strong>Turnos de Distância</strong>. Cada personagem pode
+                     se
+                     mover ou realizar uma ação por turno (atacar ou lançar magia).</p>
+                  <table>
+                     <thead>
+                        <tr>
+                           <th>Turnos</th>
+                           <th>Distância</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>0</td>
+                           <td>0–4 metros</td>
+                        </tr>
+                        <tr>
+                           <td>1</td>
+                           <td>5–9 metros</td>
+                        </tr>
+                        <tr>
+                           <td>2</td>
+                           <td>10–14 metros</td>
+                        </tr>
+                        <tr>
+                           <td>3</td>
+                           <td>15–19 metros</td>
+                        </tr>
+                        <tr>
+                           <td>4</td>
+                           <td>20–24 metros</td>
+                        </tr>
+                        <tr>
+                           <td>5</td>
+                           <td>25–29 metros</td>
+                        </tr>
+                        <tr>
+                           <td>6</td>
+                           <td>30–34 metros</td>
+                        </tr>
+                        <tr>
+                           <td>7</td>
+                           <td>35–39 metros</td>
+                        </tr>
+                        <tr>
+                           <td>8</td>
+                           <td>40–44 metros</td>
+                        </tr>
+                        <tr>
+                           <td>9</td>
+                           <td>45–49 metros</td>
+                        </tr>
+                        <tr>
+                           <td>10</td>
+                           <td>50–54 metros</td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <p>A cada turno adicional são acrescentados 5 metros.</p>
+                  <h2>Regras de Movimento e Ação</h2>
+                  <ul>
+                     <li><strong>Movimento básico:</strong> até 5 metros por turno.</li>
+                     <li><strong>Ação:</strong> atacar, lançar magia ou utilizar habilidade.</li>
+                     <li>Não é possível mover e agir no mesmo turno, salvo habilidades especiais.</li>
+                  </ul>
+                  <h2>Exemplos Práticos</h2>
+                  <div class="card">
+                     <h3>Combate Corpo a Corpo</h3>
+                     <p>Um guerreiro a 3 metros de um Goblin (0 turnos) pode atacá-lo imediatamente. Se outro Goblin
+                        estiver a 7 metros (1 turno), o guerreiro deve escolher entre se mover ou realizar sua ação.</p>
+                  </div>
+                  <div class="card">
+                     <h3>Combate à Distância</h3>
+                     <p>Um arqueiro a 12 metros de um Orc (2 turnos) pode disparar se seu arco tiver alcance de 20
+                        metros
+                        (4 turnos), sem precisar se mover.</p>
+                  </div>
+                  <div class="card">
+                     <h3>Movimento Tático</h3>
+                     <p>Um mago a 5 metros dos inimigos pode recuar 5 metros (ficando a 10 metros) e então utilizar uma
+                        magia de área, caso possua habilidade que permita essa ação.</p>
+                  </div>
+               </section>
+               <!-- ===================== VOO ===================== -->
+               <section id="voo">
+                  <h1>Movimento de Voo</h1>
+                  <p>O voo utiliza a perícia <strong>Cavalgada</strong> e as regras de <strong>Turnos de
+                        Distância</strong>.</p>
+                  <div class="card">
+                     <h2>Ativar o modo de voo</h2>
+                     <ul>
+                        <li>Compromete <strong>metade da Mana total</strong> do personagem.</li>
+                        <li>Essa Mana <strong>não se recupera</strong> enquanto o voo permanecer ativo.</li>
+                        <li>A mesma regra vale para voo, corrida especial ou montaria (perícia Cavalgada).</li>
+                     </ul>
+                  </div>
+                  <div class="card">
+                     <h2>Velocidade</h2>
+                     <p>Cada nível de <strong>Cavalgada</strong> adiciona <strong>+30 km/h</strong> à velocidade de
+                        deslocamento em voo (ou montaria / corrida).</p>
+                     <p><strong>Exemplo:</strong> Cavalgada 3 → +90 km/h além da velocidade base da raça ou habilidade
+                        de
+                        voo.</p>
+                  </div>
+                  <div class="card">
+                     <h2>Combate aéreo</h2>
+                     <ul>
+                        <li>Em combate, o personagem ainda age por <strong>turnos</strong>.</li>
+                        <li>Movimento básico no chão: até <strong>5 metros por turno</strong>.</li>
+                        <li>Em voo, o Mestre pode permitir deslocamento maior (vários blocos de 5 m) ou exigir teste de
+                           <strong>Cavalgada + Destreza</strong> / <strong>Reação</strong> para manobras.
+                        </li>
+                        <li>Regra padrão: <strong>mover ou agir</strong> no mesmo turno — salvo habilidade especial
+                           (ex.:
+                           Ação Dupla por Amizade nível 4+).</li>
+                        <li><strong>Investida</strong> pode permitir fechar distância e atacar no mesmo impulso (teste
+                           de
+                           Investida + Força ou Destreza).</li>
+                     </ul>
+                  </div>
+                  <h2>Exemplo — Turno de combate aéreo</h2>
+                  <div class="card">
+                     <p><strong>Kael</strong> (guerreiro voador): Cavalgada 3, Destreza 4, Investida 2, Força 3, Briga
+                        3.
+                     </p>
+                     <p><strong>Vex</strong> (mago): Cavalgada 1, Inteligência 5, Fogo 4, Reação 3, Esquiva 2.</p>
+                     <p>Distância inicial: <strong>12 m (2 turnos)</strong>. Ambos já estão em modo voo.</p>
+                  </div>
+                  <div class="card">
+                     <h3>Turno 1 — Kael</h3>
+                     <p>Avança 10 m (fica a ~2 m → 0 turnos). Só se move — não ataca neste turno.</p>
+                     <h3>Turno 1 — Vex</h3>
+                     <p>Recua 5 m (fica a ~7 m → 1 turno). Só se move.</p>
+                     <h3>Turno 2 — Kael</h3>
+                     <p>Pode avançar 5 m e ficar a 0 turnos, ou tentar <strong>Investida</strong> (Força 3 + Investida 2
+                        =
+                        5 dados, dif. 5, 3 sucessos) para fechar e atacar no mesmo turno. Ataque: Força 3 + Briga 3 = 6
+                        dados.</p>
+                     <h3>Turno 2 — Vex</h3>
+                     <p>Não se move. Lança Bola de Fogo: Inteligência 5 + Fogo 4 = 9 dados. Dano base = 4 (nível de
+                        Fogo).
+                        Kael resiste com Vigor + Resistência a Fogo.</p>
+                  </div>
+                  <div class="card">
+                     <h3>Dogfight (manobra aérea)</h3>
+                     <p>Ambos rolam <strong>Cavalgada + Destreza</strong> (ou Reação). Quem tiver mais sucessos escolhe
+                        a
+                        posição (fecha para 0 turnos ou abre distância). Empate mantém a distância atual.</p>
+                  </div>
+               </section>
+               <!-- ===================== QUEDA ===================== -->
+               <section id="queda">
+                  <h1>Dano de Queda</h1>
+                  <p>O grimório original não fixa uma fórmula oficial de dano de queda. A regra abaixo é a forma padrão
+                     usada na mesa, alinhada ao sistema de Vigor, dificuldade e Turnos de Distância. O item <strong>Pó
+                        de
+                        Rocha Viva</strong> anula completamente o dano de quedas de grandes alturas.</p>
+                  <h2>Dano base pela altura</h2>
+                  <table>
+                     <thead>
+                        <tr>
+                           <th>Altura</th>
+                           <th>Turnos de Distância</th>
+                           <th>Dano base</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>0–4 m</td>
+                           <td>0</td>
+                           <td>0 (sem dano)</td>
+                        </tr>
+                        <tr>
+                           <td>5–9 m</td>
+                           <td>1</td>
+                           <td>2</td>
+                        </tr>
+                        <tr>
+                           <td>10–14 m</td>
+                           <td>2</td>
+                           <td>4</td>
+                        </tr>
+                        <tr>
+                           <td>15–19 m</td>
+                           <td>3</td>
+                           <td>6</td>
+                        </tr>
+                        <tr>
+                           <td>20–24 m</td>
+                           <td>4</td>
+                           <td>8</td>
+                        </tr>
+                        <tr>
+                           <td>25–29 m</td>
+                           <td>5</td>
+                           <td>10</td>
+                        </tr>
+                        <tr>
+                           <td>+5 m</td>
+                           <td>+1 turno</td>
+                           <td>+2 de dano</td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <p><strong>Fórmula rápida:</strong> Dano base = 2 × (turnos de distância da queda), ou 2 × (altura em
+                     metros ÷ 5), arredondando para baixo.</p>
+                  <div class="card">
+                     <h2>Absorção</h2>
+                     <p>O personagem rola <strong>Vigor + Armadura</strong>, dificuldade <strong>5</strong>.</p>
+                     <ul>
+                        <li>Cada sucesso reduz 1 de dano.</li>
+                        <li>Se o dano final for 0 ou menos, a queda não causa ferimento relevante (no máximo escoriado,
+                           a
+                           critério do Mestre).</li>
+                     </ul>
+                  </div>
+                  <div class="card">
+                     <h2>Estados de Dor</h2>
+                     <p>O dano que passar da absorção reduz a Vitalidade e pode empurrar o personagem nos estados de
+                        <strong>DOR</strong> (Machucado, Ferido, Espancado, Caído, etc.), como qualquer outro dano.
+                     </p>
+                  </div>
+                  <div class="card">
+                     <h2>Exemplo</h2>
+                     <p>Kael cai de <strong>18 metros</strong> (≈ 3 turnos).</p>
+                     <ul>
+                        <li>Dano base = <strong>6</strong></li>
+                        <li>Vigor 4 + Armadura 1 = 5 dados, dificuldade 5 → 3 sucessos → absorve 3</li>
+                        <li><strong>Dano final = 3</strong></li>
+                     </ul>
+                  </div>
+                  <h2>Modificadores</h2>
+                  <table>
+                     <thead>
+                        <tr>
+                           <th>Situação</th>
+                           <th>Efeito</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>Queda em água / superfície macia</td>
+                           <td>−2 a −4 no dano base (Mestre)</td>
+                        </tr>
+                        <tr>
+                           <td>Queda de cabeça / proposital</td>
+                           <td>+1 ou +2 no dano</td>
+                        </tr>
+                        <tr>
+                           <td>Pó de Rocha Viva</td>
+                           <td>Ignora o dano da queda</td>
+                        </tr>
+                        <tr>
+                           <td>Voo ativo (Cavalgada)</td>
+                           <td>Teste de Cavalgada + Destreza para reduzir a altura efetiva (planar)</td>
+                        </tr>
+                        <tr>
+                           <td>Magia de Vento / levitar</td>
+                           <td>Pode anular ou reduzir a queda</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </div>
+         </div>
+         <footer class="footer">
+            NEXALIS • SISTEMA DE RPG • LIVRO DE REGRAS
+         </footer>
+      </div>
+   </div>
+   <script>
+      function buscar(event) {
+         if (event.key !== "Enter") return;
+         const termo = document.getElementById("busca").value.trim().toLowerCase();
+         if (!termo) return;
+
+         const secoes = document.querySelectorAll("h1, h2, h3, .card");
+         for (const el of secoes) {
+            if (el.textContent.toLowerCase().includes(termo)) {
+               el.scrollIntoView({ behavior: "smooth", block: "start" });
+               return;
+            }
+         }
+         alert("Seção não encontrada.");
+      }
+   </script>
+<div class="master-legacy-bar" style="position:fixed;right:14px;bottom:14px;z-index:99999;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">
+<a href="mestre.html" style="padding:10px 13px;border-radius:999px;background:#15110c;border:1px solid #8d7041;color:#f0d79b;text-decoration:none;font:700 12px Arial,sans-serif;box-shadow:0 8px 24px #0009">♛ Painel do Mestre</a>
+<a href="../index.html" style="padding:10px 13px;border-radius:999px;background:#0d0c0b;border:1px solid #444;color:#ddd;text-decoration:none;font:700 12px Arial,sans-serif;box-shadow:0 8px 24px #0009">Player e Mestre</a>
+</div></body>
+<meta content="strict-origin-when-cross-origin" name="referrer" />
+
+<link rel="stylesheet" href="../souls-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+
+</html>

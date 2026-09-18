@@ -1,0 +1,2175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minérios de Arma — Nexalis</title>
+
+    <style>
+        :root {
+            --bg: #050205;
+            --bg2: #0b0709;
+            --panel: #100b0d;
+            --panel2: #171013;
+
+            --gold: #c5a059;
+            --gold-light: #f0cf7a;
+
+            --blood: #720b0b;
+            --blood-light: #b51b1b;
+
+            --text: #e7e0d5;
+            --muted: #9a9187;
+
+            --border: #332326;
+            --shadow: rgba(0, 0, 0, .75);
+
+            --common: #8f8f8f;
+            --uncommon: #4fa36b;
+            --rare: #4b8dcc;
+            --veryrare: #9c61d8;
+            --epic: #d15b8a;
+            --legendary: #d19a32;
+            --mythic: #e5e5e5;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 50% -10%,
+                    #351010 0%,
+                    #17090b 25%,
+                    #090608 55%,
+                    #030303 100%
+                );
+
+            background-attachment: fixed;
+
+            color: var(--text);
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                linear-gradient(
+                    rgba(255,255,255,.015) 1px,
+                    transparent 1px
+                );
+
+            background-size: 100% 4px;
+
+            opacity: .08;
+
+            z-index: 999;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            position: sticky;
+            top: 0;
+
+            z-index: 100;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 14px 30px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #160b0d,
+                    #090507
+                );
+
+            border-bottom: 1px solid var(--gold);
+
+            box-shadow:
+                0 5px 25px rgba(0,0,0,.8),
+                0 1px 8px rgba(160,20,20,.2);
+        }
+
+        .nav-logo {
+            color: var(--gold-light);
+
+            font-size: 22px;
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            text-shadow:
+                0 0 8px rgba(197,160,89,.35);
+        }
+
+        .nav-links {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+            gap: 18px;
+        }
+
+        .nav-links a {
+            color: #cfc4b3;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            transition: .25s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-light);
+
+            text-shadow:
+                0 0 8px rgba(240,207,122,.5);
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            width: min(1400px, 94%);
+
+            margin: auto;
+
+            padding: 45px 0 80px;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .page-header {
+            text-align: center;
+
+            margin-bottom: 40px;
+        }
+
+        .page-header .symbol {
+            color: var(--gold);
+
+            font-size: 46px;
+
+            margin-bottom: 5px;
+
+            text-shadow:
+                0 0 15px rgba(197,160,89,.3);
+        }
+
+        .page-header h1 {
+            margin: 0;
+
+            color: var(--gold-light);
+
+            font-size: clamp(34px, 5vw, 58px);
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            text-shadow:
+                0 0 12px rgba(0,0,0,.9),
+                0 0 25px rgba(130,0,0,.35);
+        }
+
+        .page-header h2 {
+            margin: 10px 0 0;
+
+            color: #8d8174;
+
+            font-size: 16px;
+
+            font-weight: normal;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+        }
+
+        .ornament {
+            width: min(500px, 80%);
+
+            height: 1px;
+
+            margin: 25px auto;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--gold),
+                    transparent
+                );
+
+            box-shadow:
+                0 0 8px rgba(197,160,89,.25);
+        }
+
+        .intro {
+            width: min(900px, 100%);
+
+            margin: auto;
+
+            color: #bcb2a6;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+
+            text-align: center;
+        }
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .search-container {
+            margin: 35px auto 25px;
+
+            max-width: 650px;
+        }
+
+        #searchInput {
+            width: 100%;
+
+            padding: 15px 20px;
+
+            background: #090709;
+
+            color: var(--text);
+
+            border: 1px solid var(--border);
+
+            border-bottom: 2px solid var(--gold);
+
+            outline: none;
+
+            font-family: Georgia, serif;
+
+            font-size: 16px;
+
+            box-shadow:
+                inset 0 0 15px rgba(0,0,0,.7);
+
+            transition: .25s;
+        }
+
+        #searchInput:focus {
+            border-color: var(--gold-light);
+
+            box-shadow:
+                0 0 15px rgba(197,160,89,.12),
+                inset 0 0 15px rgba(0,0,0,.7);
+        }
+
+        /* =========================
+           FILTERS
+        ========================= */
+
+        .filters {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            margin: 25px 0 40px;
+        }
+
+        .filter-btn {
+            padding: 9px 15px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #1b1113,
+                    #0b0809
+                );
+
+            color: #a99d8d;
+
+            border: 1px solid #38272a;
+
+            cursor: pointer;
+
+            font-family: Georgia, serif;
+
+            transition: .25s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            color: var(--gold-light);
+
+            border-color: var(--gold);
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #301414,
+                    #120809
+                );
+
+            box-shadow:
+                0 0 12px rgba(150,20,20,.25);
+        }
+
+        /* =========================
+           SECTION TITLE
+        ========================= */
+
+        .section-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin: 40px 0 25px;
+
+            color: var(--gold-light);
+
+            font-size: 25px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+        .section-title::before,
+        .section-title::after {
+            content: "";
+
+            height: 1px;
+
+            flex: 1;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--border)
+                );
+        }
+
+        .section-title::after {
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--border),
+                    transparent
+                );
+        }
+
+        /* =========================
+           ORE GRID
+        ========================= */
+
+        .ore-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(320px, 1fr));
+
+            gap: 22px;
+        }
+
+        /* =========================
+           ORE CARD
+        ========================= */
+
+        .ore-card {
+            position: relative;
+
+            display: flex;
+
+            flex-direction: column;
+
+            min-height: 480px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(35,18,20,.95),
+                    rgba(10,8,10,.98)
+                );
+
+            border: 1px solid var(--border);
+
+            box-shadow:
+                0 12px 25px var(--shadow),
+                inset 0 0 35px rgba(0,0,0,.35);
+
+            overflow: hidden;
+
+            transition:
+                transform .3s,
+                border-color .3s,
+                box-shadow .3s;
+        }
+
+        .ore-card:hover {
+            transform: translateY(-5px);
+
+            border-color: var(--gold);
+
+            box-shadow:
+                0 18px 35px rgba(0,0,0,.9),
+                0 0 18px rgba(197,160,89,.12);
+        }
+
+        .ore-card::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 100%;
+            height: 3px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--ore-color),
+                    transparent
+                );
+        }
+
+        .ore-image {
+            height: 145px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255,255,255,.05),
+                    transparent 65%
+                );
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .ore-symbol {
+            width: 78px;
+            height: 78px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border: 2px solid var(--ore-color);
+
+            transform: rotate(45deg);
+
+            box-shadow:
+                0 0 25px var(--ore-glow);
+
+            background:
+                radial-gradient(
+                    circle,
+                    var(--ore-glow),
+                    rgba(0,0,0,.6)
+                );
+        }
+
+        .ore-symbol span {
+            transform: rotate(-45deg);
+
+            font-size: 34px;
+
+            color: var(--ore-color);
+
+            text-shadow:
+                0 0 12px var(--ore-glow);
+        }
+
+        .ore-content {
+            display: flex;
+
+            flex-direction: column;
+
+            flex: 1;
+
+            padding: 20px;
+        }
+
+        .ore-name {
+            margin: 0 0 8px;
+
+            color: var(--gold-light);
+
+            font-size: 24px;
+
+            letter-spacing: 1px;
+        }
+
+        .rarity {
+            display: inline-block;
+
+            width: fit-content;
+
+            padding: 5px 10px;
+
+            margin-bottom: 14px;
+
+            color: var(--ore-color);
+
+            border: 1px solid var(--ore-color);
+
+            background: rgba(0,0,0,.35);
+
+            font-size: 11px;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+
+            font-weight: bold;
+        }
+
+        .description {
+            color: #b9afa4;
+
+            line-height: 1.65;
+
+            font-size: 14px;
+
+            margin-bottom: 15px;
+        }
+
+        .info-box {
+            margin-top: auto;
+
+            border-top: 1px solid var(--border);
+
+            padding-top: 15px;
+        }
+
+        .info-row {
+            display: grid;
+
+            grid-template-columns: 125px 1fr;
+
+            gap: 10px;
+
+            padding: 7px 0;
+
+            border-bottom: 1px solid rgba(255,255,255,.035);
+
+            font-size: 13px;
+        }
+
+        .info-label {
+            color: var(--gold);
+
+            font-weight: bold;
+        }
+
+        .info-value {
+            color: #d0c7bb;
+
+            line-height: 1.4;
+        }
+
+        .effect {
+            padding: 12px;
+
+            margin-top: 12px;
+
+            border-left: 3px solid var(--ore-color);
+
+            background:
+                rgba(255,255,255,.025);
+        }
+
+        .effect strong {
+            display: block;
+
+            margin-bottom: 5px;
+
+            color: var(--ore-color);
+
+            text-transform: uppercase;
+
+            font-size: 11px;
+
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           RARITIES
+        ========================= */
+
+        .common {
+            --ore-color: var(--common);
+            --ore-glow: rgba(143,143,143,.2);
+        }
+
+        .uncommon {
+            --ore-color: var(--uncommon);
+            --ore-glow: rgba(79,163,107,.25);
+        }
+
+        .rare {
+            --ore-color: var(--rare);
+            --ore-glow: rgba(75,141,204,.25);
+        }
+
+        .very-rare {
+            --ore-color: var(--veryrare);
+            --ore-glow: rgba(156,97,216,.3);
+        }
+
+        .epic {
+            --ore-color: var(--epic);
+            --ore-glow: rgba(209,91,138,.3);
+        }
+
+        .legendary {
+            --ore-color: var(--legendary);
+            --ore-glow: rgba(209,154,50,.35);
+        }
+
+        .mythic {
+            --ore-color: var(--mythic);
+            --ore-glow: rgba(229,229,229,.35);
+        }
+
+        /* =========================
+           FORGE RULES
+        ========================= */
+
+        .forge-section {
+            margin-top: 65px;
+
+            padding: 30px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #160b0d,
+                    #090608
+                );
+
+            border: 1px solid var(--border);
+
+            box-shadow:
+                inset 0 0 30px rgba(0,0,0,.5);
+        }
+
+        .forge-title {
+            margin: 0 0 25px;
+
+            color: var(--gold-light);
+
+            font-size: 28px;
+
+            text-align: center;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+        .forge-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(180px, 1fr));
+
+            gap: 12px;
+        }
+
+        .forge-tier {
+            padding: 18px;
+
+            text-align: center;
+
+            background: rgba(0,0,0,.35);
+
+            border: 1px solid var(--border);
+
+            transition: .25s;
+        }
+
+        .forge-tier:hover {
+            border-color: var(--gold);
+        }
+
+        .forge-tier h3 {
+            margin: 0 0 10px;
+
+            color: var(--gold);
+        }
+
+        .forge-tier p {
+            margin: 0;
+
+            color: #aaa095;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+        /* =========================
+           SPECIAL ORE
+        ========================= */
+
+        .moon-section {
+            margin-top: 60px;
+
+            padding: 35px;
+
+            border: 1px solid #625027;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(100,80,160,.16),
+                    transparent 55%
+                ),
+                linear-gradient(
+                    145deg,
+                    #15101c,
+                    #07060a
+                );
+
+            box-shadow:
+                0 0 35px rgba(80,50,120,.12);
+        }
+
+        .moon-title {
+            margin: 0 0 10px;
+
+            color: #e3d5ff;
+
+            text-align: center;
+
+            font-size: 32px;
+
+            letter-spacing: 3px;
+        }
+
+        .moon-subtitle {
+            margin: 0 auto 25px;
+
+            max-width: 750px;
+
+            text-align: center;
+
+            color: #a99db5;
+
+            line-height: 1.7;
+        }
+
+        .moon-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 15px;
+        }
+
+        .moon-item {
+            padding: 18px;
+
+            border: 1px solid #3d304e;
+
+            background: rgba(0,0,0,.3);
+        }
+
+        .moon-item strong {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #d8c4ff;
+        }
+
+        .moon-item span {
+            color: #a79dac;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            margin-top: 70px;
+
+            padding: 30px;
+
+            text-align: center;
+
+            border-top: 1px solid var(--border);
+
+            color: #70685e;
+
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: var(--gold);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            nav {
+                flex-direction: column;
+
+                padding: 15px;
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .ore-grid {
+                grid-template-columns:
+                    repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                width: 92%;
+
+                padding-top: 30px;
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+
+                letter-spacing: 2px;
+            }
+
+            .ore-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .forge-section,
+            .moon-section {
+                padding: 20px;
+            }
+
+            .info-row {
+                grid-template-columns: 1fr;
+                gap: 3px;
+            }
+
+            .info-label {
+                margin-top: 5px;
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../souls-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+
+<body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+
+    <div class="nav-logo">
+        NEXALIS
+    </div>
+
+    <div class="nav-links">
+     <a href="../funcoes/inicio.html">Player</a>
+                    <a href="../funcoes/racaeclasses.html">Raças & Classes</a>
+                    <a href="../armas/armas.html">Armas</a>
+                    <a href="../funcoes/sistema-completo.html">Sistema</a>
+                    <a href="../funcoes/npcs.html">NPCs</a>
+                    <a href="../funcoes/criacao-de-ficha.html">Ficha</a>
+                    <a href="../funcoes/magia.html">Magia</a><a href="../funcoes/habilidades.html">Habilidades</a>
+                    <a href="../funcoes/porcao.html">Alquimia</a>
+                    <a href="../funcoes/INGREDIENTES.HTML">Ingredientes</a>
+                    <a href="../funcoes/mapas.html">Mapas</a>
+                    <a href="../funcoes/clan.html">Criação de Ficha</a>
+                    <a href="../funcoes/minerios.html">Mineiro</a>
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="container">
+
+    <header class="page-header">
+
+        <div class="symbol">⛏</div>
+
+        <h1>Minérios de Arma</h1>
+
+        <h2>Materiais de Forja de Nexalis</h2>
+
+        <div class="ornament"></div>
+
+        <p class="intro">
+            Nas profundezas de Nexalis existem metais que não pertencem
+            apenas à terra. Alguns nasceram do fogo, outros foram tocados
+            pela magia, pelas sombras, pelas estrelas ou pela própria Lua.
+            Ferreiros capazes de trabalhar esses materiais podem transformar
+            armas comuns em relíquias capazes de desafiar monstros,
+            feiticeiros e entidades ancestrais.
+        </p>
+
+    </header>
+
+
+    <!-- =========================
+         SEARCH
+    ========================= -->
+
+    <div class="search-container">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Pesquisar minério, efeito, raridade ou local..."
+            onkeyup="searchOres()"
+        >
+
+    </div>
+
+
+    <!-- =========================
+         FILTERS
+    ========================= -->
+
+    <div class="filters">
+
+        <button
+            class="filter-btn active"
+            data-filter="all"
+            onclick="filterOres('all', this)"
+        >
+            Todos
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="common"
+            onclick="filterOres('common', this)"
+        >
+            Comum
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="uncommon"
+            onclick="filterOres('uncommon', this)"
+        >
+            Incomum
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="rare"
+            onclick="filterOres('rare', this)"
+        >
+            Raro
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="very-rare"
+            onclick="filterOres('very-rare', this)"
+        >
+            Muito Raro
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="epic"
+            onclick="filterOres('epic', this)"
+        >
+            Épico
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="legendary"
+            onclick="filterOres('legendary', this)"
+        >
+            Lendário
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="mythic"
+            onclick="filterOres('mythic', this)"
+        >
+            Mítico
+        </button>
+
+    </div>
+
+
+    <div class="section-title">
+        Minérios de Forja
+    </div>
+
+
+    <!-- =========================
+         ORE GRID
+    ========================= -->
+
+    <section class="ore-grid" id="oreGrid">
+
+
+        <!-- FERRO NEGRO -->
+
+        <article class="ore-card common" data-rarity="common">
+
+            <div class="ore-image">
+                <div class="ore-symbol">
+                    <span>◆</span>
+                </div>
+            </div>
+
+            <div class="ore-content">
+
+                <h2 class="ore-name">Ferro Negro</h2>
+
+                <span class="rarity">
+                    Comum
+                </span>
+
+                <p class="description">
+                    Um metal cinza-escuro quase negro, marcado por pequenas
+                    veias avermelhadas. É conhecido por sua resistência e
+                    facilidade de ser trabalhado por ferreiros experientes.
+                </p>
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <span class="info-label">Quantidade</span>
+                        <span class="info-value">10 kg</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Efeito</span>
+                        <span class="info-value">+1 Durabilidade da arma.</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Encontrado em</span>
+                        <span class="info-value">
+                            Minas profundas, fortalezas abandonadas
+                            e regiões montanhosas.
+                        </span>
+                    </div>
+
+                    <div class="effect">
+                        <strong>Propriedade da Forja</strong>
+                        Aumenta a resistência estrutural da arma.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- AÇO RUBRO -->
+
+        <article class="ore-card uncommon" data-rarity="uncommon">
+
+            <div class="ore-image">
+                <div class="ore-symbol">
+                    <span>◆</span>
+                </div>
+            </div>
+
+            <div class="ore-content">
+
+                <h2 class="ore-name">Aço Rubro</h2>
+
+                <span class="rarity">
+                    Incomum
+                </span>
+
+                <p class="description">
+                    Metal vermelho intenso que permanece quente mesmo depois
+                    de retirado das regiões vulcânicas. Seu interior parece
+                    conter brasas vivas.
+                </p>
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <span class="info-label">Quantidade</span>
+                        <span class="info-value">8 kg</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Efeito</span>
+                        <span class="info-value">
+                            +1 dano de Fogo.
+                        </span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Encontrado em</span>
+                        <span class="info-value">
+                            Vulcões, cavernas de magma e regiões
+                            próximas ao Inferno.
+                        </span>
+                    </div>
+
+                    <div class="effect">
+                        <strong>Propriedade da Forja</strong>
+                        A lâmina transmite calor elemental ao atingir o alvo.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- MINÉRIO GÉLIDO -->
+
+        <article class="ore-card uncommon" data-rarity="uncommon">
+
+            <div class="ore-image">
+                <div class="ore-symbol">
+                    <span>◆</span>
+                </div>
+            </div>
+
+            <div class="ore-content">
+
+                <h2 class="ore-name">Minério Gélido</h2>
+
+                <span class="rarity">
+                    Incomum
+                </span>
+
+                <p class="description">
+                    Cristal azul-claro coberto por uma camada de gelo que
+                    jamais desaparece. Seu frio permanece mesmo dentro das
+                    forjas mais quentes.
+                </p>
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <span class="info-label">Quantidade</span>
+                        <span class="info-value">8 kg</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Efeito</span>
+                        <span class="info-value">
+                            Ataques aplicam Lentidão por 1 turno.
+                        </span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Encontrado em</span>
+                        <span class="info-value">
+                            Cavernas congeladas e montanhas de Skallgard.
+                        </span>
+                    </div>
+
+                    <div class="effect">
+                        <strong>Propriedade da Forja</strong>
+                        O impacto da arma rouba calor e reduz os movimentos do alvo.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- TEMPESTUOSO -->
+
+        <article class="ore-card rare" data-rarity="rare">
+
+            <div class="ore-image">
+                <div class="ore-symbol">
+                    <span>⚡</span>
+                </div>
+            </div>
+
+            <div class="ore-content">
+
+                <h2 class="ore-name">Minério Tempestuoso</h2>
+
+                <span class="rarity">
+                    Raro
+                </span>
+
+                <p class="description">
+                    Metal azul-amarelado que produz pequenas faíscas quando
+                    entra em contato com outros metais.
+                </p>
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <span class="info-label">Quantidade</span>
+                        <span class="info-value">6 kg</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Efeito</span>
+                        <span class="info-value">
+                            +1 Reação em ataques realizados com a arma.
+                        </span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Encontrado em</span>
+                        <span class="info-value">
+                            Montanhas durante tempestades e ruínas
+                            atingidas por raios.
+                        </span>
+                    </div>
+
+                    <div class="effect">
+                        <strong>Propriedade da Forja</strong>
+                        A arma responde quase instantaneamente aos movimentos do portador.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- SOMBRIO -->
+
+        <article class="ore-card rare" data-rarity="rare">
+
+            <div class="ore-image">
+                <div class="ore-symbol">
+                    <span>◆</span>
+                </div>
+            </div>
+
+            <div class="ore-content">
+
+                <h2 class="ore-name">Minério Sombrio</h2>
+
+                <span class="rarity">
+                    Raro
+                </span>
+
+                <p class="description">
+                    Uma pedra negra que parece absorver a luz ao seu redor.
+                    Mesmo polida, sua superfície permanece completamente opaca.
+                </p>
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <span class="info-label">Quantidade</span>
+                        <span class="info-value">6 kg</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Efeito</span>
+                        <span class="info-value">
+                            +2 para detectar criaturas ocultas ou invisíveis.
+                        </span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Encontrado em</span>
+                        <span class="info-value">
+                            Shadowfen, cavernas profundas e ruínas corrompidas.
+                        </span>
+                    </div>
+
+                    <div class="effect">
+                        <strong>Propriedade da Forja</strong>
+                        A arma reage à presença de criaturas escondidas.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- SOLAR -->
+
+        <article class="ore-card rare" data-rarity="rare">
+
+            <div class="ore-image">
+                <div class="ore-symbol">
+                    <span>☀</span>
+                </div>
+            </div>
+
+            <div class="ore-content">
+
+                <h2 class="ore-name">Minério Solar</h2>
+
+                <span class="rarity">
+                    Raro
+                </span>
+
+                <p class="description">
+                    Cristal dourado que emite uma luz quente e constante.
+                    É especialmente valorizado por guerreiros que enfrentam
+                    criaturas das sombras.
+                </p>
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <span class="info-label">Quantidade</span>
+                        <span class="info-value">6 kg</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Efeito</span>
+                        <span class="info-value">
+                            +2 dano contra criaturas das Sombras.
+                        </span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Encontrado em</span>
+                        <span class="info-value">
+                            Templos solares, desertos e regiões de grande luminosidade.
+                        </span>
+                    </div>
+
+                    <div class="effect">
+                        <strong>Propriedade da Forja</strong>
+                        A arma manifesta energia luminosa contra criaturas sombrias.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- ASTRAL -->
+
+        <article class="ore-card very-rare" data-rarity="very-rare">
+
+            <div class="ore-image">
+                <div class="ore-symbol">
+                    <span>✦</span>
+                </div>
+            </div>
+
+            <div class="ore-content">
+
+                <h2 class="ore-name">Minério Astral</h2>
+
+                <span class="rarity">
+                    Muito Raro
+                </span>
+
+                <p class="description">
+                    Cristal violeta-azulado onde pequenas partículas parecem
+                    estrelas presas dentro da pedra.
+                </p>
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <span class="info-label">Quantidade</span>
+                        <span class="info-value">4 kg</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Efeito</span>
+                        <span class="info-value">
+                            Permite atingir criaturas etéreas e parcialmente incorpóreas.
+                        </span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Encontrado em</span>
+                        <span class="info-value">
+                            Crateras celestes, meteoritos e regiões próximas a portais.
+                        </span>
+                    </div>
+
+                    <div class="effect">
+                        <strong>Propriedade da Forja</strong>
+                        A matéria da arma pode interagir com criaturas fora do plano físico.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- INFERNAL -->
+
+        <article class="ore-card epic" data-rarity="epic">
+
+            <div class="ore-image">
+                <div class="ore-symbol">
+                    <span>🔥</span>
+                </div>
+            </div>
+
+            <div class="ore-content">
+
+                <h2 class="ore-name">Minério Infernal</h2>
+
+                <span class="rarity">
+                    Épico
+                </span>
+
+                <p class="description">
+                    Rocha negra rachada por linhas de magma vermelho.
+                    O minério pulsa lentamente como se possuísse um coração.
+                </p>
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <span class="info-label">Quantidade</span>
+                        <span class="info-value">4 kg</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Efeito</span>
+                        <span class="info-value">
+                            +2 dano de Fogo e pode incendiar o alvo.
+                        </span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Encontrado em</span>
+                        <span class="info-value">
+                            Regiões infernais, vulcões e fortalezas demoníacas.
+                        </span>
+                    </div>
+
+                    <div class="effect">
+                        <strong>Propriedade da Forja</strong>
+                        A arma mantém uma temperatura sobrenatural e pode produzir chamas.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- PROFANO -->
+
+        <article class="ore-card epic" data-rarity="epic">
+
+            <div class="ore-image">
+                <div class="ore-symbol">
+                    <span>☠</span>
+                </div>
+            </div>
+
+            <div class="ore-content">
+
+                <h2 class="ore-name">Minério Profano</h2>
+
+                <span class="rarity">
+                    Épico
+                </span>
+
+                <p class="description">
+                    Metal púrpura escuro coberto por marcas naturais que
+                    lembram antigas runas proibidas.
+                </p>
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <span class="info-label">Quantidade</span>
+                        <span class="info-value">3 kg</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Efeito</span>
+                        <span class="info-value">
+                            +2 dano contra criaturas Sagradas.
+                        </span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Encontrado em</span>
+                        <span class="info-value">
+                            Templos corrompidos, cemitérios amaldiçoados
+                            e territórios profanados.
+                        </span>
+                    </div>
+
+                    <div class="effect">
+                        <strong>Propriedade da Forja</strong>
+                        A arma enfraquece criaturas protegidas por energia sagrada.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- CRISTAL DE MANA -->
+
+        <article class="ore-card epic" data-rarity="epic">
+
+            <div class="ore-image">
+                <div class="ore-symbol">
+                    <span>✧</span>
+                </div>
+            </div>
+
+            <div class="ore-content">
+
+                <h2 class="ore-name">Cristal de Mana</h2>
+
+                <span class="rarity">
+                    Épico
+                </span>
+
+                <p class="description">
+                    Cristal translúcido que muda de cor conforme a magia
+                    presente ao seu redor.
+                </p>
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <span class="info-label">Quantidade</span>
+                        <span class="info-value">3 kg</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Efeito</span>
+                        <span class="info-value">
+                            +1 Poder Mágico para armas mágicas.
+                        </span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Encontrado em</span>
+                        <span class="info-value">
+                            Veios de Mana, torres arcanas e cavernas mágicas.
+                        </span>
+                    </div>
+
+                    <div class="effect">
+                        <strong>Propriedade da Forja</strong>
+                        Amplifica a energia mágica canalizada através da arma.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- SANGUE -->
+
+        <article class="ore-card epic" data-rarity="epic">
+
+            <div class="ore-image">
+                <div class="ore-symbol">
+                    <span>◆</span>
+                </div>
+            </div>
+
+            <div class="ore-content">
+
+                <h2 class="ore-name">Minério de Sangue</h2>
+
+                <span class="rarity">
+                    Épico
+                </span>
+
+                <p class="description">
+                    Metal vermelho-escuro que pulsa como um coração quando
+                    exposto ao calor.
+                </p>
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <span class="info-label">Quantidade</span>
+                        <span class="info-value">3 kg</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Efeito</span>
+                        <span class="info-value">
+                            Ao causar um crítico, recupera 1 Vitalidade.
+                        </span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Encontrado em</span>
+                        <span class="info-value">
+                            Campos de batalha antigos e covis de monstros.
+                        </span>
+                    </div>
+
+                    <div class="effect">
+                        <strong>Propriedade da Forja</strong>
+                        A arma transforma parte da força de um golpe crítico em energia vital.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- VAZIO -->
+
+        <article class="ore-card legendary" data-rarity="legendary">
+
+            <div class="ore-image">
+                <div class="ore-symbol">
+                    <span>◈</span>
+                </div>
+            </div>
+
+            <div class="ore-content">
+
+                <h2 class="ore-name">Minério do Vazio</h2>
+
+                <span class="rarity">
+                    Lendário
+                </span>
+
+                <p class="description">
+                    Uma rocha completamente negra. Não reflete luz e parece
+                    possuir um espaço vazio em seu interior.
+                </p>
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <span class="info-label">Quantidade</span>
+                        <span class="info-value">2 kg</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Efeito</span>
+                        <span class="info-value">
+                            Ignora 2 pontos de Resistência Física ou Mágica.
+                        </span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Encontrado em</span>
+                        <span class="info-value">
+                            Fendas do Vazio e regiões onde a realidade está instável.
+                        </span>
+                    </div>
+
+                    <div class="effect">
+                        <strong>Propriedade da Forja</strong>
+                        O golpe atravessa parte das defesas naturais do alvo.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- CELESTIAL -->
+
+        <article class="ore-card legendary" data-rarity="legendary">
+
+            <div class="ore-image">
+                <div class="ore-symbol">
+                    <span>✦</span>
+                </div>
+            </div>
+
+            <div class="ore-content">
+
+                <h2 class="ore-name">Minério Celestial</h2>
+
+                <span class="rarity">
+                    Lendário
+                </span>
+
+                <p class="description">
+                    Cristal branco-dourado cercado por pequenas partículas
+                    que flutuam constantemente ao seu redor.
+                </p>
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <span class="info-label">Quantidade</span>
+                        <span class="info-value">2 kg</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Efeito</span>
+                        <span class="info-value">
+                            +2 dano contra criaturas Profanas e resistência à corrupção.
+                        </span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Encontrado em</span>
+                        <span class="info-value">
+                            Santuários celestiais, locais sagrados e eventos celestes.
+                        </span>
+                    </div>
+
+                    <div class="effect">
+                        <strong>Propriedade da Forja</strong>
+                        A arma manifesta uma energia purificadora.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- MINÉRIO DA LUA -->
+
+        <article class="ore-card legendary" data-rarity="legendary">
+
+            <div class="ore-image">
+                <div class="ore-symbol">
+                    <span>☾</span>
+                </div>
+            </div>
+
+            <div class="ore-content">
+
+                <h2 class="ore-name">Minério da Lua</h2>
+
+                <span class="rarity">
+                    Lendário
+                </span>
+
+                <p class="description">
+                    Prata escura atravessada por veios azul-prateados que
+                    brilham sob a luz da Lua. Durante o dia parece apenas
+                    um metal frio e opaco. À noite, sua verdadeira natureza
+                    desperta.
+                </p>
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <span class="info-label">Quantidade</span>
+                        <span class="info-value">2 kg</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Efeito</span>
+                        <span class="info-value">
+                            +3 dano durante a noite.
+                        </span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Encontrado em</span>
+                        <span class="info-value">
+                            Crateras lunares, montanhas de alta altitude,
+                            cavernas expostas à Lua e durante eclipses.
+                        </span>
+                    </div>
+
+                    <div class="effect">
+                        <strong>Propriedade Lunar</strong>
+                        A arma desenvolve uma aura azul-prateada durante a noite
+                        e pode interagir com criaturas parcialmente etéreas.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRIMORDIAL -->
+
+        <article class="ore-card mythic" data-rarity="mythic">
+
+            <div class="ore-image">
+                <div class="ore-symbol">
+                    <span>✹</span>
+                </div>
+            </div>
+
+            <div class="ore-content">
+
+                <h2 class="ore-name">Minério Primordial</h2>
+
+                <span class="rarity">
+                    Mítico
+                </span>
+
+                <p class="description">
+                    Um metal impossível de classificar. Sua superfície muda
+                    continuamente entre vermelho, azul, branco, violeta e
+                    negro, como se vários elementos disputassem o mesmo espaço.
+                </p>
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <span class="info-label">Quantidade</span>
+                        <span class="info-value">1 kg</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Efeito</span>
+                        <span class="info-value">
+                            Escolha um elemento para a arma.
+                        </span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Encontrado em</span>
+                        <span class="info-value">
+                            Ruínas dos Hurras, núcleos de monstros ancestrais
+                            e regiões onde os elementos se encontram.
+                        </span>
+                    </div>
+
+                    <div class="effect">
+                        <strong>Propriedade Primordial</strong>
+                        Durante um ritual de forja, o ferreiro pode escolher
+                        o elemento que será incorporado à arma.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+    </section>
+
+
+    <!-- =========================
+         FORJA
+    ========================= -->
+
+    <section class="forge-section">
+
+        <h2 class="forge-title">
+            Hierarquia da Forja
+        </h2>
+
+        <div class="forge-grid">
+
+            <div class="forge-tier">
+                <h3>Arma Comum</h3>
+                <p>
+                    Pode receber 1 minério.
+                </p>
+            </div>
+
+            <div class="forge-tier">
+                <h3>Arma Aprimorada</h3>
+                <p>
+                    Pode receber 2 minérios.
+                    O segundo deve ser Incomum ou superior.
+                </p>
+            </div>
+
+            <div class="forge-tier">
+                <h3>Arma Rara</h3>
+                <p>
+                    Pode receber até 3 minérios.
+                </p>
+            </div>
+
+            <div class="forge-tier">
+                <h3>Arma Épica</h3>
+                <p>
+                    3 minérios + 1 minério especial.
+                </p>
+            </div>
+
+            <div class="forge-tier">
+                <h3>Arma Lendária</h3>
+                <p>
+                    Até 4 minérios,
+                    incluindo pelo menos 1 Lendário.
+                </p>
+            </div>
+
+            <div class="forge-tier">
+                <h3>Arma Mítica</h3>
+                <p>
+                    Até 5 minérios,
+                    incluindo 1 Mítico.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MINÉRIO DA LUA
+    ========================= -->
+
+    <section class="moon-section">
+
+        <h2 class="moon-title">
+            ☾ Minério da Lua ☽
+        </h2>
+
+        <p class="moon-subtitle">
+            Entre todos os materiais conhecidos pelos ferreiros de Nexalis,
+            poucos possuem uma ligação tão forte com os ciclos celestes.
+            O Minério da Lua reage à luz lunar e desperta propriedades
+            diferentes conforme a fase da Lua.
+        </p>
+
+        <div class="moon-grid">
+
+            <div class="moon-item">
+                <strong>Quantidade necessária</strong>
+                <span>
+                    2 kg para incorporar o Minério da Lua a uma arma.
+                </span>
+            </div>
+
+            <div class="moon-item">
+                <strong>Efeito básico</strong>
+                <span>
+                    +3 dano durante a noite.
+                </span>
+            </div>
+
+            <div class="moon-item">
+                <strong>Aparência</strong>
+                <span>
+                    Prata escura com veios azul-prateados luminosos.
+                </span>
+            </div>
+
+            <div class="moon-item">
+                <strong>Lua Cheia</strong>
+                <span>
+                    A aura lunar da arma se torna muito mais intensa.
+                </span>
+            </div>
+
+            <div class="moon-item">
+                <strong>Lua Nova</strong>
+                <span>
+                    A arma perde seu brilho, tornando-se extremamente discreta.
+                </span>
+            </div>
+
+            <div class="moon-item">
+                <strong>Localização</strong>
+                <span>
+                    Crateras, montanhas de alta altitude, cavernas lunares
+                    e locais atingidos diretamente pela luz da Lua.
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <strong>NEXALIS</strong>
+
+    <br><br>
+
+    Sistema de Minérios de Arma
+
+    <br>
+
+    Forjados pelo fogo, moldados pela magia.
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+    let currentFilter = "all";
+
+
+    function filterOres(filter, button) {
+
+        currentFilter = filter;
+
+        const buttons =
+            document.querySelectorAll(".filter-btn");
+
+        buttons.forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        applyFilters();
+    }
+
+
+    function searchOres() {
+
+        applyFilters();
+    }
+
+
+    function applyFilters() {
+
+        const search =
+            document
+                .getElementById("searchInput")
+                .value
+                .toLowerCase()
+                .trim();
+
+        const cards =
+            document.querySelectorAll(".ore-card");
+
+
+        cards.forEach(card => {
+
+            const rarity =
+                card.dataset.rarity;
+
+            const text =
+                card.innerText.toLowerCase();
+
+
+            const matchesSearch =
+                text.includes(search);
+
+
+            const matchesFilter =
+                currentFilter === "all" ||
+                rarity === currentFilter;
+
+
+            if (
+                matchesSearch &&
+                matchesFilter
+            ) {
+
+                card.style.display = "flex";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+    }
+
+</script>
+
+</body>
+</html>

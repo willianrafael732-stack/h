@@ -1,0 +1,136 @@
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; 
+}
+
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url('../css/img/zumbi.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    margin: 0;
+    padding-top: 100px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    min-height: 100.1vh;
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.575);
+    border-bottom: 3px solid #b87333; 
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+}
+
+.container-nav .links {
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar a {
+    color: #b87333;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #ff9d00;
+    text-shadow: 0 0 10px #ff9d00;
+}
+
+.content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.race-card {
+    background-color: rgba(30, 30, 30, 0.377);
+    border: 2px solid #b87333;
+    border-radius: 10px;
+    padding: 40px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+}
+
+h2 {
+    color: #ff9d00; 
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.race-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    text-align: left;
+}
+
+h3 {
+    color: #b87333;
+    border-bottom: 1px solid #b87333;
+    padding-bottom: 5px;
+}
+
+.info-block p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Sidebar e Status */
+.stats-box {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #555;
+    margin-bottom: 20px;
+}
+
+.stats-box h4 {
+    color: #ff9d00;
+    margin-top: 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li { margin: 10px 0; }
+
+.bonus { color: #00ff88; font-weight: bold; }
+.penalty { color: #ff4444; font-weight: bold; }
+
+.skill-item {
+    background: rgba(184, 115, 51, 0.1);
+    padding: 10px;
+    border-left: 4px solid #b87333;
+    font-size: 0.95rem;
+}
+
+.stats-divider {
+    border: 0;
+    height: 1px;
+    background: #555;
+    margin: 20px 0;
+}
+
+.evolution-title {
+    color: #c0c0c0; /* Prata/Metal */
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .race-grid { grid-template-columns: 1fr; }
+}

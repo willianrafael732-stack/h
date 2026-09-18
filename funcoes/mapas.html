@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <link href="../site.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Mapas - Grimório Sombrio</title>
+    <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050205;
+            --panel: #0c0a10;
+            --gold: #c5a059;
+            --blood: #8b0000;
+            --blood2: #ff1a1a;
+            --text: #e6e0d6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Georgia, serif;
+            background: #000;
+            color: var(--text);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(180deg, #0a0000, #000);
+            border-bottom: 2px solid var(--blood);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
+        }
+
+        .container-nav {
+            padding: 12px;
+            text-align: center;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .links a {
+            color: var(--gold);
+            text-decoration: none;
+            padding: 10px 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .links a:hover {
+            color: var(--blood2);
+            text-shadow: 0 0 12px var(--blood2);
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0 15px;
+            color: var(--blood2);
+            text-transform: uppercase;
+            text-shadow: 0 0 15px #000;
+        }
+
+        #map {
+            height: calc(100vh - 120px);
+            width: 100%;
+            border: 3px solid var(--blood);
+            box-shadow: 0 0 40px rgba(139, 0, 0, 0.6);
+            border-radius: 8px;
+            background: #1a0000;
+            /* fundo enquanto carrega */
+        }
+
+        .leaflet-popup-content-wrapper {
+            background: #0a0000;
+            color: #ffdddd;
+            border: 2px solid var(--blood);
+        }
+
+        .leaflet-popup-tip {
+            background: var(--blood);
+        }
+
+        .error-msg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(139, 0, 0, 0.9);
+            padding: 20px 40px;
+            border: 2px solid #ff4444;
+            border-radius: 8px;
+            z-index: 1000;
+            text-align: center;
+            display: none;
+        }
+    </style>
+    </link>
+    <meta content="strict-origin-when-cross-origin" name="referrer" />
+
+<link rel="stylesheet" href="../souls-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container-nav">
+            <div class="links">
+                <div class="nav-links">
+                    <div class="nav-links">
+                        <a href="../funcoes/inicio.html">Player</a>
+                    <a href="../funcoes/racaeclasses.html">Raças & Classes</a>
+                    <a href="../armas/armas.html">Armas</a>
+                    <a href="../funcoes/sistema-completo.html">Sistema</a>
+                    <a href="../funcoes/npcs.html">NPCs</a>
+                    <a href="../funcoes/criacao-de-ficha.html">Ficha</a>
+                    <a href="../funcoes/magia.html">Magia</a><a href="../funcoes/habilidades.html">Habilidades</a>
+                    <a href="../funcoes/porcao.html">Alquimia</a>
+                    <a href="../funcoes/INGREDIENTES.HTML">Ingredientes</a>
+                    <a href="../funcoes/mapas.html">Mapas</a>
+                    <a href="../funcoes/clan.html">Criação de Ficha</a>
+                    <a href="../funcoes/minerios.html">Mineiro</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <h1>MAPA INTERATIVO - GRIMÓRIO SOMBRIO</h1>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // ==================== MAPA ====================
+        const map = L.map('map', {
+            crs: L.CRS.Simple,
+            minZoom: -3,
+            maxZoom: 3,
+            zoomSnap: 0.5,
+            maxBoundsViscosity: 1.0
+        });
+
+        const bounds = [[0, 0], [1000, 1000]];
+
+        const baseLayer = L.imageOverlay('/funcoes/maps/mapa-base.png', bounds).addTo(map);
+
+        // Erro ao carregar imagem
+        baseLayer.on('error', () => {
+            document.getElementById('errorMsg').style.display = 'block';
+            console.error("❌ Não foi possível carregar o mapa-base.png");
+        });
+
+        // Sucesso (opcional)
+        baseLayer.on('load', () => {
+            console.log("✅ Mapa base carregado com sucesso!");
+        });
+
+        map.fitBounds(bounds);
+        map.setView([500, 500], 0);
+
+        // ==================== MARCADORES ====================
+        function addLocal(x, y, nome, link) {
+            L.marker([x, y], {
+                riseOnHover: true
+            }).addTo(map)
+                .bindPopup(`
+        <div style="text-align:center; min-width:180px;">
+            <h3 style="color:#ff4444; margin-bottom:8px;">${nome}</h3>
+            <a href="${link}" style="color:#c5a059; font-weight:bold;">Abrir Mapa Detalhado →</a>
+        </div>
+    `);
+        }
+
+        // Seus locais
+        addLocal(200, 300, "Mato Selvagem", "/funcoes/maps/captura-de-tela-239.png");
+        addLocal(250, 250, "Ruínas Esquecidas", "/funcoes/maps/captura-de-tela-238.png");
+        addLocal(500, 400, "Capital Norte", "/funcoes/maps/captura-de-tela-244.png");
+        addLocal(520, 420, "Capital Sul", "/funcoes/maps/captura-de-tela-245.png");
+        addLocal(480, 380, "Vilarejo Esquecido", "/funcoes/maps/captura-de-tela-242.png");
+        addLocal(530, 390, "Palácio Sombrio", "/funcoes/maps/captura-de-tela-240.png");
+        addLocal(560, 360, "Cabana do Caçador", "/funcoes/maps/captura-de-tela-243.png");
+        addLocal(580, 410, "Ruínas Perdidas", "/funcoes/maps/captura-de-tela-246.png");
+        addLocal(300, 600, "Taverna dos Caídos", "/funcoes/maps/captura-de-tela-241.png");
+
+        addLocal(700, 200, "Trono Negro", "/funcoes/maps/captura-de-tela-248.png");
+        addLocal(750, 250, "Catacumbas", "/funcoes/maps/captura-de-tela-249.png");
+        addLocal(800, 300, "Profundezas", "/funcoes/maps/captura-de-tela-250.png");
+        addLocal(820, 320, "Cripta Antiga", "/funcoes/maps/captura-de-tela-251.png");
+        addLocal(840, 340, "Templo Caído", "/funcoes/maps/captura-de-tela-252.png");
+        addLocal(860, 360, "Ruína Sangrenta", "/funcoes/maps/captura-de-tela-253.png");
+        addLocal(880, 380, "Caverna Sombria", "/funcoes/maps/captura-de-tela-254.png");
+        addLocal(900, 400, "Vazio Abissal", "/funcoes/maps/captura-de-tela-258.png");
+
+        img
+
+    </script>
+<div class="master-legacy-bar" style="position:fixed;right:14px;bottom:14px;z-index:99999;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">
+<a href="mestre.html" style="padding:10px 13px;border-radius:999px;background:#15110c;border:1px solid #8d7041;color:#f0d79b;text-decoration:none;font:700 12px Arial,sans-serif;box-shadow:0 8px 24px #0009">♛ Painel do Mestre</a>
+<a href="../index.html" style="padding:10px 13px;border-radius:999px;background:#0d0c0b;border:1px solid #444;color:#ddd;text-decoration:none;font:700 12px Arial,sans-serif;box-shadow:0 8px 24px #0009">Player e Mestre</a>
+</div></body>
+
+</html>

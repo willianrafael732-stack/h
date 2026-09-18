@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <link href="../site.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Necromante - Nexalis</title>
+    <link href="../raca/csss/necromante.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        .skills-highlight-container {
+            background: rgba(20, 0, 40, 0.1);
+            border: 2px solid #4b0082;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 0 15px rgba(75, 0, 130, 0.3);
+        }
+
+        .skills-section h3 {
+            color: #9370db;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #4b0082;
+            display: inline-block;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+
+        .skill-item strong {
+            color: #dda0dd;
+        }
+
+        .stats-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .stats-box li {
+            margin-bottom: 8px;
+        }
+
+        .summon-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 3px solid #4b0082;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+    </style>
+    <meta content="strict-origin-when-cross-origin" name="referrer" />
+
+<link rel="stylesheet" href="../souls-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container-nav">
+            <div class="links">
+                <a href="../funcoes/inicio.html">historia </a>
+                <a href="../funcoes/racaeclasses.html">Raças e Classes</a>
+                <a href="../armas/armas.html">Armas</a>
+                <a href="../funcoes/sistema-completo.html">sistema</a>
+                <a href="../funcoes/npcs.html">NPCs</a>
+                <a href="../funcoes/grimorio-elemental-legado.html">Função elemental</a>
+                <a href="../funcoes/magia.html">magias</a>
+                <a href="../funcoes/porcao.html">porção</a>
+                <a href="../funcoes/INGREDIENTES.HTML">ingredinte</a>
+                <a href="../funcoes/mapas.html">mapas</a>
+                <a href="../funcoes/clan.html">Criação de Ficha</a>
+            </div>
+        </div>
+    </nav>
+    <main class="content">
+        <article class="race-card">
+            <header>
+                <h2>Classe: Necromante</h2>
+                <p style="text-align: center; color: #aaa; margin-top: -15px;">Praticantes das Artes Sombrias e Senhores
+                    do Conhecimento Proibido</p>
+            </header>
+            <div class="race-grid">
+                <div class="info-block">
+                    <h3>História</h3>
+                    <p>Os necromantes de Nexalis manipulam os segredos da vida e da morte. Temidos pelo conhecimento
+                        proibido, eles utilizam energia negativa para dobrar a vontade dos mortos e drenar a vitalidade
+                        dos vivos.</p>
+                    <h3>Artes e Magia</h3>
+                    <div class="skill-item"><strong>Necromancia:</strong> Controle absoluto de mortos-vivos e invocação
+                        de servos cadavéricos.</div>
+                    <div class="skill-item"><strong>Magia Negra:</strong> Feitiços corrosivos que manipulam a escuridão
+                        e drenam a alma.</div>
+                    <h4 class="evolution-title" style="margin-top: 20px;">Caminhos de Evolução</h4>
+                    <p>• <strong>Conjurador / Lorde Necromante:</strong> Especialista em exércitos e criaturas abissais
+                        como Yog.<br />
+                        • <strong>Sombrio / Mestre das Trevas:</strong> Foco em maldições, espionagem e proteção através
+                        do vácuo.</p>
+                </div>
+                <aside class="sidebar">
+                    <div class="stats-box">
+                        <h4>Status Inicial</h4>
+                        <ul>
+                            <li><span class="bonus">+1 Inteligência, +1 Magia Sombria</span></li>
+                            <li><span class="penalty">-1 Vigor</span></li>
+                        </ul>
+                    </div>
+                    <div class="stats-box">
+                        <h4>Status das Evoluções</h4>
+                        <ul>
+                            <li><strong>Conjurador:</strong><br />
+                                <span class="bonus">+2 Liderança, +1 Inteligência</span><br />
+                                <span class="penalty">-1 Carisma, -1 Res. Sagrada</span>
+                            </li>
+                            <li style="margin-top:10px;"><strong>Sombrio:</strong><br />
+                                <span class="bonus">+2 Magia Sombria, +1 Inteligência</span><br />
+                                <span class="penalty">-3 Resistência Sagrada</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="stats-box">
+                        <h4>Equipamento</h4>
+                        <ul>
+                            <li><strong>Armas:</strong> Foices (1H e 2H), Armas Mágicas</li>
+                            <li><strong>Defesa:</strong> Escudos</li>
+                            <li><strong>Armadura:</strong> Médias</li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+            <hr class="stats-divider" />
+            <div class="skills-highlight-container">
+                <section class="skills-section">
+                    <h3>Habilidades Ativas</h3>
+                    <h4 class="evolution-title">Fase 1: Necromante Iniciante</h4>
+                    <div class="race-grid">
+                        <div class="skill-item"><strong>Dreno Vil:</strong> <small>Aprendiz: Cura 50% da vida. Causa
+                                +50% dano sombrio (Alcance: 2 turnos).</small></div>
+                        <div class="skill-item"><strong>Invocação Cadavérica:</strong> <small>Aprendiz: Cria um
+                                esqueleto (F1, D1, V1). Tarefas simples.</small></div>
+                        <div class="skill-item"><strong>Voz de Nymeris:</strong> <small>Aprendiz: Conversa com
+                                espíritos. Requer teste de Lábia + Carisma.</small></div>
+                    </div>
+                    <div class="race-grid" style="margin-top: 40px;">
+                        <div class="evolution-column">
+                            <h4 class="evolution-title">Caminho da Invocação</h4>
+                            <div class="summon-box">
+                                <strong>Regra de Despertar:</strong> 1 esqueleto por turno. Custo: 3 mana por turno de
+                                duração desejado.
+                            </div>
+                            <div class="skill-item"><strong>Mago Esqueleto:</strong> <small>50% da ficha do mestre. Usa
+                                    Seta Sombria (+50% dano) e Negar Deus Haris (Anula magia sagrada/3t).</small></div>
+                            <div class="skill-item"><strong>Esqueleto Tanker:</strong> <small>50% ficha. Converte: Intel
+                                    &gt; Força | Esquiva &gt; Bloqueio | Res. Sombria &gt; Armadura.</small></div>
+                            <h4 class="evolution-title" style="margin-top: 20px;">Lorde Necromante</h4>
+                            <div class="summon-box">
+                                <strong>Yog:</strong> Criatura de 10 tentáculos. Custo: 6 mana por turno ativo.
+                            </div>
+                            <div class="skill-item"><strong>Distorção da Realidade:</strong> <small>Mestre: Yog
+                                    transfere danos entre Necromante, Aliados e Invocações para defesa
+                                    estratégica.</small></div>
+                            <div class="skill-item"><strong>Campo de Ossos:</strong> <small>Mestre: +150% dano sombrio
+                                    em área (Alcance 6 turnos).</small></div>
+                            <div class="skill-item"><strong>Ritual da Ressurreição:</strong> <small>Mestre: Ressuscita
+                                    aliado com 50% de vida. Requer 1 dia de ritual ininterrupto.</small></div>
+                        </div>
+                        <div class="evolution-column">
+                            <h4 class="evolution-title">Caminho da Corrupção (Sombrio)</h4>
+                            <div class="skill-item"><strong>Espião das Sombras:</strong> <small>Profissional: Sombra
+                                    para coleta de info e comunicação a longas distâncias (sem combate).</small></div>
+                            <div class="skill-item"><strong>Casulo Sombrio:</strong> <small>Profissional: Proteção
+                                    total. Casulo tem 50% do vigor do mestre (Dura 2 turnos).</small></div>
+                            <div class="skill-item"><strong>Maldição Sombria:</strong> <small>Profissional: Causa 15 de
+                                    dano sombrio contínuo por 3 turnos.</small></div>
+                            <div class="skill-item"><strong>Névoa Envolvente:</strong> <small>Profissional: Dificulta
+                                    visão de todos (exceto invocador). +2 dificuldade em ações de visão (Raio 2
+                                    turnos).</small></div>
+                            <div class="skill-item"><strong>Corte da Alma:</strong> <small>Profissional: +50% dano base.
+                                    Reduz cura do alvo em 50%.</small></div>
+                            <h4 class="evolution-title" style="margin-top: 20px;">Mestre das Trevas</h4>
+                            <div class="skill-item"><strong>Campo Profanado:</strong> <small>Mestre: Inimigos testam
+                                    resistência (Dificuldade 6) para atacar ou avançar (Raio 5 turnos).</small></div>
+                            <div class="skill-item"><strong>Deus Sombra:</strong> <small>Mestre: 1x a cada 2 mesas.
+                                    +100% em Atributos e Resistências por 2 turnos.</small></div>
+                            <div class="skill-item"><strong>Mãos do Além:</strong> <small>Mestre: +2 ataques extras e
+                                    alcance de 2 turnos de distância.</small></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </article>
+    </main>
+</body>
+
+</html>

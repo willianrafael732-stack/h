@@ -1,0 +1,3985 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nexalis RPG — Sistema de Runas</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* ========================================================= */
+        /* NEXALIS RPG — SISTEMA DE RUNAS */
+        /* ========================================================= */
+
+        :root {
+
+            --inferno: #070303;
+            --sombra: #0d0605;
+
+            --sangue: #7a0000;
+            --vermelho: #b31313;
+            --brasa: #ff3c00;
+
+            --ouro: #b88624;
+            --ouro-claro: #e0b84f;
+
+            --bronze: #65452c;
+            --pedra: #211816;
+
+            --cinza: #9b9189;
+            --texto: #d6d0c8;
+
+            /* AFINIDADES */
+
+            --fogo: #ff3c00;
+            --agua: #168cff;
+            --vento: #b7e8ff;
+            --terra: #8f6b3e;
+            --raio: #ffe600;
+            --veneno: #72d600;
+            --mental: #b36cff;
+            --sombrio: #7300a8;
+            --sagrado: #fff1a8;
+        }
+
+
+        /* ========================================================= */
+        /* RESET */
+        /* ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        [id] {
+            scroll-margin-top: 100px;
+        }
+
+
+        /* ========================================================= */
+        /* BODY */
+        /* ========================================================= */
+
+        body {
+
+            background:
+                radial-gradient(
+                    ellipse at 50% 0%,
+                    #3b0b07 0%,
+                    #1a0705 22%,
+                    #0c0504 50%,
+                    #050202 80%,
+                    #000000 100%
+                );
+
+            background-attachment: fixed;
+
+            color: var(--texto);
+
+            font-family: 'Cinzel', serif;
+
+            min-height: 100vh;
+
+            position: relative;
+
+            overflow-x: hidden;
+        }
+
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 60, 0, 0.05) 1px,
+                    transparent 1px
+                );
+
+            background-size: 45px 45px;
+
+            opacity: .25;
+
+            z-index: -1;
+        }
+
+
+        /* ========================================================= */
+        /* NAVBAR PRINCIPAL */
+        /* ========================================================= */
+
+        .navbar {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            width: 100%;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(12, 3, 2, .98),
+                    rgba(5, 2, 2, .98)
+                );
+
+            border-bottom: 1px solid #542018;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, .8);
+
+            backdrop-filter: blur(10px);
+        }
+
+
+        .navbar::after {
+
+            content: "";
+
+            display: block;
+
+            width: 100%;
+
+            height: 2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #720000,
+                    var(--brasa),
+                    var(--ouro),
+                    var(--brasa),
+                    #720000,
+                    transparent
+                );
+
+            box-shadow:
+                0 0 12px var(--brasa);
+        }
+
+
+        .container-nav {
+
+            max-width: 1250px;
+
+            margin: auto;
+
+            padding: 0 20px;
+        }
+
+
+        /* ========================================================= */
+        /* NAVBAR INTERNA */
+        /* ========================================================= */
+
+        .navbar-menu {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 3px;
+
+            min-height: 62px;
+        }
+
+
+        /* ========================================================= */
+        /* LOGO */
+        /* ========================================================= */
+
+        .nav-logo {
+
+            color: var(--ouro-claro);
+
+            text-decoration: none;
+
+            font-size: 18px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            padding: 10px 18px;
+
+            margin-right: 8px;
+
+            white-space: nowrap;
+
+            text-shadow:
+                0 0 8px rgba(224, 184, 79, .45);
+
+            border-right: 1px solid #3b211a;
+
+            transition: .3s;
+        }
+
+
+        .nav-logo:hover {
+
+            color: #fff0a6;
+
+            text-shadow:
+                0 0 15px var(--brasa),
+                0 0 25px var(--ouro);
+        }
+
+
+        /* ========================================================= */
+        /* ITEM DO MENU */
+        /* ========================================================= */
+
+        .nav-item {
+
+            position: relative;
+        }
+
+
+        .nav-button {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: #9b9189;
+
+            text-decoration: none;
+
+            text-transform: uppercase;
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+
+            padding: 23px 13px;
+
+            cursor: pointer;
+
+            transition: .3s;
+
+            white-space: nowrap;
+        }
+
+
+        .nav-button .seta {
+
+            font-size: 8px;
+
+            color: #725b45;
+
+            transition: .3s;
+        }
+
+
+        .nav-item:hover .nav-button {
+
+            color: var(--ouro-claro);
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(122, 0, 0, .18),
+                    transparent
+                );
+
+            text-shadow:
+                0 0 8px rgba(255, 60, 0, .5);
+        }
+
+
+        .nav-item:hover .seta {
+
+            color: var(--brasa);
+
+            transform: rotate(180deg);
+        }
+
+
+        /* ========================================================= */
+        /* INDICADOR DO MENU */
+        /* ========================================================= */
+
+        .nav-item > .nav-button::after {
+
+            content: "";
+
+            position: absolute;
+
+            bottom: 6px;
+
+            left: 50%;
+
+            width: 0;
+
+            height: 2px;
+
+            background: var(--brasa);
+
+            box-shadow:
+                0 0 8px var(--brasa);
+
+            transform: translateX(-50%);
+
+            transition: .3s;
+        }
+
+
+        .nav-item:hover > .nav-button::after {
+
+            width: 65%;
+        }
+
+
+        /* ========================================================= */
+        /* DROPDOWN */
+        /* ========================================================= */
+
+        .dropdown {
+
+            position: absolute;
+
+            top: calc(100% - 1px);
+
+            left: 50%;
+
+            transform:
+                translateX(-50%)
+                translateY(10px);
+
+            width: 235px;
+
+            padding: 8px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(25, 7, 5, .99),
+                    rgba(5, 2, 2, .99)
+                );
+
+            border: 1px solid #51251b;
+
+            border-top: 2px solid var(--sangue);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, .9),
+                inset 0 0 25px rgba(120, 0, 0, .08);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            pointer-events: none;
+
+            transition:
+                opacity .25s ease,
+                transform .25s ease;
+        }
+
+
+        .nav-item:hover .dropdown {
+
+            opacity: 1;
+
+            visibility: visible;
+
+            pointer-events: auto;
+
+            transform:
+                translateX(-50%)
+                translateY(0);
+        }
+
+
+        /* ========================================================= */
+        /* LINHAS DECORATIVAS DROPDOWN */
+        /* ========================================================= */
+
+        .dropdown::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: -1px;
+
+            left: 20%;
+
+            width: 60%;
+
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--brasa),
+                    transparent
+                );
+
+            box-shadow:
+                0 0 10px var(--brasa);
+        }
+
+
+        /* ========================================================= */
+        /* LINKS DROPDOWN */
+        /* ========================================================= */
+
+        .dropdown a {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            color: #958a82;
+
+            text-decoration: none;
+
+            padding: 11px 12px;
+
+            font-size: 11px;
+
+            letter-spacing: .5px;
+
+            border-left: 2px solid transparent;
+
+            transition: .25s;
+
+            position: relative;
+        }
+
+
+        .dropdown a:hover {
+
+            color: var(--ouro-claro);
+
+            border-left-color: var(--brasa);
+
+            padding-left: 17px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(139, 0, 0, .25),
+                    transparent
+                );
+
+            text-shadow:
+                0 0 8px rgba(255, 60, 0, .5);
+        }
+
+
+        /* ========================================================= */
+        /* LINK ATIVO */
+        /* ========================================================= */
+
+        .dropdown a.ativo {
+
+            color: var(--ouro-claro);
+
+            border-left-color: var(--brasa);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(122, 0, 0, .35),
+                    transparent
+                );
+
+            box-shadow:
+                inset 5px 0 15px rgba(255, 60, 0, .04);
+        }
+
+
+        .dropdown a.ativo::after {
+
+            content: "◆";
+
+            position: absolute;
+
+            right: 10px;
+
+            color: var(--brasa);
+
+            font-size: 7px;
+
+            text-shadow:
+                0 0 8px var(--brasa);
+        }
+
+
+        /* ========================================================= */
+        /* DIVISOR DROPDOWN */
+        /* ========================================================= */
+
+        .dropdown-divider {
+
+            height: 1px;
+
+            margin: 6px 8px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #4a2118,
+                    transparent
+                );
+        }
+
+
+        /* ========================================================= */
+        /* ARSENAL ESPECIAL */
+        /* ========================================================= */
+
+        .dropdown.arsenal {
+
+            width: 250px;
+        }
+
+
+        /* ========================================================= */
+        /* CONTEÚDO */
+        /* ========================================================= */
+
+        .tab {
+
+            max-width: 1100px;
+
+            margin: 40px auto;
+
+            padding: 35px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(30, 10, 8, .97),
+                    rgba(6, 3, 3, .99)
+                );
+
+            border: 1px solid #47251d;
+
+            box-shadow:
+                inset 0 0 50px rgba(120, 0, 0, .08),
+                0 15px 50px rgba(0, 0, 0, .9);
+
+            position: relative;
+
+            overflow: hidden;
+
+            animation:
+                entradaInfernal .6s ease;
+        }
+
+
+        .tab::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            right: 0;
+
+            height: 2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #720000,
+                    var(--brasa),
+                    #720000,
+                    transparent
+                );
+
+            box-shadow:
+                0 0 12px var(--brasa);
+        }
+
+
+        .tab::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(255, 60, 0, .04),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 80%,
+                    rgba(139, 0, 0, .04),
+                    transparent 30%
+                );
+        }
+
+
+        @keyframes entradaInfernal {
+
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* ========================================================= */
+        /* TÍTULOS */
+        /* ========================================================= */
+
+        h1 {
+
+            color: var(--ouro-claro);
+
+            text-align: center;
+
+            font-size: 34px;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 30px;
+
+            text-transform: uppercase;
+
+            text-shadow:
+                0 0 5px #4d0000,
+                0 0 12px rgba(139, 0, 0, .8),
+                0 0 25px rgba(255, 60, 0, .25);
+
+            border-bottom: 1px solid #572018;
+
+            padding-bottom: 15px;
+
+            position: relative;
+        }
+
+
+        h1::after {
+
+            content: "";
+
+            display: block;
+
+            width: 100px;
+
+            height: 2px;
+
+            margin: 12px auto 0;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--brasa),
+                    var(--ouro),
+                    var(--brasa),
+                    transparent
+                );
+
+            box-shadow:
+                0 0 10px var(--brasa);
+        }
+
+
+        h2 {
+
+            color: var(--ouro);
+
+            margin-top: 40px;
+
+            margin-bottom: 20px;
+
+            padding: 12px 15px;
+
+            font-size: 22px;
+
+            border-left: 4px solid var(--sangue);
+
+            border-bottom: 1px solid #3b211a;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(100, 0, 0, .25),
+                    transparent
+                );
+
+            text-shadow:
+                0 0 8px rgba(180, 0, 0, .5);
+        }
+
+
+        h3 {
+
+            color: var(--ouro-claro);
+
+            margin-bottom: 8px;
+
+            text-shadow:
+                0 0 8px rgba(139, 0, 0, .6);
+        }
+
+
+        p {
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            margin: 5px 0;
+
+            color: #c5bdb5;
+        }
+
+
+        b {
+
+            color: #d8aa42;
+        }
+
+
+        /* ========================================================= */
+        /* RUNAS BASE */
+        /* ========================================================= */
+
+        .grid-runas {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(210px, 1fr)
+                );
+
+            gap: 18px;
+
+            margin-top: 20px;
+        }
+
+
+        .runa {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(45, 15, 12, .95),
+                    rgba(9, 5, 5, .98)
+                );
+
+            border: 1px solid #4a3027;
+
+            border-left: 4px solid #710000;
+
+            padding: 20px;
+
+            min-height: 125px;
+
+            text-align: center;
+
+            position: relative;
+
+            transition: .35s;
+
+            box-shadow:
+                inset 0 0 20px rgba(100, 0, 0, .08),
+                0 8px 20px rgba(0, 0, 0, .7);
+        }
+
+
+        .runa::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            right: 0;
+
+            width: 25px;
+
+            height: 25px;
+
+            border-top: 1px solid #9a6327;
+
+            border-right: 1px solid #9a6327;
+
+            opacity: .5;
+        }
+
+
+        .runa:hover {
+
+            transform:
+                translateY(-5px)
+                scale(1.02);
+
+            border-color: #8b3c20;
+
+            border-left-color: var(--brasa);
+
+            box-shadow:
+                0 0 25px rgba(139, 0, 0, .45),
+                inset 0 0 25px rgba(139, 0, 0, .12);
+        }
+
+
+        .runa b {
+
+            display: block;
+
+            color: var(--ouro-claro);
+
+            font-size: 17px;
+
+            margin-bottom: 10px;
+
+            text-shadow:
+                0 0 8px rgba(180, 0, 0, .5);
+        }
+
+
+        /* ========================================================= */
+        /* RUNAS AVANÇADAS */
+        /* ========================================================= */
+
+        .runa-avancada {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(42, 13, 10, .98),
+                    rgba(8, 4, 4, .99)
+                );
+
+            border: 1px solid #563126;
+
+            border-left: 5px solid var(--sangue);
+
+            padding: 22px;
+
+            margin: 20px 0;
+
+            position: relative;
+
+            transition: .35s;
+
+            box-shadow:
+                inset 0 0 30px rgba(100, 0, 0, .08),
+                0 10px 30px rgba(0, 0, 0, .8);
+        }
+
+
+        .runa-avancada::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            top: 0;
+
+            width: 100%;
+
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #8b0000,
+                    transparent
+                );
+        }
+
+
+        .runa-avancada:hover {
+
+            transform: translateX(7px);
+
+            border-left-color: var(--brasa);
+
+            box-shadow:
+                0 0 25px rgba(139, 0, 0, .4),
+                inset 0 0 30px rgba(139, 0, 0, .1);
+        }
+
+
+        .runa-avancada > b {
+
+            display: block;
+
+            font-size: 19px;
+
+            color: #d9a63a;
+
+            margin-bottom: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+
+        .lendaria {
+
+            border-color: #a36f1f;
+
+            box-shadow:
+                0 0 15px rgba(201, 162, 39, .15);
+        }
+
+
+        .runa-avancada h3 {
+
+            color: #e0b84f;
+
+            font-size: 19px;
+
+            border-bottom: 1px solid #54251d;
+
+            padding-bottom: 8px;
+
+            margin-bottom: 12px;
+        }
+
+
+        /* ========================================================= */
+        /* AFINIDADES */
+        /* ========================================================= */
+
+        .afinidade {
+
+            margin-top: 45px;
+
+            padding: 20px 0 5px;
+
+            border-top: 1px solid #492017;
+        }
+
+
+        .afinidade-titulo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            font-size: 25px;
+
+            margin-bottom: 18px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+
+        .afinidade-descricao {
+
+            color: #968b83;
+
+            font-size: 13px;
+
+            margin-bottom: 18px;
+
+            font-style: italic;
+        }
+
+
+        .grid-classe {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(260px, 1fr)
+                );
+
+            gap: 18px;
+        }
+
+
+        .runa-classe {
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(38, 13, 10, .98),
+                    rgba(7, 4, 4, .99)
+                );
+
+            border: 1px solid #4a3027;
+
+            border-left: 4px solid var(--afinidade);
+
+            padding: 22px;
+
+            min-height: 235px;
+
+            transition: .35s;
+
+            box-shadow:
+                inset 0 0 25px rgba(0, 0, 0, .45),
+                0 10px 25px rgba(0, 0, 0, .75);
+        }
+
+
+        .runa-classe:hover {
+
+            transform: translateY(-6px);
+
+            border-color: var(--afinidade);
+
+            box-shadow:
+                0 0 25px var(--afinidade),
+                inset 0 0 30px rgba(0, 0, 0, .5);
+        }
+
+
+        .runa-classe::before {
+
+            content: "ᚱ";
+
+            position: absolute;
+
+            top: 8px;
+
+            right: 12px;
+
+            color: var(--afinidade);
+
+            font-size: 22px;
+
+            opacity: .35;
+        }
+
+
+        .runa-classe h3 {
+
+            color: var(--afinidade);
+
+            font-size: 18px;
+
+            margin-bottom: 12px;
+
+            padding-right: 25px;
+
+            text-shadow:
+                0 0 10px var(--afinidade);
+        }
+
+
+        .runa-classe .raridade {
+
+            display: inline-block;
+
+            padding: 4px 9px;
+
+            margin-bottom: 12px;
+
+            border: 1px solid var(--afinidade);
+
+            color: var(--afinidade);
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            background: rgba(0, 0, 0, .3);
+        }
+
+
+        .runa-classe p {
+
+            font-size: 13px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .runa-classe strong {
+
+            color: #e0b84f;
+        }
+
+
+        /* ========================================================= */
+        /* CORES DAS AFINIDADES */
+        /* ========================================================= */
+
+        .fogo {
+            --afinidade: var(--fogo);
+        }
+
+        .agua {
+            --afinidade: var(--agua);
+        }
+
+        .vento {
+            --afinidade: var(--vento);
+        }
+
+        .terra {
+            --afinidade: var(--terra);
+        }
+
+        .raio {
+            --afinidade: var(--raio);
+        }
+
+        .veneno {
+            --afinidade: var(--veneno);
+        }
+
+        .mental {
+            --afinidade: var(--mental);
+        }
+
+        .sombrio {
+            --afinidade: var(--sombrio);
+        }
+
+        .sagrado {
+            --afinidade: var(--sagrado);
+        }
+
+
+        /* ========================================================= */
+        /* PRIMORDIAL */
+        /* ========================================================= */
+
+        .primordial {
+
+            border-width: 1px;
+
+            border-left-width: 6px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(50, 8, 35, .98),
+                    rgba(8, 3, 8, .99)
+                );
+
+            box-shadow:
+                0 0 20px rgba(115, 0, 168, .2),
+                inset 0 0 35px rgba(115, 0, 168, .08);
+        }
+
+
+        .primordial:hover {
+
+            box-shadow:
+                0 0 35px rgba(115, 0, 168, .55),
+                inset 0 0 40px rgba(115, 0, 168, .15);
+        }
+
+
+        .primordial .raridade {
+
+            color: #e29aff;
+
+            border-color: #a93bd1;
+        }
+
+
+        /* ========================================================= */
+        /* PROIBIDA */
+        /* ========================================================= */
+
+        .proibida {
+
+            --afinidade: #ff0000;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(75, 0, 0, .98),
+                    rgba(8, 0, 0, .99)
+                );
+
+            border-color: #8b0000;
+
+            animation:
+                pulsarProibida 3s infinite alternate;
+        }
+
+
+        @keyframes pulsarProibida {
+
+            from {
+                box-shadow:
+                    0 0 8px rgba(255, 0, 0, .15);
+            }
+
+            to {
+                box-shadow:
+                    0 0 28px rgba(255, 0, 0, .4);
+            }
+        }
+
+
+        /* ========================================================= */
+        /* LISTAS */
+        /* ========================================================= */
+
+        ul {
+
+            margin-top: 15px;
+
+            padding-left: 25px;
+        }
+
+
+        li {
+
+            margin-bottom: 10px;
+
+            color: #bcb3aa;
+        }
+
+
+        li b {
+
+            color: #d9a63a;
+        }
+
+
+        /* ========================================================= */
+        /* REGRAS */
+        /* ========================================================= */
+
+        .tab > p > b {
+
+            color: #ff8b39;
+
+            text-shadow:
+                0 0 6px rgba(255, 60, 0, .4);
+        }
+
+
+        /* ========================================================= */
+        /* RODAPÉ */
+        /* ========================================================= */
+
+        .rodape {
+
+            margin-top: 70px;
+
+            padding: 50px 30px 20px;
+
+            background:
+                linear-gradient(
+                    to top,
+                    #030101,
+                    #100504,
+                    #080202
+                );
+
+            border-top: 1px solid #552019;
+
+            box-shadow:
+                0 -15px 40px rgba(0, 0, 0, .9);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .rodape::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #650000,
+                    var(--brasa),
+                    #650000,
+                    transparent
+                );
+
+            animation:
+                infernoLinha 3s infinite alternate;
+        }
+
+
+        @keyframes infernoLinha {
+
+            from {
+                opacity: .3;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+
+        .rodape-grid {
+
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(220px, 1fr)
+                );
+
+            gap: 40px;
+        }
+
+
+        .rodape-col h2 {
+
+            color: #d7a63c;
+
+            border: none;
+
+            padding: 0;
+
+            margin: 0;
+
+            font-size: 23px;
+
+            text-shadow:
+                0 0 8px #650000,
+                0 0 18px rgba(180, 0, 0, .5);
+        }
+
+
+        .rodape-col h3 {
+
+            color: #b98530;
+
+            border: none;
+
+            padding: 0;
+
+            margin-bottom: 12px;
+
+            font-size: 16px;
+        }
+
+
+        .rodape .links {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+
+        .rodape .links a {
+
+            color: #82766e;
+
+            text-decoration: none;
+
+            padding: 7px 10px;
+
+            border-left: 2px solid transparent;
+
+            transition: .3s ease;
+        }
+
+
+        .rodape .links a:hover {
+
+            color: #e0b84f;
+
+            border-left-color: #9b0000;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(139, 0, 0, .18),
+                    transparent
+                );
+
+            padding-left: 17px;
+
+            text-shadow:
+                0 0 8px rgba(255, 60, 0, .5);
+        }
+
+
+        .lore {
+
+            color: #746a63;
+
+            font-size: 13px;
+
+            font-style: italic;
+
+            margin-top: 12px;
+
+            max-width: 280px;
+
+            line-height: 1.6;
+        }
+
+
+        .rodape-bottom {
+
+            max-width: 1100px;
+
+            margin: 35px auto 0;
+
+            padding-top: 15px;
+
+            border-top: 1px solid #29130e;
+
+            text-align: center;
+
+            font-size: 12px;
+
+            color: #504740;
+        }
+
+
+        /* ========================================================= */
+        /* SCROLLBAR */
+        /* ========================================================= */
+
+        ::-webkit-scrollbar {
+
+            width: 10px;
+        }
+
+
+        ::-webkit-scrollbar-track {
+
+            background: #050202;
+
+            border-left: 1px solid #24100c;
+        }
+
+
+        ::-webkit-scrollbar-thumb {
+
+            background:
+                linear-gradient(
+                    #6e0000,
+                    #2d0805
+                );
+
+            border: 1px solid #8c3b20;
+
+            border-radius: 2px;
+        }
+
+
+        ::-webkit-scrollbar-thumb:hover {
+
+            background:
+                linear-gradient(
+                    #a30000,
+                    #4a0b05
+                );
+        }
+
+
+        /* ========================================================= */
+        /* SELEÇÃO */
+        /* ========================================================= */
+
+        ::selection {
+
+            background: #720000;
+
+            color: #f0c75e;
+        }
+
+
+        /* ========================================================= */
+        /* RESPONSIVO */
+        /* ========================================================= */
+
+        @media (max-width: 1050px) {
+
+            .nav-logo {
+
+                display: none;
+            }
+
+            .navbar-menu {
+
+                justify-content: center;
+            }
+
+            .nav-button {
+
+                padding-left: 10px;
+
+                padding-right: 10px;
+
+                font-size: 9px;
+            }
+        }
+
+
+        @media (max-width: 800px) {
+
+            .navbar {
+
+                position: sticky;
+
+                top: 0;
+            }
+
+
+            .container-nav {
+
+                padding: 0 8px;
+            }
+
+
+            .navbar-menu {
+
+                justify-content: flex-start;
+
+                overflow-x: auto;
+
+                flex-wrap: nowrap;
+
+                min-height: 57px;
+
+                scrollbar-width: thin;
+            }
+
+
+            .nav-item {
+
+                flex-shrink: 0;
+            }
+
+
+            .nav-button {
+
+                padding: 20px 10px;
+
+                font-size: 9px;
+            }
+
+
+            .dropdown {
+
+                position: fixed;
+
+                top: 57px;
+
+                left: auto;
+
+                right: 8px;
+
+                transform: translateY(10px);
+
+                width: 220px;
+
+                max-height: 70vh;
+
+                overflow-y: auto;
+            }
+
+
+            .nav-item:hover .dropdown {
+
+                transform: translateY(0);
+            }
+
+
+            .tab {
+
+                margin: 20px 10px;
+
+                padding: 22px;
+            }
+
+
+            h1 {
+
+                font-size: 25px;
+            }
+
+
+            h2 {
+
+                font-size: 19px;
+            }
+
+
+            .grid-runas,
+            .grid-classe {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .rodape {
+
+                padding: 40px 20px 20px;
+            }
+
+
+            .rodape-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 30px;
+            }
+        }
+
+
+        @media (max-width: 500px) {
+
+            .nav-button {
+
+                font-size: 8px;
+
+                letter-spacing: .5px;
+
+                padding:
+                    19px 8px;
+            }
+
+
+            .nav-button .seta {
+
+                display: none;
+            }
+
+
+            .tab {
+
+                margin: 12px 6px;
+
+                padding: 17px;
+            }
+
+
+            h1 {
+
+                font-size: 21px;
+
+                letter-spacing: 1px;
+            }
+
+
+            h2 {
+
+                font-size: 17px;
+            }
+
+
+            .runa-classe {
+
+                padding: 18px;
+
+                min-height: auto;
+            }
+        }
+
+    </style>
+
+    <meta
+        name="referrer"
+        content="strict-origin-when-cross-origin"
+    >
+
+
+<link rel="stylesheet" href="../souls-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+
+
+<body>
+
+
+    <!-- ========================================================= -->
+    <!-- NAVBAR PRINCIPAL -->
+    <!-- ========================================================= -->
+
+    <nav class="navbar">
+
+        <div class="container-nav">
+
+            <div class="navbar-menu">
+
+
+                <!-- ================================================= -->
+                <!-- LOGO -->
+                <!-- ================================================= -->
+
+                <a
+                    href="../funcoes/inicio.html"
+                    class="nav-logo"
+                >
+                    ⚔️ NEXALIS
+                </a>
+
+
+                <!-- ================================================= -->
+                <!-- MUNDO -->
+                <!-- ================================================= -->
+
+                <div class="nav-item">
+
+                    <a
+                        href="#"
+                        class="nav-button"
+                    >
+                        🏰 Mundo
+                        <span class="seta">▼</span>
+                    </a>
+
+
+                    <div class="dropdown">
+
+                        <a href="../funcoes/inicio.html">
+                            📜 História
+                        </a>
+
+                        <a href="../funcoes/sistema-completo.html">
+                            ⚙️ Sistema
+                        </a>
+
+                        <a href="../funcoes/mapas.html">
+                            🗺️ Mapas
+                        </a>
+
+                        <a href="../funcoes/clan.html">
+                            🏴 Clãs
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- PERSONAGEM -->
+                <!-- ================================================= -->
+
+                <div class="nav-item">
+
+                    <a
+                        href="#"
+                        class="nav-button"
+                    >
+                        🧙 Personagem
+                        <span class="seta">▼</span>
+                    </a>
+
+
+                    <div class="dropdown">
+
+                        <a href="../funcoes/racaeclasses.html">
+                            🧬 Raças & Classes
+                        </a>
+
+                        <a href="../funcoes/criacao-de-ficha.html">
+                            📋 Ficha
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- COMBATE -->
+                <!-- ================================================= -->
+
+                <div class="nav-item">
+
+                    <a
+                        href="#"
+                        class="nav-button"
+                    >
+                        ⚔️ Combate
+                        <span class="seta">▼</span>
+                    </a>
+
+
+                    <div class="dropdown">
+
+                        <a href="armas.html">
+                            ⚔️ Armas
+                        </a>
+
+                        <a href="../funcoes/npcs.html">
+                            🧙 NPCs
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <a href="armaduras.html">
+                            🛡️ Armaduras
+                        </a>
+
+                        <a href="escudo.html">
+                            🛡️ Escudos
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- PODERES -->
+                <!-- ================================================= -->
+
+                <div class="nav-item">
+
+                    <a
+                        href="#"
+                        class="nav-button"
+                    >
+                        🔮 Poderes
+                        <span class="seta">▼</span>
+                    </a>
+
+
+                    <div class="dropdown">
+
+                        <a href="../funcoes/magia.html">
+                            ✨ Magias
+                        </a>
+
+                        <a href="../funcoes/porcao.html">
+                            ⚗️ Alquimia
+                        </a>
+
+                        <a href="../funcoes/INGREDIENTES.HTML">
+                            🌿 Ingredientes
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <a
+                            href="Runas.html"
+                            class="ativo"
+                        >
+                            ᚱ Runas
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- ARSENAL -->
+                <!-- ================================================= -->
+
+                <div class="nav-item">
+
+                    <a
+                        href="#"
+                        class="nav-button"
+                    >
+                        🗡️ Arsenal
+                        <span class="seta">▼</span>
+                    </a>
+
+
+                    <div class="dropdown arsenal">
+
+                        <a href="armaduras.html">
+                            🛡️ Armaduras
+                        </a>
+
+                        <a href="curtoalacance.html">
+                            🗡️ Curto Alcance
+                        </a>
+
+                        <a href="medioalcance.html">
+                            🪶 Médio Alcance
+                        </a>
+
+                        <a href="medioalcance2M.html">
+                            ⚔️ Médio Alcance 2M
+                        </a>
+
+                        <a href="longo.html">
+                            🏹 Longo Alcance
+                        </a>
+
+                        <a href="escudo.html">
+                            🛡️ Escudos
+                        </a>
+
+                        <a href="Instrumentais.html">
+                            🎵 Instrumentais
+                        </a>
+
+                        <a href="magicos.html">
+                            🔮 Mágicos
+                        </a>
+
+                        <a href="encantos.html">
+                            ✨ Encantos
+                        </a>
+
+                        <a
+                            href="Runas.html"
+                            class="ativo"
+                        >
+                            ᚱ Runas
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ========================================================= -->
+    <!-- SISTEMA DE RUNAS -->
+    <!-- ========================================================= -->
+
+    <main
+        class="tab"
+        id="runas"
+    >
+
+
+        <h1>
+            🔮 Sistema de Runas
+        </h1>
+
+
+        <!-- ===================================================== -->
+        <!-- RUNAS BASE -->
+        <!-- ===================================================== -->
+
+        <h2>
+            📜 Runas Base — Nível 1 até 4
+        </h2>
+
+
+        <div class="grid-runas">
+
+
+            <div class="runa" id="runa-af">
+
+                <b>AF — Físico</b>
+
+                <p>
+                    I: +1 dano<br>
+                    II: +2 dano<br>
+                    III: +3 dano
+                </p>
+
+            </div>
+
+
+            <div class="runa" id="runa-dn">
+
+                <b>DN — Dano</b>
+
+                <p>
+                    I: +1 dano geral<br>
+                    II: +2<br>
+                    III: +3
+                </p>
+
+            </div>
+
+
+            <div class="runa" id="runa-ia">
+
+                <b>IA — Ignorar Armadura</b>
+
+                <p>
+                    I: ignora 1<br>
+                    II: ignora 2<br>
+                    III: ignora 3
+                </p>
+
+            </div>
+
+
+            <div class="runa" id="runa-ac">
+
+                <b>AC — Alcance</b>
+
+                <p>
+                    I: +1m<br>
+                    II: +2m<br>
+                    III: +3m
+                </p>
+
+            </div>
+
+
+            <div class="runa" id="runa-mn">
+
+                <b>MN — Mana</b>
+
+                <p>
+                    I: +1 regen<br>
+                    II: +2<br>
+                    III: +3
+                </p>
+
+            </div>
+
+
+            <div class="runa" id="runa-vt">
+
+                <b>VT — Vida</b>
+
+                <p>
+                    I: +1 regen<br>
+                    II: +2<br>
+                    III: +3
+                </p>
+
+            </div>
+
+
+            <div class="runa" id="runa-rm">
+
+                <b>RM — Resistência Mágica</b>
+
+                <p>
+                    I: -1 dano mágico<br>
+                    II: -2<br>
+                    III: -3
+                </p>
+
+            </div>
+
+
+            <div class="runa" id="runa-rc">
+
+                <b>RC — Resistência Crítica</b>
+
+                <p>
+                    I: -1 crítico<br>
+                    II: -2<br>
+                    III: -3
+                </p>
+
+            </div>
+
+
+            <div class="runa" id="runa-nm">
+
+                <b>NM — Magia</b>
+
+                <p>
+                    I: +1 poder mágico<br>
+                    II: +2<br>
+                    III: +3
+                </p>
+
+            </div>
+
+
+            <div class="runa" id="runa-ra">
+
+                <b>RA — Retorno</b>
+
+                <p>
+                    Runa especializada em efeitos
+                    de retorno e contra-ataque.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <p style="margin-top:20px;">
+
+            <b>Regra:</b>
+
+            Máximo +3 por runa |
+            Até 10 runas por item.
+
+        </p>
+
+
+        <!-- ===================================================== -->
+        <!-- RUNAS AVANÇADAS -->
+        <!-- ===================================================== -->
+
+        <h2>
+            📜 Runas Avançadas — Nível 4 até 8
+        </h2>
+
+
+        <div
+            class="runa-avancada"
+            id="runa-si"
+        >
+
+            <b>
+                SI — Silêncio Arcano 4
+            </b>
+
+            <p>
+                <b>Efeito:</b>
+                Bloqueia magias.
+            </p>
+
+            <p>
+                <b>Duração:</b>
+                5 turnos.
+            </p>
+
+            <p>
+                <b>Habilidade:</b>
+                Quebra de Conjuração.
+            </p>
+
+            <p>
+                Interrompe magias em canalização e aplica
+                -1 sucesso no próximo turno do alvo.
+            </p>
+
+            <p>
+                <b>Passiva:</b>
+                Eco Silencioso.
+            </p>
+
+            <p>
+                Se o alvo tentar usar magia,
+                sofre 3 pontos de dano.
+            </p>
+
+        </div>
+
+
+        <div
+            class="runa-avancada"
+            id="runa-sp"
+        >
+
+            <b>
+                SP — Supressão de Mana 6
+            </b>
+
+            <p>
+                <b>Efeito:</b>
+                Impede uso de mana.
+            </p>
+
+            <p>
+                <b>Duração:</b>
+                5 turnos.
+            </p>
+
+            <p>
+                <b>Habilidade:</b>
+                Drenagem Arcana.
+            </p>
+
+            <p>
+                Rouba 1 ponto de mana por turno do alvo.
+            </p>
+
+            <p>
+                <b>Passiva:</b>
+                Vazio Interno.
+            </p>
+
+            <p>
+                Inimigos afetados têm regeneração
+                de mana reduzida a 0.
+            </p>
+
+        </div>
+
+
+        <div
+            class="runa-avancada"
+            id="runa-sm"
+        >
+
+            <b>
+                SM — Anulação Total 8
+            </b>
+
+            <p>
+                <b>Efeito:</b>
+                Bloqueia mana, habilidades e passivas.
+            </p>
+
+            <p>
+                <b>Duração:</b>
+                5 turnos.
+            </p>
+
+            <p>
+                <b>Habilidade:</b>
+                Zona Nula.
+            </p>
+
+            <p>
+                Cria uma área onde nenhuma habilidade funciona.
+                Alcance: 3m.
+            </p>
+
+            <p>
+                <b>Passiva:</b>
+                Colapso Arcano.
+            </p>
+
+            <p>
+                Alvos afetados sofrem -1 ação por turno.
+            </p>
+
+        </div>
+
+
+        <!-- ===================================================== -->
+        <!-- RUNAS LENDÁRIAS -->
+        <!-- ===================================================== -->
+
+        <h2>
+            🌟 Runas Lendárias — Junção 8 até 10
+        </h2>
+
+
+        <div
+            class="runa-avancada lendaria"
+            id="runa-ordem"
+        >
+
+            <h3>
+                ⚖️ Runa da Ordem
+            </h3>
+
+            <p>
+                <b>Combinação:</b>
+                VI + RM + RC
+            </p>
+
+            <p>
+                <b>Efeito:</b>
+                O alvo é controlado pelo oponente
+                por 5 rodadas para receber ordens.
+            </p>
+
+            <p>
+                <b>Bônus:</b>
+                Imune a penalidades de dados.
+            </p>
+
+        </div>
+
+
+        <div
+            class="runa-avancada lendaria"
+            id="runa-morte"
+        >
+
+            <h3>
+                ☠️ Runa da Morte
+            </h3>
+
+            <p>
+                <b>Combinação:</b>
+                DN + NM + IA
+            </p>
+
+            <p>
+                <b>Efeito:</b>
+                Aplica dano contínuo por 2 turnos.
+            </p>
+
+            <p>
+                <b>Bônus:</b>
+                Inimigos não regeneram enquanto afetados.
+            </p>
+
+        </div>
+
+
+        <div
+            class="runa-avancada lendaria"
+            id="runa-destruicao"
+        >
+
+            <h3>
+                🔥 Runa da Destruição
+            </h3>
+
+            <p>
+                <b>Combinação:</b>
+                AF + DN + IA
+            </p>
+
+            <p>
+                <b>Efeito:</b>
+                +3 dano e quebra armadura.
+            </p>
+
+            <p>
+                <b>Bônus:</b>
+                Ataques críticos causam dano em área.
+            </p>
+
+        </div>
+
+
+        <div
+            class="runa-avancada lendaria"
+            id="runa-arcanista"
+        >
+
+            <h3>
+                🧠 Runa do Arcanista
+            </h3>
+
+            <p>
+                <b>Combinação:</b>
+                AM + NM + MN
+            </p>
+
+            <p>
+                <b>Efeito:</b>
+                +2 poder mágico e regeneração alta.
+            </p>
+
+            <p>
+                <b>Bônus:</b>
+                Reduz custo de mana em -1.
+            </p>
+
+        </div>
+
+
+        <div
+            class="runa-avancada lendaria"
+            id="runa-fortaleza"
+        >
+
+            <h3>
+                🛡️ Runa da Fortaleza
+            </h3>
+
+            <p>
+                <b>Combinação:</b>
+                VT + RM + RC
+            </p>
+
+            <p>
+                <b>Efeito:</b>
+                Reduz dano e crítico.
+            </p>
+
+            <p>
+                <b>Bônus:</b>
+                Recupera vida ao bloquear.
+            </p>
+
+        </div>
+
+
+        <div
+            class="runa-avancada lendaria"
+            id="runa-cacador"
+        >
+
+            <h3>
+                🏹 Runa do Caçador
+            </h3>
+
+            <p>
+                <b>Combinação:</b>
+                AC + DN + RA
+            </p>
+
+            <p>
+                <b>Efeito:</b>
+                Ataques retornam e ganham precisão.
+            </p>
+
+            <p>
+                <b>Bônus:</b>
+                +1 sucesso à distância.
+            </p>
+
+        </div>
+
+
+        <div
+            class="runa-avancada lendaria"
+            id="runa-vazio"
+        >
+
+            <h3>
+                🌑 Runa do Vazio
+            </h3>
+
+            <p>
+                <b>Combinação:</b>
+                SM + NM + AC
+            </p>
+
+            <p>
+                <b>Efeito:</b>
+                Zona que bloqueia magia.
+            </p>
+
+            <p>
+                <b>Bônus:</b>
+                Inimigos dentro recebem -1 ação.
+            </p>
+
+        </div>
+
+
+        <div
+            class="runa-avancada lendaria"
+            id="runa-fluxo"
+        >
+
+            <h3>
+                ⚡ Runa do Fluxo
+            </h3>
+
+            <p>
+                <b>Combinação:</b>
+                MN + VT + VI
+            </p>
+
+            <p>
+                <b>Efeito:</b>
+                Regeneração contínua.
+            </p>
+
+            <p>
+                <b>Bônus:</b>
+                Cura aumenta a cada turno.
+            </p>
+
+        </div>
+
+
+        <!-- ===================================================== -->
+        <!-- RUNAS DE CLASSE -->
+        <!-- ===================================================== -->
+
+        <h2>
+            🔮 Runas de Classe — Afinidades
+        </h2>
+
+
+        <p>
+
+            As Runas de Classe são manifestações de uma afinidade específica.
+
+            Diferente das runas comuns, elas concedem poderes diretamente ligados
+            à natureza do usuário e podem alterar suas capacidades.
+
+        </p>
+
+
+        <!-- ===================================================== -->
+        <!-- FOGO -->
+        <!-- ===================================================== -->
+
+        <section
+            class="afinidade"
+            id="afinidade-fogo"
+        >
+
+            <h2 class="afinidade-titulo">
+                🔥 Fogo
+            </h2>
+
+
+            <p class="afinidade-descricao">
+                Poder da destruição, calor, combustão e energia ígnea.
+            </p>
+
+
+            <div class="grid-classe">
+
+
+                <div class="runa-classe fogo">
+
+                    <span class="raridade">
+                        Rara
+                    </span>
+
+                    <h3>
+                        🔥 Runa da Chama Eterna
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Envolve o usuário em chamas que não podem
+                        ser apagadas por meios comuns.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Ataques físicos e mágicos recebem dano ígneo.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe fogo">
+
+                    <span class="raridade">
+                        Épica
+                    </span>
+
+                    <h3>
+                        🔥 Runa do Inferno
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Cria uma área de fogo intenso ao redor do usuário.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        O terreno permanece em chamas durante vários turnos.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe fogo">
+
+                    <span class="raridade">
+                        Lendária
+                    </span>
+
+                    <h3>
+                        🔥 Runa da Fênix
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Ao morrer, o usuário retorna uma vez envolto em chamas.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Retorna com parte da vida restaurada.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe fogo">
+
+                    <span class="raridade">
+                        Rara
+                    </span>
+
+                    <h3>
+                        🔥 Runa da Combustão
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Tudo que o usuário toca pode começar a incendiar.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Pode iniciar incêndios sem utilizar magia convencional.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe fogo primordial">
+
+                    <span class="raridade">
+                        Primordial
+                    </span>
+
+                    <h3>
+                        🔥 Runa do Sol Ardente
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Concentra energia térmica em um único ataque.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        O impacto libera uma explosão de calor devastadora.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ===================================================== -->
+        <!-- ÁGUA -->
+        <!-- ===================================================== -->
+
+        <section
+            class="afinidade"
+            id="afinidade-agua"
+        >
+
+            <h2 class="afinidade-titulo">
+                💧 Água
+            </h2>
+
+            <p class="afinidade-descricao">
+                Poder da fluidez, cura, adaptação, pressão e purificação.
+            </p>
+
+
+            <div class="grid-classe">
+
+
+                <div class="runa-classe agua">
+
+                    <span class="raridade">
+                        Rara
+                    </span>
+
+                    <h3>
+                        💧 Runa da Maré
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Controla grandes quantidades de água.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Pode criar ondas, jatos e correntes.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe agua">
+
+                    <span class="raridade">
+                        Épica
+                    </span>
+
+                    <h3>
+                        💧 Runa da Fonte Vital
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Utiliza água para acelerar a recuperação.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Pode restaurar ferimentos através do contato.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe agua">
+
+                    <span class="raridade">
+                        Lendária
+                    </span>
+
+                    <h3>
+                        💧 Runa do Abismo Oceânico
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Cria uma pressão esmagadora sobre o alvo.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Quanto maior a quantidade de água,
+                        maior a pressão criada.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe agua">
+
+                    <span class="raridade">
+                        Rara
+                    </span>
+
+                    <h3>
+                        💧 Runa da Purificação
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Remove venenos, corrupção e determinadas maldições.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Pode purificar criaturas e objetos.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe agua">
+
+                    <span class="raridade">
+                        Épica
+                    </span>
+
+                    <h3>
+                        💧 Runa do Corpo Líquido
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Permite transformar parte do corpo em água.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Reduz o impacto de ataques físicos.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ===================================================== -->
+        <!-- VENTO -->
+        <!-- ===================================================== -->
+
+        <section
+            class="afinidade"
+            id="afinidade-vento"
+        >
+
+            <h2 class="afinidade-titulo">
+                🌪️ Vento
+            </h2>
+
+            <p class="afinidade-descricao">
+                Poder da velocidade, movimento, liberdade e pressão atmosférica.
+            </p>
+
+
+            <div class="grid-classe">
+
+
+                <div class="runa-classe vento">
+
+                    <span class="raridade">
+                        Rara
+                    </span>
+
+                    <h3>
+                        🌪️ Runa da Tempestade
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Cria ventos violentos.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Pode derrubar ou afastar vários inimigos.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe vento">
+
+                    <span class="raridade">
+                        Rara
+                    </span>
+
+                    <h3>
+                        🌪️ Runa do Vendaval
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Dispara uma rajada concentrada.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        O impacto lança o inimigo para longe.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe vento">
+
+                    <span class="raridade">
+                        Épica
+                    </span>
+
+                    <h3>
+                        🌪️ Runa da Velocidade
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Aumenta drasticamente a velocidade.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Melhora deslocamento, esquiva e reação.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe vento">
+
+                    <span class="raridade">
+                        Lendária
+                    </span>
+
+                    <h3>
+                        🌪️ Runa do Corpo Invisível
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        O corpo pode se dispersar parcialmente como vento.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Permite atravessar pequenas aberturas.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe vento primordial">
+
+                    <span class="raridade">
+                        Primordial
+                    </span>
+
+                    <h3>
+                        🌪️ Runa do Céu Livre
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Concede voo e domínio sobre correntes de ar.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        O usuário pode lutar livremente no ar.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ===================================================== -->
+        <!-- TERRA -->
+        <!-- ===================================================== -->
+
+        <section
+            class="afinidade"
+            id="afinidade-terra"
+        >
+
+            <h2 class="afinidade-titulo">
+                🌿 Terra
+            </h2>
+
+            <p class="afinidade-descricao">
+                Poder da resistência, força, matéria, natureza e estabilidade.
+            </p>
+
+
+            <div class="grid-classe">
+
+
+                <div class="runa-classe terra">
+
+                    <span class="raridade">
+                        Lendária
+                    </span>
+
+                    <h3>
+                        🌿 Runa do Colosso
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Aumenta o corpo e concede força monstruosa.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        A resistência física aumenta drasticamente.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe terra">
+
+                    <span class="raridade">
+                        Épica
+                    </span>
+
+                    <h3>
+                        🌿 Runa da Montanha
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        O corpo assume resistência semelhante à pedra.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Reduz significativamente danos físicos.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe terra">
+
+                    <span class="raridade">
+                        Rara
+                    </span>
+
+                    <h3>
+                        🌿 Runa das Raízes
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Cria raízes que prendem criaturas ao solo.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Quanto mais fértil o terreno, mais fortes são as raízes.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe terra">
+
+                    <span class="raridade">
+                        Lendária
+                    </span>
+
+                    <h3>
+                        🌿 Runa do Terremoto
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Provoca ondas sísmicas.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Pode derrubar criaturas e destruir estruturas.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe terra primordial">
+
+                    <span class="raridade">
+                        Primordial
+                    </span>
+
+                    <h3>
+                        🌿 Runa da Pedra Viva
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Cria criaturas temporárias feitas de pedra.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        As criaturas obedecem ao portador da runa.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ===================================================== -->
+        <!-- RAIO -->
+        <!-- ===================================================== -->
+
+        <section
+            class="afinidade"
+            id="afinidade-raio"
+        >
+
+            <h2 class="afinidade-titulo">
+                ⚡ Raio
+            </h2>
+
+            <p class="afinidade-descricao">
+                Poder da eletricidade, velocidade, energia e sobrecarga.
+            </p>
+
+
+            <div class="grid-classe">
+
+
+                <div class="runa-classe raio">
+
+                    <span class="raridade">
+                        Rara
+                    </span>
+
+                    <h3>
+                        ⚡ Runa do Trovão
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Canaliza eletricidade pelo corpo.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Ataques causam dano elétrico adicional.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe raio">
+
+                    <span class="raridade">
+                        Épica
+                    </span>
+
+                    <h3>
+                        ⚡ Runa do Relâmpago
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Permite pequenos deslocamentos instantâneos.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Pode atravessar rapidamente o campo de batalha.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe raio">
+
+                    <span class="raridade">
+                        Lendária
+                    </span>
+
+                    <h3>
+                        ⚡ Runa da Sobrecarga
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Aumenta temporariamente as capacidades físicas.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Velocidade e força recebem grande aumento.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe raio">
+
+                    <span class="raridade">
+                        Lendária
+                    </span>
+
+                    <h3>
+                        ⚡ Runa do Raio Negro
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Cria eletricidade misturada com energia sombria.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Afeta corpo e energia mágica simultaneamente.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe raio primordial">
+
+                    <span class="raridade">
+                        Primordial
+                    </span>
+
+                    <h3>
+                        ⚡ Runa do Céu Partido
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Invoca múltiplos relâmpagos.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Pode transformar uma área inteira em um campo elétrico.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ===================================================== -->
+        <!-- VENENO -->
+        <!-- ===================================================== -->
+
+        <section
+            class="afinidade"
+            id="afinidade-veneno"
+        >
+
+            <h2 class="afinidade-titulo">
+                ☠️ Veneno
+            </h2>
+
+            <p class="afinidade-descricao">
+                Poder da toxina, corrupção biológica, doença e decadência.
+            </p>
+
+
+            <div class="grid-classe">
+
+
+                <div class="runa-classe veneno">
+
+                    <span class="raridade">
+                        Rara
+                    </span>
+
+                    <h3>
+                        ☠️ Runa da Toxina
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Produz veneno sobrenatural no corpo.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Pode contaminar armas e ataques.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe veneno">
+
+                    <span class="raridade">
+                        Épica
+                    </span>
+
+                    <h3>
+                        ☠️ Runa da Praga
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Espalha uma doença sobrenatural.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        A doença pode passar de um inimigo para outro.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe veneno primordial">
+
+                    <span class="raridade">
+                        Primordial
+                    </span>
+
+                    <h3>
+                        ☠️ Runa do Veneno Absoluto
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Cria uma toxina extremamente poderosa.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Pode afetar criaturas naturalmente resistentes a venenos.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe veneno">
+
+                    <span class="raridade">
+                        Épica
+                    </span>
+
+                    <h3>
+                        ☠️ Runa do Sangue Tóxico
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        O sangue do usuário se torna venenoso.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Criaturas que ferirem o portador podem ser contaminadas.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe veneno">
+
+                    <span class="raridade">
+                        Lendária
+                    </span>
+
+                    <h3>
+                        ☠️ Runa da Morte Lenta
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Coloca uma toxina progressiva no alvo.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        O veneno se torna mais forte a cada turno.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ===================================================== -->
+        <!-- MENTAL -->
+        <!-- ===================================================== -->
+
+        <section
+            class="afinidade"
+            id="afinidade-mental"
+        >
+
+            <h2 class="afinidade-titulo">
+                🧠 Mental
+            </h2>
+
+            <p class="afinidade-descricao">
+                Poder da mente, percepção, memória, controle e ilusões.
+            </p>
+
+
+            <div class="grid-classe">
+
+
+                <div class="runa-classe mental">
+
+                    <span class="raridade">
+                        Lendária
+                    </span>
+
+                    <h3>
+                        🧠 Runa do Controle Mental
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Permite dominar temporariamente a mente de outro ser.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        O alvo pode receber ordens enquanto estiver sob controle.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe mental">
+
+                    <span class="raridade">
+                        Rara
+                    </span>
+
+                    <h3>
+                        🧠 Runa da Ilusão
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Cria ilusões capazes de enganar os sentidos.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Pode esconder pessoas, objetos e locais.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe mental">
+
+                    <span class="raridade">
+                        Épica
+                    </span>
+
+                    <h3>
+                        🧠 Runa da Telepatia
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Permite comunicação mental.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Pode perceber pensamentos superficiais.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe mental">
+
+                    <span class="raridade">
+                        Lendária
+                    </span>
+
+                    <h3>
+                        🧠 Runa da Memória Perdida
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Pode apagar ou alterar determinadas memórias.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Quanto mais complexa a memória,
+                        maior a dificuldade de alteração.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe mental primordial">
+
+                    <span class="raridade">
+                        Primordial
+                    </span>
+
+                    <h3>
+                        🧠 Runa da Mente Absoluta
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Protege completamente a mente.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Torna o usuário extremamente resistente
+                        a controle e invasões mentais.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ===================================================== -->
+        <!-- SOMBRIO -->
+        <!-- ===================================================== -->
+
+        <section
+            class="afinidade"
+            id="afinidade-sombrio"
+        >
+
+            <h2 class="afinidade-titulo">
+                🌑 Sombrio
+            </h2>
+
+            <p class="afinidade-descricao">
+                Poder da morte, vazio, sombras, almas e forças proibidas.
+            </p>
+
+
+            <div class="grid-classe">
+
+
+                <div class="runa-classe sombrio primordial">
+
+                    <span class="raridade">
+                        Primordial
+                    </span>
+
+                    <h3>
+                        🌑 Runa da Ressurreição
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Ressuscita qualquer tipo de ser.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Pode trazer de volta humanos, monstros,
+                        animais, espíritos, mortos-vivos,
+                        criaturas mágicas e outras entidades.
+                    </p>
+
+                    <p>
+                        <strong>Preço:</strong>
+                        Cada ressurreição deixa uma Cicatriz da Morte
+                        no portador da runa.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe sombrio primordial">
+
+                    <span class="raridade">
+                        Primordial
+                    </span>
+
+                    <h3>
+                        🌑 Runa do Vazio
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Apaga matéria ou energia dentro de uma pequena área.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Pode destruir manifestações mágicas.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe sombrio">
+
+                    <span class="raridade">
+                        Épica
+                    </span>
+
+                    <h3>
+                        🌑 Runa da Sombra Viva
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Cria uma sombra independente.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        A sombra luta ao lado do usuário.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe sombrio lendaria">
+
+                    <span class="raridade">
+                        Lendária
+                    </span>
+
+                    <h3>
+                        🌑 Runa da Noite Eterna
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Mergulha uma região em escuridão sobrenatural.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Fontes comuns de luz deixam de funcionar corretamente.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe sombrio primordial">
+
+                    <span class="raridade">
+                        Primordial
+                    </span>
+
+                    <h3>
+                        🌑 Runa da Alma Negra
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Permite manipular a essência espiritual de criaturas.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Pode interferir diretamente na alma do alvo.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ===================================================== -->
+        <!-- SAGRADO -->
+        <!-- ===================================================== -->
+
+        <section
+            class="afinidade"
+            id="afinidade-sagrado"
+        >
+
+            <h2 class="afinidade-titulo">
+                ✨ Sagrado
+            </h2>
+
+            <p class="afinidade-descricao">
+                Poder da luz, purificação, proteção, vida e julgamento divino.
+            </p>
+
+
+            <div class="grid-classe">
+
+
+                <div class="runa-classe sagrado">
+
+                    <span class="raridade">
+                        Rara
+                    </span>
+
+                    <h3>
+                        ✨ Runa da Luz Divina
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Libera energia sagrada.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Causa dano aumentado contra criaturas corrompidas.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe sagrado lendaria">
+
+                    <span class="raridade">
+                        Lendária
+                    </span>
+
+                    <h3>
+                        ✨ Runa da Purificação Absoluta
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Remove corrupção, venenos e maldições poderosas.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Pode purificar criaturas e locais contaminados.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe sagrado">
+
+                    <span class="raridade">
+                        Épica
+                    </span>
+
+                    <h3>
+                        ✨ Runa do Anjo Guardião
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Cria uma entidade sagrada protetora.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        A entidade permanece protegendo o portador.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe sagrado primordial">
+
+                    <span class="raridade">
+                        Primordial
+                    </span>
+
+                    <h3>
+                        ✨ Runa da Ressurreição Sagrada
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Revive um ser através de energia sagrada.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        A ressurreição não utiliza energia necromântica.
+                    </p>
+
+                </div>
+
+
+                <div class="runa-classe sagrado proibida">
+
+                    <span class="raridade">
+                        Proibida
+                    </span>
+
+                    <h3>
+                        ✨ Runa do Julgamento
+                    </h3>
+
+                    <p>
+                        <strong>Efeito:</strong>
+                        Marca uma criatura com uma sentença sagrada.
+                    </p>
+
+                    <p>
+                        <strong>Poder:</strong>
+                        Libera uma enorme quantidade de energia sagrada
+                        contra o alvo marcado.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ===================================================== -->
+        <!-- REGRAS -->
+        <!-- ===================================================== -->
+
+        <h2>
+            ⚔️ Regras das Runas de Classe
+        </h2>
+
+
+        <ul>
+
+            <li>
+                <b>Uma Afinidade:</b>
+                cada Runa de Classe pertence a uma afinidade principal.
+            </li>
+
+            <li>
+                <b>Raridade:</b>
+                quanto maior a raridade, maior o poder e a dificuldade
+                para encontrar a runa.
+            </li>
+
+            <li>
+                <b>Vinculação:</b>
+                uma Runa de Classe pode se vincular ao seu portador.
+            </li>
+
+            <li>
+                <b>Evolução:</b>
+                uma mesma runa pode despertar novas capacidades
+                conforme o usuário evolui.
+            </li>
+
+            <li>
+                <b>Compatibilidade:</b>
+                possuir uma afinidade não significa necessariamente
+                dominar todas as suas runas.
+            </li>
+
+            <li>
+                <b>Primordial:</b>
+                runas primordiais possuem poderes capazes de alterar
+                drasticamente o curso de uma batalha.
+            </li>
+
+            <li>
+                <b>Proibida:</b>
+                runas proibidas possuem efeitos que podem ultrapassar
+                os limites normais do sistema.
+            </li>
+
+        </ul>
+
+
+        <!-- ===================================================== -->
+        <!-- NÍVEIS -->
+        <!-- ===================================================== -->
+
+        <h2>
+            💎 Níveis de Runa
+        </h2>
+
+
+        <ul>
+
+            <li>
+                <b>Iniciante (I)</b>
+                — efeito básico: 1 até 4
+            </li>
+
+            <li>
+                <b>Profissional (II)</b>
+                — efeito dobrado: 4 até 8
+            </li>
+
+            <li>
+                <b>Mestre (III)</b>
+                — efeito máximo: 8 até 10
+            </li>
+
+            <li>
+                <b>Lendária</b>
+                — combinação única, conta como 3 runas
+            </li>
+
+            <li>
+                <b>Primordial</b>
+                — runas extremamente raras capazes de alterar
+                acontecimentos de grande escala
+            </li>
+
+            <li>
+                <b>Proibida</b>
+                — runas cujo poder ultrapassa os limites convencionais
+                e pode possuir consequências graves
+            </li>
+
+        </ul>
+
+
+        <p style="margin-top:25px;">
+
+            🔥 <b>Evolução:</b>
+
+            Para evoluir uma runa para o próximo nível,
+            o jogador deve encontrá-la através de
+            <b>loot de inimigos</b> ou durante
+            <b>explorações</b>.
+
+        </p>
+
+
+    </main>
+
+    
+        <div class="rodape-bottom">
+
+            ⚔️ Nexalis RPG — Sistema de Runas
+
+            <br>
+
+            Forjado nas sombras. Dominado pelas runas.
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>

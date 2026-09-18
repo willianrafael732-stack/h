@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <link href="../site.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Domador - Sistema de RPG</title>
+    <link href="../raca/csss/domador.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        .skills-highlight-container {
+            background: rgba(101, 67, 33, 0.1);
+            border: 2px solid #8b4513;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 0 15px rgba(139, 69, 19, 0.2);
+        }
+
+        .skills-section h3 {
+            color: #cd853f;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #8b4513;
+            display: inline-block;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+
+        .skill-item strong {
+            color: #deb887;
+        }
+
+        /* Caminho sombrio — destaque visual */
+        .sombrio-box {
+            background: rgba(60, 15, 25, 0.35);
+            border: 2px solid #6b1a2a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 28px;
+            box-shadow: 0 0 18px rgba(107, 26, 42, 0.35);
+        }
+
+        .sombrio-box h3,
+        .sombrio-box .evolution-title {
+            color: #c94a5a;
+            border-bottom-color: #6b1a2a;
+        }
+
+        .sombrio-box .skill-item strong {
+            color: #e8a0a8;
+        }
+
+        .bonus {
+            color: #6dcf8a;
+        }
+
+        .penalty {
+            color: #e07070;
+        }
+    </style>
+    <meta content="strict-origin-when-cross-origin" name="referrer" />
+
+<link rel="stylesheet" href="../souls-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container-nav">
+            <div class="links">
+                <a href="../funcoes/inicio.html">historia </a>
+                <a href="../funcoes/racaeclasses.html">Raças e Classes</a>
+                <a href="../armas/armas.html">Armas</a>
+                <a href="../funcoes/sistema-completo.html">sistema</a>
+                <a href="../funcoes/npcs.html">NPCs</a>
+                <a href="../funcoes/grimorio-elemental-legado.html">Função elemental</a>
+                <a href="../funcoes/magia.html">magias</a>
+                <a href="../funcoes/porcao.html">porção</a>
+                <a href="../funcoes/INGREDIENTES.HTML">ingredinte</a>
+                <a href="../funcoes/mapas.html">mapas</a>
+                <a href="../funcoes/clan.html">Criação de Ficha</a>
+            </div>
+        </div>
+    </nav>
+    <main class="content">
+        <article class="race-card">
+            <h2>Classe: Domador</h2>
+            <div class="race-grid">
+                <div class="info-block">
+                    <h3>História</h3>
+                    <p>Os domadores de Nexalis são especialistas na domesticação e controle de bestas selvagens e
+                        criaturas místicas através de técnicas ancestrais e vínculos mágicos. Originaram-se das
+                        tradições antigas de caçadores e xamãs que estabeleceram laços espirituais com o mundo animal,
+                        capacitando-os a convocar e dirigir criaturas em batalhas e tarefas específicas.</p>
+                    <h3>Artes e Magia</h3>
+                    <div class="skill-item"><strong>Domínio das Bestas:</strong> Controlam e dirigem desde lobos e
+                        falcões até seres místicos como grifos e dragões menores.</div>
+                    <div class="skill-item"><strong>Xamanismo Animal:</strong> Praticam rituais xamânicos para
+                        estabelecer vínculos espirituais, fortalecendo a conexão e o controle.</div>
+                    <h4 class="evolution-title" style="margin-top: 20px;">Caminhos de Evolução</h4>
+                    <p>
+                        • <strong>Controlador de Bestas:</strong> Domina feras poderosas como leões e tigres para
+                        combate direto.<br />
+                        • <strong>Senhor das Feras:</strong> Eleva seu controle para invocar criaturas místicas e
+                        lendárias como fênix e dragões.<br />
+                        • <strong>Domador Sombrio:</strong> Desvia o vínculo para criaturas das trevas — sombras,
+                        mortos-vivos bestiais e abominações.
+                    </p>
+                </div>
+                <aside class="sidebar">
+                    <div class="stats-box">
+                        <h4>Status Inicial</h4>
+                        <ul>
+                            <li><span class="bonus">+1 Reação</span></li>
+                            <li><span class="bonus">+1 Adestramento</span></li>
+                            <li><span class="penalty">−1 Destreza</span></li>
+                        </ul>
+                    </div>
+                    <div class="stats-box">
+                        <h4>Status das Variações</h4>
+                        <ul>
+                            <li>
+                                <strong>Controlador de Bestas:</strong><br />
+                                <span class="bonus">Bônus: +1 Reação, +2 Empatia com Animais</span><br />
+                                <span class="penalty">Fraqueza: −1 Destreza, −1 Resistência a Fogo</span>
+                            </li>
+                            <li style="margin-top:12px;">
+                                <strong>Domador Sombrio:</strong><br />
+                                <span class="bonus">Bônus: +1 Reação, +2 Magia Sombria, +1 Intimidação</span><br />
+                                <span class="penalty">Fraqueza: −1 Carisma, −2 Resistência Sagrada</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="stats-box">
+                        <h4>Equipamento</h4>
+                        <ul>
+                            <li><strong>Armas:</strong> Chicote (Médio alcance)</li>
+                            <li><strong>Defesa:</strong> Todos os tipos de Escudos</li>
+                            <li><strong>Armadura:</strong> Média (Couro)</li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+            <hr class="stats-divider" />
+            <div class="skills-highlight-container">
+                <section class="skills-section">
+                    <h3>Habilidades Ativas</h3>
+                    <h4 class="evolution-title">Fase 1: Domador Iniciante</h4>
+                    <div class="race-grid">
+                        <div class="skill-item"><strong>Domar Animal:</strong> <small>Aprendiz: Doma animais pequenos ou
+                                médios para ajudar em batalha.</small></div>
+                        <div class="skill-item"><strong>Laço de Confiança:</strong> <small>Aprendiz: O animal ganha 100%
+                                de resistência mental.</small></div>
+                        <div class="skill-item"><strong>Oração Selvagem:</strong> <small>Aprendiz: Aumenta a defesa dos
+                                pets em +50%.</small></div>
+                    </div>
+                    <div class="race-grid" style="margin-top: 40px;">
+                        <div class="evolution-column">
+                            <h4 class="evolution-title">Fase 2: Controlador de Bestas</h4>
+                            <div class="skill-item"><strong>Domar Fera:</strong> <small>Profissional: Doma feras grandes
+                                    e poderosas.</small></div>
+                            <div class="skill-item"><strong>Rugido de Comando:</strong> <small>Profissional: +50% de
+                                    Dano causado pela fera por 2 turnos.</small></div>
+                            <div class="skill-item"><strong>Vínculo Restaurador:</strong> <small>Profissional: Cura 100%
+                                    da vida do animal.</small></div>
+                        </div>
+                        <div class="evolution-column">
+                            <h4 class="evolution-title">Fase 3: Senhor das Feras</h4>
+                            <div class="skill-item"><strong>Domar Monstro Épico:</strong> <small>Mestre: Exerce controle
+                                    sobre monstros épicos.</small></div>
+                            <div class="skill-item"><strong>Rugido de Batalha:</strong> <small>Mestre: +150% de Dano
+                                    para todas as feras por 4 turnos.</small></div>
+                            <div class="skill-item"><strong>Reviver Fera:</strong> <small>Mestre: Revive fera com 100%
+                                    de vida e +50% vigor (2 turnos).</small></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- ===================== DOMADOR SOMBRIO ===================== -->
+            <div class="sombrio-box">
+                <section class="skills-section">
+                    <h3>Caminho Alternativo: Domador Sombrio</h3>
+                    <p style="text-align:center; opacity:.9; margin-bottom:20px;">
+                        Em vez de laços com a natureza, o Domador Sombrio amarra criaturas das trevas —
+                        lobos espectrais, hienas necromânticas, sombras com garras e bestas que nunca deveriam existir.
+                        O preço é a alma: quanto mais forte o vínculo, mais a luz se afasta.
+                    </p>
+                    <div class="stats-box" style="max-width:420px; margin:0 auto 24px;">
+                        <h4 style="color:#c94a5a;">Status — Domador Sombrio</h4>
+                        <ul>
+                            <li><span class="bonus">+1 Reação</span></li>
+                            <li><span class="bonus">+2 Magia Sombria</span></li>
+                            <li><span class="bonus">+1 Intimidação</span></li>
+                            <li><span class="penalty">−1 Carisma</span></li>
+                            <li><span class="penalty">−2 Resistência Sagrada</span></li>
+                        </ul>
+                    </div>
+                    <h4 class="evolution-title">Fase 1: Vínculo das Trevas</h4>
+                    <div class="race-grid">
+                        <div class="skill-item"><strong>Domar Sombra:</strong> <small>Aprendiz: Doma uma criatura
+                                sombria menor (sombra, lobo espectral, corvo necromântico).</small></div>
+                        <div class="skill-item"><strong>Laço de Sangue:</strong> <small>Aprendiz: O pet sombrio ignora
+                                medo e controle mental. Você sofre −1 Carisma enquanto o vínculo estiver ativo.</small>
+                        </div>
+                        <div class="skill-item"><strong>Sussurro do Abismo:</strong> <small>Aprendiz: +1 Intimidação; o
+                                pet causa medo em inimigos fracos (teste de vontade).</small></div>
+                    </div>
+                    <div class="race-grid" style="margin-top: 36px;">
+                        <div class="evolution-column">
+                            <h4 class="evolution-title">Fase 2: Senhor das Sombras Bestiais</h4>
+                            <div class="skill-item"><strong>Domar Abominação:</strong> <small>Profissional: Controla
+                                    feras corrompidas e mortos-vivos bestiais de porte médio/grande.</small></div>
+                            <div class="skill-item"><strong>Rugido Negro:</strong> <small>Profissional: +50% de dano
+                                    sombrio da fera por 2 turnos. Inimigos próximos fazem teste de medo.</small></div>
+                            <div class="skill-item"><strong>Vínculo Drenante:</strong> <small>Profissional: Cura a fera
+                                    consumindo 10% da Vitalidade do Domador — ou drena 10% de um inimigo
+                                    adjacente.</small></div>
+                        </div>
+                        <div class="evolution-column">
+                            <h4 class="evolution-title">Fase 3: Ceifador de Almas Bestiais</h4>
+                            <div class="skill-item"><strong>Domar Pesadelo Épico:</strong> <small>Mestre:
+                                    Invoca/controla uma besta lendária das trevas (ex.: cão do abismo, dragão sombrio
+                                    menor).</small></div>
+                            <div class="skill-item"><strong>Tempestade de Presas:</strong> <small>Mestre: Todas as feras
+                                    sombrias sob seu comando ganham +150% de dano por 4 turnos.</small></div>
+                            <div class="skill-item"><strong>Reviver do Abismo:</strong> <small>Mestre: Revive a fera com
+                                    100% de vida e aura de medo (2 turnos). Custa Mana e 1 ponto de Força de
+                                    Vontade.</small></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </article>
+    </main>
+</body>
+
+</html>

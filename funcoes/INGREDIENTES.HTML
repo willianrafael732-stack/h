@@ -1,0 +1,4096 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Poções de Nexalis — Manual do Alquimista</title>
+    <link rel="stylesheet" href="css/ingredientes.css">
+
+
+<link rel="stylesheet" href="../souls-theme.css">
+<link rel="stylesheet" href="../player-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+
+<body>
+    <style>:root {
+            --bg: #050505;
+            --bg-2: #0a0a0a;
+            --panel: #111111;
+            --panel-2: #171717;
+            --panel-3: #1d1d1d;
+
+            --red-dark: #351010;
+            --red: #711b1b;
+            --red-light: #a53636;
+
+            --gold-dark: #70551f;
+            --gold: #c09a4b;
+            --gold-light: #e2c275;
+
+            --purple: #7d4c91;
+            --blue: #527da1;
+            --green: #4f7d55;
+
+            --text: #d5d5d5;
+            --text-light: #eeeeee;
+            --text-muted: #8c8c8c;
+
+            --border: #302626;
+            --border-gold: #5d4a27;
+
+            --shadow: rgba(0, 0, 0, 0.7);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at 50% 0%,
+                    #251313 0%,
+                    #100c0c 25%,
+                    #080808 55%,
+                    #030303 100%);
+            background-attachment: fixed;
+            color: var(--text);
+            font-family: Georgia, "Times New Roman", serif;
+            line-height: 1.65;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.012) 1px,
+                    transparent 1px);
+            background-size: 100% 4px;
+            opacity: 0.25;
+            z-index: -1;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #421515;
+            border: 2px solid #050505;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #722020;
+        }
+
+        /* =========================
+           NAVBAR PRINCIPAL
+        ========================= */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            background: rgba(5, 5, 5, 0.97);
+            border-bottom: 1px solid var(--border-gold);
+            backdrop-filter: blur(10px);
+        }
+
+        .container-nav {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .links {
+            min-width: max-content;
+            display: flex;
+            justify-content: center;
+        }
+
+        .links a {
+            padding: 14px 16px;
+            color: #999;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 1px;
+            border-bottom: 2px solid transparent;
+            transition: 0.25s;
+        }
+
+        .links a:hover {
+            color: var(--gold-light);
+            background: rgba(113, 27, 27, 0.15);
+            border-bottom-color: var(--red-light);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 430px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 70px 20px;
+
+            border-bottom: 1px solid var(--border-gold);
+
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.48),
+                    rgba(0, 0, 0, 0.9)),
+                radial-gradient(circle at center,
+                    #401818 0%,
+                    #180b0b 35%,
+                    #050505 75%);
+
+            box-shadow:
+                inset 0 -80px 100px rgba(0, 0, 0, 0.85),
+                0 15px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-content {
+            max-width: 1000px;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            color: var(--gold-light);
+            font-size: clamp(42px, 8vw, 82px);
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow:
+                0 3px 0 #271313,
+                0 0 25px rgba(192, 154, 75, 0.22);
+        }
+
+        .hero h2 {
+            margin: 20px 0 0;
+            color: #c5c5c5;
+            font-size: clamp(17px, 3vw, 25px);
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+
+        .ornament {
+            width: 280px;
+            height: 1px;
+            background:
+                linear-gradient(90deg,
+                    transparent,
+                    var(--gold),
+                    transparent);
+            margin: 30px auto;
+            position: relative;
+        }
+
+        .ornament::after {
+            content: "✦";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--gold-light);
+            background: #0d0808;
+            padding: 0 12px;
+        }
+
+        .hero-description {
+            max-width: 700px;
+            margin: auto;
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        /* =========================
+           MANUAL NAV
+        ========================= */
+
+        .manual-nav {
+            position: sticky;
+            top: 47px;
+            z-index: 100;
+            background: rgba(8, 8, 8, 0.96);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            overflow-x: auto;
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            min-width: max-content;
+        }
+
+        .manual-nav a {
+            display: block;
+            padding: 15px 18px;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid transparent;
+            transition: 0.25s ease;
+        }
+
+        .manual-nav a:hover {
+            color: var(--gold-light);
+            border-bottom-color: var(--red-light);
+            background: rgba(113, 27, 27, 0.12);
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+            width: min(1400px, calc(100% - 40px));
+            margin: auto;
+        }
+
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid #211919;
+        }
+
+        .section-header {
+            margin-bottom: 45px;
+            padding-left: 22px;
+            border-left: 4px solid var(--red);
+        }
+
+        .section-header span {
+            display: block;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 12px;
+            margin-bottom: 7px;
+        }
+
+        .section-header h2 {
+            margin: 0;
+            color: var(--gold-light);
+            font-size: clamp(30px, 5vw, 48px);
+            line-height: 1.15;
+        }
+
+        .section-header p {
+            max-width: 850px;
+            color: var(--text-muted);
+            margin: 15px 0 0;
+        }
+
+        /* =========================
+           INFO BAR
+        ========================= */
+
+        .info-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .info-box {
+            background:
+                linear-gradient(135deg,
+                    #181313,
+                    #0d0d0d);
+
+            border: 1px solid var(--border);
+            padding: 18px;
+            text-align: center;
+        }
+
+        .info-box strong {
+            display: block;
+            color: var(--gold);
+            font-size: 22px;
+        }
+
+        .info-box span {
+            color: var(--text-muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           POTION GRID
+        ========================= */
+
+        .potion-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .potion {
+            position: relative;
+            overflow: hidden;
+
+            background:
+                linear-gradient(145deg,
+                    rgba(29, 29, 29, 0.98),
+                    rgba(12, 12, 12, 0.98));
+
+            border: 1px solid var(--border);
+
+            box-shadow:
+                0 15px 30px rgba(0, 0, 0, 0.35);
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .potion::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+
+            background:
+                linear-gradient(90deg,
+                    var(--red-dark),
+                    var(--red-light),
+                    var(--red-dark));
+        }
+
+        .potion:hover {
+            transform: translateY(-5px);
+            border-color: #513333;
+            box-shadow:
+                0 20px 45px rgba(0, 0, 0, 0.55);
+        }
+
+        .potion-header {
+            padding: 25px 25px 15px;
+            border-bottom: 1px solid #272020;
+        }
+
+        .potion-number {
+            color: var(--red-light);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .potion h3 {
+            margin: 5px 0 10px;
+            color: var(--gold-light);
+            font-size: 24px;
+            line-height: 1.2;
+        }
+
+        .potion-description {
+            color: #929292;
+            font-style: italic;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .potion-body {
+            padding: 20px 25px 25px;
+        }
+
+        /* =========================
+           TAGS
+        ========================= */
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 9px;
+            border: 1px solid #3a3030;
+            background: #0b0b0b;
+            color: #aaa;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+        }
+
+        .tag.level {
+            color: var(--gold-light);
+            border-color: var(--border-gold);
+        }
+
+        .tag.cd {
+            color: #d78888;
+            border-color: #542727;
+        }
+
+        .tag.cost {
+            color: #d4b86f;
+            border-color: #574722;
+        }
+
+        /* =========================
+           DATA
+        ========================= */
+
+        .potion-data {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .data-item {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid #222;
+            padding: 9px 11px;
+        }
+
+        .data-item small {
+            display: block;
+            color: #737373;
+            text-transform: uppercase;
+            font-size: 9px;
+            letter-spacing: 1px;
+        }
+
+        .data-item strong {
+            color: #d0d0d0;
+            font-size: 13px;
+        }
+
+        .ingredients {
+            margin: 18px 0;
+        }
+
+        .ingredients-title {
+            color: var(--gold);
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .ingredients p {
+            margin: 0;
+            color: #c1c1c1;
+            font-size: 13px;
+        }
+
+        /* =========================
+           EFFECTS
+        ========================= */
+
+        .effect,
+        .disadvantage {
+            padding: 13px 15px;
+            margin-top: 12px;
+            border-left: 3px solid;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .effect {
+            border-color: var(--green);
+        }
+
+        .disadvantage {
+            border-color: var(--red-light);
+        }
+
+        .effect strong,
+        .disadvantage strong {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+        }
+
+        .effect strong {
+            color: #75a978;
+        }
+
+        .disadvantage strong {
+            color: #c06c6c;
+        }
+
+        .effect p,
+        .disadvantage p {
+            margin: 0;
+            color: #c2c2c2;
+            font-size: 13px;
+        }
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-wrapper {
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            background: #0c0c0c;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        th {
+            background:
+                linear-gradient(180deg,
+                    #351313,
+                    #1b0c0c);
+
+            color: var(--gold-light);
+            padding: 15px;
+            text-align: left;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 11px;
+
+            border-bottom: 1px solid var(--gold-dark);
+        }
+
+        td {
+            padding: 13px 15px;
+            border-bottom: 1px solid #252020;
+            color: #c7c7c7;
+            font-size: 13px;
+            vertical-align: top;
+        }
+
+        tr:hover td {
+            background: rgba(113, 27, 27, 0.08);
+        }
+
+        .td-name {
+            color: var(--gold-light);
+            font-weight: bold;
+        }
+
+        .td-level {
+            color: #c9aa62;
+            text-align: center;
+        }
+
+        .td-cd {
+            color: #c87676;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .td-cost {
+            color: #d7b968;
+            white-space: nowrap;
+        }
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .search-box {
+            margin-bottom: 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 17px 20px;
+
+            background: #0b0b0b;
+            color: #ddd;
+
+            border: 1px solid #382828;
+            outline: none;
+
+            font-family: Georgia, serif;
+            font-size: 15px;
+
+            transition: 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--red-light);
+            box-shadow: 0 0 20px rgba(113, 27, 27, 0.15);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+
+            background:
+                linear-gradient(180deg,
+                    #080808,
+                    #030303);
+
+            color: #666;
+            border-top: 1px solid var(--border);
+        }
+
+        footer strong {
+            display: block;
+            color: var(--gold);
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        footer span {
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1100px) {
+            .potion-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .info-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                width: min(100% - 24px, 1400px);
+            }
+
+            section {
+                padding: 55px 0;
+            }
+
+            .potion-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-bar {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero {
+                min-height: 360px;
+                padding: 50px 15px;
+            }
+
+            .hero h1 {
+                letter-spacing: 2px;
+            }
+
+            .potion-data {
+                grid-template-columns: 1fr;
+            }
+
+            .manual-nav {
+                top: 44px;
+            }
+
+            .manual-nav a {
+                padding: 13px 12px;
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .info-bar {
+                grid-template-columns: 1fr;
+            }
+        }
+
+/* ========================================
+   SISTEMA DE MOEDAS — POÇÕES
+   10 Cobre = 1 Prata
+   10 Prata = 1 Ouro
+   ======================================== */
+
+.potion-price {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 0 0 20px;
+}
+
+.price-box {
+    padding: 10px 12px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid #3a3030;
+}
+
+.price-box.sale {
+    border-color: var(--border-gold);
+}
+
+.price-label {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--text-muted);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.price-value {
+    display: block;
+    color: var(--gold-light);
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.price-box.sale .price-value {
+    color: #e2c275;
+}
+
+.coin.copper {
+    color: #b87333;
+}
+
+.coin.silver {
+    color: #c0c0c0;
+}
+
+.coin.gold {
+    color: #e2c275;
+}
+
+.tag.cost {
+    white-space: nowrap;
+}
+
+.td-cost {
+    color: #d7b968;
+    white-space: nowrap;
+}
+
+.td-sale {
+    color: #e2c275;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+@media (max-width: 500px) {
+    .potion-price {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+    <!-- =========================
+         NAVBAR PRINCIPAL
+    ========================== -->
+
+    <nav class="player-nav" id="playerNav"><div class="player-nav-inner"><a class="player-brand" href="inicio.html"><span class="player-brand-mark">✦</span><span>HURRAS<small>NEXALIS</small></span></a><button class="player-mobile" type="button" onclick="document.getElementById('playerNav').classList.toggle('open')">☰</button><div class="player-links"><a href="inicio.html">Início</a><a href="clan.html">Minha Ficha</a><a href="sistema.html">Sistema</a><a href="npcs.html">NPCs</a><a href="biblioteca.html">Biblioteca</a></div></div></nav>
+
+
+    <!-- =========================
+         CAPA
+    ========================== -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                Nexalis • Alquimia
+            </div>
+
+            <h1>Poções</h1>
+
+            <div class="ornament"></div>
+
+            <h2>Manual do Alquimista Duoin</h2>
+
+            <p class="hero-description">
+                Compêndio de elixires, essências e preparados alquímicos
+                encontrados nas terras de Nexalis.
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         NAVEGAÇÃO
+    ========================== -->
+
+    <nav class="manual-nav">
+
+        <div class="nav-inner">
+
+            <a href="#visao-geral">Visão Geral</a>
+            <a href="#ingredientes">Componentes</a>
+            <a href="#catalogo">Catálogo</a>
+            <a href="#receitas">Receitas</a>
+
+        </div>
+
+    </nav>
+
+
+    <main class="container">
+
+
+        <!-- =========================
+             VISÃO GERAL
+        ========================== -->
+
+        <section id="visao-geral">
+
+            <div class="section-header">
+
+                <span>Conhecimento Alquímico</span>
+
+                <h2>Poções de Nexalis</h2>
+
+                <p>
+                    Poções são preparações alquímicas capazes de alterar
+                    temporariamente o corpo, a mente ou a própria relação
+                    do indivíduo com os elementos mágicos de Nexalis.
+                </p>
+
+            </div>
+
+
+            <div class="info-bar">
+
+                <div class="info-box">
+                    <strong>40</strong>
+                    <span>Poções</span>
+                </div>
+
+                <div class="info-box">
+                    <strong>1–3</strong>
+                    <span>Níveis</span>
+                </div>
+
+                <div class="info-box">
+                    <strong>50 ml</strong>
+                    <span>Frasco padrão</span>
+                </div>
+
+                <div class="info-box">
+                    <strong>C / P / O</strong>
+                    <span>Cobre • Prata • Ouro</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             LEGENDA
+        ========================== -->
+
+        <section id="ingredientes">
+
+            <div class="section-header">
+
+                <span>Alquimia de Nexalis</span>
+
+                <h2>Legenda dos Componentes</h2>
+
+                <p>
+                    As receitas alquímicas utilizam siglas para facilitar
+                    a leitura das fórmulas. Consulte esta legenda para
+                    identificar cada componente utilizado na fabricação
+                    das poções.
+                </p>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Sigla</th>
+                            <th>Componente</th>
+                            <th>Descrição</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td class="td-level">C.M.</td>
+                            <td class="td-name">Componente de Morto</td>
+                            <td>
+                                Essência extraída de restos mortais,
+                                cadáveres e mortos-vivos.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-level">E.</td>
+                            <td class="td-name">Ectoessência</td>
+                            <td>
+                                Essência ligada à alma, consciência
+                                e resíduos espirituais.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-level">E.V.</td>
+                            <td class="td-name">Extrato Vegetal</td>
+                            <td>
+                                Essência retirada de plantas, árvores,
+                                frutos e formas de vida vegetal.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-level">M.</td>
+                            <td class="td-name">Fonte Mineral</td>
+                            <td>
+                                Essência obtida de minerais, minérios,
+                                sais e materiais de origem astral.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-level">S.M.</td>
+                            <td class="td-name">Sebo de Monstro</td>
+                            <td>
+                                Substância extraída da pele, glândulas
+                                e secreções de criaturas.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-level">F.</td>
+                            <td class="td-name">Soro Fúngico</td>
+                            <td>
+                                Essência obtida de fungos e organismos
+                                fúngicos.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-level">S.Fogo</td>
+                            <td class="td-name">Essência de Fogo</td>
+                            <td>
+                                Essência elemental concentrada de fogo.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-level">S.Gelo</td>
+                            <td class="td-name">Essência de Gelo</td>
+                            <td>
+                                Essência elemental concentrada de frio e gelo.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-level">E.Elétrica</td>
+                            <td class="td-name">Essência Elétrica</td>
+                            <td>
+                                Essência elemental ligada à eletricidade
+                                e aos raios.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-level">C.Ácido</td>
+                            <td class="td-name">Composto Ácido</td>
+                            <td>
+                                Essência corrosiva concentrada utilizada
+                                em preparados alquímicos.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-level">M.Astral</td>
+                            <td class="td-name">Fonte Mineral Astral</td>
+                            <td>
+                                Mineral de origem astral ou ligado
+                                às forças cósmicas.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-level">S.M. Profano</td>
+                            <td class="td-name">Sebo Profano</td>
+                            <td>
+                                Forma corrompida e purificada do sebo
+                                de criaturas profanas.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CATÁLOGO
+        ========================== -->
+
+        <section id="catalogo">
+
+            <div class="section-header">
+
+                <span>Compêndio</span>
+
+                <h2>Catálogo de Poções</h2>
+
+                <p>
+                    Preparações registradas pelos alquimistas de Nexalis.
+                    Cada receita utiliza essências purificadas e componentes
+                    obtidos através dos métodos tradicionais do Manual do
+                    Alquimista Duoin.
+                </p>
+
+            </div>
+
+
+            <div class="search-box">
+
+                <input type="search" id="potionSearch" placeholder="Pesquisar poção, ingrediente ou efeito...">
+
+            </div>
+
+
+            <div class="potion-grid" id="potionGrid">
+
+
+                <!-- =========================
+                     01 - 28
+                ========================== -->
+
+                <article class="potion" data-search="poção vínculo carisma empatia">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção I</div>
+                        <h3>Poção do Vínculo</h3>
+                        <div class="potion-description">
+                            Um líquido rosa suave que emite um calor leve.
+                            O ar fica mais acolhedor.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 1</span>
+                            <span class="tag cd">CD 10</span>
+                            <span class="tag cost"><span class="coin copper">2 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">2 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">3 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>1 hora</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml E.V. + 10 ml E. + 5 ml M.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>
+                                +2 em Carisma e vantagem em interações
+                                baseadas em honestidade e empatia.
+                            </p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="vento cortante gelo esquiva projéteis instabilidade">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção II</div>
+                        <h3>Vento Cortante</h3>
+                        <div class="potion-description">
+                            Névoa branca em movimento perpétuo.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 1</span>
+                            <span class="tag cd">CD 14</span>
+                            <span class="tag cost"><span class="coin copper">3 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">3 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">4 P 5 C</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>15 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml M. + 15 ml F. + 5 ml S.Gelo.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+3 em Esquiva e Proteção contra Projéteis.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Instabilidade</strong>
+                            <p>Facilidade incomum para ser empurrado ou derrubado.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="corrosão púrpura ácido resistência dano">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção III</div>
+                        <h3>Corrosão Púrpura</h3>
+                        <div class="potion-description">
+                            Líquido violeta que borbulha violentamente.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 14</span>
+                            <span class="tag cost"><span class="coin copper">3 P 5 C</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">3 P 5 C</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">5 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>10 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>15 ml F. + 15 ml S.M. + 5 ml C.M. + 5 ml C.Ácido.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>Ignora 2 pontos de Resistência e causa dano contínuo.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Vapores Tóxicos</strong>
+                            <p>Risco de náusea e fadiga.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="brilho estelar sagrado sombras invisíveis">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção IV</div>
+                        <h3>Brilho Estelar</h3>
+                        <div class="potion-description">
+                            Líquido branco radiante e sagrado.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 15</span>
+                            <span class="tag cost"><span class="coin copper">5 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">5 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">7 P 5 C</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>30 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml M. + 10 ml E. + 5 ml Essência Sagrada.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>Revela invisíveis e concede +4 de Dano contra Sombras.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Exposição Total</strong>
+                            <p>Impossível utilizar Furtividade.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="seiva ancestral floresta percepção regeneração">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção V</div>
+                        <h3>Seiva Ancestral</h3>
+                        <div class="potion-description">
+                            Xarope verde com cheiro de floresta viva.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 13</span>
+                            <span class="tag cost"><span class="coin copper">3 P 5 C</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">3 P 5 C</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">5 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>1 hora</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>25 ml E.V. Ancestral + 10 ml F. + 5 ml M.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>Vantagem em Percepção e Regeneração na água.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Enraizamento</strong>
+                            <p>Lentidão ao permanecer parado.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="mal entendido social agressividade">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção VI</div>
+                        <h3>Poção do Mal Entendido</h3>
+                        <div class="potion-description">
+                            Líquido acinzentado que ondula sozinho.
+                            Sons ficam distorcidos.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 1</span>
+                            <span class="tag cd">CD 11</span>
+                            <span class="tag cost"><span class="coin copper">2 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">2 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">3 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>1 hora</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>15 ml E. + 15 ml F. + 5 ml C.M.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>Todas as ações sociais soam ofensivas para você.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Agressividade</strong>
+                            <p>Penalidade em testes sociais e tendência à agressividade.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="língua solta verdade honestidade">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção VII</div>
+                        <h3>Língua Solta</h3>
+                        <div class="potion-description">
+                            Verde efervescente. A respiração fica leve e embriagada.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 1</span>
+                            <span class="tag cd">CD 10</span>
+                            <span class="tag cost"><span class="coin copper">1 P 5 C</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">1 P 5 C</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">2 P 5 C</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>1 hora</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml E. + 10 ml E.V. + 5 ml F.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>Interpreta ações sociais com total honestidade.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Verdade Absoluta</strong>
+                            <p>Tendência a falar apenas a verdade absoluta.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="sangue fervente força inteligência cansaço">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção VIII</div>
+                        <h3>Sangue Fervente</h3>
+                        <div class="potion-description">
+                            Carmesim espesso que pulsa como um coração.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 13</span>
+                            <span class="tag cost"><span class="coin copper">3 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">3 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">4 P 5 C</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>30 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml C.M. + 10 ml S.M. + 5 ml S.Fogo.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+2 em Força. Ignora cansaço e ferimentos leves.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Desvantagem</strong>
+                            <p>-2 em Inteligência. Ações de calma ficam proibidas.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="essência sombra furtividade ocultação">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção IX</div>
+                        <h3>Essência da Sombra</h3>
+                        <div class="potion-description">
+                            Óleo negro que absorve a luz. Frio como gelo.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 14</span>
+                            <span class="tag cost"><span class="coin copper">4 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">4 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">6 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>1 hora</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml E. + 15 ml S.M. + 5 ml F.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>Usuário fica translúcido. Vantagem em Furtividade e Ocultação.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Desvantagem</strong>
+                            <p>Percepção reduzida pela metade sob luz solar.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="lágrima afrodite andakah tragédia">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção X</div>
+                        <h3>Lágrima de Afrodite</h3>
+                        <div class="potion-description">
+                            Líquido furta-cor pesado como mercúrio,
+                            encontrado apenas em Andakah.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 3</span>
+                            <span class="tag cd">CD 17</span>
+                            <span class="tag cost"><span class="coin copper">8 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">8 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">1 O 2 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>30 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml E. + 10 ml M.Astral + 5 ml E.V. Ancestral.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+3 em Intimidação ou Persuasão baseada em pena.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Maldição de Andakah</strong>
+                            <p>Não pode receber curas mágicas de aliados.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="shadowfen sombra furtividade frestas">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XI</div>
+                        <h3>Essência de Shadowfen</h3>
+                        <div class="potion-description">
+                            Gás denso engarrafado criado pelos alquimistas sombrios.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 3</span>
+                            <span class="tag cd">CD 17</span>
+                            <span class="tag cost"><span class="coin copper">7 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">7 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">1 O 5 C</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>1 hora</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml E. + 15 ml F. Subterrâneo + 5 ml S.M. Profano.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+4 em Furtividade e atravessa pequenas frestas.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Apatia de Andakah</strong>
+                            <p>Perde 1 ponto temporário de Força de Vontade ao fim.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="ymir gelo vigor frio lentidão calor">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XII</div>
+                        <h3>Elixir do Sangue de Ymir</h3>
+                        <div class="potion-description">
+                            Licor azul gélido vindo das montanhas de Skallgard.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 15</span>
+                            <span class="tag cost"><span class="coin copper">4 P 5 C</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">4 P 5 C</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">7 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>30 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>15 ml C.M. + 15 ml M. + 5 ml S.Gelo.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+2 em Vigor, imunidade a frio e ataques causam lentidão.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Calor Insuportável</strong>
+                            <p>-2 em ações em climas quentes.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="athenopolis helios conhecimento poliglota">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XIII</div>
+                        <h3>Néctar de Athenopolis</h3>
+                        <div class="potion-description">
+                            Mel dourado filtrado nas academias de Helios.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 14</span>
+                            <span class="tag cost"><span class="coin copper">4 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">4 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">6 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>1 hora</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml E.V. Ancestral + 10 ml E. + 5 ml M.Astral.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+3 em Conhecimentos Acadêmicos e poliglotismo em Nexalis.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Arrogância de Filósofo</strong>
+                            <p>Risco de corrigir aliados rudemente.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="sopro vidro percepção reação batimentos fios">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XIV</div>
+                        <h3>Sopro de Vidro</h3>
+                        <div class="potion-description">
+                            Azul cristalino que revela padrões geométricos.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 14</span>
+                            <span class="tag cost"><span class="coin copper">3 P 5 C</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">3 P 5 C</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">5 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>15 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml M. + 10 ml F. + 5 ml E.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+3 Percepção e Reação. Ouve batimentos e vê fios.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Desvantagem</strong>
+                            <p>Atordoamento com excesso de sons ou luzes.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="falso testemunho mentira manipulação lábia">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XV</div>
+                        <h3>Elixir do Falso Testemunho</h3>
+                        <div class="potion-description">
+                            Dourado brilhante com cheiro de mel.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 13</span>
+                            <span class="tag cost"><span class="coin copper">3 P 5 C</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">3 P 5 C</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">5 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>1 hora</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml E. + 15 ml E.V. + 5 ml F.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+2 Manipulação e Lábia. Mentiras indetectáveis.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Ressaca da Verdade</strong>
+                            <p>Após o efeito, não consegue falar a verdade por 1 hora.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="couraça pedra resistência física vigor destreza">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XVI</div>
+                        <h3>Couraça de Pedra</h3>
+                        <div class="potion-description">
+                            Cinza denso com gosto de terra úmida.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 13</span>
+                            <span class="tag cost"><span class="coin copper">3 P 5 C</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">3 P 5 C</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">5 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>1 hora</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>25 ml M. + 10 ml S.M. + 5 ml C.M.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+2 Resistência Física e +1 Vigor.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Desvantagem</strong>
+                            <p>-2 Destreza e Esquiva. Movimentos pesados.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="visão éter mana magia percepção invisíveis">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XVII</div>
+                        <h3>Visão de Éter</h3>
+                        <div class="potion-description">
+                            Roxo cintilante com cheiro de ozônio.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 15</span>
+                            <span class="tag cost"><span class="coin copper">4 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">4 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">6 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>30 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>15 ml E. + 15 ml M. + 5 ml E.Elétrica.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>Vê fluxos de Mana e magias. +2 Percepção para invisíveis.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Desvantagem</strong>
+                            <p>Os olhos brilham, impedindo Furtividade.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="orvalho pensamento reação ação mental inteligência">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XVIII</div>
+                        <h3>Orvalho do Pensamento</h3>
+                        <div class="potion-description">
+                            Amarelo elétrico que vibra constantemente.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 15</span>
+                            <span class="tag cost"><span class="coin copper">4 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">4 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">6 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>15 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml M. + 10 ml E. + 5 ml E.Elétrica.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+2 Reação e +1 Ação Mental por turno.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Desvantagem</strong>
+                            <p>Inteligência cai para o mínimo por 1 hora após o fim.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="fúria elemental fogo raio briga magia crítico">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XIX</div>
+                        <h3>Fúria Elemental</h3>
+                        <div class="potion-description">
+                            Alterna entre o calor do fogo e o frio do gelo.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 3</span>
+                            <span class="tag cd">CD 17</span>
+                            <span class="tag cost"><span class="coin copper">6 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">6 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">9 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>1 hora</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>15 ml S.Fogo + 15 ml E.Elétrica + 10 ml M.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>Ataques de Briga e Magia causam dano extra de Fogo/Raio.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Explosão Elemental</strong>
+                            <p>Se levar um Crítico, a poção explode causando -1 Vitalidade.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="pele ébano sombra sagrado resistência">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XX</div>
+                        <h3>Pele de Ébano</h3>
+                        <div class="potion-description">
+                            Negro absoluto, semelhante às sombras dos rituais.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 14</span>
+                            <span class="tag cost"><span class="coin copper">4 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">4 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">6 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>1 hora</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml S.M. Profano + 15 ml E. + 5 ml C.M.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+2 Resistência Física e vantagem em Ocultação no escuro.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Fraqueza Sagrada</strong>
+                            <p>Dano dobrado contra magias do elemento Sagrado.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="silêncio mortal furtividade surdo">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXI</div>
+                        <h3>Silêncio Mortal</h3>
+                        <div class="potion-description">
+                            Líquido mudo que não produz som dentro do frasco.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 14</span>
+                            <span class="tag cost"><span class="coin copper">3 P 5 C</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">3 P 5 C</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">5 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>1 hora</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml E. + 15 ml F. + 5 ml S.M.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+4 Furtividade. Movimentos completamente silenciosos.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Desvantagem</strong>
+                            <p>O usuário fica surdo durante o efeito.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="toque morte memória emoção">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXII</div>
+                        <h3>Toque da Morte</h3>
+                        <div class="potion-description">
+                            Transparente com reflexos dourados.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 3</span>
+                            <span class="tag cd">CD 18</span>
+                            <span class="tag cost"><span class="coin copper">7 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">7 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">1 O 5 C</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>Instantâneo</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml E. + 10 ml C.M. + 5 ml M.Astral.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>Apaga a memória da última hora de uma interação emocional específica.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="mente blindada mental controle resistência carisma">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXIII</div>
+                        <h3>Tônico da Mente Blindada</h3>
+                        <div class="potion-description">
+                            Rosa neon que pulsa como um cérebro.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 15</span>
+                            <span class="tag cost"><span class="coin copper">5 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">5 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">7 P 5 C</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>1 hora</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml E. + 10 ml M. + 5 ml F.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+3 Resistência Mágica Mental e barreira contra controle.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Apatia Total</strong>
+                            <p>-2 em Carisma e Persuasão.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="basilisco intimidação paralisar percepção">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXIV</div>
+                        <h3>Olhar de Basilisco</h3>
+                        <div class="potion-description">
+                            Verde-esmeralda denso com cheiro mineral.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 3</span>
+                            <span class="tag cd">CD 16</span>
+                            <span class="tag cost"><span class="coin copper">6 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">6 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">9 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>15 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>15 ml M. + 10 ml C.M. + 5 ml E.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+3 Intimidação. Existe chance de paralisar inimigos.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Visão Restrita</strong>
+                            <p>-3 em Percepção pela perda da visão periférica.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="mercúrio agilidade destreza esquiva impacto">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXV</div>
+                        <h3>Agilidade de Mercúrio</h3>
+                        <div class="potion-description">
+                            Prateado brilhante que flui como metal vivo.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 15</span>
+                            <span class="tag cost"><span class="coin copper">4 P 5 C</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">4 P 5 C</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">7 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>30 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml M. + 10 ml F. + 5 ml E.Elétrica.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+3 Destreza, +2 Esquiva e saltos duplicados.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Desvantagem</strong>
+                            <p>Recebe +2 dano extra de ataques de impacto.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="núcleo ígneo fogo calor vigor desidratação">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXVI</div>
+                        <h3>Núcleo Ígneo</h3>
+                        <div class="potion-description">
+                            Líquido laranja fervente. O frasco queima a mão.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 15</span>
+                            <span class="tag cost"><span class="coin copper">4 P 5 C</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">4 P 5 C</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">7 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>15 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>20 ml M. + 10 ml S.M. + 5 ml S.Fogo.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+3 Dano de Fogo e Resistência a Calor.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Desidratação Extrema</strong>
+                            <p>-2 Vigor após o uso.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="tempestade raio reação movimento atributos físicos">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXVII</div>
+                        <h3>Sopro de Tempestade</h3>
+                        <div class="potion-description">
+                            Amarelo faiscante com cheiro de ozônio.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 15</span>
+                            <span class="tag cost"><span class="coin copper">4 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">4 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">6 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>10 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>15 ml M. + 10 ml F. + 5 ml E.Elétrica.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+3 Reação e Movimento Adicional.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Sobrecarga Nervosa</strong>
+                            <p>-3 em Atributos Físicos.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="rocha viva pedra resistência empurrão corrida">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXVIII</div>
+                        <h3>Rocha Viva</h3>
+                        <div class="potion-description">
+                            Castanho denso e pesado como chumbo.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 15</span>
+                            <span class="tag cost"><span class="coin copper">4 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">4 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">6 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>30 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>25 ml M. + 10 ml C.M. + 5 ml S.M.</p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>+3 Resistência Física e imunidade a empurrões.</p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Inércia</strong>
+                            <p>Impossível correr e -2 em Esquiva.</p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <!-- =========================
+                     NOVAS POÇÕES
+                ========================== -->
+
+
+                <article class="potion" data-search="regeneração cura vida regeneração">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXIX</div>
+                        <h3>Elixir da Regeneração</h3>
+                        <div class="potion-description">
+                            Líquido verde-claro que pulsa lentamente como
+                            se possuísse um coração próprio.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 14</span>
+                            <span class="tag cost"><span class="coin copper">4 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">4 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">6 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>30 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>
+                                25 ml E.V. + 10 ml F. + 5 ml E.
+                            </p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>
+                                Recupera gradualmente Vitalidade durante
+                                a duração do efeito.
+                            </p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Fome Vital</strong>
+                            <p>
+                                Ao terminar, o usuário sente uma fome
+                                extrema e recebe -1 em Vigor por 1 hora.
+                            </p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="sangue dragão fogo força resistência escamas">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXX</div>
+                        <h3>Sangue de Dragão</h3>
+                        <div class="potion-description">
+                            Vermelho escuro e quente. Pequenas faíscas
+                            surgem quando o líquido toca o ar.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 3</span>
+                            <span class="tag cd">CD 17</span>
+                            <span class="tag cost"><span class="coin copper">6 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">6 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">9 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>30 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>
+                                15 ml C.M. + 15 ml S.Fogo + 10 ml S.M.
+                            </p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>
+                                +2 Força, +2 Resistência Física e resistência
+                                a dano de Fogo.
+                            </p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Instinto Dracônico</strong>
+                            <p>
+                                O usuário fica agressivo quando provocado.
+                            </p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="névoa fantasma espírito ectoessência furtividade atravessar">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXXI</div>
+                        <h3>Névoa Fantasma</h3>
+                        <div class="potion-description">
+                            Um líquido quase transparente que parece
+                            desaparecer quando observado diretamente.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 3</span>
+                            <span class="tag cd">CD 18</span>
+                            <span class="tag cost"><span class="coin copper">6 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">6 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">9 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>15 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>
+                                25 ml E. + 10 ml F. + 5 ml S.M. Profano.
+                            </p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>
+                                O corpo torna-se parcialmente espectral,
+                                permitindo atravessar objetos muito finos
+                                e concedendo +4 em Furtividade.
+                            </p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Desancoragem</strong>
+                            <p>
+                                O usuário sofre -2 em ações físicas
+                                enquanto estiver parcialmente espectral.
+                            </p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="coração ferro resistência vigor defesa pedra">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXXII</div>
+                        <h3>Coração de Ferro</h3>
+                        <div class="potion-description">
+                            Cinza metálico que produz pequenos sons
+                            semelhantes a batidas de martelo.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 15</span>
+                            <span class="tag cost"><span class="coin copper">4 P 5 C</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">4 P 5 C</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">7 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>1 hora</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>
+                                25 ml M. + 10 ml C.M. + 5 ml S.M.
+                            </p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>
+                                +3 Resistência Física e +1 Vigor.
+                            </p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Coração Pesado</strong>
+                            <p>
+                                -2 em Destreza e não pode realizar
+                                movimentos extremamente rápidos.
+                            </p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="lágrima lunar lua percepção magia noite visão">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXXIII</div>
+                        <h3>Lágrima Lunar</h3>
+                        <div class="potion-description">
+                            Líquido prateado que reflete uma lua inexistente.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 15</span>
+                            <span class="tag cost"><span class="coin copper">4 P 5 C</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">4 P 5 C</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">7 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>1 hora</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>
+                                20 ml M.Astral + 10 ml E. + 5 ml F.
+                            </p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>
+                                Visão perfeita no escuro e +3 Percepção
+                                durante a noite.
+                            </p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Olhos Sensíveis</strong>
+                            <p>
+                                -3 Percepção sob luz solar intensa.
+                            </p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="veneno abismo profano ácido sombra dano">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXXIV</div>
+                        <h3>Veneno do Abismo</h3>
+                        <div class="potion-description">
+                            Líquido negro-violeta que parece se mover
+                            contra a gravidade.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 3</span>
+                            <span class="tag cd">CD 18</span>
+                            <span class="tag cost"><span class="coin copper">7 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">7 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">1 O 5 C</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>10 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>
+                                15 ml S.M. Profano +
+                                10 ml C.Ácido +
+                                10 ml C.M.
+                            </p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>
+                                Ataques causam dano contínuo e ignoram
+                                2 pontos de Resistência.
+                            </p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Corrupção</strong>
+                            <p>
+                                O usuário sofre -1 Vitalidade ao final
+                                do efeito.
+                            </p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="passo sombrio sombra furtividade teleporte movimento">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXXV</div>
+                        <h3>Passo Sombrio</h3>
+                        <div class="potion-description">
+                            Líquido negro com pequenas partículas
+                            semelhantes a estrelas.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 3</span>
+                            <span class="tag cd">CD 17</span>
+                            <span class="tag cost"><span class="coin copper">6 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">6 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">9 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>30 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>
+                                20 ml E. + 10 ml S.M. Profano + 5 ml E.Elétrica.
+                            </p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>
+                                Uma vez por turno, pode se deslocar
+                                instantaneamente para uma sombra próxima.
+                            </p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Dependência das Sombras</strong>
+                            <p>
+                                A habilidade não funciona em locais
+                                completamente iluminados.
+                            </p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="pele gelo frio resistência gelo defesa">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXXVI</div>
+                        <h3>Pele de Gelo</h3>
+                        <div class="potion-description">
+                            Azul translúcido com cristais flutuando
+                            em seu interior.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 2</span>
+                            <span class="tag cd">CD 15</span>
+                            <span class="tag cost"><span class="coin copper">4 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">4 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">6 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>30 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>
+                                20 ml M. + 10 ml S.Gelo + 5 ml S.M.
+                            </p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>
+                                +3 Resistência Física e imunidade a frio.
+                            </p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Fragilidade ao Calor</strong>
+                            <p>
+                                Recebe +2 dano de ataques de Fogo.
+                            </p>
+                        </div>
+
+                    </div>
+                <!-- </article> -->
+
+
+                <article class="potion" data-search="fênix fogo renascimento cura fogo resistência">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXXVII</div>
+                        <h3>Fôlego de Fênix</h3>
+                        <div class="potion-description">
+                            Vermelho-dourado que parece conter uma pequena
+                            chama viva.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 3</span>
+                            <span class="tag cd">CD 19</span>
+                            <span class="tag cost"><span class="coin copper">8 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">8 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">1 O 2 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>30 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>
+                                15 ml S.Fogo + 15 ml E.V. Ancestral + 5 ml E.
+                            </p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>
+                                +3 Dano de Fogo, resistência a Fogo e
+                                recuperação de Vitalidade acelerada.
+                            </p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Cinzas da Fênix</strong>
+                            <p>
+                                Ao fim do efeito, recebe -2 Vigor por 1 hora.
+                            </p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="oráculo mente visão futuro percepção magia">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXXVIII</div>
+                        <h3>Mente do Oráculo</h3>
+                        <div class="potion-description">
+                            Azul-violeta que contém pequenas imagens
+                            mudando constantemente.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 3</span>
+                            <span class="tag cd">CD 18</span>
+                            <span class="tag cost"><span class="coin copper">7 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">7 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">1 O 5 C</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>15 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>
+                                20 ml E. + 10 ml M.Astral + 5 ml F.
+                            </p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>
+                                +4 Percepção e permite perceber
+                                breves possibilidades do futuro.
+                            </p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Visões Excessivas</strong>
+                            <p>
+                                -2 em Reação devido às visões conflitantes.
+                            </p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="raiz titã força resistência terra pedra vigor">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XXXIX</div>
+                        <h3>Raiz do Titã</h3>
+                        <div class="potion-description">
+                            Castanho-esverdeado extremamente espesso,
+                            com raízes crescendo dentro do frasco.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 3</span>
+                            <span class="tag cd">CD 17</span>
+                            <span class="tag cost"><span class="coin copper">6 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">6 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">9 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>1 hora</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>
+                                20 ml E.V. Ancestral +
+                                15 ml M. +
+                                5 ml C.M.
+                            </p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>
+                                +3 Força, +3 Resistência Física e imunidade
+                                a empurrões.
+                            </p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Enraizamento do Titã</strong>
+                            <p>
+                                -3 Destreza e não pode correr enquanto
+                                o efeito estiver ativo.
+                            </p>
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <article class="potion" data-search="vazio abismo magia mana resistência sombra">
+
+                    <div class="potion-header">
+                        <div class="potion-number">Poção XL</div>
+                        <h3>Elixir do Vazio</h3>
+                        <div class="potion-description">
+                            Negro absoluto. A luz ao redor parece
+                            desaparecer quando o frasco é aberto.
+                        </div>
+                    </div>
+
+                    <div class="potion-body">
+
+                        <div class="tags">
+                            <span class="tag level">Nível 3</span>
+                            <span class="tag cd">CD 20</span>
+                            <span class="tag cost"><span class="coin copper">8 P</span></span>
+                        </div>
+
+                        
+                        <div class="potion-price">
+                            <div class="price-box">
+                                <span class="price-label">Compra</span>
+                                <span class="price-value">8 P</span>
+                            </div>
+                            <div class="price-box sale">
+                                <span class="price-label">Venda</span>
+                                <span class="price-value">1 O 2 P</span>
+                            </div>
+                        </div>
+<div class="potion-data">
+                            <div class="data-item">
+                                <small>Quantidade</small>
+                                <strong>50 ml</strong>
+                            </div>
+
+                            <div class="data-item">
+                                <small>Duração</small>
+                                <strong>30 min.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ingredients">
+                            <div class="ingredients-title">Componentes</div>
+                            <p>
+                                20 ml E. +
+                                10 ml M.Astral +
+                                5 ml S.M. Profano.
+                            </p>
+                        </div>
+
+                        <div class="effect">
+                            <strong>Efeito</strong>
+                            <p>
+                                +3 Resistência Mágica e reduz efeitos
+                                de magias direcionadas ao usuário.
+                            </p>
+                        </div>
+
+                        <div class="disadvantage">
+                            <strong>Marca do Vazio</strong>
+                            <p>
+                                Ao terminar, o usuário perde -2 em
+                                Carisma por 1 hora.
+                            </p>
+                        </div>
+
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             RECEITAS
+        ========================== -->
+
+        <section id="receitas">
+
+            <div class="section-header">
+
+                <span>Oficina Alquímica</span>
+
+                <h2>Livro de Receitas</h2>
+
+                <p>
+                    Resumo das receitas utilizadas para produzir as poções.
+                    Todos os frascos possuem 50 ml após a conclusão do processo.
+                </p>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Poção</th>
+                            <th>Nível</th>
+                            <th>Componentes</th>
+                            <th>CD</th>
+                            <th>Compra</th>
+                            <th>Venda</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td class="td-name">Poção do Vínculo</td>
+                            <td class="td-level">1</td>
+                            <td>20 ml E.V. + 10 ml E. + 5 ml M.</td>
+                            <td class="td-cd">10</td>
+                            <td class="td-cost">2 P</td>
+                            <td class="td-sale">3 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Vento Cortante</td>
+                            <td class="td-level">1</td>
+                            <td>20 ml M. + 15 ml F. + 5 ml S.Gelo</td>
+                            <td class="td-cd">14</td>
+                            <td class="td-cost">3 P</td>
+                            <td class="td-sale">4 P 5 C</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Corrosão Púrpura</td>
+                            <td class="td-level">2</td>
+                            <td>15 ml F. + 15 ml S.M. + 5 ml C.M. + 5 ml C.Ácido</td>
+                            <td class="td-cd">14</td>
+                            <td class="td-cost">3 P 5 C</td>
+                            <td class="td-sale">5 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Brilho Estelar</td>
+                            <td class="td-level">2</td>
+                            <td>20 ml M. + 10 ml E. + 5 ml Essência Sagrada</td>
+                            <td class="td-cd">15</td>
+                            <td class="td-cost">5 P</td>
+                            <td class="td-sale">7 P 5 C</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Seiva Ancestral</td>
+                            <td class="td-level">2</td>
+                            <td>25 ml E.V. Ancestral + 10 ml F. + 5 ml M.</td>
+                            <td class="td-cd">13</td>
+                            <td class="td-cost">3 P 5 C</td>
+                            <td class="td-sale">5 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Poção do Mal Entendido</td>
+                            <td class="td-level">1</td>
+                            <td>15 ml E. + 15 ml F. + 5 ml C.M.</td>
+                            <td class="td-cd">11</td>
+                            <td class="td-cost">2 P</td>
+                            <td class="td-sale">3 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Língua Solta</td>
+                            <td class="td-level">1</td>
+                            <td>20 ml E. + 10 ml E.V. + 5 ml F.</td>
+                            <td class="td-cd">10</td>
+                            <td class="td-cost">1 P 5 C</td>
+                            <td class="td-sale">2 P 5 C</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Sangue Fervente</td>
+                            <td class="td-level">2</td>
+                            <td>20 ml C.M. + 10 ml S.M. + 5 ml S.Fogo</td>
+                            <td class="td-cd">13</td>
+                            <td class="td-cost">3 P</td>
+                            <td class="td-sale">4 P 5 C</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Essência da Sombra</td>
+                            <td class="td-level">2</td>
+                            <td>20 ml E. + 15 ml S.M. + 5 ml F.</td>
+                            <td class="td-cd">14</td>
+                            <td class="td-cost">4 P</td>
+                            <td class="td-sale">6 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Lágrima de Afrodite</td>
+                            <td class="td-level">3</td>
+                            <td>20 ml E. + 10 ml M.Astral + 5 ml E.V. Ancestral</td>
+                            <td class="td-cd">17</td>
+                            <td class="td-cost">8 P</td>
+                            <td class="td-sale">1 O 2 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Essência de Shadowfen</td>
+                            <td class="td-level">3</td>
+                            <td>20 ml E. + 15 ml F. Subterrâneo + 5 ml S.M. Profano</td>
+                            <td class="td-cd">17</td>
+                            <td class="td-cost">7 P</td>
+                            <td class="td-sale">1 O 5 C</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Elixir do Sangue de Ymir</td>
+                            <td class="td-level">2</td>
+                            <td>15 ml C.M. + 15 ml M. + 5 ml S.Gelo</td>
+                            <td class="td-cd">15</td>
+                            <td class="td-cost">4 P 5 C</td>
+                            <td class="td-sale">7 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Néctar de Athenopolis</td>
+                            <td class="td-level">2</td>
+                            <td>20 ml E.V. Ancestral + 10 ml E. + 5 ml M.Astral</td>
+                            <td class="td-cd">14</td>
+                            <td class="td-cost">4 P</td>
+                            <td class="td-sale">6 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Sopro de Vidro</td>
+                            <td class="td-level">2</td>
+                            <td>20 ml M. + 10 ml F. + 5 ml E.</td>
+                            <td class="td-cd">14</td>
+                            <td class="td-cost">3 P 5 C</td>
+                            <td class="td-sale">5 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Elixir do Falso Testemunho</td>
+                            <td class="td-level">2</td>
+                            <td>20 ml E. + 15 ml E.V. + 5 ml F.</td>
+                            <td class="td-cd">13</td>
+                            <td class="td-cost">3 P 5 C</td>
+                            <td class="td-sale">5 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Couraça de Pedra</td>
+                            <td class="td-level">2</td>
+                            <td>25 ml M. + 10 ml S.M. + 5 ml C.M.</td>
+                            <td class="td-cd">13</td>
+                            <td class="td-cost">3 P 5 C</td>
+                            <td class="td-sale">5 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Visão de Éter</td>
+                            <td class="td-level">2</td>
+                            <td>15 ml E. + 15 ml M. + 5 ml E.Elétrica</td>
+                            <td class="td-cd">15</td>
+                            <td class="td-cost">4 P</td>
+                            <td class="td-sale">6 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Orvalho do Pensamento</td>
+                            <td class="td-level">2</td>
+                            <td>20 ml M. + 10 ml E. + 5 ml E.Elétrica</td>
+                            <td class="td-cd">15</td>
+                            <td class="td-cost">4 P</td>
+                            <td class="td-sale">6 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Fúria Elemental</td>
+                            <td class="td-level">3</td>
+                            <td>15 ml S.Fogo + 15 ml E.Elétrica + 10 ml M.</td>
+                            <td class="td-cd">17</td>
+                            <td class="td-cost">6 P</td>
+                            <td class="td-sale">9 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Pele de Ébano</td>
+                            <td class="td-level">2</td>
+                            <td>20 ml S.M. Profano + 15 ml E. + 5 ml C.M.</td>
+                            <td class="td-cd">14</td>
+                            <td class="td-cost">4 P</td>
+                            <td class="td-sale">6 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Silêncio Mortal</td>
+                            <td class="td-level">2</td>
+                            <td>20 ml E. + 15 ml F. + 5 ml S.M.</td>
+                            <td class="td-cd">14</td>
+                            <td class="td-cost">3 P 5 C</td>
+                            <td class="td-sale">5 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Toque da Morte</td>
+                            <td class="td-level">3</td>
+                            <td>20 ml E. + 10 ml C.M. + 5 ml M.Astral</td>
+                            <td class="td-cd">18</td>
+                            <td class="td-cost">7 P</td>
+                            <td class="td-sale">1 O 5 C</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Tônico da Mente Blindada</td>
+                            <td class="td-level">2</td>
+                            <td>20 ml E. + 10 ml M. + 5 ml F.</td>
+                            <td class="td-cd">15</td>
+                            <td class="td-cost">5 P</td>
+                            <td class="td-sale">7 P 5 C</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Olhar de Basilisco</td>
+                            <td class="td-level">3</td>
+                            <td>15 ml M. + 10 ml C.M. + 5 ml E.</td>
+                            <td class="td-cd">16</td>
+                            <td class="td-cost">6 P</td>
+                            <td class="td-sale">9 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Agilidade de Mercúrio</td>
+                            <td class="td-level">2</td>
+                            <td>20 ml M. + 10 ml F. + 5 ml E.Elétrica</td>
+                            <td class="td-cd">15</td>
+                            <td class="td-cost">4 P 5 C</td>
+                            <td class="td-sale">7 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Núcleo Ígneo</td>
+                            <td class="td-level">2</td>
+                            <td>20 ml M. + 10 ml S.M. + 5 ml S.Fogo</td>
+                            <td class="td-cd">15</td>
+                            <td class="td-cost">4 P 5 C</td>
+                            <td class="td-sale">7 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Sopro de Tempestade</td>
+                            <td class="td-level">2</td>
+                            <td>15 ml M. + 10 ml F. + 5 ml E.Elétrica</td>
+                            <td class="td-cd">15</td>
+                            <td class="td-cost">4 P</td>
+                            <td class="td-sale">6 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Rocha Viva</td>
+                            <td class="td-level">2</td>
+                            <td>25 ml M. + 10 ml C.M. + 5 ml S.M.</td>
+                            <td class="td-cd">15</td>
+                            <td class="td-cost">4 P</td>
+                            <td class="td-sale">6 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Elixir da Regeneração</td>
+                            <td class="td-level">2</td>
+                            <td>25 ml E.V. + 10 ml F. + 5 ml E.</td>
+                            <td class="td-cd">14</td>
+                            <td class="td-cost">4 P</td>
+                            <td class="td-sale">6 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Sangue de Dragão</td>
+                            <td class="td-level">3</td>
+                            <td>15 ml C.M. + 15 ml S.Fogo + 10 ml S.M.</td>
+                            <td class="td-cd">17</td>
+                            <td class="td-cost">6 P</td>
+                            <td class="td-sale">9 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Névoa Fantasma</td>
+                            <td class="td-level">3</td>
+                            <td>25 ml E. + 10 ml F. + 5 ml S.M. Profano</td>
+                            <td class="td-cd">18</td>
+                            <td class="td-cost">6 P</td>
+                            <td class="td-sale">9 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Coração de Ferro</td>
+                            <td class="td-level">2</td>
+                            <td>25 ml M. + 10 ml C.M. + 5 ml S.M.</td>
+                            <td class="td-cd">15</td>
+                            <td class="td-cost">4 P 5 C</td>
+                            <td class="td-sale">7 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Lágrima Lunar</td>
+                            <td class="td-level">2</td>
+                            <td>20 ml M.Astral + 10 ml E. + 5 ml F.</td>
+                            <td class="td-cd">15</td>
+                            <td class="td-cost">4 P 5 C</td>
+                            <td class="td-sale">7 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Veneno do Abismo</td>
+                            <td class="td-level">3</td>
+                            <td>15 ml S.M. Profano + 10 ml C.Ácido + 10 ml C.M.</td>
+                            <td class="td-cd">18</td>
+                            <td class="td-cost">7 P</td>
+                            <td class="td-sale">1 O 5 C</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Passo Sombrio</td>
+                            <td class="td-level">3</td>
+                            <td>20 ml E. + 10 ml S.M. Profano + 5 ml E.Elétrica</td>
+                            <td class="td-cd">17</td>
+                            <td class="td-cost">6 P</td>
+                            <td class="td-sale">9 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Pele de Gelo</td>
+                            <td class="td-level">2</td>
+                            <td>20 ml M. + 10 ml S.Gelo + 5 ml S.M.</td>
+                            <td class="td-cd">15</td>
+                            <td class="td-cost">4 P</td>
+                            <td class="td-sale">6 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Fôlego de Fênix</td>
+                            <td class="td-level">3</td>
+                            <td>15 ml S.Fogo + 15 ml E.V. Ancestral + 5 ml E.</td>
+                            <td class="td-cd">19</td>
+                            <td class="td-cost">8 P</td>
+                            <td class="td-sale">1 O 2 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Mente do Oráculo</td>
+                            <td class="td-level">3</td>
+                            <td>20 ml E. + 10 ml M.Astral + 5 ml F.</td>
+                            <td class="td-cd">18</td>
+                            <td class="td-cost">7 P</td>
+                            <td class="td-sale">1 O 5 C</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Raiz do Titã</td>
+                            <td class="td-level">3</td>
+                            <td>20 ml E.V. Ancestral + 15 ml M. + 5 ml C.M.</td>
+                            <td class="td-cd">17</td>
+                            <td class="td-cost">6 P</td>
+                            <td class="td-sale">9 P</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-name">Elixir do Vazio</td>
+                            <td class="td-level">3</td>
+                            <td>20 ml E. + 10 ml M.Astral + 5 ml S.M. Profano</td>
+                            <td class="td-cd">20</td>
+                            <td class="td-cost">8 P</td>
+                            <td class="td-sale">1 O 2 P</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <strong>Manual do Alquimista Duoin</strong>
+
+        <span>
+            Sistema de Alquimia • Nexalis • D&amp;D 5E / Roll20
+        </span>
+
+        <br><br>
+
+        <span>
+            Conhecimento alquímico deve ser tratado com cautela.
+        </span>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+         PESQUISA
+    ========================== -->
+
+    <script>
+
+        const searchInput = document.getElementById("potionSearch");
+        const potions = document.querySelectorAll(".potion");
+
+        searchInput.addEventListener("input", function () {
+
+            const search = this.value
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "");
+
+            potions.forEach(function (potion) {
+
+                const content = (
+                    potion.dataset.search +
+                    " " +
+                    potion.innerText
+                )
+                    .toLowerCase()
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "");
+
+                potion.style.display =
+                    content.includes(search) ? "" : "none";
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

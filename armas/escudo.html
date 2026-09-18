@@ -1,0 +1,1340 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Nexalis RPG — Escudos</title>
+
+    <link href="../site.css" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=MedievalSharp&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* ================================================== */
+        /* NEXALIS RPG — TEMA DIABLO / INFERNO */
+        /* ================================================== */
+
+        :root {
+
+            --inferno: #080404;
+            --sangue: #8b0000;
+            --vermelho: #c62828;
+            --brasa: #ff4500;
+
+            --ouro: #c9a227;
+            --ouro-claro: #f0c75e;
+
+            --pedra: #29201c;
+
+            --texto: #d6d0c8;
+
+            --verde: #4f9d69;
+        }
+
+
+        /* ================================================== */
+        /* BASE */
+        /* ================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            padding: 0;
+
+            min-height: 100vh;
+
+            background:
+
+                radial-gradient(
+                    circle at 50% 0%,
+                    #3a0b08 0%,
+                    #160706 30%,
+                    #080404 65%,
+                    #020202 100%
+                );
+
+            color: var(--texto);
+
+            font-family: 'Cinzel', serif;
+
+            line-height: 1.6;
+        }
+
+
+        /* ================================================== */
+        /* EFEITO DE ESCURIDÃO */
+        /* ================================================== */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+
+                radial-gradient(
+                    circle at center,
+                    transparent 35%,
+                    rgba(0, 0, 0, 0.55) 100%
+                );
+
+            z-index: -1;
+        }
+
+
+        /* ================================================== */
+        /* NAVBAR */
+        /* ================================================== */
+
+        .navbar {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            width: 100%;
+
+            background:
+
+                linear-gradient(
+                    to bottom,
+                    rgba(8, 2, 2, 0.98),
+                    rgba(18, 6, 5, 0.98),
+                    rgba(7, 2, 2, 0.98)
+                );
+
+            border-bottom: 1px solid #542018;
+
+            box-shadow:
+
+                0 10px 35px rgba(0, 0, 0, 0.9),
+
+                inset 0 -15px 30px rgba(100, 0, 0, 0.12);
+
+            backdrop-filter: blur(8px);
+        }
+
+
+        /* ================================================== */
+        /* LINHA INFERNAL */
+        /* ================================================== */
+
+        .navbar::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 3px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #650b08,
+                    #ff4500,
+                    #d4a83f,
+                    #ff4500,
+                    #650b08,
+                    transparent
+                );
+
+            box-shadow:
+
+                0 0 15px rgba(255, 69, 0, 0.8);
+
+            animation:
+
+                linhaInfernal 4s infinite linear;
+        }
+
+
+        @keyframes linhaInfernal {
+
+            0% {
+
+                opacity: 0.3;
+
+                filter: brightness(0.7);
+            }
+
+            50% {
+
+                opacity: 1;
+
+                filter: brightness(1.5);
+            }
+
+            100% {
+
+                opacity: 0.3;
+
+                filter: brightness(0.7);
+            }
+        }
+
+
+        /* ================================================== */
+        /* CONTAINER NAVBAR */
+        /* ================================================== */
+
+        .navbar-container {
+
+            max-width: 1400px;
+
+            margin: auto;
+
+            padding: 0 25px;
+
+            min-height: 78px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+        }
+
+
+        /* ================================================== */
+        /* LOGO */
+        /* ================================================== */
+
+        .navbar-logo {
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: var(--ouro-claro);
+
+            text-decoration: none;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            text-shadow:
+
+                0 0 5px #6b150d,
+
+                0 0 15px rgba(180, 0, 0, 0.7),
+
+                0 0 25px rgba(255, 69, 0, 0.25);
+
+            transition: 0.3s ease;
+        }
+
+
+        .navbar-logo:hover {
+
+            color: #fff0a6;
+
+            transform: scale(1.03);
+
+            text-shadow:
+
+                0 0 8px #ff4500,
+
+                0 0 20px rgba(255, 69, 0, 0.7),
+
+                0 0 35px rgba(255, 69, 0, 0.4);
+        }
+
+
+        /* ================================================== */
+        /* MENU */
+        /* ================================================== */
+
+        .navbar-menu {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            gap: 5px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .nav-link {
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 12px 13px;
+
+            color: #a9a099;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            letter-spacing: 0.5px;
+
+            border: 1px solid transparent;
+
+            transition:
+
+                color 0.3s ease,
+
+                background 0.3s ease,
+
+                border 0.3s ease,
+
+                box-shadow 0.3s ease;
+        }
+
+
+        .nav-link:hover {
+
+            color: var(--ouro-claro);
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    rgba(139, 0, 0, 0.25),
+                    rgba(80, 0, 0, 0.08)
+                );
+
+            border-color: #542018;
+
+            box-shadow:
+
+                inset 0 0 15px rgba(139, 0, 0, 0.15),
+
+                0 0 10px rgba(139, 0, 0, 0.2);
+        }
+
+
+        .nav-link.ativo {
+
+            color: var(--ouro-claro);
+
+            background:
+
+                linear-gradient(
+                    180deg,
+                    rgba(120, 10, 5, 0.35),
+                    rgba(50, 5, 3, 0.25)
+                );
+
+            border-color: #6b3024;
+
+            box-shadow:
+
+                inset 0 0 15px rgba(139, 0, 0, 0.18),
+
+                0 0 12px rgba(139, 0, 0, 0.2);
+        }
+
+
+        .nav-link.ativo::after {
+
+            content: "";
+
+            position: absolute;
+
+            bottom: -1px;
+
+            left: 20%;
+
+            width: 60%;
+
+            height: 2px;
+
+            background: var(--brasa);
+
+            box-shadow: 0 0 8px var(--brasa);
+        }
+
+
+        /* ================================================== */
+        /* DROPDOWN */
+        /* ================================================== */
+
+        .nav-dropdown {
+
+            position: relative;
+        }
+
+
+        .nav-dropdown > .nav-link {
+
+            cursor: pointer;
+        }
+
+
+        .nav-dropdown > .nav-link::before {
+
+            content: "▾";
+
+            color: var(--ouro);
+
+            font-size: 10px;
+
+            order: 2;
+
+            transition: transform 0.3s ease;
+        }
+
+
+        .nav-dropdown:hover > .nav-link::before,
+
+        .nav-dropdown:focus-within > .nav-link::before {
+
+            transform: rotate(180deg);
+
+            color: var(--brasa);
+        }
+
+
+        .dropdown-menu {
+
+            position: absolute;
+
+            top: calc(100% + 8px);
+
+            left: 0;
+
+            min-width: 240px;
+
+            max-height: 80vh;
+
+            overflow-y: auto;
+
+            padding: 8px;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    #1b0907,
+                    #080303
+                );
+
+            border: 1px solid #593027;
+
+            box-shadow:
+
+                0 15px 35px rgba(0, 0, 0, 0.95),
+
+                inset 0 0 25px rgba(100, 0, 0, 0.15);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transform: translateY(-8px);
+
+            transition:
+
+                opacity 0.25s ease,
+
+                visibility 0.25s ease,
+
+                transform 0.25s ease;
+        }
+
+
+        .nav-dropdown:hover .dropdown-menu,
+
+        .nav-dropdown:focus-within .dropdown-menu {
+
+            opacity: 1;
+
+            visibility: visible;
+
+            transform: translateY(0);
+        }
+
+
+        .dropdown-menu::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 15px;
+
+            right: 15px;
+
+            height: 1px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--brasa),
+                    transparent
+                );
+
+            box-shadow:
+
+                0 0 8px rgba(255, 69, 0, 0.6);
+        }
+
+
+        .dropdown-menu a {
+
+            display: block;
+
+            padding: 10px 12px;
+
+            color: #9c928a;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            border-left: 2px solid transparent;
+
+            transition: all 0.25s ease;
+        }
+
+
+        .dropdown-menu a:hover {
+
+            color: var(--ouro-claro);
+
+            padding-left: 18px;
+
+            border-left-color: var(--brasa);
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    rgba(139, 0, 0, 0.3),
+                    transparent
+                );
+
+            text-shadow:
+
+                0 0 8px rgba(255, 69, 0, 0.5);
+        }
+
+
+        .dropdown-menu a + a {
+
+            border-top:
+
+                1px solid rgba(100, 50, 30, 0.12);
+        }
+
+
+        /* ================================================== */
+        /* CONTEÚDO PRINCIPAL */
+        /* ================================================== */
+
+        .container-principal {
+
+            max-width: 1000px;
+
+            margin: 50px auto;
+
+            padding: 20px;
+        }
+
+
+        /* ================================================== */
+        /* CARD PRINCIPAL */
+        /* ================================================== */
+
+        .tab {
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    rgba(35, 12, 10, 0.96),
+                    rgba(8, 5, 5, 0.98)
+                );
+
+            border:
+
+                1px solid #493027;
+
+            border-radius: 6px;
+
+            padding: 35px;
+
+            margin-bottom: 40px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            box-shadow:
+
+                inset 0 0 35px rgba(120, 0, 0, 0.08),
+
+                0 15px 40px rgba(0, 0, 0, 0.85);
+        }
+
+
+        /* ================================================== */
+        /* BORDA INFERNAL */
+        /* ================================================== */
+
+        .tab::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 2px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--sangue),
+                    var(--brasa),
+                    var(--sangue),
+                    transparent
+                );
+        }
+
+
+        /* ================================================== */
+        /* TÍTULO */
+        /* ================================================== */
+
+        h1 {
+
+            color: #d4a83f;
+
+            text-shadow:
+
+                0 0 5px #8b0000,
+
+                0 0 15px rgba(180, 0, 0, 0.6);
+
+            border-bottom:
+
+                1px solid #6b1a13;
+
+            padding-bottom: 15px;
+
+            text-align: center;
+
+            font-size: 2.3rem;
+
+            margin-top: 0;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* ================================================== */
+        /* DESCRIÇÃO */
+        /* ================================================== */
+
+        .descricao {
+
+            text-align: center;
+
+            color: #777;
+
+            font-style: italic;
+
+            font-size: 13px;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* ================================================== */
+        /* CARDS DOS ESCUDOS */
+        /* ================================================== */
+
+        .item-rpg {
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    rgba(35, 12, 10, 0.95),
+                    rgba(8, 5, 5, 0.98)
+                );
+
+            border:
+
+                1px solid #493027;
+
+            border-left:
+
+                4px solid var(--sangue);
+
+            padding: 20px;
+
+            margin-bottom: 20px;
+
+            border-radius:
+
+                3px 8px 8px 3px;
+
+            transition: 0.3s;
+
+            box-shadow:
+
+                inset 0 0 25px rgba(120, 0, 0, 0.08),
+
+                0 8px 25px rgba(0, 0, 0, 0.8);
+        }
+
+
+        .item-rpg:hover {
+
+            transform:
+
+                translateX(8px);
+
+            border-left-color:
+
+                var(--brasa);
+
+            box-shadow:
+
+                0 0 20px rgba(139, 0, 0, 0.45),
+
+                inset 0 0 20px rgba(139, 0, 0, 0.1);
+        }
+
+
+        /* ================================================== */
+        /* NOME DO ESCUDO */
+        /* ================================================== */
+
+        .item-rpg h2 {
+
+            color: var(--ouro-claro);
+
+            margin-top: 0;
+
+            text-shadow:
+
+                0 0 8px rgba(139, 0, 0, 0.5);
+
+            border-bottom:
+
+                1px solid #3c1915;
+
+            padding-bottom: 8px;
+        }
+
+
+        /* ================================================== */
+        /* TEXTO DOS CARDS */
+        /* ================================================== */
+
+        .item-rpg p {
+
+            margin: 8px 0;
+        }
+
+
+        .item-rpg b {
+
+            color: var(--ouro-claro);
+        }
+
+
+        /* ================================================== */
+        /* STATUS */
+        /* ================================================== */
+
+        .vantagem {
+
+            color: var(--verde);
+
+            font-weight: bold;
+        }
+
+
+        .penalidade {
+
+            color: #d95757;
+
+            font-weight: bold;
+        }
+
+
+        .especial {
+
+            color: var(--ouro-claro);
+
+            font-weight: bold;
+        }
+
+
+        /* ================================================== */
+        /* RESPONSIVO */
+        /* ================================================== */
+
+        @media (max-width: 950px) {
+
+            .navbar-container {
+
+                flex-direction: column;
+
+                padding: 18px 20px;
+
+                gap: 15px;
+            }
+
+
+            .navbar-menu {
+
+                justify-content: center;
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            .navbar-container {
+
+                padding: 15px 12px;
+            }
+
+
+            .navbar-logo {
+
+                font-size: 19px;
+            }
+
+
+            .navbar-menu {
+
+                width: 100%;
+
+                justify-content: center;
+            }
+
+
+            .nav-link {
+
+                padding: 10px 9px;
+
+                font-size: 11px;
+            }
+
+
+            .dropdown-menu {
+
+                position: fixed;
+
+                top: auto;
+
+                left: 50%;
+
+                width: min(92vw, 300px);
+
+                transform:
+
+                    translateX(-50%)
+                    translateY(-8px);
+            }
+
+
+            .nav-dropdown:hover .dropdown-menu,
+
+            .nav-dropdown:focus-within .dropdown-menu {
+
+                transform:
+
+                    translateX(-50%)
+                    translateY(0);
+            }
+
+
+            .container-principal {
+
+                margin: 25px auto;
+
+                padding: 10px;
+            }
+
+
+            .tab {
+
+                padding: 22px;
+            }
+
+
+            h1 {
+
+                font-size: 1.7rem;
+            }
+
+        }
+
+    </style>
+
+
+<link rel="stylesheet" href="../souls-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+
+
+<body>
+
+
+    <!-- ================================================== -->
+    <!-- NAVBAR -->
+    <!-- ================================================== -->
+
+    <header class="navbar">
+
+        <div class="navbar-container">
+
+
+            <!-- LOGO -->
+
+            <a
+                href="../funcoes/inicio.html"
+                class="navbar-logo"
+            >
+                ⚔️ NEXALIS
+            </a>
+
+
+            <!-- MENU -->
+
+            <nav class="navbar-menu">
+
+
+                <!-- ================================================= -->
+                <!-- MUNDO -->
+                <!-- ================================================= -->
+
+                <div class="nav-dropdown">
+
+                    <a
+                        href="#"
+                        class="nav-link"
+                    >
+                        🌎 Mundo
+                    </a>
+
+                    <div class="dropdown-menu">
+
+                        <a href="../funcoes/inicio.html">
+                            📜 História
+                        </a>
+
+                        <a href="../funcoes/sistema-completo.html">
+                            ⚙️ Sistema
+                        </a>
+
+                        <a href="../funcoes/mapas.html">
+                            🗺️ Mapas
+                        </a>
+
+                        <a href="../funcoes/clan.html">
+                            🛡️ Clãs
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- PERSONAGEM -->
+                <!-- ================================================= -->
+
+                <div class="nav-dropdown">
+
+                    <a
+                        href="#"
+                        class="nav-link"
+                    >
+                        🧙 Personagem
+                    </a>
+
+                    <div class="dropdown-menu">
+
+                        <a href="../funcoes/racaeclasses.html">
+                            🧬 Raças & Classes
+                        </a>
+
+                        <a href="../funcoes/criacao-de-ficha.html">
+                            📜 Ficha
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- PODERES -->
+                <!-- ================================================= -->
+
+                <div class="nav-dropdown">
+
+                    <a
+                        href="#"
+                        class="nav-link"
+                    >
+                        🔥 Poderes
+                    </a>
+
+                    <div class="dropdown-menu">
+
+                        <a href="../funcoes/magia.html">
+                            ✨ Magias
+                        </a>
+
+                        <a href="../funcoes/porcao.html">
+                            ⚗️ Alquimia
+                        </a>
+
+                        <a href="../funcoes/INGREDIENTES.HTML">
+                            🌿 Ingredientes
+                        </a>
+
+                        <a href="Runas.html">
+                            ᚱ Runas
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- ARSENAL -->
+                <!-- ================================================= -->
+
+                <div class="nav-dropdown">
+
+                    <a
+                        href="#"
+                        class="nav-link ativo"
+                    >
+                        🗡️ Arsenal
+                    </a>
+
+                    <div class="dropdown-menu">
+
+                        <a href="armas.html">
+                            ⚔️ Todas as Armas
+                        </a>
+
+                        <a href="armaduras.html">
+                            🛡️ Armaduras
+                        </a>
+
+                        <a href="curtoalacance.html">
+                            🗡️ Curto Alcance
+                        </a>
+
+                        <a href="medioalcance.html">
+                            ⚔️ Médio Alcance
+                        </a>
+
+                        <a href="medioalcance2M.html">
+                            🩸 Médio Alcance — 2M
+                        </a>
+
+                        <a href="longo.html">
+                            🏹 Longo Alcance
+                        </a>
+
+                        <a
+                            href="escudo.html"
+                            class="ativo"
+                        >
+                            🛡️ Escudos
+                        </a>
+
+                        <a href="Instrumentais.html">
+                            🎼 Instrumentais
+                        </a>
+
+                        <a href="magicos.html">
+                            🔮 Mágicos
+                        </a>
+
+                        <a href="encantos.html">
+                            ✨ Encantos
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- INIMIGOS -->
+                <!-- ================================================= -->
+
+                <a
+                    href="../funcoes/npcs.html"
+                    class="nav-link"
+                >
+                    🧙 NPCs
+                </a>
+
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================================================== -->
+    <!-- CONTEÚDO -->
+    <!-- ================================================== -->
+
+    <main class="container-principal">
+
+
+        <section
+            class="tab"
+            id="escudos"
+        >
+
+
+            <!-- ================================================== -->
+            <!-- TÍTULO -->
+            <!-- ================================================== -->
+
+            <h1>
+                🛡️ ESCUDOS
+            </h1>
+
+
+            <p class="descricao">
+                "Quando a lâmina encontra o aço,
+                apenas um permanecerá de pé."
+            </p>
+
+
+            <!-- ================================================== -->
+            <!-- BROQUEL -->
+            <!-- ================================================== -->
+
+            <div class="item-rpg">
+
+                <h2>
+                    🪵 Broquel de Madeira
+                </h2>
+
+                <p>
+
+                    <b>Passiva:</b>
+
+                    <span class="vantagem">
+                        Anula 1 sucesso
+                    </span>
+
+                </p>
+
+                <p>
+
+                    <b>Vantagem:</b>
+
+                    <span class="especial">
+                        Anula ataque
+                    </span>
+
+                </p>
+
+                <p>
+
+                    <b>Desvantagem:</b>
+
+                    <span class="penalidade">
+                        -2 Res. Fogo
+                    </span>
+
+                </p>
+
+                <p>
+
+                    <b>Durabilidade:</b>
+
+                    <span class="penalidade">
+                        Quebra após 3 golpes
+                    </span>
+
+                </p>
+
+            </div>
+
+
+            <!-- ================================================== -->
+            <!-- ESCUDO DE METAL -->
+            <!-- ================================================== -->
+
+            <div class="item-rpg">
+
+                <h2>
+                    ⚔️ Escudo de Metal
+                </h2>
+
+                <p>
+
+                    <b>Passiva:</b>
+
+                    <span class="vantagem">
+                        Anula 2 sucessos
+                    </span>
+
+                </p>
+
+                <p>
+
+                    <b>Vantagem:</b>
+
+                    <span class="vantagem">
+                        +1 Bloqueio
+                    </span>
+
+                </p>
+
+                <p>
+
+                    <b>Desvantagem:</b>
+
+                    <span class="penalidade">
+                        -2 Res. Fogo e Raio
+                    </span>
+
+                </p>
+
+            </div>
+
+
+            <!-- ================================================== -->
+            <!-- ESCUDO DE TORRE -->
+            <!-- ================================================== -->
+
+            <div class="item-rpg">
+
+                <h2>
+                    🏰 Escudo de Torre
+                </h2>
+
+                <p>
+
+                    <b>Passiva:</b>
+
+                    <span class="vantagem">
+                        Anula 3 sucessos
+                    </span>
+
+                </p>
+
+                <p>
+                    <b>Vantagens:</b>
+                </p>
+
+                <p>
+
+                    <span class="vantagem">
+                        +3 Bloqueio
+                    </span>
+
+                    <br>
+
+                    <span class="vantagem">
+                        +8 Armadura
+                    </span>
+
+                </p>
+
+                <p>
+
+                    <b>Desvantagem:</b>
+
+                    <span class="penalidade">
+                        -4 Res. Elemental
+                    </span>
+
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>
+

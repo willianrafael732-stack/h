@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <link href="../site.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Mago - Nexalis</title>
+    <link href="../raca/csss/mago.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        .skills-highlight-container {
+            background: rgba(75, 0, 130, 0.05);
+            border: 2px solid #9370db;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 0 15px rgba(147, 112, 219, 0.2);
+        }
+
+        .skills-section h3 {
+            color: #ba55d3;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #9370db;
+            display: inline-block;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+
+        .skill-item strong {
+            color: #e6e6fa;
+        }
+
+        .stats-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .stats-box li {
+            margin-bottom: 8px;
+        }
+    </style>
+    <meta content="strict-origin-when-cross-origin" name="referrer" />
+
+<link rel="stylesheet" href="../souls-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container-nav">
+            <div class="links">
+                <a href="../funcoes/inicio.html">historia </a>
+                <a href="../funcoes/racaeclasses.html">Raças e Classes</a>
+                <a href="../armas/armas.html">Armas</a>
+                <a href="../funcoes/sistema-completo.html">sistema</a>
+                <a href="../funcoes/npcs.html">NPCs</a>
+                <a href="../funcoes/grimorio-elemental-legado.html">Função elemental</a>
+                <a href="../funcoes/magia.html">magias</a>
+                <a href="../funcoes/porcao.html">porção</a>
+                <a href="../funcoes/INGREDIENTES.HTML">ingredinte</a>
+                <a href="../funcoes/mapas.html">mapas</a>
+                <a href="../funcoes/clan.html">Criação de Ficha</a>
+            </div>
+        </div>
+    </nav>
+    <main class="content">
+        <article class="race-card">
+            <h2>Classe: Mago</h2>
+            <div class="race-grid">
+                <div class="info-block">
+                    <h3>História</h3>
+                    <p>Os magos de Nexalis possuem uma rica trajetória de exploração arcana e conhecimento místico.
+                        Atuam como guardiões de segredos mágicos e são responsáveis por grandes avanços nas artes
+                        ocultas, moldando a realidade através do estudo e da vontade.</p>
+                    <h3>Artes e Magia</h3>
+                    <div class="skill-item"><strong>Diversidade Mágica:</strong> Domínio de escolas como evocação,
+                        conjuração, necromancia e ilusão.</div>
+                    <div class="skill-item"><strong>Pesquisa e Inovação:</strong> Experimentação constante para a
+                        criação de novos feitiços e encantamentos únicos.</div>
+                    <h4 class="evolution-title" style="margin-top: 20px;">Caminhos de Evolução</h4>
+                    <p>• <strong>Caminho do Feiticeiro:</strong> Especialista em manipulação de energia pura, runas de
+                        controle e domínio supremo (Arquimago).<br />
+                        • <strong>Caminho do Elementalista:</strong> Foco total na canalização e fusão das forças
+                        naturais e elementais (Senhor dos Elementos).</p>
+                </div>
+                <aside class="sidebar">
+                    <div class="stats-box">
+                        <h4>Status Inicial</h4>
+                        <ul>
+                            <li><strong>Mago Iniciante:</strong></li>
+                            <li><span class="bonus">+2 Inteligência</span></li>
+                            <li><span class="penalty">-1 Vigor</span></li>
+                        </ul>
+                    </div>
+                    <div class="stats-box">
+                        <h4>Status das Evoluções</h4>
+                        <ul>
+                            <li><strong>Feiticeiro:</strong><br />
+                                <span class="bonus">+2 Inteligência, +2 Encantamento</span><br />
+                                <span class="penalty">-2 Força</span>
+                            </li>
+                            <li style="margin-top:10px;"><strong>Elementalista:</strong><br />
+                                <span class="bonus">+1 Inteligência, +1 Res. Mágica (Escola)</span><br />
+                                <span class="penalty">-2 Vigor</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="stats-box">
+                        <h4>Equipamento</h4>
+                        <ul>
+                            <li><strong>Armas:</strong> Mágicas (Canalização Arcana)</li>
+                            <li><strong>Defesa:</strong> Escudos Mágicos / Esquiva</li>
+                            <li><strong>Armadura:</strong> Leve (Foco em Mobilidade)</li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+            <hr class="stats-divider" />
+            <div class="skills-highlight-container">
+                <section class="skills-section">
+                    <h3>Habilidades Ativas</h3>
+                    <h4 class="evolution-title">Fase 1: Mago Iniciante</h4>
+                    <div class="race-grid">
+                        <div class="skill-item"><strong>Seta Arcana:</strong> <small>Aprendiz: Lança feixe de energia
+                                pura. Causa +50% do dano base.</small></div>
+                        <div class="skill-item"><strong>Névoa da Lentidão:</strong> <small>Aprendiz: Raio de 1 turno de
+                                distância. Aumenta todas as dificuldades inimigas em +1.</small></div>
+                        <div class="skill-item"><strong>Meditação Arcana:</strong> <small>Aprendiz: O mago entra em
+                                estado meditativo e recupera 50% da mana total.</small></div>
+                    </div>
+                    <div class="race-grid" style="margin-top: 40px;">
+                        <div class="evolution-column">
+                            <h4 class="evolution-title">Fase 2 (V1): Feiticeiro</h4>
+                            <div class="skill-item"><strong>Runa de Silêncio:</strong> <small>Profissional: Anula uso de
+                                    mana em raio de 2 turnos por 2 turnos (ou até objeto quebrar).</small></div>
+                            <div class="skill-item"><strong>Stop:</strong> <small>Profissional: Imobiliza alvos em uma
+                                    runa no chão (raio 2 turnos) por 2 turnos.</small></div>
+                            <div class="skill-item"><strong>Ilusão Avançada:</strong> <small>Profissional: Cria 2 cópias
+                                    que imitam movimentos, dificultando identificação por 2 turnos.</small></div>
+                            <h4 class="evolution-title" style="margin-top: 30px;">Fase 3 (V1): Arquimago</h4>
+                            <div class="skill-item"><strong>Tempestade de Mana:</strong> <small>Mestre: 200% dano base
+                                    em todos os inimigos num raio de 2 turnos.</small></div>
+                            <div class="skill-item"><strong>Barreira Elemental:</strong> <small>Mestre: Absorve 200% do
+                                    dano mágico recebido por 4 turnos para si e aliados.</small></div>
+                            <div class="skill-item"><strong>Chamado de Starleaf:</strong> <small>Mestre: Restaura toda a
+                                    mana e concede +100% de poder mágico por 3 turnos.</small></div>
+                        </div>
+                        <div class="evolution-column">
+                            <h4 class="evolution-title">Fase 2 (V2): Elementalista</h4>
+                            <div class="skill-item"><strong>Domínio Elemental I:</strong> <small>O Elementalista escolhe
+                                    2 Elementos da lista oficial para dominar e utilizar em suas técnicas.</small></div>
+                            <h4 class="evolution-title" style="margin-top: 80px;">Fase 3 (V2): Mestre Elemental</h4>
+                            <div class="skill-item"><strong>Domínio Elemental II:</strong> <small>O Mestre Elemental
+                                    libera mais 2 Elementos da lista oficial, expandindo seu repertório de
+                                    combate.</small></div>
+                            <div class="skill-item"
+                                style="margin-top: 20px; border: 1px dashed #9370db; padding: 10px;">
+                                <strong>Nota de Mestre:</strong> <small>Permite a combinação de elementos selecionados
+                                    para efeitos devastadores e controle absoluto das forças naturais.</small>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </article>
+    </main>
+</body>
+
+</html>

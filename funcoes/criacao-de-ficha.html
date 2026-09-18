@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hurras Fantasy - Personagens</title>
+<link rel="stylesheet" href="../site.css">
+<style>
+:root{--bg:#070706;--panel:#12100d;--panel2:#19140f;--gold:#b89a5d;--gold2:#e0c88f;--ink:#eee5d7;--muted:#9d9385;--red:#a34737;--line:#4d402e}
+*{box-sizing:border-box}html,body{min-height:100%}body{margin:0;background:radial-gradient(circle at 50% -20%,#372013 0,transparent 32rem),linear-gradient(#090807,#050505 70%);color:var(--ink);font-family:Georgia,'Times New Roman',serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:repeating-linear-gradient(0deg,transparent 0 3px,#fff 4px 4px)}
+.topbar{height:58px;border-bottom:1px solid #5e4a31;background:#0b0a09eF;display:flex;align-items:center;padding:0 22px;gap:14px;position:sticky;top:0;z-index:10}.menu{font-size:25px;color:var(--gold2)}.brand{font-size:23px;color:#f2e9da;letter-spacing:.03em}.brand small{font:700 9px Arial,sans-serif;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;margin-left:8px}
+main{max-width:1420px;margin:0 auto;padding:34px 24px 60px}.intro{text-align:center;max-width:760px;margin:0 auto 30px}.eyebrow{font:700 10px Arial,sans-serif;letter-spacing:.24em;color:var(--gold);text-transform:uppercase}.intro h1{font-weight:500;font-size:clamp(30px,5vw,54px);margin:8px 0 9px}.intro p{color:var(--muted);line-height:1.6;margin:0}
+.manager-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;align-items:start}.manager-card{min-height:260px;text-align:center;border-top:1px solid #655438;padding:8px 16px 20px;position:relative}.manager-card:before{content:"";display:block;width:8px;height:8px;transform:rotate(45deg);background:var(--gold);margin:-5px auto 22px}.manager-card h2{font-size:29px;line-height:1.08;font-weight:500;color:#e5d2ad;margin:0 0 24px}.manager-card h2 span{display:block}.manager-card p{color:var(--muted);font:12px/1.55 Arial,sans-serif;min-height:38px}
+.action,.select{width:100%;height:52px;border:1px solid #5b4b34;background:linear-gradient(#1a1510,#0e0c0a);color:#e4d8c5;border-radius:3px;font:700 14px Arial,sans-serif;padding:0 16px}.action{cursor:pointer;margin-top:12px}.action:hover{border-color:var(--gold);color:#fff1cd;box-shadow:0 0 0 1px #7e6338 inset}.action.primary{background:linear-gradient(#b18b4f,#76582f);color:#100d08;border-color:#d2b373}.action.danger{border-color:#713d34;color:#dc9081}.action.danger:hover{background:#28110e}.select{appearance:auto;color:#ddd0bd;background:#15120f}.select:disabled{color:#70695e}
+.empty{border:1px dashed #403629;padding:13px;color:#847b6e;font:11px Arial,sans-serif;margin-top:12px}.meta{font:10px/1.55 Arial,sans-serif;color:#918778;margin-top:10px;min-height:32px}.quick-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:35px}.quick-row a,.quick-row label{border:1px solid #493d2e;color:#bfb2a0;text-decoration:none;padding:9px 12px;font:700 10px Arial,sans-serif;cursor:pointer;background:#0e0d0b}.quick-row a:hover,.quick-row label:hover{border-color:var(--gold);color:#ead7ad}.status{text-align:center;margin-top:16px;color:#a79d8d;font:11px Arial,sans-serif}.status.good{color:#9fbd93}.status.bad{color:#d08b7e}
+@media(max-width:850px){.manager-grid{grid-template-columns:1fr;gap:18px}.manager-card{min-height:0}.manager-card p{min-height:0}.topbar{height:52px}.brand{font-size:20px}main{padding:24px 16px 50px}}
+</style>
+
+<link rel="stylesheet" href="../souls-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+<body>
+<header class="topbar"><span class="menu">☰</span><div class="brand">Hurras Fantasy <small>Forja de Personagens</small></div></header>
+<main>
+  <section class="intro"><span class="eyebrow">COFRE DE PERSONAGENS</span><h1>Escolha o que deseja fazer</h1><p>Crie uma ficha nova, retome um personagem salvo no navegador ou remova uma ficha antiga. O salvamento usa o mesmo Cofre da ficha principal. A Vitalidade vai de 0 a 100 e cada nível libera +10 pontos.</p></section>
+  <section class="manager-grid">
+    <article class="manager-card"><h2><span>Crie um</span>Novo Personagem</h2><p>Abre a Forja com uma ficha limpa para escolher raça, classe, habilidades, armas e magias.</p><button class="action primary" id="newCharacter">✦ Novo Personagem</button></article>
+    <article class="manager-card"><h2><span>Abra um</span>Personagem Gravado</h2><select class="select" id="openSelect"><option>Carregando personagens...</option></select><div class="meta" id="openMeta"></div><button class="action" id="openCharacter">Abrir Personagem</button></article>
+    <article class="manager-card"><h2><span>Ou destrua um</span>Personagem Gravado</h2><select class="select" id="deleteSelect"><option>Carregando personagens...</option></select><div class="meta" id="deleteMeta"></div><button class="action danger" id="deleteCharacter">☠ Excluir Personagem</button></article>
+  </section>
+  <div class="quick-row"><a href="clan.html">Abrir a ficha atual</a><a href="racaeclasses.html">Raças & Classes</a><a href="habilidades.html">Habilidades</a><a href="magia.html">Grimório</a><a href="../armas/armas.html">Arsenal</a></div>
+  <div class="status" id="status">As fichas são lidas do IndexedDB e do salvamento local deste navegador.</div>
+</main>
+<script>
+const DB_NAME='hurras_fantasy',DB_VERSION=2,STORE='characters',FALLBACK_KEY='hurrasVaultFallbackV2',CURRENT_ID_KEY='hurrasCurrentFichaId',DRAFT_KEY='hurrasFichaDraftV6';
+const $=id=>document.getElementById(id);let rows=[];
+function fallbackAll(){try{return JSON.parse(localStorage.getItem(FALLBACK_KEY)||'[]')}catch{return []}}
+function fallbackWrite(v){localStorage.setItem(FALLBACK_KEY,JSON.stringify(v.slice(0,150)))}
+function openDB(){return new Promise((resolve,reject)=>{if(!('indexedDB'in window))return reject(new Error('IndexedDB indisponível'));const req=indexedDB.open(DB_NAME,DB_VERSION);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(STORE)){const st=db.createObjectStore(STORE,{keyPath:'id'});st.createIndex('updatedAt','updatedAt')}};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)})}
+async function all(){let idb=[];try{const db=await openDB();idb=await new Promise((res,rej)=>{const r=db.transaction(STORE).objectStore(STORE).getAll();r.onsuccess=()=>res(r.result||[]);r.onerror=()=>rej(r.error)})}catch{}const local=fallbackAll(),seen=new Set(idb.map(x=>x.id));return [...idb,...local.filter(x=>!seen.has(x.id))].sort((a,b)=>String(b.updatedAt||'').localeCompare(String(a.updatedAt||'')))}
+async function del(id){fallbackWrite(fallbackAll().filter(x=>x.id!==id));try{const db=await openDB();await new Promise((res,rej)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).delete(id);tx.oncomplete=res;tx.onerror=()=>rej(tx.error)})}catch{}}
+function label(r){return `${r.name||'Sem nome'} — ${r.race||'Sem raça'} / ${r.className||'Sem classe'}`}
+function optionHTML(){return rows.length?'<option value="">Selecione um personagem</option>'+rows.map(r=>`<option value="${r.id}">${label(r)}</option>`).join(''):'<option value="">Nenhum personagem gravado</option>'}
+function metaFor(id){const r=rows.find(x=>x.id===id);if(!r)return 'Nenhum personagem selecionado.';return `${r.player?'Player: '+r.player+' · ':''}${r.updatedAt?'Salvo em '+new Date(r.updatedAt).toLocaleString('pt-BR'):''}`}
+function render(){$('openSelect').innerHTML=optionHTML();$('deleteSelect').innerHTML=optionHTML();$('openSelect').disabled=$('deleteSelect').disabled=!rows.length;$('openCharacter').disabled=$('deleteCharacter').disabled=!rows.length;$('openMeta').textContent=$('deleteMeta').textContent=rows.length?`${rows.length} personagem(ns) no cofre.`:'Nenhum personagem gravado neste navegador.'}
+function status(msg,kind=''){$('status').textContent=msg;$('status').className='status '+kind}
+$('openSelect').onchange=e=>$('openMeta').textContent=metaFor(e.target.value);$('deleteSelect').onchange=e=>$('deleteMeta').textContent=metaFor(e.target.value);
+$('newCharacter').onclick=()=>{localStorage.removeItem(CURRENT_ID_KEY);localStorage.removeItem(DRAFT_KEY);localStorage.removeItem('hurrasFichaDraftV5');localStorage.removeItem('hurrasFichaV3');location.href='clan.html?new=1'};
+$('openCharacter').onclick=()=>{const id=$('openSelect').value;if(!id)return status('Escolha um personagem para abrir.','bad');localStorage.setItem(CURRENT_ID_KEY,id);location.href='clan.html?open='+encodeURIComponent(id)};
+$('deleteCharacter').onclick=async()=>{const id=$('deleteSelect').value;if(!id)return status('Escolha um personagem para excluir.','bad');const r=rows.find(x=>x.id===id);if(!confirm(`Excluir “${r?.name||'personagem'}” deste navegador?`))return;await del(id);if(localStorage.getItem(CURRENT_ID_KEY)===id)localStorage.removeItem(CURRENT_ID_KEY);rows=await all();render();status('Personagem excluído do cofre local.','good')};
+(async()=>{rows=await all();render()})()
+</script>
+</body>
+</html>

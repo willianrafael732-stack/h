@@ -1,0 +1,3194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nexalis RPG — Profissões</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* =========================================================
+           NEXALIS RPG — SISTEMA DE PROFISSÕES
+           ========================================================= */
+
+        :root {
+            --inferno: #070303;
+            --sombra: #0d0605;
+            --sangue: #7a0000;
+            --vermelho: #b31313;
+            --brasa: #ff3c00;
+
+            --ouro: #b88624;
+            --ouro-claro: #e0b84f;
+
+            --bronze: #65452c;
+            --pedra: #211816;
+
+            --cinza: #9b9189;
+            --texto: #d6d0c8;
+            --branco: #f1e9dc;
+
+            --verde: #3c7a3c;
+            --azul: #315f8f;
+            --roxo: #643b82;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background:
+                radial-gradient(
+                    ellipse at 50% 0%,
+                    #3b0b07 0%,
+                    #1a0705 22%,
+                    #0c0504 50%,
+                    #050202 80%,
+                    #000000 100%
+                );
+
+            background-attachment: fixed;
+
+            color: var(--texto);
+
+            font-family: 'Cinzel', Georgia, serif;
+
+            min-height: 100vh;
+
+            line-height: 1.7;
+        }
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                linear-gradient(
+                    rgba(255,255,255,0.015) 1px,
+                    transparent 1px
+                );
+
+            background-size: 100% 4px;
+
+            opacity: 0.12;
+
+            z-index: -1;
+        }
+
+        /* =========================================================
+           NAVBAR
+           ========================================================= */
+
+        .navbar {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #100403,
+                    #080202
+                );
+
+            border-bottom: 2px solid var(--ouro);
+
+            box-shadow:
+                0 0 20px rgba(0,0,0,0.9),
+                0 2px 15px rgba(122,0,0,0.25);
+        }
+
+        .container-nav {
+            max-width: 1450px;
+
+            margin: auto;
+
+            padding: 0 20px;
+        }
+
+        .links {
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 5px;
+
+            padding: 10px 0;
+        }
+
+        .links a {
+            color: #cfc4b5;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            padding: 8px 12px;
+
+            border: 1px solid transparent;
+
+            transition: 0.3s;
+
+            white-space: nowrap;
+        }
+
+        .links a:hover {
+            color: var(--ouro-claro);
+
+            border-color: var(--ouro);
+
+            background: rgba(122,0,0,0.18);
+
+            text-shadow:
+                0 0 8px rgba(224,184,79,0.7);
+        }
+
+        .links a.ativo {
+            color: var(--ouro-claro);
+
+            border-color: var(--ouro);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(122,0,0,0.45),
+                    rgba(0,0,0,0.3)
+                );
+
+            box-shadow:
+                inset 0 0 15px rgba(122,0,0,0.2);
+        }
+
+        /* =========================================================
+           CONTAINER
+           ========================================================= */
+
+        .container {
+            max-width: 1250px;
+
+            margin: auto;
+
+            padding: 40px 20px 80px;
+        }
+
+        /* =========================================================
+           CABEÇALHO
+           ========================================================= */
+
+        .hero {
+            text-align: center;
+
+            padding: 55px 20px 45px;
+
+            margin-bottom: 40px;
+
+            border: 1px solid var(--bronze);
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(122,0,0,0.28),
+                    rgba(0,0,0,0.55) 65%
+                );
+
+            box-shadow:
+                inset 0 0 50px rgba(0,0,0,0.8),
+                0 0 25px rgba(0,0,0,0.6);
+        }
+
+        .hero .simbolo {
+            font-size: 55px;
+
+            margin-bottom: 10px;
+
+            filter:
+                drop-shadow(
+                    0 0 15px rgba(255,60,0,0.5)
+                );
+        }
+
+        .hero h1 {
+            color: var(--ouro-claro);
+
+            font-size: clamp(32px, 5vw, 58px);
+
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            text-shadow:
+                0 0 10px rgba(224,184,79,0.3),
+                0 4px 4px #000;
+
+            margin-bottom: 12px;
+        }
+
+        .hero h1::after {
+            content: "";
+
+            display: block;
+
+            width: 260px;
+
+            height: 2px;
+
+            margin: 18px auto 0;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--ouro),
+                    transparent
+                );
+        }
+
+        .hero p {
+            max-width: 850px;
+
+            margin: 20px auto 0;
+
+            color: var(--cinza);
+
+            font-size: 16px;
+        }
+
+        /* =========================================================
+           INTRODUÇÃO
+           ========================================================= */
+
+        .introducao {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(33,24,22,0.95),
+                    rgba(10,4,3,0.95)
+                );
+
+            border: 1px solid var(--bronze);
+
+            padding: 30px;
+
+            margin-bottom: 45px;
+
+            box-shadow:
+                inset 0 0 30px rgba(0,0,0,0.7);
+        }
+
+        .introducao h2 {
+            color: var(--ouro-claro);
+
+            font-size: 25px;
+
+            margin-bottom: 12px;
+
+            border-bottom: 1px solid var(--bronze);
+
+            padding-bottom: 10px;
+        }
+
+        .introducao p {
+            color: #bbb1a7;
+
+            font-size: 15px;
+        }
+
+        /* =========================================================
+           ÍNDICE DE PROFISSÕES
+           ========================================================= */
+
+        .indice {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(190px, 1fr));
+
+            gap: 12px;
+
+            margin-bottom: 50px;
+        }
+
+        .indice a {
+            display: block;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            color: var(--texto);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #1c100e,
+                    #0a0403
+                );
+
+            border: 1px solid var(--bronze);
+
+            padding: 15px;
+
+            transition: 0.3s;
+        }
+
+        .indice a:hover {
+            transform: translateY(-3px);
+
+            color: var(--ouro-claro);
+
+            border-color: var(--ouro);
+
+            box-shadow:
+                0 0 18px rgba(184,134,36,0.18);
+        }
+
+        .indice .icone {
+            display: block;
+
+            font-size: 25px;
+
+            margin-bottom: 5px;
+        }
+
+        /* =========================================================
+           PROFISSÃO
+           ========================================================= */
+
+        .profissao {
+            margin-bottom: 65px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(22,11,9,0.97),
+                    rgba(5,2,2,0.98)
+                );
+
+            border: 1px solid var(--bronze);
+
+            box-shadow:
+                0 10px 40px rgba(0,0,0,0.5),
+                inset 0 0 35px rgba(0,0,0,0.65);
+
+            overflow: hidden;
+        }
+
+        .profissao-header {
+            position: relative;
+
+            padding: 30px;
+
+            border-bottom: 2px solid var(--ouro);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(122,0,0,0.35),
+                    rgba(20,5,4,0.8)
+                );
+        }
+
+        .profissao-header::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            width: 5px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    var(--brasa),
+                    var(--ouro),
+                    var(--sangue)
+                );
+        }
+
+        .profissao-titulo {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            flex-wrap: wrap;
+        }
+
+        .profissao-icone {
+            width: 70px;
+
+            height: 70px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 38px;
+
+            border: 1px solid var(--ouro);
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(122,0,0,0.45),
+                    #080202
+                );
+
+            box-shadow:
+                inset 0 0 20px rgba(122,0,0,0.4),
+                0 0 15px rgba(184,134,36,0.15);
+        }
+
+        .profissao-titulo h2 {
+            color: var(--ouro-claro);
+
+            font-size: 30px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+        }
+
+        .profissao-titulo small {
+            display: block;
+
+            color: var(--cinza);
+
+            font-size: 13px;
+
+            margin-top: 3px;
+        }
+
+        .descricao {
+            margin-top: 20px;
+
+            color: #c2b8ae;
+
+            font-size: 15px;
+        }
+
+        /* =========================================================
+           INFORMAÇÕES
+           ========================================================= */
+
+        .info-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(200px, 1fr));
+
+            gap: 12px;
+
+            margin-top: 25px;
+        }
+
+        .info-box {
+            padding: 15px;
+
+            border: 1px solid #493128;
+
+            background: rgba(0,0,0,0.3);
+        }
+
+        .info-box span {
+            display: block;
+
+            color: var(--ouro);
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+        .info-box strong {
+            color: var(--branco);
+
+            font-size: 14px;
+        }
+
+        /* =========================================================
+           PROGRESSÃO
+           ========================================================= */
+
+        .progressao {
+            padding: 30px;
+        }
+
+        .titulo-secao {
+            color: var(--ouro-claro);
+
+            font-size: 23px;
+
+            margin-bottom: 25px;
+
+            text-transform: uppercase;
+
+            border-bottom: 1px solid var(--bronze);
+
+            padding-bottom: 10px;
+        }
+
+        /* =========================================================
+           NÍVEL
+           ========================================================= */
+
+        .nivel {
+            position: relative;
+
+            margin-bottom: 22px;
+
+            padding: 25px;
+
+            border: 1px solid #493128;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(30,18,15,0.9),
+                    rgba(8,3,3,0.95)
+                );
+
+            transition: 0.3s;
+        }
+
+        .nivel:hover {
+            border-color: var(--ouro);
+
+            box-shadow:
+                0 0 20px rgba(184,134,36,0.08);
+
+            transform: translateX(3px);
+        }
+
+        .nivel:last-child {
+            margin-bottom: 0;
+        }
+
+        .nivel-topo {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 15px;
+        }
+
+        .nivel-numero {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .nivel-badge {
+            width: 42px;
+
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    var(--sangue),
+                    #170303
+                );
+
+            border: 1px solid var(--ouro);
+
+            color: var(--ouro-claro);
+
+            font-weight: 900;
+
+            font-size: 16px;
+
+            box-shadow:
+                0 0 10px rgba(122,0,0,0.35);
+        }
+
+        .nivel h4 {
+            color: var(--branco);
+
+            font-size: 19px;
+        }
+
+        .raridade {
+            padding: 5px 12px;
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            border: 1px solid var(--bronze);
+
+            color: var(--ouro-claro);
+
+            background: rgba(0,0,0,0.4);
+        }
+
+        .nivel p {
+            color: #aaa099;
+
+            font-size: 14px;
+
+            margin-bottom: 15px;
+        }
+
+        /* =========================================================
+           HABILIDADES
+           ========================================================= */
+
+        .habilidades {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 12px;
+        }
+
+        .habilidade {
+            padding: 15px;
+
+            background:
+                rgba(0,0,0,0.35);
+
+            border-left: 3px solid var(--sangue);
+
+            border-top: 1px solid #35231e;
+
+            border-right: 1px solid #35231e;
+
+            border-bottom: 1px solid #35231e;
+        }
+
+        .habilidade h5 {
+            color: var(--ouro-claro);
+
+            font-size: 14px;
+
+            margin-bottom: 5px;
+        }
+
+        .habilidade p {
+            margin: 0;
+
+            font-size: 12px;
+
+            color: #9f958c;
+        }
+
+        /* =========================================================
+           ESPECIALIZAÇÕES
+           ========================================================= */
+
+        .especializacoes {
+            margin-top: 35px;
+        }
+
+        .especializacao-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 18px;
+        }
+
+        .especializacao {
+            padding: 22px;
+
+            border: 1px solid var(--bronze);
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    rgba(122,0,0,0.2),
+                    rgba(0,0,0,0.4)
+                );
+        }
+
+        .especializacao h4 {
+            color: var(--ouro-claro);
+
+            margin-bottom: 10px;
+
+            font-size: 17px;
+        }
+
+        .especializacao p {
+            color: #a59b92;
+
+            font-size: 13px;
+
+            margin-bottom: 12px;
+        }
+
+        .especializacao ul {
+            list-style: none;
+        }
+
+        .especializacao li {
+            color: #c1b7ad;
+
+            font-size: 12px;
+
+            padding: 5px 0;
+
+            border-bottom: 1px solid rgba(101,69,44,0.25);
+        }
+
+        .especializacao li::before {
+            content: "◆";
+
+            color: var(--ouro);
+
+            margin-right: 8px;
+
+            font-size: 8px;
+        }
+
+        /* =========================================================
+           TABELA DE NÍVEIS
+           ========================================================= */
+
+        .tabela-wrapper {
+            overflow-x: auto;
+
+            margin-top: 35px;
+        }
+
+        .tabela {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 700px;
+
+            background: rgba(0,0,0,0.3);
+        }
+
+        .tabela th {
+            color: var(--ouro-claro);
+
+            background: #180605;
+
+            padding: 13px;
+
+            border: 1px solid var(--bronze);
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+        }
+
+        .tabela td {
+            padding: 12px;
+
+            border: 1px solid #3b2821;
+
+            color: #b6aca2;
+
+            font-size: 12px;
+
+            text-align: center;
+        }
+
+        .tabela tr:hover td {
+            background: rgba(122,0,0,0.08);
+        }
+
+        /* =========================================================
+           REGRAS GERAIS
+           ========================================================= */
+
+        .regras {
+            margin-top: 60px;
+
+            padding: 30px;
+
+            border: 1px solid var(--ouro);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(44,20,15,0.9),
+                    rgba(8,3,2,0.95)
+                );
+        }
+
+        .regras h2 {
+            color: var(--ouro-claro);
+
+            margin-bottom: 20px;
+
+            text-transform: uppercase;
+        }
+
+        .regra {
+            display: flex;
+
+            gap: 15px;
+
+            padding: 13px 0;
+
+            border-bottom: 1px solid #38251f;
+
+            color: #aaa099;
+
+            font-size: 13px;
+        }
+
+        .regra:last-child {
+            border-bottom: none;
+        }
+
+        .regra strong {
+            color: var(--ouro-claro);
+
+            min-width: 150px;
+        }
+
+        /* =========================================================
+           FOOTER
+           ========================================================= */
+
+        footer {
+            text-align: center;
+
+            padding: 35px 20px;
+
+            border-top: 2px solid var(--ouro);
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #080202,
+                    #020101
+                );
+
+            color: #756b63;
+
+            font-size: 12px;
+        }
+
+        footer strong {
+            color: var(--ouro);
+        }
+
+        /* =========================================================
+           RESPONSIVO
+           ========================================================= */
+
+        @media (max-width: 700px) {
+
+            .container {
+                padding: 20px 12px 50px;
+            }
+
+            .links {
+                justify-content: flex-start;
+
+                overflow-x: auto;
+
+                flex-wrap: nowrap;
+            }
+
+            .links a {
+                font-size: 11px;
+
+                padding: 7px 9px;
+            }
+
+            .hero {
+                padding: 35px 15px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+
+                letter-spacing: 2px;
+            }
+
+            .profissao-header,
+            .progressao {
+                padding: 20px;
+            }
+
+            .profissao-titulo h2 {
+                font-size: 22px;
+            }
+
+            .nivel {
+                padding: 18px;
+            }
+
+            .regra {
+                flex-direction: column;
+
+                gap: 3px;
+            }
+
+            .regra strong {
+                min-width: auto;
+            }
+        }
+
+    </style>
+
+<link rel="stylesheet" href="../souls-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+
+<body>
+
+     <nav class="navbar">
+        <div class="container-nav">
+            <div class="links">
+                <div class="nav-links">
+                    <a href="../funcoes/inicio.html">Player</a>
+                    <a href="../funcoes/racaeclasses.html">Raças & Classes</a>
+                    <a href="../armas/armas.html">Armas</a>
+                    <a href="../funcoes/sistema-completo.html">Sistema</a>
+                    <a href="../funcoes/npcs.html">NPCs</a>
+                    <a href="../funcoes/criacao-de-ficha.html">Ficha</a>
+                    <a href="../funcoes/magia.html">Magia</a><a href="../funcoes/habilidades.html">Habilidades</a>
+                    <a href="../funcoes/porcao.html">Alquimia</a>
+                    <a href="../funcoes/INGREDIENTES.HTML">Ingredientes</a>
+                    <a href="../funcoes/mapas.html">Mapas</a>
+                    <a href="../funcoes/clan.html">Criação de Ficha</a>
+                    <a href="../funcoes/minerios.html">Mineiro</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<!-- =========================================================
+     NAVEGAÇÃO
+     ========================================================= -->
+
+<nav class="navbar">
+
+    <div class="container-nav">
+
+        <div class="links">
+
+            <a href="../funcoes/inicio.html">Player</a>
+
+            <a href="../funcoes/racaeclasses.html">
+                Raças & Classes
+            </a>
+
+            <a href="../armas/armas.html">
+                Armas
+            </a>
+
+            <a href="../funcoes/sistema-completo.html">
+                Sistema
+            </a>
+
+            <a href="../funcoes/npcs.html">NPCs</a>
+
+            <a href="../funcoes/criacao-de-ficha.html">
+                Ficha
+            </a>
+
+            <a href="../funcoes/magia.html">
+                Magia
+            </a>
+
+            <a href="../funcoes/porcao.html">
+                Alquimia
+            </a>
+
+            <a href="../funcoes/INGREDIENTES.HTML">
+                Ingredientes
+            </a>
+
+            <a href="../funcoes/mapas.html">
+                Mapas
+            </a>
+
+            <a href="../funcoes/clan.html">
+                Clãs
+            </a>
+
+            <a href="../armas/Runas.html">
+                Runas
+            </a>
+
+            <a href="profissoes.html" class="ativo">
+                Profissões
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     CONTEÚDO
+     ========================================================= -->
+
+<main class="container">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="simbolo">
+            ⚒️
+        </div>
+
+        <h1>
+            Profissões
+        </h1>
+
+        <p>
+            Em Nexalis, uma profissão não representa apenas um ofício.
+            Ela representa anos de treinamento, conhecimento, técnica e
+            domínio sobre materiais e recursos que podem decidir o destino
+            de um aventureiro.
+        </p>
+
+    </section>
+
+
+    <!-- INTRODUÇÃO -->
+
+    <section class="introducao">
+
+        <h2>
+            ⚔ O Caminho do Ofício
+        </h2>
+
+        <p>
+            Todo personagem pode aprender uma profissão, mas poucos chegam
+            ao domínio absoluto de uma arte. Conforme o personagem ganha
+            experiência profissional, novas técnicas são desbloqueadas,
+            materiais mais raros podem ser utilizados e equipamentos cada
+            vez mais poderosos podem ser produzidos.
+        </p>
+
+        <br>
+
+        <p>
+            As profissões possuem sete estágios de domínio. O avanço não
+            representa apenas um aumento numérico: cada nível permite que
+            o personagem realize tarefas que anteriormente estavam além
+            de sua capacidade.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         ÍNDICE
+         ===================================================== -->
+
+    <div class="indice">
+
+        <a href="#ferreiro">
+            <span class="icone">⚒️</span>
+            Ferreiro
+        </a>
+
+        <a href="#armeiro">
+            <span class="icone">🗡️</span>
+            Armeiro
+        </a>
+
+        <a href="#alfaiate">
+            <span class="icone">🧵</span>
+            Alfaiate
+        </a>
+
+        <a href="#alquimista">
+            <span class="icone">⚗️</span>
+            Alquimista
+        </a>
+
+        <a href="#joalheiro">
+            <span class="icone">💎</span>
+            Joalheiro
+        </a>
+
+        <a href="#curtidor">
+            <span class="icone">🛡️</span>
+            Curtidor
+        </a>
+
+        <a href="#minerador">
+            <span class="icone">⛏️</span>
+            Minerador
+        </a>
+
+        <a href="#carpinteiro">
+            <span class="icone">🪵</span>
+            Carpinteiro
+        </a>
+
+    </div>
+
+
+    <!-- =====================================================
+         FERREIRO
+         ===================================================== -->
+
+    <section class="profissao" id="ferreiro">
+
+        <header class="profissao-header">
+
+            <div class="profissao-titulo">
+
+                <div class="profissao-icone">
+                    ⚒️
+                </div>
+
+                <div>
+
+                    <h2>
+                        Ferreiro
+                    </h2>
+
+                    <small>
+                        Mestres do fogo, metal e forja
+                    </small>
+
+                </div>
+
+            </div>
+
+            <p class="descricao">
+
+                Ferreiros transformam minério bruto em armas, ferramentas,
+                componentes e equipamentos resistentes. Os maiores mestres
+                conseguem trabalhar materiais mágicos e metais capazes de
+                suportar encantamentos e runas.
+
+            </p>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+                    <span>Principal atributo</span>
+                    <strong>Força / Técnica</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Materiais</span>
+                    <strong>Metais e minérios</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Especialidade</span>
+                    <strong>Forja</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Função</span>
+                    <strong>Equipamentos</strong>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <div class="progressao">
+
+            <h3 class="titulo-secao">
+                Progressão da Profissão
+            </h3>
+
+
+            <div class="nivel">
+
+                <div class="nivel-topo">
+
+                    <div class="nivel-numero">
+
+                        <div class="nivel-badge">
+                            I
+                        </div>
+
+                        <h4>
+                            Aprendiz
+                        </h4>
+
+                    </div>
+
+                    <span class="raridade">
+                        Comum
+                    </span>
+
+                </div>
+
+                <p>
+                    O personagem aprende os fundamentos da metalurgia
+                    e consegue realizar trabalhos básicos.
+                </p>
+
+                <div class="habilidades">
+
+                    <div class="habilidade">
+
+                        <h5>
+                            🔨 Forja Básica
+                        </h5>
+
+                        <p>
+                            Produz ferramentas simples e equipamentos
+                            de metal comum.
+                        </p>
+
+                    </div>
+
+                    <div class="habilidade">
+
+                        <h5>
+                            🔧 Reparação
+                        </h5>
+
+                        <p>
+                            Consegue reparar equipamentos danificados.
+                        </p>
+
+                    </div>
+
+                    <div class="habilidade">
+
+                        <h5>
+                            ⛏️ Identificação de Minério
+                        </h5>
+
+                        <p>
+                            Reconhece metais e minérios comuns.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="nivel">
+
+                <div class="nivel-topo">
+
+                    <div class="nivel-numero">
+
+                        <div class="nivel-badge">
+                            II
+                        </div>
+
+                        <h4>
+                            Ferreiro
+                        </h4>
+
+                    </div>
+
+                    <span class="raridade">
+                        Incomum
+                    </span>
+
+                </div>
+
+                <p>
+                    O personagem domina a forja convencional e começa
+                    a trabalhar materiais de maior qualidade.
+                </p>
+
+                <div class="habilidades">
+
+                    <div class="habilidade">
+
+                        <h5>
+                            ⚔️ Metal Temperado
+                        </h5>
+
+                        <p>
+                            Produz equipamentos significativamente mais
+                            resistentes.
+                        </p>
+
+                    </div>
+
+                    <div class="habilidade">
+
+                        <h5>
+                            🔥 Temperamento Perfeito
+                        </h5>
+
+                        <p>
+                            Reduz falhas durante a fabricação.
+                        </p>
+
+                    </div>
+
+                    <div class="habilidade">
+
+                        <h5>
+                            ⛏️ Minérios Raros
+                        </h5>
+
+                        <p>
+                            Pode trabalhar minérios incomuns.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="nivel">
+
+                <div class="nivel-topo">
+
+                    <div class="nivel-numero">
+
+                        <div class="nivel-badge">
+                            III
+                        </div>
+
+                        <h4>
+                            Especialista
+                        </h4>
+
+                    </div>
+
+                    <span class="raridade">
+                        Rara
+                    </span>
+
+                </div>
+
+                <p>
+                    O ferreiro passa a compreender a interação entre
+                    metal, magia e energia.
+                </p>
+
+                <div class="habilidades">
+
+                    <div class="habilidade">
+
+                        <h5>
+                            ✨ Metal Encantável
+                        </h5>
+
+                        <p>
+                            Produz equipamentos preparados para receber
+                            encantamentos.
+                        </p>
+
+                    </div>
+
+                    <div class="habilidade">
+
+                        <h5>
+                            🔮 Encaixe de Runa
+                        </h5>
+
+                        <p>
+                            Pode preparar equipamentos para receber runas.
+                        </p>
+
+                    </div>
+
+                    <div class="habilidade">
+
+                        <h5>
+                            ⚒️ Liga Especial
+                        </h5>
+
+                        <p>
+                            Cria ligas usando diferentes metais.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="nivel">
+
+                <div class="nivel-topo">
+
+                    <div class="nivel-numero">
+
+                        <div class="nivel-badge">
+                            IV
+                        </div>
+
+                        <h4>
+                            Mestre Ferreiro
+                        </h4>
+
+                    </div>
+
+                    <span class="raridade">
+                        Épica
+                    </span>
+
+                </div>
+
+                <p>
+                    O mestre consegue produzir equipamentos mágicos
+                    extremamente sofisticados.
+                </p>
+
+                <div class="habilidades">
+
+                    <div class="habilidade">
+
+                        <h5>
+                            🔥 Forja Arcana
+                        </h5>
+
+                        <p>
+                            Trabalha metais imbuídos de energia mágica.
+                        </p>
+
+                    </div>
+
+                    <div class="habilidade">
+
+                        <h5>
+                            ⚔️ Arma Mestre
+                        </h5>
+
+                        <p>
+                            Produz armas de qualidade excepcional.
+                        </p>
+
+                    </div>
+
+                    <div class="habilidade">
+
+                        <h5>
+                            💠 Metal Raro
+                        </h5>
+
+                        <p>
+                            Pode trabalhar materiais extremamente raros.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="nivel">
+
+                <div class="nivel-topo">
+
+                    <div class="nivel-numero">
+
+                        <div class="nivel-badge">
+                            V
+                        </div>
+
+                        <h4>
+                            Grão-Mestre
+                        </h4>
+
+                    </div>
+
+                    <span class="raridade">
+                        Lendária
+                    </span>
+
+                </div>
+
+                <p>
+                    Pouquíssimos ferreiros chegam a este estágio.
+                    Seus equipamentos podem se tornar relíquias.
+                </p>
+
+                <div class="habilidades">
+
+                    <div class="habilidade">
+
+                        <h5>
+                            👑 Forja Lendária
+                        </h5>
+
+                        <p>
+                            Produz equipamentos lendários.
+                        </p>
+
+                    </div>
+
+                    <div class="habilidade">
+
+                        <h5>
+                            🔥 Alma da Forja
+                        </h5>
+
+                        <p>
+                            O ferreiro consegue manipular temperaturas
+                            sobrenaturais.
+                        </p>
+
+                    </div>
+
+                    <div class="habilidade">
+
+                        <h5>
+                            💎 Materiais Lendários
+                        </h5>
+
+                        <p>
+                            Pode utilizar materiais de origem extraordinária.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="nivel">
+
+                <div class="nivel-topo">
+
+                    <div class="nivel-numero">
+
+                        <div class="nivel-badge">
+                            VI
+                        </div>
+
+                        <h4>
+                            Forjador Lendário
+                        </h4>
+
+                    </div>
+
+                    <span class="raridade">
+                        Mítico
+                    </span>
+
+                </div>
+
+                <p>
+                    O ferreiro ultrapassou os limites conhecidos da
+                    profissão e consegue alterar propriedades do próprio metal.
+                </p>
+
+                <div class="habilidades">
+
+                    <div class="habilidade">
+
+                        <h5>
+                            🌋 Metal Primordial
+                        </h5>
+
+                        <p>
+                            Trabalha materiais ligados a forças primordiais.
+                        </p>
+
+                    </div>
+
+                    <div class="habilidade">
+
+                        <h5>
+                            ⚡ Forja Elemental
+                        </h5>
+
+                        <p>
+                            Pode incorporar propriedades elementais
+                            durante a fabricação.
+                        </p>
+
+                    </div>
+
+                    <div class="habilidade">
+
+                        <h5>
+                            ⚔️ Relíquia Única
+                        </h5>
+
+                        <p>
+                            Pode criar equipamentos únicos que não podem
+                            ser reproduzidos facilmente.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="nivel">
+
+                <div class="nivel-topo">
+
+                    <div class="nivel-numero">
+
+                        <div class="nivel-badge">
+                            VII
+                        </div>
+
+                        <h4>
+                            Forjador Primordial
+                        </h4>
+
+                    </div>
+
+                    <span class="raridade">
+                        Primordial
+                    </span>
+
+                </div>
+
+                <p>
+                    O ápice da profissão. O ferreiro não apenas trabalha
+                    o material: ele é capaz de transformar a própria essência
+                    de uma substância através da forja.
+                </p>
+
+                <div class="habilidades">
+
+                    <div class="habilidade">
+
+                        <h5>
+                            🔥 Forja Primordial
+                        </h5>
+
+                        <p>
+                            Pode criar equipamentos utilizando materiais
+                            de origem primordial.
+                        </p>
+
+                    </div>
+
+                    <div class="habilidade">
+
+                        <h5>
+                            💀 Forja Proibida
+                        </h5>
+
+                        <p>
+                            Permite trabalhar materiais que normalmente
+                            destruiriam uma oficina comum.
+                        </p>
+
+                    </div>
+
+                    <div class="habilidade">
+
+                        <h5>
+                            👑 Obra Incomparável
+                        </h5>
+
+                        <p>
+                            Uma criação deste nível pode tornar-se uma
+                            relíquia única de Nexalis.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ESPECIALIZAÇÕES -->
+
+            <div class="especializacoes">
+
+                <h3 class="titulo-secao">
+                    Especializações
+                </h3>
+
+                <div class="especializacao-grid">
+
+                    <div class="especializacao">
+
+                        <h4>
+                            ⚔️ Mestre de Armas
+                        </h4>
+
+                        <p>
+                            Especialista na criação de armas.
+                        </p>
+
+                        <ul>
+                            <li>Espadas</li>
+                            <li>Machados</li>
+                            <li>Martelos</li>
+                            <li>Armas mágicas</li>
+                        </ul>
+
+                    </div>
+
+                    <div class="especializacao">
+
+                        <h4>
+                            🛡️ Mestre de Armaduras
+                        </h4>
+
+                        <p>
+                            Especialista em proteção.
+                        </p>
+
+                        <ul>
+                            <li>Armaduras pesadas</li>
+                            <li>Escudos</li>
+                            <li>Placas especiais</li>
+                            <li>Armaduras mágicas</li>
+                        </ul>
+
+                    </div>
+
+                    <div class="especializacao">
+
+                        <h4>
+                            🔮 Forjador Rúnico
+                        </h4>
+
+                        <p>
+                            Especialista na preparação de equipamentos
+                            para receber runas.
+                        </p>
+
+                        <ul>
+                            <li>Encaixes rúnicos</li>
+                            <li>Metais mágicos</li>
+                            <li>Armas encantáveis</li>
+                            <li>Equipamentos rúnicos</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ARMEIRO
+         ===================================================== -->
+
+    <section class="profissao" id="armeiro">
+
+        <header class="profissao-header">
+
+            <div class="profissao-titulo">
+
+                <div class="profissao-icone">
+                    🗡️
+                </div>
+
+                <div>
+
+                    <h2>
+                        Armeiro
+                    </h2>
+
+                    <small>
+                        Especialistas na criação e manutenção de armas
+                    </small>
+
+                </div>
+
+            </div>
+
+            <p class="descricao">
+
+                Armeiros dedicam sua vida ao estudo das armas.
+                Conhecem equilíbrio, peso, alcance, corte, impacto e
+                técnicas de combate aplicadas à fabricação.
+
+            </p>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+                    <span>Especialidade</span>
+                    <strong>Armas</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Principal recurso</span>
+                    <strong>Metal</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Foco</span>
+                    <strong>Dano e precisão</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Ofício</span>
+                    <strong>Fabricação</strong>
+                </div>
+
+            </div>
+
+        </header>
+
+        <div class="progressao">
+
+            <h3 class="titulo-secao">
+                Progressão
+            </h3>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">I</div>
+                        <h4>Aprendiz de Armeiro</h4>
+                    </div>
+                    <span class="raridade">Comum</span>
+                </div>
+
+                <p>
+                    Aprende a fabricar e reparar armas simples.
+                </p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>🗡️ Armas Básicas</h5>
+                        <p>Produz facas, espadas simples, lanças e ferramentas de combate.</p>
+                    </div>
+
+                    <div class="habilidade">
+                        <h5>🔧 Reparação</h5>
+                        <p>Recupera armas danificadas.</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">II</div>
+                        <h4>Armeiro</h4>
+                    </div>
+                    <span class="raridade">Incomum</span>
+                </div>
+
+                <p>
+                    Passa a fabricar armas de qualidade superior.
+                </p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>⚔️ Lâmina Temperada</h5>
+                        <p>Produz lâminas resistentes.</p>
+                    </div>
+
+                    <div class="habilidade">
+                        <h5>🏹 Armas à Distância</h5>
+                        <p>Aprende a fabricar mecanismos simples de disparo.</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">III</div>
+                        <h4>Armeiro Especialista</h4>
+                    </div>
+                    <span class="raridade">Rara</span>
+                </div>
+
+                <p>
+                    Domina armas complexas e materiais especiais.
+                </p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>💠 Armas Raras</h5>
+                        <p>Produz armas utilizando materiais raros.</p>
+                    </div>
+
+                    <div class="habilidade">
+                        <h5>🔮 Preparação Mágica</h5>
+                        <p>Prepara armas para encantamentos.</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">IV</div>
+                        <h4>Mestre Armeiro</h4>
+                    </div>
+                    <span class="raridade">Épica</span>
+                </div>
+
+                <p>
+                    Suas armas podem alcançar qualidade extraordinária.
+                </p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>⚔️ Arma Épica</h5>
+                        <p>Produz armas de alto nível.</p>
+                    </div>
+
+                    <div class="habilidade">
+                        <h5>🔥 Lâmina Elemental</h5>
+                        <p>Integra propriedades elementais à arma.</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">V</div>
+                        <h4>Grão-Armeiro</h4>
+                    </div>
+                    <span class="raridade">Lendária</span>
+                </div>
+
+                <p>
+                    Cria armas capazes de se tornar famosas por gerações.
+                </p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>👑 Arma Lendária</h5>
+                        <p>Produz equipamentos lendários.</p>
+                    </div>
+
+                    <div class="habilidade">
+                        <h5>💀 Metal Proibido</h5>
+                        <p>Pode trabalhar materiais extremamente perigosos.</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">VI</div>
+                        <h4>Armeiro Mítico</h4>
+                    </div>
+                    <span class="raridade">Mítica</span>
+                </div>
+
+                <p>
+                    Seu conhecimento ultrapassa as técnicas convencionais.
+                </p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>🌑 Arma Abissal</h5>
+                        <p>Produz armas utilizando materiais sobrenaturais.</p>
+                    </div>
+
+                    <div class="habilidade">
+                        <h5>✨ Arma Sagrada</h5>
+                        <p>Prepara armas para receber energia sagrada.</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">VII</div>
+                        <h4>Armeiro Primordial</h4>
+                    </div>
+                    <span class="raridade">Primordial</span>
+                </div>
+
+                <p>
+                    Capaz de criar armas que podem entrar para a história de Nexalis.
+                </p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>👑 Arma Primordial</h5>
+                        <p>Cria armas únicas de poder extraordinário.</p>
+                    </div>
+
+                    <div class="habilidade">
+                        <h5>⚡ Essência da Arma</h5>
+                        <p>Pode incorporar uma propriedade sobrenatural permanente.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ALFAIATE
+         ===================================================== -->
+
+    <section class="profissao" id="alfaiate">
+
+        <header class="profissao-header">
+
+            <div class="profissao-titulo">
+
+                <div class="profissao-icone">
+                    🧵
+                </div>
+
+                <div>
+
+                    <h2>
+                        Alfaiate
+                    </h2>
+
+                    <small>
+                        Mestres dos tecidos e vestimentas
+                    </small>
+
+                </div>
+
+            </div>
+
+            <p class="descricao">
+
+                Alfaiates transformam fibras, tecidos, couro tratado e
+                componentes especiais em roupas, vestimentas de proteção
+                e equipamentos especializados.
+
+            </p>
+
+        </header>
+
+        <div class="progressao">
+
+            <h3 class="titulo-secao">
+                Progressão
+            </h3>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">I</div>
+                        <h4>Aprendiz</h4>
+                    </div>
+                    <span class="raridade">Comum</span>
+                </div>
+
+                <p>Aprende costura, cortes e reparos básicos.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>🧵 Costura Básica</h5>
+                        <p>Produz roupas simples.</p>
+                    </div>
+
+                    <div class="habilidade">
+                        <h5>🔧 Reparar Vestimentas</h5>
+                        <p>Conserta tecidos danificados.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">II</div>
+                        <h4>Costureiro</h4>
+                    </div>
+                    <span class="raridade">Incomum</span>
+                </div>
+
+                <p>Trabalha tecidos resistentes e especiais.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>🛡️ Tecido Reforçado</h5>
+                        <p>Produz vestimentas mais resistentes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">III</div>
+                        <h4>Alfaiate Especialista</h4>
+                    </div>
+                    <span class="raridade">Rara</span>
+                </div>
+
+                <p>Começa a trabalhar materiais mágicos.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>✨ Tecido Encantável</h5>
+                        <p>Prepara roupas para receber encantamentos.</p>
+                    </div>
+
+                    <div class="habilidade">
+                        <h5>🌑 Tecido Sombrio</h5>
+                        <p>Trabalha fibras de origem sobrenatural.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">IV</div>
+                        <h4>Mestre Alfaiate</h4>
+                    </div>
+                    <span class="raridade">Épica</span>
+                </div>
+
+                <p>Produz vestimentas mágicas de alto nível.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>🧥 Vestimenta Arcana</h5>
+                        <p>Cria roupas capazes de armazenar energia mágica.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">V</div>
+                        <h4>Grão-Mestre</h4>
+                    </div>
+                    <span class="raridade">Lendária</span>
+                </div>
+
+                <p>Domina materiais lendários.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>👑 Vestimenta Lendária</h5>
+                        <p>Produz roupas e mantos de qualidade lendária.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">VI</div>
+                        <h4>Alfaiate Mítico</h4>
+                    </div>
+                    <span class="raridade">Mítica</span>
+                </div>
+
+                <p>Cria vestimentas com propriedades sobrenaturais.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>🌌 Tecido Astral</h5>
+                        <p>Trabalha fibras provenientes de materiais extraordinários.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">VII</div>
+                        <h4>Alfaiate Primordial</h4>
+                    </div>
+                    <span class="raridade">Primordial</span>
+                </div>
+
+                <p>O tecido deixa de ser apenas matéria e passa a carregar essência.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>👑 Vestimenta Primordial</h5>
+                        <p>Produz peças únicas com propriedades extraordinárias.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ALQUIMISTA
+         ===================================================== -->
+
+    <section class="profissao" id="alquimista">
+
+        <header class="profissao-header">
+
+            <div class="profissao-titulo">
+
+                <div class="profissao-icone">
+                    ⚗️
+                </div>
+
+                <div>
+
+                    <h2>
+                        Alquimista
+                    </h2>
+
+                    <small>
+                        Manipuladores de essências e componentes
+                    </small>
+
+                </div>
+
+            </div>
+
+            <p class="descricao">
+
+                Alquimistas estudam a transformação da matéria, essências,
+                componentes de criaturas, minerais, fungos, plantas e
+                substâncias sobrenaturais.
+
+            </p>
+
+        </header>
+
+        <div class="progressao">
+
+            <h3 class="titulo-secao">
+                Progressão
+            </h3>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">I</div>
+                        <h4>Aprendiz</h4>
+                    </div>
+                    <span class="raridade">Comum</span>
+                </div>
+
+                <p>Aprende coleta, mistura e preparação básica.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>⚗️ Mistura Básica</h5>
+                        <p>Produz compostos simples.</p>
+                    </div>
+
+                    <div class="habilidade">
+                        <h5>🌿 Preparação Vegetal</h5>
+                        <p>Processa plantas e biomassa.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">II</div>
+                        <h4>Alquimista</h4>
+                    </div>
+                    <span class="raridade">Incomum</span>
+                </div>
+
+                <p>Domina componentes de criaturas e materiais naturais.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>☠️ Toxinas</h5>
+                        <p>Produz compostos venenosos básicos.</p>
+                    </div>
+
+                    <div class="habilidade">
+                        <h5>🌿 Extratos</h5>
+                        <p>Produz extratos concentrados.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">III</div>
+                        <h4>Alquimista Especialista</h4>
+                    </div>
+                    <span class="raridade">Rara</span>
+                </div>
+
+                <p>Passa a trabalhar essências mágicas.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>🔥 Essência Elemental</h5>
+                        <p>Manipula essências elementais.</p>
+                    </div>
+
+                    <div class="habilidade">
+                        <h5>💀 Ectoessência</h5>
+                        <p>Consegue trabalhar componentes espirituais.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">IV</div>
+                        <h4>Mestre Alquimista</h4>
+                    </div>
+                    <span class="raridade">Épica</span>
+                </div>
+
+                <p>Consegue produzir compostos mágicos extremamente complexos.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>🧪 Transmutação</h5>
+                        <p>Altera propriedades de determinados materiais.</p>
+                    </div>
+
+                    <div class="habilidade">
+                        <h5>🧬 Essência Concentrada</h5>
+                        <p>Produz componentes de alta concentração.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">V</div>
+                        <h4>Grão-Mestre</h4>
+                    </div>
+                    <span class="raridade">Lendária</span>
+                </div>
+
+                <p>Domina componentes raríssimos e fórmulas lendárias.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>👑 Alquimia Lendária</h5>
+                        <p>Produz compostos de raridade lendária.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">VI</div>
+                        <h4>Alquimista Mítico</h4>
+                    </div>
+                    <span class="raridade">Mítica</span>
+                </div>
+
+                <p>Manipula essências capazes de alterar matéria e energia.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>🌌 Transmutação Superior</h5>
+                        <p>Combina componentes de origens diferentes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">VII</div>
+                        <h4>Alquimista Primordial</h4>
+                    </div>
+                    <span class="raridade">Primordial</span>
+                </div>
+
+                <p>
+                    O alquimista alcança o limite da transformação da matéria.
+                </p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>👁️ Alquimia Primordial</h5>
+                        <p>
+                            Permite trabalhar componentes de origem primordial.
+                        </p>
+                    </div>
+
+                    <div class="habilidade">
+                        <h5>💀 Fórmula Proibida</h5>
+                        <p>
+                            Permite pesquisar misturas extremamente perigosas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         JOALHEIRO
+         ===================================================== -->
+
+    <section class="profissao" id="joalheiro">
+
+        <header class="profissao-header">
+
+            <div class="profissao-titulo">
+
+                <div class="profissao-icone">
+                    💎
+                </div>
+
+                <div>
+
+                    <h2>
+                        Joalheiro
+                    </h2>
+
+                    <small>
+                        Mestres das pedras preciosas e cristais
+                    </small>
+
+                </div>
+
+            </div>
+
+            <p class="descricao">
+                Joalheiros trabalham pedras preciosas, cristais e materiais
+                capazes de armazenar ou conduzir energia mágica.
+            </p>
+
+        </header>
+
+        <div class="progressao">
+
+            <h3 class="titulo-secao">
+                Progressão
+            </h3>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">I</div>
+                        <h4>Aprendiz</h4>
+                    </div>
+                    <span class="raridade">Comum</span>
+                </div>
+
+                <p>Trabalha pedras comuns.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>💎 Lapidação</h5>
+                        <p>Lapida pedras simples.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">II</div>
+                        <h4>Joalheiro</h4>
+                    </div>
+                    <span class="raridade">Incomum</span>
+                </div>
+
+                <p>Produz joias de maior qualidade.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>💍 Joia Refinada</h5>
+                        <p>Cria anéis, colares e amuletos aprimorados.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">III</div>
+                        <h4>Especialista</h4>
+                    </div>
+                    <span class="raridade">Rara</span>
+                </div>
+
+                <p>Começa a trabalhar cristais mágicos.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>🔮 Cristal Mágico</h5>
+                        <p>Produz joias capazes de armazenar energia.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">IV</div>
+                        <h4>Mestre Joalheiro</h4>
+                    </div>
+                    <span class="raridade">Épica</span>
+                </div>
+
+                <p>Produz joias mágicas avançadas.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>✨ Joia Arcana</h5>
+                        <p>Cria acessórios com propriedades mágicas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">V</div>
+                        <h4>Grão-Mestre</h4>
+                    </div>
+                    <span class="raridade">Lendária</span>
+                </div>
+
+                <p>Domina pedras lendárias.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>👑 Joia Lendária</h5>
+                        <p>Produz acessórios extremamente raros.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">VI</div>
+                        <h4>Joalheiro Mítico</h4>
+                    </div>
+                    <span class="raridade">Mítica</span>
+                </div>
+
+                <p>Trabalha cristais sobrenaturais.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>🌌 Cristal Astral</h5>
+                        <p>Trabalha materiais de origem extraordinária.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">VII</div>
+                        <h4>Joalheiro Primordial</h4>
+                    </div>
+                    <span class="raridade">Primordial</span>
+                </div>
+
+                <p>Produz joias capazes de carregar grandes quantidades de essência.</p>
+
+                <div class="habilidades">
+                    <div class="habilidade">
+                        <h5>👑 Joia Primordial</h5>
+                        <p>Cria joias únicas com propriedades extraordinárias.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CURTIDOR
+         ===================================================== -->
+
+    <section class="profissao" id="curtidor">
+
+        <header class="profissao-header">
+
+            <div class="profissao-titulo">
+
+                <div class="profissao-icone">
+                    🛡️
+                </div>
+
+                <div>
+
+                    <h2>
+                        Curtidor
+                    </h2>
+
+                    <small>
+                        Mestres do couro e peles de criaturas
+                    </small>
+
+                </div>
+
+            </div>
+
+            <p class="descricao">
+                Curtidores transformam peles, couro e partes de criaturas
+                em materiais resistentes usados na fabricação de armaduras,
+                bolsas, equipamentos e itens especializados.
+            </p>
+
+        </header>
+
+        <div class="progressao">
+
+            <h3 class="titulo-secao">
+                Progressão
+            </h3>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">I</div>
+                        <h4>Aprendiz</h4>
+                    </div>
+                    <span class="raridade">Comum</span>
+                </div>
+                <p>Aprende a preparar peles comuns.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">II</div>
+                        <h4>Curtidor</h4>
+                    </div>
+                    <span class="raridade">Incomum</span>
+                </div>
+                <p>Trabalha peles de criaturas mais resistentes.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">III</div>
+                        <h4>Especialista</h4>
+                    </div>
+                    <span class="raridade">Rara</span>
+                </div>
+                <p>Consegue preparar couro com propriedades especiais.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">IV</div>
+                        <h4>Mestre Curtidor</h4>
+                    </div>
+                    <span class="raridade">Épica</span>
+                </div>
+                <p>Produz couro mágico e extremamente resistente.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">V</div>
+                        <h4>Grão-Mestre</h4>
+                    </div>
+                    <span class="raridade">Lendária</span>
+                </div>
+                <p>Trabalha peles de criaturas lendárias.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">VI</div>
+                        <h4>Curtidor Mítico</h4>
+                    </div>
+                    <span class="raridade">Mítica</span>
+                </div>
+                <p>Produz materiais derivados de criaturas sobrenaturais.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">VII</div>
+                        <h4>Curtidor Primordial</h4>
+                    </div>
+                    <span class="raridade">Primordial</span>
+                </div>
+                <p>Consegue preservar propriedades sobrenaturais das criaturas.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MINERADOR
+         ===================================================== -->
+
+    <section class="profissao" id="minerador">
+
+        <header class="profissao-header">
+
+            <div class="profissao-titulo">
+
+                <div class="profissao-icone">
+                    ⛏️
+                </div>
+
+                <div>
+
+                    <h2>
+                        Minerador
+                    </h2>
+
+                    <small>
+                        Exploradores das profundezas
+                    </small>
+
+                </div>
+
+            </div>
+
+            <p class="descricao">
+                Mineradores conhecem cavernas, veios minerais e técnicas
+                para extrair recursos sem destruir sua qualidade.
+            </p>
+
+        </header>
+
+        <div class="progressao">
+
+            <h3 class="titulo-secao">
+                Progressão
+            </h3>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">I</div>
+                        <h4>Aprendiz</h4>
+                    </div>
+                    <span class="raridade">Comum</span>
+                </div>
+                <p>Extrai minerais comuns.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">II</div>
+                        <h4>Minerador</h4>
+                    </div>
+                    <span class="raridade">Incomum</span>
+                </div>
+                <p>Identifica e extrai minérios de maior qualidade.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">III</div>
+                        <h4>Minerador Especialista</h4>
+                    </div>
+                    <span class="raridade">Rara</span>
+                </div>
+                <p>Localiza veios raros e minerais mágicos.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">IV</div>
+                        <h4>Mestre Minerador</h4>
+                    </div>
+                    <span class="raridade">Épica</span>
+                </div>
+                <p>Explora regiões extremamente perigosas.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">V</div>
+                        <h4>Grão-Mestre</h4>
+                    </div>
+                    <span class="raridade">Lendária</span>
+                </div>
+                <p>Consegue encontrar depósitos lendários.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">VI</div>
+                        <h4>Minerador Mítico</h4>
+                    </div>
+                    <span class="raridade">Mítica</span>
+                </div>
+                <p>Explora locais onde nenhum minerador comum sobreviveria.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">VII</div>
+                        <h4>Minerador Primordial</h4>
+                    </div>
+                    <span class="raridade">Primordial</span>
+                </div>
+                <p>É capaz de localizar minerais ligados às forças primordiais.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CARPINTEIRO
+         ===================================================== -->
+
+    <section class="profissao" id="carpinteiro">
+
+        <header class="profissao-header">
+
+            <div class="profissao-titulo">
+
+                <div class="profissao-icone">
+                    🪵
+                </div>
+
+                <div>
+
+                    <h2>
+                        Carpinteiro
+                    </h2>
+
+                    <small>
+                        Mestres da madeira e estruturas
+                    </small>
+
+                </div>
+
+            </div>
+
+            <p class="descricao">
+                Carpinteiros trabalham madeira comum, madeira ancestral,
+                árvores mágicas e materiais naturais utilizados em
+                construções, armas e equipamentos.
+            </p>
+
+        </header>
+
+        <div class="progressao">
+
+            <h3 class="titulo-secao">
+                Progressão
+            </h3>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">I</div>
+                        <h4>Aprendiz</h4>
+                    </div>
+                    <span class="raridade">Comum</span>
+                </div>
+                <p>Trabalha madeira comum e constrói objetos simples.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">II</div>
+                        <h4>Carpinteiro</h4>
+                    </div>
+                    <span class="raridade">Incomum</span>
+                </div>
+                <p>Produz estruturas resistentes e equipamentos de madeira.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">III</div>
+                        <h4>Especialista</h4>
+                    </div>
+                    <span class="raridade">Rara</span>
+                </div>
+                <p>Trabalha madeiras especiais e estruturas complexas.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">IV</div>
+                        <h4>Mestre Carpinteiro</h4>
+                    </div>
+                    <span class="raridade">Épica</span>
+                </div>
+                <p>Constrói estruturas capazes de suportar energia mágica.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">V</div>
+                        <h4>Grão-Mestre</h4>
+                    </div>
+                    <span class="raridade">Lendária</span>
+                </div>
+                <p>Trabalha madeiras lendárias.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">VI</div>
+                        <h4>Carpinteiro Mítico</h4>
+                    </div>
+                    <span class="raridade">Mítica</span>
+                </div>
+                <p>Trabalha árvores sobrenaturais e madeira ancestral.</p>
+            </div>
+
+            <div class="nivel">
+                <div class="nivel-topo">
+                    <div class="nivel-numero">
+                        <div class="nivel-badge">VII</div>
+                        <h4>Carpinteiro Primordial</h4>
+                    </div>
+                    <span class="raridade">Primordial</span>
+                </div>
+                <p>É capaz de trabalhar materiais naturais de origem primordial.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         TABELA GERAL
+         ===================================================== -->
+
+    <section class="regras">
+
+        <h2>
+            📜 Progressão Geral das Profissões
+        </h2>
+
+        <div class="tabela-wrapper">
+
+            <table class="tabela">
+
+                <thead>
+
+                    <tr>
+                        <th>Nível</th>
+                        <th>Título</th>
+                        <th>Raridade</th>
+                        <th>Domínio</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>I</td>
+                        <td>Aprendiz</td>
+                        <td>Comum</td>
+                        <td>Fundamentos</td>
+                    </tr>
+
+                    <tr>
+                        <td>II</td>
+                        <td>Profissional</td>
+                        <td>Incomum</td>
+                        <td>Materiais melhores</td>
+                    </tr>
+
+                    <tr>
+                        <td>III</td>
+                        <td>Especialista</td>
+                        <td>Rara</td>
+                        <td>Materiais especiais</td>
+                    </tr>
+
+                    <tr>
+                        <td>IV</td>
+                        <td>Mestre</td>
+                        <td>Épica</td>
+                        <td>Materiais mágicos</td>
+                    </tr>
+
+                    <tr>
+                        <td>V</td>
+                        <td>Grão-Mestre</td>
+                        <td>Lendária</td>
+                        <td>Materiais lendários</td>
+                    </tr>
+
+                    <tr>
+                        <td>VI</td>
+                        <td>Mítico</td>
+                        <td>Mítica</td>
+                        <td>Materiais sobrenaturais</td>
+                    </tr>
+
+                    <tr>
+                        <td>VII</td>
+                        <td>Primordial</td>
+                        <td>Primordial</td>
+                        <td>Materiais primordiais</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <br>
+
+
+        <div class="regra">
+            <strong>Experiência</strong>
+            A profissão evolui conforme o personagem realiza atividades relacionadas ao ofício.
+        </div>
+
+        <div class="regra">
+            <strong>Materiais</strong>
+            Materiais de maior raridade exigem níveis maiores de domínio.
+        </div>
+
+        <div class="regra">
+            <strong>Especialização</strong>
+            Profissões avançadas podem possuir caminhos especializados.
+        </div>
+
+        <div class="regra">
+            <strong>Falha</strong>
+            Trabalhos acima da capacidade do profissional podem resultar em perda de materiais.
+        </div>
+
+        <div class="regra">
+            <strong>Mestre</strong>
+            Personagens de alto nível podem ensinar sua profissão a outros personagens.
+        </div>
+
+        <div class="regra">
+            <strong>Primordial</strong>
+            O nível máximo deve ser extremamente raro dentro do mundo de Nexalis.
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer>
+
+    <p>
+        <strong>NEXALIS RPG</strong>
+    </p>
+
+    <p>
+        O conhecimento também é uma arma.
+    </p>
+
+    <p>
+        © Nexalis RPG — Sistema de Profissões
+    </p>
+
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+/* ===== RESET ===== */
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+/* ===== BASE INFERNAL (DIABLO STYLE) ===== */
+body{
+    font-family:"Georgia", serif;
+    background:
+        radial-gradient(circle at top, #2a0000, #05050a 65%),
+        radial-gradient(circle at bottom, #120010, #000000);
+    color:#e6d6b8;
+    padding:20px;
+    overflow-x:hidden;
+}
+
+/* efeito de brasas no fundo */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        radial-gradient(circle, rgba(255,0,0,0.08), transparent 60%),
+        url("https://i.imgur.com/3ZQ3ZQx.png");
+    opacity:0.15;
+    animation:embers 14s linear infinite;
+}
+
+@keyframes embers{
+    from{transform:translateY(0);}
+    to{transform:translateY(-200px);}
+}
+
+/* ===== NAVBAR INFERNAL ===== */
+.navbar{
+    background:linear-gradient(180deg, #1a0000, #000000);
+    border-bottom:2px solid #5a0000;
+    margin-bottom:20px;
+    box-shadow:0 0 25px rgba(255,0,0,0.15);
+}
+
+.container-nav{
+    max-width:1200px;
+    margin:auto;
+    padding:12px 20px;
+}
+
+.navbar .links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+}
+
+.navbar .links a{
+    color:#d6b98c;
+    text-decoration:none;
+    font-weight:600;
+    letter-spacing:1px;
+    transition:.25s;
+    position:relative;
+}
+
+/* efeito de brilho infernal no hover */
+.navbar .links a:hover{
+    color:#ff2a2a;
+    text-shadow:0 0 10px #ff0000;
+}
+
+/* ===== GRIMÓRIO (PANEL PRINCIPAL) ===== */
+.grimorio{
+    max-width:1000px;
+    margin:auto;
+    background:rgba(10,5,10,0.88);
+    border:2px solid #5a0000;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:
+        0 0 30px rgba(0,0,0,.9),
+        inset 0 0 20px rgba(255,0,0,0.08);
+    backdrop-filter: blur(3px);
+}
+
+/* ===== ABAS (TABS) ===== */
+.tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:20px;
+}
+
+.tabs button{
+    background:linear-gradient(145deg,#1a0000,#0a0a12);
+    color:#e6d6b8;
+    border:1px solid #3a0000;
+    padding:10px 16px;
+    cursor:pointer;
+    font-weight:bold;
+    border-radius:6px;
+    transition:.25s;
+    letter-spacing:1px;
+}
+
+/* hover infernal */
+.tabs button:hover{
+    background:linear-gradient(145deg,#3a0000,#120000);
+    color:#ffb3b3;
+    box-shadow:0 0 12px rgba(255,0,0,0.25);
+}
+
+/* aba ativa (efeito poder demoníaco) */
+.tabs button.active{
+    background:linear-gradient(145deg,#8b0000,#2a0000);
+    color:#fff;
+    box-shadow:
+        0 0 15px rgba(255,0,0,0.5),
+        0 0 30px rgba(255,0,0,0.2);
+    border-color:#ff0000;
+}
+
+/* ===== CONTEÚDO DAS ABAS ===== */
+.tab-content{
+    display:none;
+    animation:fadeIn .4s ease;
+}
+
+.tab-content.active{
+    display:block;
+}
+
+/* ===== TÍTULOS ===== */
+h1{
+    font-size:34px;
+    color:#ffcc66;
+    border-bottom:2px solid #5a0000;
+    padding-bottom:8px;
+    margin-bottom:10px;
+    text-shadow:0 0 10px rgba(255,0,0,0.3);
+}
+
+h3{
+    margin-top:20px;
+    color:#ff6b6b;
+    text-shadow:0 0 6px rgba(255,0,0,0.3);
+}
+
+/* ===== TEXTO ===== */
+p{
+    margin:4px 0;
+    line-height:1.6;
+    color:#e6d6b8;
+}
+
+/* ===== SEPARADOR ===== */
+hr{
+    border:none;
+    height:1px;
+    background:linear-gradient(
+        to right,
+        transparent,
+        #5a0000,
+        #ff0000,
+        #5a0000,
+        transparent
+    );
+    margin:14px 0;
+    opacity:0.6;
+}
+
+/* ===== ANIMAÇÃO ===== */
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(8px);
+        filter:blur(2px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+        filter:blur(0);
+    }
+}
+
+/* ===== RESPONSIVO ===== */
+@media(max-width:768px){
+    .navbar .links{
+        justify-content:center;
+    }
+
+    h1{
+        font-size:26px;
+    }
+
+    .tabs button{
+        padding:8px 12px;
+        font-size:.9em;
+    }
+}

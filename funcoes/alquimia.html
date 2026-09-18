@@ -1,0 +1,2979 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../site.css">
+
+    <title>Grimório de Rituais de Alquimia - Nexalis</title>
+
+    <style>
+        :root {
+            --bg: #050205;
+            --panel: #0c0a10;
+            --panel2: #120d12;
+            --gold: #c5a059;
+            --gold2: #ffdf80;
+            --blood: #8b0000;
+            --blood2: #ff1a1a;
+            --purple: #7126a8;
+            --purple2: #b86cff;
+            --blue: #326b9c;
+            --green: #357a4a;
+            --text: #e6e0d6;
+            --muted: #aaa;
+            --border: #2a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            background:
+                radial-gradient(circle at 50% 0%, #350000 0%, #110407 25%, #050205 65%, #000 100%);
+            color: var(--text);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(255, 0, 0, 0.08), transparent 35%),
+                radial-gradient(circle at 85% 70%, rgba(180, 0, 255, 0.06), transparent 40%),
+                radial-gradient(circle at 50% 100%, rgba(255, 180, 0, 0.04), transparent 35%);
+            animation: mist 14s infinite alternate;
+        }
+
+        @keyframes mist {
+            from {
+                transform: scale(1);
+                opacity: .8;
+            }
+
+            to {
+                transform: scale(1.08);
+                opacity: 1;
+            }
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            background: linear-gradient(180deg, #0c0000, #000);
+            border-bottom: 1px solid var(--blood2);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 0 25px rgba(255, 0, 0, .2);
+        }
+
+        .container-nav {
+            max-width: 1500px;
+            margin: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .navbar a {
+            color: var(--gold);
+            text-decoration: none;
+            margin: 4px 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: .82rem;
+            transition: .3s;
+        }
+
+        .navbar a:hover {
+            color: var(--gold2);
+            text-shadow: 0 0 10px var(--blood2);
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            max-width: 1100px;
+            margin: auto;
+            text-align: center;
+            padding: 70px 20px 30px;
+        }
+
+        .eyebrow {
+            color: var(--blood2);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: .8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 6vw, 4.2rem);
+            color: var(--gold2);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            text-shadow:
+                0 0 10px rgba(255, 0, 0, .3),
+                0 0 25px rgba(0, 0, 0, .9);
+        }
+
+        header p {
+            color: #aaa;
+            margin-top: 15px;
+            font-style: italic;
+            font-size: 1.05rem;
+        }
+
+        .header-line {
+            width: 180px;
+            height: 2px;
+            margin: 25px auto 0;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--blood2),
+                var(--gold),
+                var(--blood2),
+                transparent
+            );
+            box-shadow: 0 0 12px rgba(255, 0, 0, .5);
+        }
+
+        /* =========================
+           INTRODUÇÃO
+        ========================= */
+
+        .intro {
+            max-width: 1050px;
+            margin: 15px auto 25px;
+            padding: 22px;
+            background: linear-gradient(145deg, rgba(18, 0, 0, .9), rgba(10, 8, 14, .95));
+            border: 1px solid var(--border);
+            border-top: 2px solid var(--gold);
+            box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+        }
+
+        .intro h2 {
+            color: var(--gold2);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .intro p {
+            color: #c2bdb5;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .search-container {
+            text-align: center;
+            padding: 20px 20px 10px;
+        }
+
+        #searchInput {
+            width: 90%;
+            max-width: 650px;
+            padding: 14px 18px;
+            border: 1px solid var(--gold);
+            border-radius: 3px;
+            background: #09080d;
+            color: white;
+            outline: none;
+            font-family: Georgia, serif;
+            font-size: 1rem;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, .6);
+        }
+
+        #searchInput::placeholder {
+            color: #777;
+        }
+
+        #searchInput:focus {
+            border-color: var(--blood2);
+            box-shadow:
+                0 0 15px rgba(255, 0, 0, .3),
+                inset 0 0 15px rgba(0, 0, 0, .6);
+        }
+
+        /* =========================
+           FILTROS
+        ========================= */
+
+        .filter-title {
+            text-align: center;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: .75rem;
+            margin-top: 15px;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 15px 20px 25px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .filter-btn {
+            background: linear-gradient(145deg, #160000, #09090e);
+            border: 1px solid var(--border);
+            color: var(--gold);
+            padding: 9px 13px;
+            cursor: pointer;
+            transition: .3s;
+            text-transform: uppercase;
+            font-family: Georgia, serif;
+            font-size: .75rem;
+            letter-spacing: .5px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(145deg, var(--blood), #350000);
+            color: white;
+            border-color: var(--blood2);
+            box-shadow: 0 0 15px rgba(255, 0, 0, .35);
+        }
+
+        /* =========================
+           CONTADOR
+        ========================= */
+
+        .ritual-counter {
+            text-align: center;
+            color: #777;
+            font-size: .85rem;
+            margin-bottom: 5px;
+        }
+
+        .ritual-counter span {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* =========================
+           GRID
+        ========================= */
+
+        .ritual-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 18px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .ritual-card {
+            background:
+                linear-gradient(180deg, rgba(24, 5, 5, .98), rgba(8, 8, 13, .98));
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 22px;
+            position: relative;
+            overflow: hidden;
+            transition: .3s;
+            box-shadow: 0 0 12px rgba(0, 0, 0, .65);
+        }
+
+        .ritual-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow:
+                0 0 25px rgba(255, 0, 0, .2),
+                0 0 10px rgba(197, 160, 89, .12);
+        }
+
+        .ritual-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gold);
+        }
+
+        /* Categorias */
+
+        .ritual-card.alquimia::before {
+            background: var(--gold);
+        }
+
+        .ritual-card.elemental::before {
+            background: #e67e22;
+        }
+
+        .ritual-card.espiritual::before {
+            background: var(--purple2);
+        }
+
+        .ritual-card.sombria::before {
+            background: #5b21b6;
+        }
+
+        .ritual-card.transmutacao::before {
+            background: #4da3ff;
+        }
+
+        .ritual-card.vida::before {
+            background: #22c55e;
+        }
+
+        .ritual-card.proibido::before {
+            background: var(--blood2);
+        }
+
+        /* =========================
+           TOPO CARD
+        ========================= */
+
+        .ritual-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .ritual-name {
+            color: var(--gold2);
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.3;
+        }
+
+        .ritual-level {
+            min-width: 62px;
+            text-align: center;
+            padding: 5px 7px;
+            background: #09070a;
+            border: 1px solid var(--gold);
+            color: var(--gold2);
+            font-size: .7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .ritual-desc {
+            color: #aaa;
+            font-size: .9rem;
+            line-height: 1.5;
+            font-style: italic;
+            margin-bottom: 14px;
+        }
+
+        /* =========================
+           TAGS
+        ========================= */
+
+        .ritual-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            padding: 4px 7px;
+            border: 1px solid #392727;
+            background: rgba(0, 0, 0, .35);
+            color: #bdb4a7;
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        /* =========================
+           INFO
+        ========================= */
+
+        .ritual-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7px;
+            margin-bottom: 12px;
+        }
+
+        .info-box {
+            background: rgba(0, 0, 0, .35);
+            border: 1px solid #241a1a;
+            padding: 8px;
+        }
+
+        .info-label {
+            display: block;
+            color: #777;
+            font-size: .65rem;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+
+        .info-value {
+            color: #ddd;
+            font-size: .8rem;
+        }
+
+        /* =========================
+           MATERIAIS
+        ========================= */
+
+        .materials {
+            background: rgba(197, 160, 89, .045);
+            border-left: 3px solid var(--gold);
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .materials strong {
+            color: var(--gold2);
+            font-size: .78rem;
+            text-transform: uppercase;
+        }
+
+        .materials p {
+            color: #c8c1b8;
+            font-size: .8rem;
+            line-height: 1.5;
+            margin-top: 4px;
+        }
+
+        /* =========================
+           EFEITO
+        ========================= */
+
+        .ritual-effect {
+            background: rgba(34, 197, 94, .045);
+            border-left: 3px solid #22c55e;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .ritual-effect strong {
+            color: #62d984;
+            font-size: .78rem;
+            text-transform: uppercase;
+        }
+
+        .ritual-effect p {
+            color: #c7d5ca;
+            font-size: .82rem;
+            line-height: 1.5;
+            margin-top: 4px;
+        }
+
+        /* =========================
+           RISCO
+        ========================= */
+
+        .ritual-risk {
+            background: rgba(255, 0, 0, .06);
+            border-left: 3px solid var(--blood2);
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .ritual-risk strong {
+            color: #ff7777;
+            font-size: .78rem;
+            text-transform: uppercase;
+        }
+
+        .ritual-risk p {
+            color: #d5aaaa;
+            font-size: .8rem;
+            line-height: 1.5;
+            margin-top: 4px;
+        }
+
+        /* =========================
+           REGRAS
+        ========================= */
+
+        .rules-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .rules-title {
+            text-align: center;
+            color: var(--gold2);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+        }
+
+        .rule-box {
+            background: linear-gradient(145deg, #120000, #09090e);
+            border: 1px solid var(--border);
+            padding: 18px;
+            border-top: 2px solid var(--gold);
+        }
+
+        .rule-box h3 {
+            color: var(--gold);
+            text-transform: uppercase;
+            font-size: .95rem;
+            margin-bottom: 8px;
+        }
+
+        .rule-box p {
+            color: #aaa;
+            line-height: 1.6;
+            font-size: .85rem;
+        }
+
+        /* =========================
+           RITUAIS PROIBIDOS
+        ========================= */
+
+        .warning {
+            max-width: 1050px;
+            margin: 30px auto 50px;
+            padding: 20px;
+            border: 1px solid var(--blood2);
+            background: linear-gradient(
+                145deg,
+                rgba(80, 0, 0, .35),
+                rgba(10, 0, 0, .8)
+            );
+            box-shadow: 0 0 20px rgba(255, 0, 0, .1);
+        }
+
+        .warning h2 {
+            color: #ff5555;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .warning p {
+            color: #c8a8a8;
+            line-height: 1.6;
+            font-size: .9rem;
+        }
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                position: relative;
+            }
+
+            .navbar a {
+                display: inline-block;
+                font-size: .7rem;
+                margin: 4px;
+            }
+
+            header {
+                padding-top: 40px;
+            }
+
+            .ritual-grid {
+                grid-template-columns: 1fr;
+                padding: 12px;
+            }
+
+            .ritual-info {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            h1 {
+                letter-spacing: 2px;
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../souls-theme.css">
+<link rel="stylesheet" href="../player-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav class="player-nav" id="playerNav"><div class="player-nav-inner"><a class="player-brand" href="inicio.html"><span class="player-brand-mark">✦</span><span>HURRAS<small>NEXALIS</small></span></a><button class="player-mobile" type="button" onclick="document.getElementById('playerNav').classList.toggle('open')">☰</button><div class="player-links"><a href="inicio.html">Player</a><a href="clan.html">Minha Ficha</a><a href="sistema-completo.html">Sistema</a><a href="npcs.html">NPCs</a><a href="biblioteca.html">Biblioteca</a></div></div></nav>
+
+
+    <!-- =========================
+         CABEÇALHO
+    ========================= -->
+
+    <header>
+
+        <div class="eyebrow">
+            Conhecimento Proibido dos Hurras
+        </div>
+
+        <h1>Rituais de Alquimia</h1>
+
+        <p>
+            O Grimório das Grandes Transmutações, Pactos e Reações de Nexalis
+        </p>
+
+        <div class="header-line"></div>
+
+    </header>
+
+
+    <!-- =========================
+         INTRODUÇÃO
+    ========================= -->
+
+    <section class="intro">
+
+        <h2>O Caminho Ritualístico</h2>
+
+        <p>
+            Os rituais de alquimia são processos muito mais complexos do que
+            simplesmente misturar componentes. O alquimista deve preparar o
+            círculo, selecionar os componentes corretos, controlar a reação
+            e canalizar a energia necessária para transformar matéria,
+            essência ou espírito.
+        </p>
+
+        <p style="margin-top:10px;">
+            Quanto maior o ritual, maior o risco. Uma pequena impureza pode
+            alterar completamente o resultado ou provocar uma reação
+            alquímica catastrófica.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         BUSCA
+    ========================= -->
+
+    <div class="search-container">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Pesquisar ritual, material ou efeito..."
+            onkeyup="filterRituals()"
+        >
+
+    </div>
+
+
+    <!-- =========================
+         FILTROS
+    ========================= -->
+
+    <div class="filter-title">
+        Filtrar Grimório
+    </div>
+
+    <div class="filters">
+
+        <button class="filter-btn active"
+            onclick="filterCategory('all', this)">
+            Todos
+        </button>
+
+        <button class="filter-btn"
+            onclick="filterCategory('nivel1', this)">
+            Nível I
+        </button>
+
+        <button class="filter-btn"
+            onclick="filterCategory('nivel2', this)">
+            Nível II
+        </button>
+
+        <button class="filter-btn"
+            onclick="filterCategory('nivel3', this)">
+            Nível III
+        </button>
+
+        <button class="filter-btn"
+            onclick="filterCategory('nivel4', this)">
+            Nível IV
+        </button>
+
+        <button class="filter-btn"
+            onclick="filterCategory('nivel5', this)">
+            Nível V
+        </button>
+
+        <button class="filter-btn"
+            onclick="filterCategory('elemental', this)">
+            Elemental
+        </button>
+
+        <button class="filter-btn"
+            onclick="filterCategory('espiritual', this)">
+            Espiritual
+        </button>
+
+        <button class="filter-btn"
+            onclick="filterCategory('transmutacao', this)">
+            Transmutação
+        </button>
+
+        <button class="filter-btn"
+            onclick="filterCategory('sombria', this)">
+            Sombria
+        </button>
+
+        <button class="filter-btn"
+            onclick="filterCategory('vida', this)">
+            Vida
+        </button>
+
+        <button class="filter-btn"
+            onclick="filterCategory('proibido', this)">
+            Proibido
+        </button>
+
+    </div>
+
+
+    <div class="ritual-counter">
+        Rituais encontrados:
+        <span id="ritualCount">30</span>
+    </div>
+
+
+    <!-- =========================
+         RITUAIS
+    ========================= -->
+
+    <main class="ritual-grid" id="ritualGrid">
+
+
+        <!-- 01 -->
+
+        <article class="ritual-card alquimia nivel1"
+            data-level="nivel1"
+            data-category="alquimia"
+            data-search="transmutação menor minério mineral alquimia">
+
+            <div class="ritual-top">
+
+                <h3 class="ritual-name">
+                    Transmutação Menor
+                </h3>
+
+                <div class="ritual-level">
+                    Nível I
+                </div>
+
+            </div>
+
+            <p class="ritual-desc">
+                A primeira lição de qualquer alquimista: transformar uma
+                matéria em outra sem destruir sua essência.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Transmutação</span>
+                <span class="tag">Terra</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">30 minutos</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Fácil</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    50g de Fonte Mineral + 10ml de Extrato Vegetal.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Converte até 100g de um material comum em outro material
+                    de valor e complexidade semelhantes.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    O material perde sua propriedade principal e se torna
+                    inutilizável.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 02 -->
+
+        <article class="ritual-card alquimia nivel1"
+            data-level="nivel1"
+            data-category="alquimia"
+            data-search="purificação alquímica componente morto corrupção">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Purificação Alquímica
+                </h3>
+
+                <div class="ritual-level">
+                    Nível I
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Um círculo simples capaz de remover impurezas e corrupção
+                de componentes alquímicos.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Purificação</span>
+                <span class="tag">Sagrado</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">1 hora</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Fácil</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    20g de Sais + 10ml de Ectoessência.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Remove impurezas de um componente e aumenta sua
+                    estabilidade durante uma fabricação.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    A corrupção removida se manifesta como uma pequena
+                    entidade alquímica hostil.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 03 -->
+
+        <article class="ritual-card elemental nivel1"
+            data-level="nivel1"
+            data-category="elemental"
+            data-search="chama alquímica fogo essência fogo">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Chama Alquímica
+                </h3>
+
+                <div class="ritual-level">
+                    Nível I
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                O alquimista desperta o calor preso dentro de uma essência
+                aparentemente inerte.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Fogo</span>
+                <span class="tag">Elemental</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">20 minutos</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Fácil</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    15ml de Essência de Fogo + 20g de Fonte Mineral.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Cria uma chama alquímica que permanece acesa durante
+                    até 1 hora e não pode ser apagada por água comum.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    A chama se torna instável e causa uma explosão pequena.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 04 -->
+
+        <article class="ritual-card elemental nivel1"
+            data-level="nivel1"
+            data-category="elemental"
+            data-search="gelo eterno gelo essência gelo">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Gelo Eterno
+                </h3>
+
+                <div class="ritual-level">
+                    Nível I
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Um ritual utilizado para preservar ingredientes, cadáveres
+                e substâncias instáveis.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Gelo</span>
+                <span class="tag">Preservação</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">30 minutos</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Fácil</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    15ml de Essência de Gelo + 30g de Fonte Mineral.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Conserva matéria orgânica e componentes por até 7 dias
+                    sem deterioração.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    O alvo é congelado de maneira irregular e sofre danos
+                    estruturais.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 05 -->
+
+        <article class="ritual-card transmutacao nivel1"
+            data-level="nivel1"
+            data-category="transmutacao"
+            data-search="extração essência componente extração alquímica">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Extração de Essência
+                </h3>
+
+                <div class="ritual-level">
+                    Nível I
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Separa a essência útil de uma criatura ou objeto sem
+                destruir completamente o material.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Extração</span>
+                <span class="tag">Componentes</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">1 hora</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Média</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    10g de Fonte Mineral + 5ml de Extrato Vegetal.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Permite extrair um componente específico de uma criatura
+                    ou matéria sem contaminar sua essência.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    Até metade do componente extraído é perdido.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 06 -->
+
+        <article class="ritual-card elemental nivel2"
+            data-level="nivel2"
+            data-category="elemental"
+            data-search="vínculo elemental fogo gelo raio arma">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Vínculo Elemental
+                </h3>
+
+                <div class="ritual-level">
+                    Nível II
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Uma essência elemental é presa temporariamente a uma arma,
+                armadura ou objeto.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Elemental</span>
+                <span class="tag">Arma</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">2 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Média</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    20ml da Essência Elemental desejada + 50g de Fonte
+                    Mineral.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    A arma recebe dano elemental adicional durante 24 horas.
+                    O elemento depende da essência utilizada.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    O elemento se manifesta de forma instável e pode atingir
+                    o próprio usuário.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 07 -->
+
+        <article class="ritual-card espiritual nivel2"
+            data-level="nivel2"
+            data-category="espiritual"
+            data-search="sussurro dos mortos morto alma ectoessência">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Sussurro dos Mortos
+                </h3>
+
+                <div class="ritual-level">
+                    Nível II
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                O alquimista cria uma ponte breve entre o mundo material
+                e os resíduos espirituais de um morto.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Espiritual</span>
+                <span class="tag">Morte</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">1 hora</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Média</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    50g de Componente de Morto + 35ml de Ectoessência.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Permite fazer três perguntas simples ao eco espiritual
+                    de um morto.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    Outro espírito próximo pode responder no lugar do
+                    espírito procurado.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 08 -->
+
+        <article class="ritual-card sombria nivel2"
+            data-level="nivel2"
+            data-category="sombria"
+            data-search="ritual sombra fragmento sombra furtividade">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Véu das Sombras
+                </h3>
+
+                <div class="ritual-level">
+                    Nível II
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Sombras artificiais cobrem uma pequena área, escondendo
+                movimentos e formas.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Sombra</span>
+                <span class="tag">Ocultação</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">40 minutos</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Duração</span>
+                    <span class="info-value">1 hora</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    10g de Fragmento de Sombra + 20ml de Ectoessência.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Cria uma área de sombra que concede vantagem em testes
+                    de Furtividade.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    A área de sombra se torna hostil e começa a se mover
+                    independentemente.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 09 -->
+
+        <article class="ritual-card elemental nivel2"
+            data-level="nivel2"
+            data-category="elemental"
+            data-search="tempestade raio elétrica ritual">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Coração da Tempestade
+                </h3>
+
+                <div class="ritual-level">
+                    Nível II
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Concentra energia elétrica em um pequeno núcleo alquímico.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Raio</span>
+                <span class="tag">Energia</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">1 hora</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Média</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    20ml de Essência Elétrica + 50g de Fonte Mineral.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Cria um núcleo capaz de liberar uma descarga elétrica
+                    poderosa quando ativado.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    O núcleo descarrega imediatamente sobre todos próximos.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 10 -->
+
+        <article class="ritual-card vida nivel2"
+            data-level="nivel2"
+            data-category="vida"
+            data-search="semente vida vegetal regeneração">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Semente da Vida
+                </h3>
+
+                <div class="ritual-level">
+                    Nível II
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Um pequeno núcleo vegetal capaz de acelerar o crescimento
+                de organismos vivos.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Vida</span>
+                <span class="tag">Natureza</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">2 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Média</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    50g de Extrato Vegetal Vital + 20ml de Ectoessência.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Acelera a recuperação de uma criatura ou faz uma planta
+                    crescer em poucos minutos.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    O crescimento ocorre de maneira descontrolada.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 11 -->
+
+        <article class="ritual-card transmutacao nivel2"
+            data-level="nivel2"
+            data-category="transmutacao"
+            data-search="cristalização alquímica mineral cristal">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Cristalização Alquímica
+                </h3>
+
+                <div class="ritual-level">
+                    Nível II
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Condensa uma substância líquida em uma forma cristalina
+                estável.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Transmutação</span>
+                <span class="tag">Mineral</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">3 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Média</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    100g de Fonte Mineral + 25ml de Ectoessência.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Cria cristais alquímicos capazes de armazenar uma
+                    pequena quantidade de energia.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    O cristal se quebra e libera sua energia de maneira
+                    descontrolada.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 12 -->
+
+        <article class="ritual-card elemental nivel2"
+            data-level="nivel2"
+            data-category="elemental"
+            data-search="corrosão ácida composto ácido ácido">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Círculo da Corrosão
+                </h3>
+
+                <div class="ritual-level">
+                    Nível II
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                O círculo transforma matéria comum em uma substância
+                extremamente corrosiva.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Ácido</span>
+                <span class="tag">Destruição</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">45 minutos</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Média</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    30ml de Composto Ácido + 50g de Fonte Mineral.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Produz ácido capaz de corroer metal, pedra e materiais
+                    alquímicos comuns.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    O círculo começa a corroer a própria estrutura onde foi
+                    desenhado.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 13 -->
+
+        <article class="ritual-card espiritual nivel3"
+            data-level="nivel3"
+            data-category="espiritual"
+            data-search="prisão espiritual alma ectoessência">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Prisão Espiritual
+                </h3>
+
+                <div class="ritual-level">
+                    Nível III
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Um recipiente alquímico é preparado para aprisionar
+                temporariamente uma essência espiritual.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Espiritual</span>
+                <span class="tag">Alma</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">4 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Difícil</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    100ml de Ectoessência + 50g de Mineral Astral.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Permite armazenar uma alma ou espírito por até 7 dias,
+                    impedindo que ele atravesse para outro plano.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    A entidade aprisionada pode assumir controle parcial
+                    do recipiente.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 14 -->
+
+        <article class="ritual-card elemental nivel3"
+            data-level="nivel3"
+            data-category="elemental"
+            data-search="forja elemental arma fogo gelo raio">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Forja Elemental
+                </h3>
+
+                <div class="ritual-level">
+                    Nível III
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Uma arma é submetida a um círculo de transmutação que
+                funde sua estrutura com uma essência elemental.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Forja</span>
+                <span class="tag">Arma</span>
+                <span class="tag">Elemental</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">6 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Difícil</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    100g de Fonte Mineral + 50ml de Essência Elemental.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Concede uma propriedade elemental permanente à arma,
+                    desde que o material suporte a reação.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    A arma perde sua propriedade especial e sofre dano
+                    estrutural.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 15 -->
+
+        <article class="ritual-card alquimia nivel3"
+            data-level="nivel3"
+            data-category="alquimia"
+            data-search="catalisador perfeito alquimia reação">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Catalisador Perfeito
+                </h3>
+
+                <div class="ritual-level">
+                    Nível III
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Um processo que aumenta a eficiência de uma reação alquímica.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Catalisador</span>
+                <span class="tag">Produção</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">3 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Difícil</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    50g de Mineral Astral + 50ml de Ectoessência.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Reduz em 25% a quantidade de materiais necessária para
+                    uma fabricação alquímica.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    A reação seguinte recebe uma instabilidade severa.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 16 -->
+
+        <article class="ritual-card sombria nivel3"
+            data-level="nivel3"
+            data-category="sombria"
+            data-search="espelho sombra ritual sombra">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Espelho das Sombras
+                </h3>
+
+                <div class="ritual-level">
+                    Nível III
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Um espelho alquímico passa a refletir não o corpo,
+                mas a essência daqueles que estão diante dele.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Sombra</span>
+                <span class="tag">Divinação</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">5 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Difícil</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    25g de Fragmento de Sombra + 50ml de Ectoessência.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Revela criaturas invisíveis, ilusões e algumas marcas
+                    mágicas ocultas.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    O espelho mostra uma versão hostil da pessoa observada.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 17 -->
+
+        <article class="ritual-card vida nivel3"
+            data-level="nivel3"
+            data-category="vida"
+            data-search="carne viva regeneração corpo componente morto">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Carne Viva
+                </h3>
+
+                <div class="ritual-level">
+                    Nível III
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Uma técnica perigosa utilizada para acelerar a reconstrução
+                de tecidos.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Vida</span>
+                <span class="tag">Regeneração</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">2 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Difícil</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    100g de Componente de Morto + 50ml de Extrato Vegetal.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Regenera ferimentos graves, desde que o corpo ainda
+                    possua matéria suficiente para reconstrução.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    O tecido regenerado pode apresentar mutações temporárias.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 18 -->
+
+        <article class="ritual-card transmutacao nivel3"
+            data-level="nivel3"
+            data-category="transmutacao"
+            data-search="alquimia mineral lua minério lua">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Ressonância Lunar
+                </h3>
+
+                <div class="ritual-level">
+                    Nível III
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                O lendário Minério da Lua é utilizado como catalisador
+                para despertar propriedades ocultas de outros materiais.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Lua</span>
+                <span class="tag">Astral</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">6 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Condição</span>
+                    <span class="info-value">Lua visível</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    20g de Minério da Lua + 50ml de Ectoessência.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Amplifica propriedades espirituais, lunares, astrais ou
+                    sombrias de um componente.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    O material absorve energia lunar excessiva e se torna
+                    instável.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 19 -->
+
+        <article class="ritual-card elemental nivel3"
+            data-level="nivel3"
+            data-category="elemental"
+            data-search="fogo infernal ferro infernal arma">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Fornalha Infernal
+                </h3>
+
+                <div class="ritual-level">
+                    Nível III
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Uma reação que utiliza calor sobrenatural para alterar
+                permanentemente a estrutura de um metal.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Inferno</span>
+                <span class="tag">Fogo</span>
+                <span class="tag">Metal</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">8 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Difícil</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    100g de Ferro Infernal + 50ml de Essência de Fogo.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Permite criar ou reforçar objetos capazes de suportar
+                    temperaturas sobrenaturais.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    O ferro absorve calor demais e permanece incandescente.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 20 -->
+
+        <article class="ritual-card espiritual nivel3"
+            data-level="nivel3"
+            data-category="espiritual"
+            data-search="leitura alma consciência ectoessência">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Leitura da Alma
+                </h3>
+
+                <div class="ritual-level">
+                    Nível III
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                O alquimista observa a estrutura espiritual de uma criatura
+                sem tocar fisicamente seu corpo.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Alma</span>
+                <span class="tag">Divinação</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">1 hora</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Alvo</span>
+                    <span class="info-value">1 criatura</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    75ml de Ectoessência + 10g de Mineral Astral.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Revela corrupção, vínculos mágicos, maldições e alterações
+                    espirituais presentes no alvo.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    O alquimista sofre uma breve sobrecarga espiritual.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 21 -->
+
+        <article class="ritual-card transmutacao nivel4"
+            data-level="nivel4"
+            data-category="transmutacao"
+            data-search="transmutação maior mineral astral matéria">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Transmutação Maior
+                </h3>
+
+                <div class="ritual-level">
+                    Nível IV
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Um dos maiores feitos da alquimia material: alterar a
+                natureza fundamental de uma substância.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Transmutação</span>
+                <span class="tag">Astral</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">12 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Muito difícil</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    100g de Mineral Astral + 100ml de Ectoessência +
+                    50g de Fonte Mineral.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Transforma uma quantidade significativa de matéria
+                    comum em um material alquímico superior.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    Toda a matéria envolvida pode se desintegrar.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 22 -->
+
+        <article class="ritual-card espiritual nivel4"
+            data-level="nivel4"
+            data-category="espiritual"
+            data-search="portal espiritual plano ectoessência astral">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Portal Espiritual
+                </h3>
+
+                <div class="ritual-level">
+                    Nível IV
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Abre uma passagem temporária para o plano espiritual.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Espiritual</span>
+                <span class="tag">Portal</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">8 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Duração</span>
+                    <span class="info-value">10 minutos</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    150ml de Ectoessência + 30g de Mineral Astral +
+                    25g de Minério da Lua.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Cria uma passagem estável entre o mundo material e uma
+                    região espiritual próxima.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    Algo pode atravessar o portal antes que ele seja fechado.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 23 -->
+
+        <article class="ritual-card vida nivel4"
+            data-level="nivel4"
+            data-category="vida"
+            data-search="restauração corpo vida regeneração">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Restauração da Carne
+                </h3>
+
+                <div class="ritual-level">
+                    Nível IV
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Um ritual avançado destinado a reconstruir tecidos,
+                ossos e órgãos severamente danificados.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Vida</span>
+                <span class="tag">Regeneração</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">10 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Muito difícil</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    250g de Componente de Morto + 125ml de Extrato Vegetal
+                    + 100ml de Ectoessência.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Reconstrói partes do corpo gravemente danificadas,
+                    desde que o alvo ainda esteja vivo.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    O corpo pode desenvolver tecido anormal ou rejeitar
+                    a reconstrução.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 24 -->
+
+        <article class="ritual-card sombria nivel4"
+            data-level="nivel4"
+            data-category="sombria"
+            data-search="maldição sombra profano sebo profano">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Marca Profana
+                </h3>
+
+                <div class="ritual-level">
+                    Nível IV
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Uma marca alquímica que liga uma criatura a uma energia
+                sombria persistente.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Sombria</span>
+                <span class="tag">Maldição</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">3 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Duração</span>
+                    <span class="info-value">7 dias</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    50ml de Sebo Profano + 50ml de Ectoessência.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Permite rastrear a criatura marcada através de sua
+                    assinatura alquímica.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    A marca pode se fixar no próprio alquimista.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 25 -->
+
+        <article class="ritual-card elemental nivel4"
+            data-level="nivel4"
+            data-category="elemental"
+            data-search="tempestade maior raio elétrica">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Tempestade Engarrafada
+                </h3>
+
+                <div class="ritual-level">
+                    Nível IV
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                O alquimista captura uma manifestação elemental de uma
+                tempestade dentro de um recipiente preparado.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Raio</span>
+                <span class="tag">Vento</span>
+                <span class="tag">Destruição</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">12 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Condição</span>
+                    <span class="info-value">Tempestade</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    100ml de Essência Elétrica + 100g de Fonte Mineral +
+                    50ml de Ectoessência.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Cria um artefato capaz de liberar uma grande descarga
+                    elemental quando quebrado.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    A tempestade escapa durante a preparação.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 26 -->
+
+        <article class="ritual-card proibido nivel5"
+            data-level="nivel5"
+            data-category="proibido"
+            data-search="ressurreição alquímica morto alma vida">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Ressurreição Alquímica
+                </h3>
+
+                <div class="ritual-level">
+                    Nível V
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Um dos rituais mais perigosos já desenvolvidos pelos
+                alquimistas. Tenta reconstruir a ligação entre corpo e alma.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Proibido</span>
+                <span class="tag">Vida</span>
+                <span class="tag">Morte</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">24 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Extrema</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    250g de Componente de Morto Vivo +
+                    250ml de Ectoessência +
+                    50g de Mineral Astral.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Permite tentar restaurar a vida de um cadáver recente,
+                    desde que sua alma ainda possa ser localizada.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    A criatura pode retornar sem sua alma original ou
+                    despertar como uma existência corrompida.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 27 -->
+
+        <article class="ritual-card proibido nivel5"
+            data-level="nivel5"
+            data-category="proibido"
+            data-search="alma consciente filactéria espírito">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Prisão da Filactéria
+                </h3>
+
+                <div class="ritual-level">
+                    Nível V
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                O ritual separa a essência espiritual de seu corpo e a
+                aprisiona em um recipiente alquímico.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Proibido</span>
+                <span class="tag">Alma</span>
+                <span class="tag">Necromancia</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">18 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Extrema</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    480ml de Ectoessência + 100g de Mineral Astral +
+                    50ml de Sebo Profano.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Cria uma filactéria capaz de armazenar uma alma consciente
+                    e impedir sua passagem natural.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    A alma pode permanecer ligada ao corpo e gerar uma
+                    entidade espiritual instável.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 28 -->
+
+        <article class="ritual-card proibido nivel5"
+            data-level="nivel5"
+            data-category="proibido"
+            data-search="ritual abismo pérola abismo sangue mineral">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Chamado do Abismo
+                </h3>
+
+                <div class="ritual-level">
+                    Nível V
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Um ritual proibido que abre uma conexão com regiões
+                desconhecidas do Abismo.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Abismo</span>
+                <span class="tag">Proibido</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">13 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Extrema</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    1 Pérola do Abismo + 50ml de Sangue Mineral +
+                    100ml de Ectoessência.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Abre uma passagem temporária capaz de permitir
+                    comunicação com entidades abissais.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    Uma entidade pode perceber o ritual e tentar atravessar
+                    para Nexalis.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 29 -->
+
+        <article class="ritual-card transmutacao nivel5"
+            data-level="nivel5"
+            data-category="transmutacao"
+            data-search="grande transmutação mineral astral matéria alquimia">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Grande Transmutação
+                </h3>
+
+                <div class="ritual-level">
+                    Nível V
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                A obra-prima da alquimia material. O círculo pode alterar
+                grandes quantidades de matéria de uma única vez.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Transmutação</span>
+                <span class="tag">Lendário</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">3 dias</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Dificuldade</span>
+                    <span class="info-value">Extrema</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    400g de Mineral Astral + 200ml de Ectoessência +
+                    200g de Fonte Mineral.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    Permite transformar grandes quantidades de materiais
+                    comuns em componentes alquímicos raros.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    Uma reação em cadeia pode destruir todos os materiais
+                    presentes no círculo.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- 30 -->
+
+        <article class="ritual-card espiritual nivel5"
+            data-level="nivel5"
+            data-category="espiritual"
+            data-search="ascensão astral lágrima estelar alma">
+
+            <div class="ritual-top">
+                <h3 class="ritual-name">
+                    Ascensão Astral
+                </h3>
+
+                <div class="ritual-level">
+                    Nível V
+                </div>
+            </div>
+
+            <p class="ritual-desc">
+                Um ritual lendário que separa temporariamente a consciência
+                do corpo e permite observar o mundo através do plano astral.
+            </p>
+
+            <div class="ritual-tags">
+                <span class="tag">Astral</span>
+                <span class="tag">Espiritual</span>
+                <span class="tag">Lendário</span>
+            </div>
+
+            <div class="ritual-info">
+                <div class="info-box">
+                    <span class="info-label">Tempo</span>
+                    <span class="info-value">12 horas</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Duração</span>
+                    <span class="info-value">30 minutos</span>
+                </div>
+            </div>
+
+            <div class="materials">
+                <strong>Materiais</strong>
+                <p>
+                    1 Lágrima Estelar + 50g de Minério da Lua +
+                    100ml de Ectoessência.
+                </p>
+            </div>
+
+            <div class="ritual-effect">
+                <strong>Efeito</strong>
+                <p>
+                    A consciência pode atravessar o plano astral e observar
+                    regiões distantes sem transportar o corpo físico.
+                </p>
+            </div>
+
+            <div class="ritual-risk">
+                <strong>Falha</strong>
+                <p>
+                    O retorno pode ser dificultado caso uma entidade
+                    espiritual interfira no vínculo entre corpo e alma.
+                </p>
+            </div>
+
+        </article>
+
+    </main>
+
+
+    <!-- =========================
+         REGRAS DE RITUAIS
+    ========================= -->
+
+    <section class="rules-section">
+
+        <h2 class="rules-title">
+            Regras da Alquimia Ritualística
+        </h2>
+
+        <div class="rules-grid">
+
+            <div class="rule-box">
+
+                <h3>01 — Preparação</h3>
+
+                <p>
+                    Todo ritual exige um círculo alquímico. O círculo deve
+                    ser desenhado com materiais compatíveis com a natureza
+                    da reação.
+                </p>
+
+            </div>
+
+
+            <div class="rule-box">
+
+                <h3>02 — Catalisadores</h3>
+
+                <p>
+                    Minérios raros, essências e componentes espirituais
+                    funcionam como catalisadores. Quanto maior o ritual,
+                    maior a qualidade exigida.
+                </p>
+
+            </div>
+
+
+            <div class="rule-box">
+
+                <h3>03 — Quantidade</h3>
+
+                <p>
+                    A quantidade indicada representa o mínimo necessário.
+                    Usar materiais adicionais pode aumentar a estabilidade,
+                    mas não elimina o risco.
+                </p>
+
+            </div>
+
+
+            <div class="rule-box">
+
+                <h3>04 — Falha</h3>
+
+                <p>
+                    Uma falha ritualística não significa necessariamente
+                    que nada aconteceu. Algumas reações produzem efeitos
+                    inesperados ou consequências permanentes.
+                </p>
+
+            </div>
+
+
+            <div class="rule-box">
+
+                <h3>05 — Ambiente</h3>
+
+                <p>
+                    Alguns rituais exigem condições específicas, como lua
+                    cheia, tempestades, proximidade de cadáveres ou regiões
+                    de forte concentração mágica.
+                </p>
+
+            </div>
+
+
+            <div class="rule-box">
+
+                <h3>06 — Componentes</h3>
+
+                <p>
+                    Componentes de Morto, Ectoessência, Essências Elementais,
+                    Extratos Vegetais, Fontes Minerais, Sebos e Soros podem
+                    ser combinados conforme a reação.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         AVISO
+    ========================= -->
+
+    <section class="warning">
+
+        <h2>☠ Aviso aos Alquimistas</h2>
+
+        <p>
+            Os rituais de Nível IV e V não devem ser realizados sem
+            preparação adequada. A manipulação de almas, matéria astral,
+            energia abissal e forças de transmutação extrema pode produzir
+            consequências que ultrapassam o controle do próprio alquimista.
+            Alguns círculos foram proibidos pelas antigas escolas de
+            Nexalis por razões que permanecem desconhecidas.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        let currentFilter = "all";
+
+
+        function filterCategory(category, btn) {
+
+            currentFilter = category;
+
+            const buttons = document.querySelectorAll(".filter-btn");
+
+            buttons.forEach(button => {
+                button.classList.remove("active");
+            });
+
+            btn.classList.add("active");
+
+            filterRituals();
+        }
+
+
+        function filterRituals() {
+
+            const input =
+                document.getElementById("searchInput").value
+                .toLowerCase()
+                .trim();
+
+            const cards =
+                document.querySelectorAll(".ritual-card");
+
+            let visible = 0;
+
+            cards.forEach(card => {
+
+                const searchText =
+                    card.getAttribute("data-search") || "";
+
+                const cardText =
+                    card.textContent.toLowerCase();
+
+                const level =
+                    card.getAttribute("data-level");
+
+                const category =
+                    card.getAttribute("data-category");
+
+                const matchesSearch =
+                    searchText.toLowerCase().includes(input) ||
+                    cardText.includes(input);
+
+                let matchesFilter = false;
+
+                if (currentFilter === "all") {
+
+                    matchesFilter = true;
+
+                } else if (
+                    currentFilter === "nivel1" ||
+                    currentFilter === "nivel2" ||
+                    currentFilter === "nivel3" ||
+                    currentFilter === "nivel4" ||
+                    currentFilter === "nivel5"
+                ) {
+
+                    matchesFilter =
+                        level === currentFilter;
+
+                } else {
+
+                    matchesFilter =
+                        category === currentFilter;
+                }
+
+
+                if (matchesSearch && matchesFilter) {
+
+                    card.style.display = "block";
+                    visible++;
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+
+            document.getElementById("ritualCount").textContent =
+                visible;
+        }
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            filterRituals();
+
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Animais & Bichos — Nexalis</title>
+<link rel="stylesheet" href="../site.css">
+<link rel="stylesheet" href="../souls-theme.css">
+<style>
+body{margin:0;background:radial-gradient(circle at top,#301414 0%,#120909 42%,#070707 100%);color:#ddd;font-family:Georgia,"Times New Roman",serif}
+.navbar{border-bottom:1px solid #633535;background:#0b0808;padding:14px 20px}.links{max-width:1200px;margin:auto;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}.links a{padding:10px 15px;color:#ddd;text-decoration:none;border:1px solid #5b3535;background:#171010;border-radius:4px}.links a:hover{color:#f0c56b;border-color:#a3483c}
+.container{max-width:1200px;margin:auto;padding:38px 20px 60px}.hero{text-align:center;margin-bottom:35px}.hero h1{color:#d8a84e;font-size:42px;margin:0 0 10px}.hero p{color:#aa9696;max-width:780px;margin:auto;line-height:1.6}.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0}.button{display:inline-block;padding:12px 18px;text-decoration:none;color:#ffe5a6;background:#2b1713;border:1px solid #8a5a2d;border-radius:5px;font-weight:700}
+.section-title{margin:36px 0 18px;padding:12px 16px;border-left:4px solid #8e3027;border-bottom:1px solid #472424;color:#d7a84f;background:linear-gradient(90deg,rgba(90,25,20,.35),transparent)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{padding:20px;background:linear-gradient(145deg,#211313,#0e0b0b);border:1px solid #593131;border-radius:6px;box-shadow:0 8px 20px rgba(0,0,0,.5)}.card h3{margin:0 0 10px;color:#dfb45e}.card p,.card li{color:#c4b7b7;line-height:1.45}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}.stat{padding:8px;text-align:center;border:1px solid #4e3333;background:#130d0d}.stat b{display:block;color:#e4b861}.card a{color:#f1c972}.tag{display:inline-block;padding:3px 8px;margin-right:5px;border:1px solid #5f4545;border-radius:999px;font-size:12px;color:#c8b5b5}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.grid{grid-template-columns:1fr}.hero h1{font-size:30px}}
+</style>
+<link rel="stylesheet" href="../player-theme.css">
+<link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
+<link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
+</head>
+<body>
+<nav class="player-nav" id="playerNav"><div class="player-nav-inner"><a class="player-brand" href="../funcoes/inicio.html"><span class="player-brand-mark">✦</span><span>HURRAS<small>NEXALIS</small></span></a><button class="player-mobile" type="button" onclick="document.getElementById('playerNav').classList.toggle('open')">☰</button><div class="player-links"><a href="../funcoes/inicio.html">Player</a><a href="../funcoes/clan.html">Minha Ficha</a><a href="../funcoes/sistema-completo.html">Sistema</a><a href="../funcoes/npcs.html">NPCs</a><a href="../funcoes/biblioteca.html">Biblioteca</a></div></div></nav>
+<main class="container">
+<section class="hero"><h1>🐾 Animais & Bichos de Nexalis</h1><p>Área geral para criaturas comuns, companheiros, montarias e animais selvagens. Os valores abaixo servem como base rápida para o mestre e podem ser ajustados ao nível da campanha.</p><div class="actions"><a class="button" href="ficha-animal.html">Criar ficha de animal</a></div></section>
+
+<h2 class="section-title">Fichas rápidas gerais</h2>
+<div class="grid">
+<article class="card"><h3>🐺 Lobo</h3><span class="tag">Selvagem</span><span class="tag">Alcateia</span><div class="stats"><div class="stat"><b>PV</b>18</div><div class="stat"><b>DEF</b>12</div><div class="stat"><b>Mov.</b>9m</div></div><p><b>Mordida:</b> 1d6+2. <b>Faro:</b> vantagem para rastrear. <b>Alcateia:</b> +1 no ataque quando há outro lobo adjacente ao alvo.</p></article>
+<article class="card"><h3>🐻 Urso</h3><span class="tag">Selvagem</span><span class="tag">Grande</span><div class="stats"><div class="stat"><b>PV</b>42</div><div class="stat"><b>DEF</b>11</div><div class="stat"><b>Mov.</b>7m</div></div><p><b>Garras:</b> 1d10+4. <b>Brutalidade:</b> ao ficar abaixo da metade dos PV, causa +2 de dano.</p></article>
+<article class="card"><h3>🐎 Cavalo</h3><span class="tag">Montaria</span><span class="tag">Doméstico</span><div class="stats"><div class="stat"><b>PV</b>28</div><div class="stat"><b>DEF</b>10</div><div class="stat"><b>Mov.</b>14m</div></div><p><b>Coice:</b> 1d8+3. <b>Montaria:</b> pode carregar um cavaleiro e equipamento sem perder deslocamento normal.</p></article>
+<article class="card"><h3>🐗 Javali</h3><span class="tag">Selvagem</span><span class="tag">Investida</span><div class="stats"><div class="stat"><b>PV</b>30</div><div class="stat"><b>DEF</b>11</div><div class="stat"><b>Mov.</b>8m</div></div><p><b>Presas:</b> 1d8+3. <b>Investida:</b> após correr em linha reta, soma +1d6 de dano.</p></article>
+<article class="card"><h3>🐆 Pantera</h3><span class="tag">Predador</span><span class="tag">Furtivo</span><div class="stats"><div class="stat"><b>PV</b>24</div><div class="stat"><b>DEF</b>14</div><div class="stat"><b>Mov.</b>10m</div></div><p><b>Garras:</b> 1d8+2. <b>Caçadora Noturna:</b> bônus em furtividade em ambientes escuros.</p></article>
+<article class="card"><h3>🦅 Falcão</h3><span class="tag">Ave</span><span class="tag">Exploração</span><div class="stats"><div class="stat"><b>PV</b>8</div><div class="stat"><b>DEF</b>15</div><div class="stat"><b>Mov.</b>16m voo</div></div><p><b>Garras:</b> 1d4. <b>Visão Aguçada:</b> excelente para reconhecimento, mensagens e localizar alvos à distância.</p></article>
+<article class="card"><h3>🐍 Cobra</h3><span class="tag">Veneno</span><span class="tag">Pequeno</span><div class="stats"><div class="stat"><b>PV</b>6</div><div class="stat"><b>DEF</b>13</div><div class="stat"><b>Mov.</b>6m</div></div><p><b>Mordida:</b> 1d4 e teste contra veneno. Em falha, sofre 1d4 adicional.</p></article>
+<article class="card"><h3>🐊 Crocodilo</h3><span class="tag">Aquático</span><span class="tag">Predador</span><div class="stats"><div class="stat"><b>PV</b>36</div><div class="stat"><b>DEF</b>13</div><div class="stat"><b>Mov.</b>6m/9m água</div></div><p><b>Mordida:</b> 1d10+3. <b>Agarrar:</b> ao acertar com vantagem, pode prender o alvo até ele escapar.</p></article>
+<article class="card"><h3>🐕 Cão</h3><span class="tag">Doméstico</span><span class="tag">Companheiro</span><div class="stats"><div class="stat"><b>PV</b>14</div><div class="stat"><b>DEF</b>12</div><div class="stat"><b>Mov.</b>9m</div></div><p><b>Mordida:</b> 1d6. <b>Lealdade:</b> recebe bônus para proteger ou localizar seu dono.</p></article>
+</div>
+
+<h2 class="section-title">Criar nova ficha</h2>
+<div class="grid"><article class="card"><h3>Ficha personalizada</h3><p>Crie uma ficha de animal ou companheiro usando a ferramenta do site.</p><a href="ficha-animal.html">Abrir criador de ficha</a></article></div>
+</main>
+</body>
+</html>
