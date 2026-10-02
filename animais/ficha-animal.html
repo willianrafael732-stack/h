@@ -4,42 +4,31 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Ficha de Animal — Nexalis</title>
 <link rel="stylesheet" href="../site.css"><link rel="stylesheet" href="../souls-theme.css">
-<style>
-body{background:#0a0808;color:#ddd;font-family:Georgia,serif;margin:0}.sheet{max-width:900px;margin:30px auto;padding:24px;background:#151010;border:1px solid #5d3930}.sheet h1{color:#d7a84f}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.row{display:flex;flex-direction:column;gap:6px}.full{grid-column:1/-1}label{color:#d7a84f;font-weight:bold}input,select,textarea{box-sizing:border-box;width:100%;padding:10px;background:#080707;color:#eee;border:1px solid #5a3833;border-radius:4px}textarea{min-height:100px;resize:vertical}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}button,a.button{padding:10px 16px;border:1px solid #8c6332;background:#2c1b16;color:#f4d28e;text-decoration:none;cursor:pointer;border-radius:4px}@media(max-width:650px){.grid,.stats{grid-template-columns:1fr 1fr}}@media print{.actions{display:none}body{background:#fff;color:#000}.sheet{margin:0;border:0;background:#fff;box-shadow:none}input,select,textarea{color:#000;background:#fff;border:1px solid #777}}
-</style>
+<link rel="stylesheet" href="ficha-animal-theme.css">
 <link rel="stylesheet" href="../hurras-visual.css" media="screen" data-hurras-visual="v11">
 <link rel="icon" type="image/svg+xml" href="../hurras-icon.svg" data-hurras-visual="v11">
 <script defer src="../hurras-nav.js"></script></head>
 <body>
-<main class="sheet">
-<h1>🐾 Ficha Geral de Animal</h1>
-<p>Preencha, salve no navegador e imprima em PDF quando quiser.</p>
+<main class="animal-shell">
+<header class="animal-header"><span class="animal-kicker">BESTIÁRIO · FICHA VIVA</span><h1>🐾 Ficha de Animal</h1><p>Companheiros, montarias e criaturas de Nexalis. Edição digital separada da versão para imprimir.</p></header>
+<nav class="animal-toolbar" aria-label="Opções da ficha"><button id="animalModeEdit" type="button" aria-pressed="true">✎ Editar animal</button><button id="animalModePDF" type="button" aria-pressed="false">▤ Prévia da ficha</button><button id="animalPrint" type="button">⬇ Salvar em PDF / Imprimir</button><a class="button" href="../funcoes/clan.html">Ficha clássica</a><a class="button" href="../funcoes/ficha-dark-fantasy.html">Ficha Dark</a></nav>
+<section class="animal-editor" id="animalEditor">
+<p class="animal-hint">Os máximos são calculados por nível: <strong>Vida = nível × 10</strong> · <strong>Mana = nível × 5</strong>. Os valores atuais podem diminuir durante a aventura.</p>
 <form id="animalForm">
 <div class="grid">
 <div class="row"><label for="nome">Nome</label><input id="nome" name="nome" maxlength="80"></div>
 <div class="row"><label for="especie">Espécie</label><input id="especie" name="especie" maxlength="80"></div>
 <div class="row"><label for="tipo">Tipo</label><select id="tipo" name="tipo"><option>Selvagem</option><option>Doméstico</option><option>Montaria</option><option>Companheiro</option><option>Aquático</option><option>Ave</option><option>Monstruoso</option><option>Outro</option></select></div>
-<div class="row"><label for="nivel">Nível</label><input id="nivel" name="nivel" type="number" min="0" max="20" value="1"></div>
-<div class="full stats"><div class="row"><label for="pv">PV</label><input id="pv" name="pv" type="number" min="0"></div><div class="row"><label for="defesa">Defesa</label><input id="defesa" name="defesa" type="number" min="0"></div><div class="row"><label for="movimento">Movimento</label><input id="movimento" name="movimento" placeholder="9m"></div><div class="row"><label for="iniciativa">Iniciativa</label><input id="iniciativa" name="iniciativa" type="number"></div></div>
+<div class="row"><label for="nivel">Nível</label><input id="nivel" name="nivel" type="number" min="1" max="20" value="1"></div>
+<div class="full stats"><div class="row"><label for="pv">Vida atual <small id="maxPV">/ 10</small></label><input id="pv" name="pv" type="number" min="0" value="10"><div class="resource-track"><div class="resource-fill health" id="healthFill"></div></div></div><div class="row"><label for="mana">Mana atual <small id="maxMana">/ 5</small></label><input id="mana" name="mana" type="number" min="0" value="5"><div class="resource-track"><div class="resource-fill magic" id="manaFill"></div></div></div><div class="row"><label for="defesa">Defesa</label><input id="defesa" name="defesa" type="number" min="0"></div><div class="row"><label for="movimento">Movimento</label><input id="movimento" name="movimento" placeholder="9m"></div><div class="row"><label for="iniciativa">Iniciativa</label><input id="iniciativa" name="iniciativa" type="number"></div></div>
 <div class="row"><label for="forca">Força</label><input id="forca" name="forca" type="number"></div><div class="row"><label for="agilidade">Agilidade</label><input id="agilidade" name="agilidade" type="number"></div><div class="row"><label for="vigor">Vigor</label><input id="vigor" name="vigor" type="number"></div><div class="row"><label for="percepcao">Percepção</label><input id="percepcao" name="percepcao" type="number"></div>
 <div class="row full"><label for="ataques">Ataques</label><textarea id="ataques" name="ataques" placeholder="Ex.: Mordida — 1d6+2"></textarea></div>
 <div class="row full"><label for="habilidades">Habilidades / Instintos</label><textarea id="habilidades" name="habilidades"></textarea></div>
 <div class="row full"><label for="fraquezas">Fraquezas / Resistências</label><textarea id="fraquezas" name="fraquezas"></textarea></div>
 <div class="row full"><label for="descricao">Descrição</label><textarea id="descricao" name="descricao"></textarea></div>
 </div>
-<div class="actions"><button type="button" id="salvar">Salvar ficha</button><button type="button" id="limpar">Limpar</button><button type="button" onclick="window.print()">Imprimir / Salvar PDF</button><a class="button" href="animais.html">Voltar aos animais</a></div>
-</form>
+<div class="actions"><button type="button" id="salvar">Salvar ficha</button><button type="button" id="randomAnimal">Gerar animal aleatório</button><button type="button" id="exportAnimal">Exportar JSON</button><label class="button" for="importAnimal">Importar JSON</label><input id="importAnimal" type="file" accept=".json,application/json" hidden><button type="button" id="limpar">Limpar</button><a class="button" href="animais.html">Voltar aos animais</a></div><p class="animal-status" id="animalStatus" role="status"></p>
+</form></section><article id="animalPreview" class="animal-preview" aria-label="Prévia A4 do animal"></article>
 </main>
-<script>
-(() => {
-  'use strict';
-  const form = document.getElementById('animalForm');
-  const key = 'nexalis:ficha-animal:v1';
-  const load = () => { try { const data = JSON.parse(localStorage.getItem(key) || '{}'); for (const [k,v] of Object.entries(data)) if (form.elements[k]) form.elements[k].value = v; } catch {} };
-  const save = () => { const data = Object.fromEntries(new FormData(form).entries()); localStorage.setItem(key, JSON.stringify(data)); alert('Ficha salva neste navegador.'); };
-  document.getElementById('salvar').addEventListener('click', save);
-  document.getElementById('limpar').addEventListener('click', () => { if (confirm('Limpar a ficha salva?')) { localStorage.removeItem(key); form.reset(); } });
-  load();
-})();
-</script>
+<script defer src="ficha-animal.js"></script>
 </body></html>
