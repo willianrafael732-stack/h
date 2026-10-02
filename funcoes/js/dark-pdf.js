@@ -16,7 +16,7 @@ const groups=[
  ['Conhecimentos',['Acadêmicos','Geografia','Encantamento','Selos','Medicina','Ciências','Tecnologia','Linguística','Sobrevivência'],'#7c9dce']
 ];
 const resist=['Fogo','Água','Vento','Terra','Veneno','Raio','Mental','Sagrado','Sombrio'];
-const gear=['Arma branca primária','Arma branca secundária','Distância primária','Distância secundária','Armadura'];
+const gear=['Arma branca primária','Arma branca secundária','Distância primária','Distância secundária','Armadura','Arma mágica','Escudo','Outra arma'];
 const COLORS={Físicos:'#ca5f55',Sociais:'#e6b875',Mentais:'#6e9acf',Virtudes:'#73c19c',Combate:'#bd82b2',Habilidades:'#cdb180',Conhecimentos:'#8ca9d9'};
 const STORAGE_BG='hurras_dark_sheet_background_v1';
 const status=message=>{if($('status'))$('status').textContent=message};
@@ -25,14 +25,16 @@ let background='';
 function bgRestore(){try{background=localStorage.getItem(STORAGE_BG)||''}catch(e){background=''}if(background)document.documentElement.style.setProperty('--dark-bg-image','url("'+background+'")');else document.documentElement.style.removeProperty('--dark-bg-image')}
 bgRestore();
 function el(tag,cls,txt){let x=document.createElement(tag);if(cls)x.className=cls;if(txt!==undefined&&txt!==null)x.textContent=String(txt);return x}
-function setDots(box,num,total,c){box.className='dark-pdf-dotrow';box.style.setProperty('--print-dot',c);for(let i=1;i<=total;i++){box.append(el('i','dark-pdf-dot'+(i<=num?' on':'')))}}
+const dotPalette=['#ce7167','#e0ae6c','#6fa4d3','#79bd9a'];
+const dotHex=i=>dotPalette[Math.floor(i/3)%4];
+function setDots(box,num,total,c){box.className='dark-pdf-dotrow';for(let i=1;i<=total;i++){const item=el('i','dark-pdf-dot'+(i<=num?' on':''));item.style.setProperty('--print-dot',dotHex(i-1));box.append(item)}}
 function dots(num,total,color){const wrap=el('div');setDots(wrap,Number(num)||0,total,color);return wrap}
 function box(title){let b=el('section','dark-pdf-box'),h=el('h3',null,title);b.append(h);return b}
 function line(label,n,total,color){let row=el('div','dark-pdf-line');row.append(el('span',null,label),dots(n,total,color));return row}
 function detail(label,v){let col=el('div');col.append(el('b',null,label),el('span',null,String(v??'')));return col}
 function textBox(label,v){let b=box(label);b.append(el('div','dark-pdf-text',String(v??'')));return b}
 function page(num){let p=el('article','dark-pdf-page');p.setAttribute('aria-label','Página '+num+' da ficha');let h=el('div','dark-pdf-head');h.append(el('strong',null,'HURRAS DARK FANTASY'),el('p',null,'NEXALIS · FICHA DE PERSONAGEM · '+num+'/2'));p.append(h);return p}
-function track(title,a,total,cls){let b=box(title),g=el('div','dark-pdf-track');g.style.setProperty('--print-dot',cls);const active=new Set(a||[]);for(let i=0;i<total;i++){g.append(el('i','dark-pdf-dot'+(active.has(i)?' on':'')))}b.append(g);return b}
+function track(title,a,total,cls){let b=box(title),g=el('div','dark-pdf-track');g.style.setProperty('--print-dot',cls);const active=new Set(a||[]);for(let i=0;i<total;i++){{let circle=el('i','dark-pdf-dot'+(active.has(i)?' on':''));circle.style.setProperty('--print-dot',dotHex(i));g.append(circle)}}b.append(g);return b}
 function preview(){
  const d=api.get(),pages=$('pdfPages');if(!pages)return;pages.replaceChildren();
  const one=page(1),ident=el('div','dark-pdf-id');
@@ -91,11 +93,11 @@ async function generatePdf(){
  // colored circles print in the selected count, including unselected outlines.
  blocks.forEach(b=>{let y=b.y;for(const [group,items,col] of b.items){const height=23+items.length*18;rect(pages[0],b.x,y-height,174,height);pText(pages[0],group.toUpperCase(),b.x+7,y-14,9,bold,gold);y-=24;
  for(const k of items){pText(pages[0],k,b.x+5,y-6,6,font,white);const n=Math.min(12,Number(state.stats[k]||0));const step=6.6;
- for(let i=0;i<12;i++)pages[0].drawCircle({x:b.x+78+i*step,y:y-3,size:3,borderColor:color(col),borderWidth:.65,color:i<n?color(col):panel});
+ for(let i=0;i<12;i++)pages[0].drawCircle({x:b.x+78+i*step,y:y-3,size:3,borderColor:color(dotHex(i)),borderWidth:.65,color:i<n?color(dotHex(i)):panel});
  textField(pages[0],'stat_'+k,n,b.x+157,y-10,14,12);y-=18}y-=9}});
  // Willpower + health/mana as editable counters (dots visibly colored on the PDF)
  let y=151;rect(pages[0],24,40,550,112);pText(pages[0],'FORCA DE VONTADE',33,131,10,bold,gold);
- let n=Number(state.stats['Força de Vontade']||0);for(let i=0;i<10;i++)pages[0].drawCircle({x:43+i*14,y:111,size:5,borderColor:gold,color:i<n?gold:panel});
+ let n=Number(state.stats['Força de Vontade']||0);for(let i=0;i<10;i++)pages[0].drawCircle({x:43+i*14,y:111,size:5,borderColor:color(dotHex(i)),color:i<n?color(dotHex(i)):panel});
  textField(pages[0],'stat_Força de Vontade',n,192,102,30);
  pText(pages[0],'VITALIDADE',256,132,10,bold,gold);
  const hval=(state.vitality||[]).length;pText(pages[0],hval+' / 100',258,110,9,bold,pdf.rgb(.9,.42,.36));
@@ -107,12 +109,12 @@ async function generatePdf(){
  for(let i=0;i<18;i++){const y=724-i*28;const x=26;pText(pages[1],String(i+1).padStart(2,'0'),x,y+4,8,bold,gold);
  textField(pages[1],'magic_'+i,(state.magic||[])[i]||'',x+21,y-1,345);
  const v=Number(state.magicLevels?.[i]||0);textField(pages[1],'magicLevel_'+i,v,402,y-1,26);
- for(let j=0;j<10;j++){pages[1].drawCircle({x:440+j*13,y:y+8,size:3.8,borderColor:gold,color:j<v?gold:panel})}
+ for(let j=0;j<10;j++){pages[1].drawCircle({x:440+j*13,y:y+8,size:3.8,borderColor:color(dotHex(j)),color:j<v?color(dotHex(j)):panel})}
  }
  let yR=194;const elemWidth=59;pText(pages[1],'RESISTENCIAS',29,yR,12,bold,gold);yR-=19;
  resist.forEach((k,i)=>{const x=29+(i%3)*188,y=yR-Math.floor(i/3)*25;pText(pages[1],k,x,y,8,bold,gold);textField(pages[1],'resist_'+k,Number(state.resist[k]||0),x+90,y-5,32)});
- let lower=82;
- gear.forEach((k,i)=>{const x=29+(i%3)*187,y=lower-Math.floor(i/3)*28;pText(pages[1],k,x,y+10,7,bold,gold);textField(pages[1],'gear_'+i,state.gear[i]||'',x,y-6,164)});
+ let lower=91;
+ gear.forEach((k,i)=>{const x=29+(i%3)*187,y=lower-Math.floor(i/3)*21;pText(pages[1],k,x,y+10,7,bold,gold);textField(pages[1],'gear_'+i,state.gear[i]||'',x,y-6,164)});
  // Existing data, including notes/adv/disadv, is preserved in a small machine-readable
  // AcroForm field. Import from THIS downloadable PDF reconstructs the whole sheet.
  const blob=form.createTextField('hurras_dark_data_v2');blob.enableMultiline();blob.setText(encodeURIComponent(JSON.stringify({...state,_format:'hurras_dark_pdf_v2'})));
