@@ -108,8 +108,29 @@ if(gear)mid.append(gear);
 if(notes)mid.append(notes);
 lower.append(mid);
 const right=section('william-bottom-resist');
-right.append(wheel('RESISTÊNCIA MÁGICA','resist'));
-if(resist)right.append(resist);
+// A resistência não usa mais um círculo nem uma segunda linha de bolinhas.
+if(resist){
+ const kinds=Array.from(resist.querySelectorAll('[data-resist]')).map(x=>x.dataset.resist);
+ const title=resist.querySelector('h2')?.textContent||'Resistência mágica';
+ resist.replaceChildren();
+ const heading=document.createElement('h2');heading.textContent=title;resist.append(heading);
+ const list=document.createElement('div');list.className='william-resistance-numbers';
+ for(const key of kinds){
+  const label=document.createElement('label');
+  const name=document.createElement('span');name.textContent=key;
+  const input=document.createElement('input');input.type='number';input.min='0';input.max='12';input.step='1';
+  input.dataset.resistNumber=key;input.setAttribute('aria-label','Resistência '+key);
+  input.value=String(Math.max(0,Math.min(12,Number(window.HurrasDarkSheetAPI?.get()?.resist?.[key])||0)));
+  input.addEventListener('change',()=>{
+   const api=window.HurrasDarkSheetAPI;if(!api)return;
+   const state=api.get();
+   state.resist[key]=Math.max(0,Math.min(12,Math.round(Number(input.value)||0)));
+   api.update(state);
+  });
+  label.append(name,input);list.append(label);
+ }
+ resist.append(list);right.append(resist);
+}
 lower.append(right);
 page2.append(lower);
 duo.remove();
@@ -120,8 +141,7 @@ function updateWheels(){
  const d=api();if(!d)return;
  const lvl=Math.max(0,Math.min(10,Number(d.fields?.['Nível mágico'])||0));
  document.querySelectorAll('.william-wheel-stone').forEach(node=>{
-  const type=node.dataset.wheel,elem=node.dataset.element;
-  const n=type==='magic'?lvl:(Number(d.resist?.[elem])||0);
+  const n=lvl;
   node.classList.toggle('is-active',n>0);
   node.title=elem+': '+n+' ponto(s)';
   node.dataset.points=String(n);

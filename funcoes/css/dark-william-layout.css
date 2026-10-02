@@ -165,3 +165,31 @@ body{background:radial-gradient(ellipse at 50% 15%,#451a21,#110c13 62%,#09070a);
  #darkPdfView .william-pdf-resources,#darkPdfView .william-pdf-lower{grid-template-columns:1fr 1.1fr 1fr!important}
  #darkPdfView .william-pdf-spells .dark-pdf-magic-grid{grid-template-columns:repeat(2,1fr)!important}
 }
+
+/* Correção dos controles após diagramação WILLIAM: pontos clicáveis, não apenas decorativos. */
+@media screen{
+ #darkEditor .william-sheet .trait{position:relative;min-width:0;z-index:1}
+ #darkEditor .william-attributes .trait,#darkEditor .william-skills .trait{
+   display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-height:33px;padding:3px 0;
+ }
+ #darkEditor .william-sheet .dots{display:flex;position:relative;z-index:2;flex-wrap:wrap;gap:2px;justify-content:flex-start;max-width:100%;pointer-events:auto}
+ #darkEditor .william-sheet .dot{
+   appearance:none;width:15px;height:15px;min-width:15px;min-height:15px;flex:0 0 15px;
+   position:relative;pointer-events:auto;touch-action:manipulation;cursor:pointer;padding:0;border-radius:50%;
+ }
+ #darkEditor .william-spell-rows .dot{width:15px;height:15px;min-width:15px;min-height:15px}
+ #darkEditor .william-page-one .william-center .dots{justify-content:center}
+ #darkEditor .william-sheet .dot:focus-visible{outline:3px solid #fff;outline-offset:2px}
+ #darkEditor .william-sheet .dot:disabled{cursor:default}
+}
+#darkEditor .william-resistance-numbers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 9px}
+#darkEditor .william-resistance-numbers label{display:flex;align-items:center;justify-content:space-between;gap:6px;color:#f4e2d8;font:12px Arial,sans-serif;min-width:0}
+#darkEditor .william-resistance-numbers input{max-width:57px;width:54px;min-height:38px;background:#240d18;color:#fff;border:1px solid #b99b88;border-radius:5px;text-align:center;font-size:15px}
+#darkEditor .william-resistance-numbers input:focus{outline:2px solid #ffdbac}
+#darkPdfView .william-pdf-resist-line{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #966b6880;padding:4px 2px;font-size:11px}
+#darkPdfView .william-pdf-resist-line strong{color:#fff0d0;font-size:12px}
+@media screen and (max-width:680px){
+ #darkEditor .william-sheet .dot{width:19px;height:19px;min-width:19px;min-height:19px;flex-basis:19px}
+ #darkEditor .william-spell-rows .dot{width:17px;height:17px;min-width:17px;min-height:17px}
+ #darkEditor .william-resistance-numbers{grid-template-columns:1fr 1fr}
+}

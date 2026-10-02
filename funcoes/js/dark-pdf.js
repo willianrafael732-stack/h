@@ -103,9 +103,13 @@ function preview(){
  center.append(textBox('ITENS',d.fields?.Itens||''));
  center.append(textBox('NOTAS',d.fields?.Notas||''));
  lower.append(center);
- const right=el('section');right.append(williamWheel('RESISTÊNCIA MÁGICA','resist',d));
- const resistBox=box('Resistências');
- resist.forEach(k=>resistBox.append(line(k,d.resist?.[k],12,'#7199ad')));
+ const right=el('section');
+ const resistBox=box('RESISTÊNCIAS');
+ for(const k of resist){
+  const item=el('div','william-pdf-resist-line');
+  item.append(el('span',null,k),el('strong',null,String(Math.max(0,Math.min(12,Number(d.resist?.[k])||0)))));
+  resistBox.append(item)
+ }
  right.append(resistBox);lower.append(right);two.append(lower);
  pages.append(one,two);return d;
 }

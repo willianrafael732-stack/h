@@ -45,9 +45,24 @@ function dots(host,key,total,collection){
 host.replaceChildren();host.style.setProperty('--accent',(host.closest('[data-color]')||{}).dataset?.color||'#ddb97a');
 var number=key==='Força de Vontade'?currentLevel():(Number(data[collection][key])||0);
 for(var i=1;i<=total;i++){var b=document.createElement('button');b.type='button';b.className='dot'+(i<=number?' on':'');b.title=key+': '+i+' / '+total;b.style.setProperty('--accent',['#ce7167','#e0ae6c','#6fa4d3','#79bd9a'][Math.floor((i-1)/3)%4]);b.setAttribute('aria-label',key+' '+i);b.setAttribute('aria-pressed',String(i<=number));b.dataset.value=i;if(key==='Força de Vontade'){b.disabled=true;b.title='Força de Vontade automática: nível '+currentLevel();}
-b.addEventListener('click',function(){var val=Number(this.dataset.value);if(key==='Força de Vontade')return;data[collection][key]=(Number(data[collection][key])||0)===val?0:val;dots(host,key,total,collection);autoSave()});
+// Cliques tratados por delegação para que os pontos continuem editáveis após reorganizar o layout.
 host.append(b)}
 }
+// A delegação funciona após reorganização visual e em botões recriados por render().
+$('darkEditor').addEventListener('click',event=>{
+ const button=event.target.closest('button.dot');
+ if(!button||button.disabled)return;
+ const host=button.closest('[data-stat],[data-magic-dots],[data-resist]');
+ if(!host||!$('darkEditor').contains(host))return;
+ const kind=host.hasAttribute('data-stat')?'stats':host.hasAttribute('data-magic-dots')?'magicLevels':'resist';
+ const key=host.getAttribute(kind==='stats'?'data-stat':kind==='magicLevels'?'data-magic-dots':'data-resist');
+ if(key==='Força de Vontade')return;
+ if(!data[kind]||typeof data[kind]!=='object')data[kind]={};
+ const value=Number(button.dataset.value);
+ data[kind][key]=Number(data[kind][key]||0)===value?0:value;
+ dots(host,key,kind==='magicLevels'?10:12,kind);
+ autoSave();
+});
 function rows(el,col,count,cls){
  el.replaceChildren();const lim=currentLevel()*(col==='mana'?5:10);
  for(var i=0;i<count;i++){
@@ -87,6 +102,7 @@ stripMagicGear();
 document.querySelectorAll('[data-field]').forEach(x=>x.value=data.fields[x.dataset.field]||'');
 document.querySelectorAll('[data-stat]').forEach(x=>dots(x,x.dataset.stat,x.dataset.stat==='Força de Vontade'?10:12,'stats'));
 document.querySelectorAll('[data-resist]').forEach(x=>dots(x,x.dataset.resist,12,'resist'));
+document.querySelectorAll('[data-resist-number]').forEach(x=>{if(document.activeElement!==x)x.value=String(Math.max(0,Math.min(12,Number(data.resist[x.dataset.resistNumber])||0)))});
 document.querySelectorAll('[data-magic]').forEach(x=>x.value=data.magic[Number(x.dataset.magic)]||'');
 document.querySelectorAll('[data-magic-dots]').forEach(x=>dots(x,x.dataset.magicDots,10,'magicLevels'));
 ['gear','adv','disadv'].forEach(k=>document.querySelectorAll('[data-'+k+']').forEach(x=>x.value=(data[k]||[])[Number(x.dataset[k])]||''));
@@ -96,7 +112,13 @@ function list(){var sel=$('savedSheets'),cur=data.id;sel.replaceChildren();var d
 readAll().forEach(x=>{var op=document.createElement('option');op.value=x.id;op.textContent=safeText(x.fields?.Nome||'Sem nome')+' · '+safeText(x.fields?.Player||'Player');sel.append(op)});sel.value=cur}
 function save(manual){normalizeProgress();if(!data.id)data.id='df-'+Date.now()+'-'+Math.random().toString(36).slice(2,7);
 var a=readAll(),idx=a.findIndex(x=>x.id===data.id);var item=JSON.parse(JSON.stringify(data));item.updatedAt=new Date().toISOString();if(idx<0)a.push(item);else a[idx]=item;try{writeAll(a);localStorage.setItem(CURRENT,data.id);list();if(manual){status('Ficha salva no cofre deste navegador. Exporte o PDF editável como cópia de segurança.')}}catch(e){status('Falha ao gravar: armazenamento cheio ou indisponível.')} }
-var ticking=false;function autoSave(){if(!ticking){ticking=true;setTimeout(function(){ticking=false;save(false)},350)}}
+// Não salvar ficha vazia nem a ficha errada depois de trocar de personagem.
+var saveTimer=null;
+function cancelAutoSave(){if(saveTimer!==null){clearTimeout(saveTimer);saveTimer=null}}
+function autoSave(){
+ cancelAutoSave();
+ saveTimer=setTimeout(function(){saveTimer=null;save(false)},400);
+}
 document.querySelectorAll('[data-field]').forEach(x=>x.addEventListener('input',()=>{
  const k=x.dataset.field;if(k==='Nível'){applyLevelChange(x.value);return}
  data.fields[k]=x.value;
@@ -142,7 +164,7 @@ $('randomStats').onclick=()=>generateStats();
 $('darkZeroPoints').onclick=zeroAllDarkPoints;
 $('randomSheet').onclick=()=>{
  if(!confirm('Criar uma nova ficha aleatória? A ficha atual será mantida salva.'))return;
- save(false);
+ cancelAutoSave();if(data.id)save(false);
  data={id:'',fields:{},stats:{},resist:{},magic:[],magicLevels:{},gear:[],adv:[],disadv:[],vitality:[],mana:[]};
  data.fields={Nome:randomChoice(names)+' '+randomChoice(surnames),Player:'',Crônica:'Nexalis',Nível:String(randint(1,10)),Raça:randomChoice(races),Classe:randomChoice(classes),Profissão:randomChoice(profs),Dinheiro:String(randint(5,200)),Experiência:String(randint(0,450)), 'Nível mágico':String(randint(0,4))};
  data.magic[0]=randomChoice(['Chama viva','Escudo de sombra','Selo de proteção','Toque de cura','Lâmina astral','Rajada de vento','Raiz constritora']);
@@ -159,8 +181,15 @@ $('randomSheet').onclick=()=>{
  localStorage.removeItem(CURRENT);render();generateStats();save(true);status('Personagem aleatório criado e salvo: '+data.fields.Nome+'.');
 };
 $('saveSheet').onclick=()=>save(true);
-$('newSheet').onclick=()=>{if(!confirm('Criar ficha nova? A atual será mantida salva.'))return;save(false);data={id:'',fields:{'Nível':'1'},stats:{},resist:{},magic:[],magicLevels:{},gear:[],adv:[],disadv:[],vitality:fullTrack(10),mana:fullTrack(5)};localStorage.removeItem(CURRENT);render();status('Ficha nova criada com 10 de vida, 5 de mana e 1 de vontade.')};
-$('savedSheets').onchange=e=>{if(!e.target.value)return;var x=readAll().find(v=>v.id===e.target.value);if(x){data=x;localStorage.setItem(CURRENT,data.id);render();status('Ficha carregada.')}};
+function freshSheet(){
+ cancelAutoSave();
+ // As fichas antigas permanecem no cofre; não cria um personagem fantasma no cofre.
+ data=sanitizeState({id:'',fields:{'Nível':'1'},stats:{},resist:{},magic:[],magicLevels:{},gear:[],adv:[],disadv:[],vitality:fullTrack(10),mana:fullTrack(5)});
+ localStorage.removeItem(CURRENT);render();
+ status('Ficha vazia pronta. Os atributos começam em zero; só o nível 1, a Vida e a Mana iniciais são preenchidos.');
+}
+$('newSheet').onclick=()=>{if(!confirm('Abrir uma ficha vazia? Os personagens salvos continuarão no cofre.'))return;freshSheet()};
+$('savedSheets').onchange=e=>{if(!e.target.value)return;var x=readAll().find(v=>v.id===e.target.value);if(x){cancelAutoSave();data=sanitizeState(x);localStorage.setItem(CURRENT,data.id);render();status('Ficha carregada.')}};
 $('deleteSheet').onclick=()=>{if(!data.id||!confirm('Excluir a ficha atual?'))return;writeAll(readAll().filter(x=>x.id!==data.id));localStorage.removeItem(CURRENT);location.reload()};
 $('printSheet').onclick=()=>{ if(window.HurrasDarkPDF)window.HurrasDarkPDF.print(); else window.print();};
 function sanitizeState(v){
@@ -222,8 +251,18 @@ function initElemental(){
 }
 initEquipmentCatalog();setupOrigins();
 initElemental();
-var first=readAll().find(x=>x.id===data.id);
-if(first)data=sanitizeState(Object.assign(data,first));
-else{data.fields['Nível']='1';data.vitality=fullTrack(10);data.mana=fullTrack(5)}
+// No cofre, ?new=1 significa FICHA VAZIA, nunca recuperar personagem aleatório.
+const query=new URLSearchParams(window.location.search);
+const requestedId=query.get('open');
+const explicitOpen=requestedId?readAll().find(x=>x.id===requestedId):null;
+const last=query.get('resume')==='1'?readAll().find(x=>x.id===data.id):null;
+if(explicitOpen||last){
+ data=sanitizeState(explicitOpen||last);localStorage.setItem(CURRENT,data.id);
+}else{
+ // Entrar no criador sem "open" não deve puxar um personagem já salvo.
+ data=sanitizeState({id:'',fields:{'Nível':'1'},stats:{},resist:{},magic:[],magicLevels:{},gear:[],adv:[],disadv:[],vitality:fullTrack(10),mana:fullTrack(5)});
+ localStorage.removeItem(CURRENT);
+}
 render();
+if(query.get('random')==='1')$('randomSheet').click();
 })();
