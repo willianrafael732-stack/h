@@ -14,3 +14,9 @@
 .hurras-shop-links small{width:100%;color:#c3b5a0}
 @media screen and (max-width:720px){.hurras-shop-links a{flex:1 1 125px;text-align:center}}
 @media print{.hurras-shop-links{display:none!important}.hurras-classic .sheet-page .dot.on,.hurras-classic .sheet-page .circle.on{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}}
+
+/* Bordas agrupadas em trios, inclusive nos pontos ainda não preenchidos. */
+.hurras-classic .sheet-page .dot:nth-child(12n+1),.hurras-classic .sheet-page .dot:nth-child(12n+2),.hurras-classic .sheet-page .dot:nth-child(12n+3){border-color:#cf8175!important}
+.hurras-classic .sheet-page .dot:nth-child(12n+4),.hurras-classic .sheet-page .dot:nth-child(12n+5),.hurras-classic .sheet-page .dot:nth-child(12n+6){border-color:#cfac6e!important}
+.hurras-classic .sheet-page .dot:nth-child(12n+7),.hurras-classic .sheet-page .dot:nth-child(12n+8),.hurras-classic .sheet-page .dot:nth-child(12n+9){border-color:#7ea7d6!important}
+.hurras-classic .sheet-page .dot:nth-child(12n+10),.hurras-classic .sheet-page .dot:nth-child(12n+11),.hurras-classic .sheet-page .dot:nth-child(12n+12){border-color:#80bfa1!important}

@@ -115,3 +115,8 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 .hurras-arsenal-links a:hover{background:#594035}
 .dark-pdf-dot.on{background:var(--print-dot)!important;border-color:var(--print-dot)!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
 @media screen and (max-width:720px){.hurras-arsenal-links a{flex:1 1 136px;text-align:center}}
+
+/* 3 pontos por tom também quando ainda vazios: vermelho, âmbar, azul, verde. */
+#darkEditor .dot{border-color:var(--accent)!important}
+.dark-pdf-dot{border-color:var(--print-dot,#d6cabd)!important}
+@media print{.dark-pdf-dot{border-color:var(--print-dot,#d6cabd)!important}}
