@@ -1,0 +1,22 @@
+.hurras-tools{margin:16px auto;padding:16px;background:linear-gradient(140deg,#221917,#101017);border:1px solid #80634b;border-radius:8px;color:#e9d8bf;max-width:1400px}
+.hurras-tools h2{font:25px Georgia,serif;color:#e9ca99;margin:0 0 13px}
+.hurras-tools button,.hurras-tools a{cursor:pointer;padding:9px 12px;background:#241d19;border:1px solid #826448;color:#f1d9b7;border-radius:6px;text-decoration:none;font:700 12px Arial,sans-serif}
+.hurras-tools button:hover,.hurras-tools button.selected{background:#c19b6a;color:#150c09}
+.hurras-tools .ht-nav,.hurras-tools .ht-btns{display:flex;flex-wrap:wrap;gap:8px}
+.hurras-tools .ht-content{margin-top:15px}
+.hurras-tools article,.hurras-tools .ht-condition{background:#151219;border:1px solid #5e4e43;border-radius:6px;padding:12px}
+.hurras-tools .ht-combat,.hurras-tools .ht-equipment,.hurras-tools .ht-points{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.hurras-tools .ht-combat article{display:grid;gap:9px}
+.hurras-tools progress{width:100%;height:15px;accent-color:#bc8964}
+.hurras-tools .ht-points strong{display:block;color:#eace9d;font:700 26px Arial}
+.hurras-tools .ht-points p,.hurras-tools .ht-equipment p{color:#d2c1ae;font:12px/1.45 Arial}
+.hurras-tools select,.hurras-tools input{min-height:40px;max-width:100%;background:#101014;color:#eee2d3;border:1px solid #705b48;border-radius:5px;padding:8px}
+.hurras-tools label{display:grid;gap:6px;color:#d7c3a8;font:12px Arial}
+.hurras-tools .ht-magic{display:grid;grid-template-columns:1fr 2fr auto;gap:9px;align-items:end}
+.hurras-tools .ht-magic p{grid-column:1/-1}
+.hurras-tools .ht-equip{overflow-wrap:anywhere}
+.hurras-tools .ht-equip b{color:#f0c993}
+.hurras-tools .ht-status{min-height:18px;color:#b4d7ab;font:12px Arial}
+.hurras-tools #htConditionList{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0}
+@media(max-width:750px){.hurras-tools{padding:12px;margin:10px}.hurras-tools .ht-magic{grid-template-columns:1fr}.hurras-tools .ht-magic p{grid-column:1}.hurras-tools .ht-nav>*{flex:1 1 125px}}
+@media print{.hurras-tools{display:none!important}}

@@ -172,6 +172,7 @@ function sanitizeState(v){
 }
 window.HurrasDarkSheetAPI={
  get:()=>JSON.parse(JSON.stringify(data)),
+ update:obj=>{data=sanitizeState(JSON.parse(JSON.stringify(obj)));normalizeProgress();render();autoSave()},
  effectiveStat:key=>Number(data.stats[key]||0),
  put:(obj,asNew)=>{data=sanitizeState(JSON.parse(JSON.stringify(obj)));if(asNew)data.id='';normalizeProgress();save(true);render();status('Ficha importada e salva no navegador.');return data.id},
  save:()=>save(true),preview:()=>render()
@@ -191,7 +192,7 @@ function initEquipmentCatalog(){
   if(i!==4&&known&&!isCommonWeapon(known)){input.value=data.gear[i]||'';status('Arma mágica não está disponível nesta ficha.');return}
   const chosen=source.find(x=>x.name===input.value);
   if(!chosen)return;
-  data.gear[i]=chosen.name;autoSave();
+  data.gear[i]=chosen.name;data.adv[i]=chosen.bonus||'';data.disadv[i]=chosen.penalty||'';render();autoSave();
  }));
 }
 const ELEMENTS=['Fogo','Água','Vento','Terra','Raio','Veneno'];
