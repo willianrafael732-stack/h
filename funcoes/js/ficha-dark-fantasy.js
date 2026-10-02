@@ -67,8 +67,22 @@ function updateCounters(){
   ['darkManaTotal',countTrack(data.mana,mp)+' / '+mp],['darkWillTotal',level+' / '+level]])
   if($(id))$(id).textContent=value;
 }
+function stripMagicGear(){
+ const ordinary=Object.values(D.weapons||{}).filter(w=>!/mágic|magic|rúnic|arcano/i.test(w.category||''));
+ const armors=Object.values(D.armors||{});
+ for(let i=0;i<5;i++){
+  const name=data.gear?.[i];if(!name)continue;
+  const all=[...Object.values(D.weapons||{}),...armors];
+  const known=all.find(w=>w.name===name);
+  // Remove equipment explicitly identified by the source catalog as magical.
+  if(known&&i!==4&&!ordinary.includes(known)){data.gear[i]='';data.adv[i]='';data.disadv[i]=''}
+ }
+ // Legacy magical weapons and extra slots 5..7 no longer belong to Dark.
+ for(const k of ['gear','adv','disadv'])if(Array.isArray(data[k]))data[k]=data[k].slice(0,5);
+}
 function render(){
 normalizeProgress();
+stripMagicGear();
 document.querySelectorAll('[data-field]').forEach(x=>x.value=data.fields[x.dataset.field]||'');
 document.querySelectorAll('[data-stat]').forEach(x=>dots(x,x.dataset.stat,x.dataset.stat==='Força de Vontade'?10:12,'stats'));
 document.querySelectorAll('[data-resist]').forEach(x=>dots(x,x.dataset.resist,12,'resist'));
