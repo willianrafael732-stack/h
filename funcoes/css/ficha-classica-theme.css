@@ -20,3 +20,16 @@
 .hurras-classic .sheet-page .dot:nth-child(12n+4),.hurras-classic .sheet-page .dot:nth-child(12n+5),.hurras-classic .sheet-page .dot:nth-child(12n+6){border-color:#cfac6e!important}
 .hurras-classic .sheet-page .dot:nth-child(12n+7),.hurras-classic .sheet-page .dot:nth-child(12n+8),.hurras-classic .sheet-page .dot:nth-child(12n+9){border-color:#7ea7d6!important}
 .hurras-classic .sheet-page .dot:nth-child(12n+10),.hurras-classic .sheet-page .dot:nth-child(12n+11),.hurras-classic .sheet-page .dot:nth-child(12n+12){border-color:#80bfa1!important}
+
+/* A folha clássica conserva as medidas A4 originais, com zoom no celular. */
+@media screen and (max-width:720px){
+ .hurras-classic .builder{max-width:100%;padding:0 10px}
+ .hurras-classic .sheets{overflow:hidden;max-width:100%;align-items:flex-start;padding:0}
+ .hurras-classic .sheets .sheet-page{
+  flex:none;width:210mm;max-width:none;transform-origin:top left!important;
+  transform:scale(var(--hurras-sheet-scale,.42))!important;
+  margin:0 0 var(--hurras-sheet-negative,-154mm) 0!important;
+ }
+ .hurras-classic .controls :is(input,textarea,select){font-size:16px}
+ .hurras-shop-links{max-width:100%}
+}
