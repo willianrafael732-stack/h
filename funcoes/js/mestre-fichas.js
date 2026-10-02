@@ -4,7 +4,7 @@ function parse(key,def=[]){try{const v=JSON.parse(localStorage.getItem(key)||'nu
 function gatherDark(){return parse('hurrasDarkFantasySheetsV1').map(x=>({id:x.id,kind:'dark',name:x.fields?.Nome||'Sem nome',race:x.fields?.Raça||'',cls:x.fields?.Classe||'',player:x.fields?.Player||'',level:Number(x.fields?.Nível)||1,raw:x,updated:x.updatedAt}))}
 async function gatherClassic(){
  let list=parse('hurrasVaultFallbackV2');
- try{const db=await new Promise((ok,bad)=>{const req=indexedDB.open('hurras_fantasy',2);req.onsuccess=()=>ok(req.result);req.onerror=()=>bad(req.error)});
+ try{const db=await new Promise((ok,bad)=>{const req=indexedDB.open('hurras_fantasy',2);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains('characters')){const store=db.createObjectStore('characters',{keyPath:'id'});store.createIndex('updatedAt','updatedAt')}};req.onsuccess=()=>ok(req.result);req.onerror=()=>bad(req.error)});
  const data=await new Promise((ok,bad)=>{const tx=db.transaction('characters','readonly');const req=tx.objectStore('characters').getAll();req.onsuccess=()=>ok(req.result||[]);req.onerror=()=>bad(req.error)});db.close();
  const found=new Set(data.map(x=>x.id));list=[...data,...list.filter(x=>!found.has(x.id))];
  }catch(e){}
