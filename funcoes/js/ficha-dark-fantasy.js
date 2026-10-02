@@ -93,8 +93,9 @@ function stripMagicGear(){
   // Remove equipment explicitly identified by the source catalog as magical.
   if(known&&i!==4&&!ordinary.includes(known)){data.gear[i]='';data.adv[i]='';data.disadv[i]=''}
  }
- // Legacy magical weapons and extra slots 5..7 no longer belong to Dark.
- for(const k of ['gear','adv','disadv'])if(Array.isArray(data[k]))data[k]=data[k].slice(0,5);
+ // Modo Dark: nomes dos equipamentos apenas; buffs e penalidades antigos não atuam.
+ data.gear=Array.isArray(data.gear)?data.gear.slice(0,5):[];
+ data.adv=[];data.disadv=[];
 }
 function render(){
 normalizeProgress();
@@ -105,7 +106,16 @@ document.querySelectorAll('[data-resist]').forEach(x=>dots(x,x.dataset.resist,12
 document.querySelectorAll('[data-resist-number]').forEach(x=>{if(document.activeElement!==x)x.value=String(Math.max(0,Math.min(12,Number(data.resist[x.dataset.resistNumber])||0)))});
 document.querySelectorAll('[data-magic]').forEach(x=>x.value=data.magic[Number(x.dataset.magic)]||'');
 document.querySelectorAll('[data-magic-dots]').forEach(x=>dots(x,x.dataset.magicDots,10,'magicLevels'));
-['gear','adv','disadv'].forEach(k=>document.querySelectorAll('[data-'+k+']').forEach(x=>x.value=(data[k]||[])[Number(x.dataset[k])]||''));
+document.querySelectorAll('[data-gear]').forEach(x=>{
+ const name=data.gear?.[Number(x.dataset.gear)]||'';
+ // Preserva nomes antigos de armas personalizadas sem recriar qualquer bônus.
+ x.querySelectorAll('option[data-legacy]').forEach(o=>o.remove());
+ if(name&&![...x.options].some(o=>o.value===name)){
+  const option=document.createElement('option');option.value=name;option.textContent=name+' (salvo anteriormente)';
+  option.dataset.legacy='1';x.append(option);
+ }
+ x.value=name;
+});
 rows($('vitality'),'vitality',100,'vit');rows($('mana'),'mana',50,'mana');updateCounters();updateElementalSpells();list();
 }
 function list(){var sel=$('savedSheets'),cur=data.id;sel.replaceChildren();var def=document.createElement('option');def.value='';def.textContent='Abrir ficha salva...';sel.append(def);
@@ -125,7 +135,10 @@ document.querySelectorAll('[data-field]').forEach(x=>x.addEventListener('input',
  autoSave();
 }));
 document.querySelectorAll('[data-magic]').forEach(x=>x.addEventListener('input',()=>{data.magic[Number(x.dataset.magic)]=x.value;autoSave()}));
-['gear','adv','disadv'].forEach(k=>document.querySelectorAll('[data-'+k+']').forEach(x=>x.addEventListener('input',()=>{data[k][Number(x.dataset[k])]=x.value;autoSave()})));
+document.querySelectorAll('[data-gear]').forEach(x=>x.addEventListener('change',()=>{
+ data.gear[Number(x.dataset.gear)]=x.value;
+ autoSave();
+}));
 const names=['Aeron','Elaria','Noths','Thalor','Kaelen','Mira','Talia','Ravok','Lyra','Faelorn','Dorian','Ysera','Dran','Borin','Eldric','Nyra'];
 const surnames=['da Névoa','dos Espinhos','da Cruz Partida','das Cinzas','do Véu','do Inverno','Sombrio','de Valeron','de Nexalis'];
 const races=Object.keys(D.races||{});
@@ -148,7 +161,7 @@ function generateStats(){
  data.vitality=fullTrack(currentLevel()*10);data.mana=fullTrack(currentLevel()*5);render();autoSave();status('Pontos sorteados; vida, mana e vontade calculadas pelo nível.')
 }
 function zeroAllDarkPoints(){
- if(!confirm('Zerar atributos, habilidades, magia, resistências, Vida e Mana atuais? Seus equipamentos e os buffs/debuffs das armas serão preservados.'))return;
+ if(!confirm('Zerar atributos, habilidades, magia, resistências, Vida e Mana atuais? As armas e armaduras escolhidas serão preservadas.'))return;
  data.stats={};
  data.resist={};
  data.magicLevels={};
@@ -158,7 +171,7 @@ function zeroAllDarkPoints(){
  normalizeProgress();
  render();
  autoSave();
- status('Pontos zerados. Equipamentos e efeitos das armas preservados.');
+ status('Pontos zerados. Armas e armaduras preservadas.');
 }
 $('randomStats').onclick=()=>generateStats();
 $('darkZeroPoints').onclick=zeroAllDarkPoints;
@@ -208,22 +221,31 @@ window.HurrasDarkSheetAPI={
 };
 function initEquipmentCatalog(){
  const ordinary=Object.values(D.weapons||{}).filter(isCommonWeapon);
- const categories=[['dark-melee',ordinary.filter(x=>!/distância/i.test(x.category||''))],
-  ['dark-distance',ordinary.filter(x=>/distância|Médio alcance/i.test(x.category||''))],
-  ['dark-armor',Object.values(D.armors||{})]];
- for(const [id,items]of categories){
-  const host=$(id);if(!host)continue;host.replaceChildren();
-  for(const it of items){const op=document.createElement('option');op.value=it.name;host.append(op)}
- }
- document.querySelectorAll('[data-gear]').forEach(input=>input.addEventListener('change',()=>{
-  const i=Number(input.dataset.gear),source=i===4?Object.values(D.armors||{}):ordinary;
-  const known=Object.values(D.weapons||{}).find(x=>x.name===input.value);
-  if(i!==4&&known&&!isCommonWeapon(known)){input.value=data.gear[i]||'';status('Arma mágica não está disponível nesta ficha.');return}
-  const chosen=source.find(x=>x.name===input.value);
-  if(!chosen)return;
-  data.gear[i]=chosen.name;data.adv[i]=chosen.bonus||'';data.disadv[i]=chosen.penalty||'';render();autoSave();
- }));
+ const armors=Object.values(D.armors||{});
+ const categories=[
+  {items:ordinary.filter(x=>!/distância|Médio alcance/i.test(x.category||'')),label:'Armas corpo a corpo'},
+  {items:ordinary.filter(x=>/distância|Médio alcance/i.test(x.category||'')),label:'Armas de distância e médio alcance'}
+ ];
+ document.querySelectorAll('[data-gear]').forEach(select=>{
+  const index=Number(select.dataset.gear);
+  const first=document.createElement('option');first.value='';first.textContent='Nenhum equipamento';
+  select.replaceChildren(first);
+  const groups=index===4?[{items:armors,label:'Armaduras'}]:index>=2?[categories[1],categories[0]]:categories;
+  const seen=new Set();
+  for(const {items,label} of groups){
+   if(!items.length)continue;
+   const group=document.createElement('optgroup');group.label=label;
+   for(const item of items){
+    if(!item?.name||seen.has(item.name))continue;
+    seen.add(item.name);
+    const option=document.createElement('option');option.value=item.name;option.textContent=item.name;
+    group.append(option);
+   }
+   if(group.children.length)select.append(group);
+  }
+ });
 }
+
 const ELEMENTS=['Fogo','Água','Vento','Terra','Raio','Veneno'];
 function updateElementalSpells(){
  const select=$('darkElement'),sp=$('darkElementSpell'),info=$('darkElementInfo');if(!select||!sp)return;

@@ -96,7 +96,7 @@ function preview(){
  left.append(textBox('ELEMENTO',d.fields?.Elemento||'Não escolhido'));lower.append(left);
  const center=el('section','william-pdf-gear');
  gear.forEach((name,i)=>{
-  const text=[d.gear?.[i],d.adv?.[i]?'Vantagem: '+d.adv[i]:'',d.disadv?.[i]?'Desvantagem: '+d.disadv[i]:''].filter(Boolean).join('\n');
+  const text=d.gear?.[i]||'';
   center.append(textBox(name,text||'—'))
  });
  center.append(textBox('PASSIVAS',d.fields?.Passivas||''));
@@ -196,10 +196,9 @@ async function generatePdf(){
   const x=29+(i%3)*187,y=lower-Math.floor(i/3)*34;
   pText(pages[1],k,x,y+10,7,bold,gold);
   textField(pages[1],'gear_'+i,state.gear[i]||'',x,y-7,164,14);
-  pText(pages[1],'Buff: '+String(state.adv?.[i]||'—').slice(0,39),x,y-13,5.5,font,pdf.rgb(.65,.83,.64));
-  pText(pages[1],'Debuff: '+String(state.disadv?.[i]||'—').slice(0,39),x,y-21,5.5,font,pdf.rgb(.91,.56,.52));
+  // Apenas a arma/armadura escolhida aparece no PDF Dark, sem efeitos adicionais.
  });
- // Existing data, including notes/adv/disadv, is preserved in a small machine-readable
+ // Os dados da ficha, incluindo equipamentos sem modificadores, são preservados em campo oculto
  // AcroForm field. Import from THIS downloadable PDF reconstructs the whole sheet.
  const blob=form.createTextField('hurras_dark_data_v2');blob.enableMultiline();blob.setText(encodeURIComponent(JSON.stringify({...state,_format:'hurras_dark_pdf_v2'})));
  blob.addToPage(pages[1],{x:2,y:2,width:1,height:1,borderWidth:0,textColor:black,backgroundColor:black,fontSize:1});

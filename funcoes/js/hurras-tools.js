@@ -105,7 +105,7 @@ function equipment(){
  const d=get()||{};
  if(dark)return(d.gear||[]).slice(0,5).map((name,i)=>{
   const objects=i===4?D.armors||{}:D.weapons||{};
-  return {id:i===4?'Armadura':'Arma '+(i+1),name,item:Object.values(objects).find(x=>x.name===name),bonus:d.adv?.[i],penalty:d.disadv?.[i]}
+  return {id:i===4?'Armadura':'Arma '+(i+1),name,item:Object.values(objects).find(x=>x.name===name)}
  });
  return ['weapon1','weapon2','armor','shield'].map(id=>{
   const group=id==='armor'?D.armors:id==='shield'?D.shields:D.weapons;
@@ -113,7 +113,7 @@ function equipment(){
  });
 }
 function equip(){
- const intro=el('p','Catálogo e características de cada item equipado. Os buffs e debuffs originais são mantidos.');
+ const intro=el('p',dark?'Selecione armas ou armaduras sem aplicar bônus ou penalidades.':'Catálogo e características de cada item equipado. Os buffs e debuffs originais são mantidos.');
  content.append(intro);
  const setup=el('article');
  const slot=el('select'),category=el('select'),item=el('select');
@@ -140,7 +140,7 @@ function equip(){
  button('Equipar',()=>{
   const w=choices().find(x=>x.name===item.value);if(!w)return setNotice('Selecione um equipamento.');
   remember();
-  if(dark){const state=get(),i=Number(slot.value);state.gear[i]=w.name;state.adv[i]=w.bonus||'';state.disadv[i]=w.penalty||'';restore(state)}
+  if(dark){const state=get(),i=Number(slot.value);state.gear[i]=w.name;state.adv=[];state.disadv=[];restore(state)}
   else {const select=byId(slot.value);const option=select&&[...select.options].find(x=>x.value===w.name);
    if(!option)return setNotice('Selecione um espaço compatível com o tipo do equipamento.');
    select.value=w.name;select.dispatchEvent(new Event('change',{bubbles:true}));window.HurrasStorage?.saveDraft?.()
@@ -153,12 +153,15 @@ function equip(){
   const card=el('article');card.className='ht-equip';
   const item=x.item||{};
   card.append(el('b',x.id+': '+(item.name||x.name||'Sem equipamento')));
-  for(const text of [
+  const details=dark
+  ? ['Categoria: '+(item.category||'—'),'Tipo: '+(item.name?'Equipamento selecionado':'Não selecionado')]
+  : [
    'Categoria: '+(item.category||'—'),
    'Dano / efeito: '+(item.damage||item.attribute||item.effect||'Conforme catálogo'),
    'Defesa: '+(item.defense||item.mods?.Armadura||'—')+' · Peso: '+(item.weight||item.peso||'Não informado'),
    'Buff: '+(x.bonus||item.bonus||'—'),
-   'Debuff: '+(x.penalty||item.penalty||'—')]){
+   'Debuff: '+(x.penalty||item.penalty||'—')];
+  for(const text of details){
     card.append(el('p',text))
   }
   list.append(card);
