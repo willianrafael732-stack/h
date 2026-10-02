@@ -36,7 +36,7 @@ function undo(){
  show();
 }
 // O cabeçalho Dark também contém os botões de zerar e sortear.
-const targets=dark?[byId('darkEditor'),document.querySelector('.toolbar')]:[document.querySelector('.builder')];
+const targets=dark?[byId('darkEditor'),document.querySelector('.toolbar')]:[document.querySelector('.builder'),byId('sheets')];
 for(const target of targets.filter(Boolean)){
  target.addEventListener('pointerdown',function(e){
   if(e.target.closest('button,.dot,.sq,.circle,.mana-grid,.vitality,[data-stat],[data-resist]'))remember();
@@ -71,7 +71,14 @@ function adjust(type,n){
 }
 function conditionKey(){return 'hurras:conditions:'+key()}
 function conditions(){try{const a=JSON.parse(localStorage.getItem(conditionKey())||'[]');return Array.isArray(a)?a:[]}catch(e){return []}}
-function saveConditions(items){try{localStorage.setItem(conditionKey(),JSON.stringify(items))}catch(e){setNotice('Não foi possível salvar a condição.')}show()}
+function saveConditions(items){
+ // Uma nova ficha ainda sem ID recebe o seu próprio registro ao usar condições.
+ if(dark&&!get()?.id)api()?.save();
+ else if(!dark&&!localStorage.getItem('hurrasCurrentFichaId'))window.HurrasStorage?.saveDraft?.();
+ try{localStorage.setItem(conditionKey(),JSON.stringify(items))}
+ catch(e){setNotice('Não foi possível salvar a condição.')}
+ show()
+}
 function combat(){
  const r=resources(),grid=el('div');grid.className='ht-combat';content.append(grid);
  for(const [type,val,max] of [['vida',r.vida,r.maxVida],['mana',r.mana,r.maxMana]]){
