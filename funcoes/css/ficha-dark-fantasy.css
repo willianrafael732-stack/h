@@ -120,3 +120,9 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 #darkEditor .dot{border-color:var(--accent)!important}
 .dark-pdf-dot{border-color:var(--print-dot,#d6cabd)!important}
 @media print{.dark-pdf-dot{border-color:var(--print-dot,#d6cabd)!important}}
+
+/* Progressão por nível: 10 Vida, 5 Mana e 1 Vontade. */
+#darkEditor .sq.locked{opacity:.20;background:#090909;cursor:not-allowed}
+#darkEditor .sq:disabled{pointer-events:none}
+#darkEditor .dot:disabled{cursor:default;opacity:1}
+#darkLifeTotal,#darkManaTotal,#darkWillTotal{color:#efc58b;font:700 13px Arial,sans-serif}

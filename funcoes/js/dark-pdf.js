@@ -42,8 +42,9 @@ function preview(){
  const cols=el('div','dark-pdf-columns');
  const blocks=[[],[],[]];
  groups.forEach(([title,items,c],i)=>{let b=box(title);items.forEach(k=>b.append(line(k,d.stats[k],12,c)));blocks[i%3].push(b)});
- let virtue=box('Força de Vontade');virtue.append(line('Vontade',d.stats['Força de Vontade'],10,'#e9c88e'));blocks[1].push(virtue);
- blocks[2].push(track('Vitalidade · 100',(d.vitality||[]),100,'#cb6865'),track('Mana · 50',(d.mana||[]),50,'#6096c2'));
+ const level=Math.max(1,Math.min(10,Number(d.fields['Nível'])||1));
+ let virtue=box('Força de Vontade · '+level+'/'+level);virtue.append(line('Vontade',level,10,'#e9c88e'));blocks[1].push(virtue);
+ blocks[2].push(track('Vida · '+(d.vitality||[]).length+'/'+(level*10),(d.vitality||[]),level*10,'#cb6865'),track('Mana · '+(d.mana||[]).length+'/'+(level*5),(d.mana||[]),level*5,'#6096c2'));
  for(let k=0;k<3;k++){let wrap=el('div');blocks[k].forEach(b=>wrap.append(b));cols.append(wrap)}one.append(cols);
  const two=page(2),top=el('div','dark-pdf-fields');
  const magic=box('Magias e técnicas');for(let i=0;i<18;i++){let row=el('div','dark-pdf-magic-row');row.append(el('span',null,(i+1)+'. '+(d.magic[i]||'_________________________')),dots(d.magicLevels[i],10,'#9675ad'));magic.append(row)}
@@ -97,13 +98,14 @@ async function generatePdf(){
  textField(pages[0],'stat_'+k,n,b.x+157,y-10,14,12);y-=18}y-=9}});
  // Willpower + health/mana as editable counters (dots visibly colored on the PDF)
  let y=151;rect(pages[0],24,40,550,112);pText(pages[0],'FORCA DE VONTADE',33,131,10,bold,gold);
- let n=Number(state.stats['Força de Vontade']||0);for(let i=0;i<10;i++)pages[0].drawCircle({x:43+i*14,y:111,size:5,borderColor:color(dotHex(i)),color:i<n?color(dotHex(i)):panel});
+ const maxLevel=Math.max(1,Math.min(10,Number(state.fields['Nível'])||1));
+ let n=maxLevel;for(let i=0;i<10;i++)pages[0].drawCircle({x:43+i*14,y:111,size:5,borderColor:color(dotHex(i)),color:i<n?color(dotHex(i)):panel});
  textField(pages[0],'stat_Força de Vontade',n,192,102,30);
  pText(pages[0],'VITALIDADE',256,132,10,bold,gold);
- const hval=(state.vitality||[]).length;pText(pages[0],hval+' / 100',258,110,9,bold,pdf.rgb(.9,.42,.36));
+ const hval=(state.vitality||[]).length;pText(pages[0],hval+' / '+maxLevel*10,258,110,9,bold,pdf.rgb(.9,.42,.36));
  textField(pages[0],'vitality_count',hval,317,100,35);
  pText(pages[0],'MANA',397,132,10,bold,gold);
- const mval=(state.mana||[]).length;pText(pages[0],mval+' / 50',400,110,9,bold,pdf.rgb(.40,.67,.95));textField(pages[0],'mana_count',mval,450,100,35);
+ const mval=(state.mana||[]).length;pText(pages[0],mval+' / '+maxLevel*5,400,110,9,bold,pdf.rgb(.40,.67,.95));textField(pages[0],'mana_count',mval,450,100,35);
  // Additional file fields page two
  let y2=751;pText(pages[1],'MAGIAS E TECNICAS',29,y2,12,bold,gold);
  for(let i=0;i<18;i++){const y=724-i*28;const x=26;pText(pages[1],String(i+1).padStart(2,'0'),x,y+4,8,bold,gold);

@@ -80,7 +80,7 @@ function updateSummaries(){
 function safe(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function field(label,value){return `<div class="line-field"><b>${label}:</b><span class="editable" contenteditable="true">${value||'—'}</span></div>`}
 function trackSquares(n,on,cls){return `<div class="track">${Array.from({length:n},(_,i)=>`<i class="sq ${i<on?'on '+cls:''}"></i>`).join('')}</div>`}
-function willTrack(){const n=Math.min(10,Number(E('level').value)||1);return `<div class="track">${Array.from({length:10},(_,i)=>`<i class="circle ${i<n?'on':''}"></i>`).join('')}</div><div style="height:4px"></div>${trackSquares(10,0,'yellow')}`}
+function willTrack(){const n=Math.min(10,Number(E('level').value)||1);return `<div class="vitality-level-rule">NÍVEL × 1 · ${n} / ${n}</div><div class="track">${Array.from({length:10},(_,i)=>`<i class="circle ${i<n?'on':''}"></i>`).join('')}</div><div style="height:4px"></div>${trackSquares(10,0,'yellow')}`}
 function weaponSection(title,filter){const picks=[D.weapons[E('weapon1').value],D.weapons[E('weapon2').value]].filter(w=>w&&filter(w));return `<div class="equip-section"><h3>${title}</h3>${[0,1].map(i=>{const w=picks[i];return `<div class="equip-slot"><b>${i?'SECUNDÁRIA':'PRIMÁRIA'}</b><div class="equip-line weapon-name">${w?.name||'—'}</div><div class="equip-line weapon-good">Bônus: ${w?.bonus||'—'}</div><div class="equip-line weapon-bad">Custo: ${w?.penalty||'—'}</div></div>`}).join('')}</div>`}
 function spellNames(){
  const custom=E('knownSpells').value.split(/,|\n/).map(x=>x.trim()).filter(Boolean);if(custom.length)return custom.slice(0,16);
