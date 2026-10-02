@@ -115,8 +115,15 @@ async function generatePdf(){
  }
  let yR=194;const elemWidth=59;pText(pages[1],'RESISTENCIAS',29,yR,12,bold,gold);yR-=19;
  resist.forEach((k,i)=>{const x=29+(i%3)*188,y=yR-Math.floor(i/3)*25;pText(pages[1],k,x,y,8,bold,gold);textField(pages[1],'resist_'+k,Number(state.resist[k]||0),x+90,y-5,32)});
- let lower=91;
- gear.forEach((k,i)=>{const x=29+(i%3)*187,y=lower-Math.floor(i/3)*21;pText(pages[1],k,x,y+10,7,bold,gold);textField(pages[1],'gear_'+i,state.gear[i]||'',x,y-6,164)});
+ // Inventário visível também no PDF: efeitos escolhidos manualmente ou pelo armeiro.
+ let lower=94;
+ gear.forEach((k,i)=>{
+  const x=29+(i%3)*187,y=lower-Math.floor(i/3)*34;
+  pText(pages[1],k,x,y+10,7,bold,gold);
+  textField(pages[1],'gear_'+i,state.gear[i]||'',x,y-7,164,14);
+  pText(pages[1],'Buff: '+String(state.adv?.[i]||'—').slice(0,39),x,y-13,5.5,font,pdf.rgb(.65,.83,.64));
+  pText(pages[1],'Debuff: '+String(state.disadv?.[i]||'—').slice(0,39),x,y-21,5.5,font,pdf.rgb(.91,.56,.52));
+ });
  // Existing data, including notes/adv/disadv, is preserved in a small machine-readable
  // AcroForm field. Import from THIS downloadable PDF reconstructs the whole sheet.
  const blob=form.createTextField('hurras_dark_data_v2');blob.enableMultiline();blob.setText(encodeURIComponent(JSON.stringify({...state,_format:'hurras_dark_pdf_v2'})));
