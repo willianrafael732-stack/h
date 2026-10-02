@@ -60,3 +60,20 @@ body.dark-pdf-mode .toolbar{position:static}
  .dark-pdf-line,.dark-pdf-magic-row{min-height:17px!important}
  .dark-pdf-dot{background:#171315!important;border:1px solid #b7aba0!important}
 }
+
+/* Paleta dark inspirada no fundo de brasas enviado pelo usuário.
+   A imagem exata pode ser definida via "Alterar o fundo" e fica no navegador. */
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:
+ radial-gradient(circle at 89% 10%,#f64f26 0 2px,transparent 4px),
+ radial-gradient(circle at 83% 38%,#ed6e45 0 3px,transparent 6px),
+ radial-gradient(circle at 9% 83%,#ce4021 0 3px,transparent 6px),
+ radial-gradient(circle at 94% 72%,#f85e34 0 2px,transparent 5px),
+ radial-gradient(circle at 28% 94%,#c5220e 0 3px,transparent 7px),
+ radial-gradient(circle at 62% 17%,#ffaf79 0 2px,transparent 4px),
+ radial-gradient(circle at 67% 64%,#ec4126 0 2px,transparent 5px),
+ radial-gradient(circle at 76% 84%,#fe784c 0 3px,transparent 7px),
+ radial-gradient(ellipse at 92% 83%,#700b08a9 0,transparent 44%),
+ radial-gradient(ellipse at 10% 97%,#9c190da9,transparent 36%),#070406;opacity:.68;}
+.dark-pdf-page:before{opacity:.36;background-image:var(--dark-bg-image,radial-gradient(circle at 90% 10%,#f64f26 0 2px,transparent 4px),radial-gradient(circle at 55% 43%,#e64221 0 3px,transparent 5px),radial-gradient(ellipse at 80% 80%,#e52619b7,transparent 49%),radial-gradient(ellipse at 9% 97%,#b11911,transparent 45%))}
+#darkEditor>.hero{background:#131014e5}
+@media print{.dark-pdf-page:before{background-image:var(--dark-bg-image,radial-gradient(circle at 90% 10%,#f64f26 0 2px,transparent 4px),radial-gradient(circle at 55% 43%,#e64221 0 3px,transparent 5px),radial-gradient(ellipse at 80% 80%,#e52619b7,transparent 49%),radial-gradient(ellipse at 9% 97%,#b11911,transparent 45%))!important;opacity:.32!important}}
