@@ -11,7 +11,7 @@ function status(s){$('status').textContent=s}
 function dots(host,key,total,collection){
 host.replaceChildren();host.style.setProperty('--accent',(host.closest('[data-color]')||{}).dataset?.color||'#ddb97a');
 var number=Number(data[collection][key])||0;
-for(var i=1;i<=total;i++){var b=document.createElement('button');b.type='button';b.className='dot'+(i<=number?' on':'');b.title=key+': '+i+' / '+total;b.setAttribute('aria-label',key+' '+i);b.setAttribute('aria-pressed',String(i<=number));b.dataset.value=i;
+for(var i=1;i<=total;i++){var b=document.createElement('button');b.type='button';b.className='dot'+(i<=number?' on':'');b.title=key+': '+i+' / '+total;b.style.setProperty('--accent',['#ce7167','#e0ae6c','#6fa4d3','#79bd9a'][Math.floor((i-1)/3)%4]);b.setAttribute('aria-label',key+' '+i);b.setAttribute('aria-pressed',String(i<=number));b.dataset.value=i;
 b.addEventListener('click',function(){var val=Number(this.dataset.value);data[collection][key]=(data[collection][key]||0)===val?0:val;dots(host,key,total,collection);autoSave()});
 host.append(b)}
 }
@@ -62,7 +62,14 @@ $('randomSheet').onclick=()=>{
  data.fields={Nome:randomChoice(names)+' '+randomChoice(surnames),Player:'',Crônica:'Nexalis',Nível:String(randint(1,10)),Raça:randomChoice(races),Classe:randomChoice(classes),Profissão:randomChoice(profs),Dinheiro:String(randint(5,200)),Experiência:String(randint(0,450)), 'Nível mágico':String(randint(0,4))};
  data.magic[0]=randomChoice(['Chama viva','Escudo de sombra','Selo de proteção','Toque de cura','Lâmina astral','Rajada de vento','Raiz constritora']);
  data.magic[1]=randomChoice(['Pulso arcano','Véu silencioso','Proteção lunar','Muralha de terra','Marca espectral']);
- data.gear[0]=randomChoice(['Espada curta','Machado','Cajado','Adaga','Lança']);data.gear[2]=randomChoice(['Arco','Besta','Dardo']);data.gear[4]=randomChoice(['Couro','Malha leve','Manto rúnico']);
+ if(window.HurrasEquipment){
+ for(const slot of [0,1,2,3,4,5,6,7]){
+  const list=window.HurrasEquipment.group(slot);if(!list.length)continue;
+  if([1,3,7].includes(slot)&&Math.random()<.4)continue;
+  const item=randomChoice(list);data.gear[slot]=item.name;
+  data.adv[slot]=item.bonus;data.disadv[slot]=item.penalty;
+ }
+}
  data.fields.Itens='Cantil; Tocha; Suprimentos; Poção simples';
  localStorage.removeItem(CURRENT);render();generateStats();save(true);status('Personagem aleatório criado e salvo: '+data.fields.Nome+'.');
 };
@@ -83,5 +90,25 @@ window.HurrasDarkSheetAPI={
  put:(obj,asNew)=>{data=sanitizeState(JSON.parse(JSON.stringify(obj)));if(asNew)data.id='';save(true);render();status('Ficha importada e salva no navegador.');return data.id},
  save:()=>save(true),preview:()=>render()
 };
+function initEquipmentCatalog(){
+ const C=window.HurrasEquipment;if(!C)return;
+ const targets=[['hurras-melee',0],['hurras-ranged',2],['hurras-armors',4],['hurras-magic',5],['hurras-shields',6],['hurras-all-weapons',7]];
+ for(const [id,slot] of targets){
+  const datalist=$(id);if(!datalist)continue;
+  datalist.replaceChildren();
+  for(const info of C.group(slot)){
+   const option=document.createElement('option');option.value=info.name;option.label=(info.category||'Arma')+' — '+(info.bonus||'Sem bônus');datalist.append(option);
+  }
+ }
+ document.querySelectorAll('[data-gear]').forEach(input=>input.addEventListener('change',()=>{
+  const slot=Number(input.dataset.gear),item=C.find(input.value,slot);
+  if(!item)return;
+  data.gear[slot]=item.name;
+  data.adv[slot]=item.bonus;
+  data.disadv[slot]=item.penalty;
+  render();autoSave();
+ }));
+}
+initEquipmentCatalog();
 var first=readAll().find(x=>x.id===data.id);if(first)data=sanitizeState(Object.assign(data,first));render();
 })();

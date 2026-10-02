@@ -106,3 +106,12 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
  .dark-pdf-dot{width:11px;height:11px}
 }
 @media screen and (max-width:390px){.dark-pdf-id{grid-template-columns:1fr}}
+
+/* Cada trio de pontos selecionados recebe uma cor e a mantém na impressão. */
+#darkEditor .dot.on{background:var(--accent)!important;border-color:var(--accent)!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+.hurras-arsenal-browser{margin:16px 0 4px;padding:13px;background:#18161e;border:1px solid #886c4e;border-radius:8px;color:#e7d6bf}
+.hurras-arsenal-links{display:flex;flex-wrap:wrap;gap:7px;margin:9px 0}
+.hurras-arsenal-links a{display:inline-block;text-decoration:none;border:1px solid #a18565;border-radius:5px;padding:8px 11px;color:#f2d7a0;background:#2f2422;min-height:40px}
+.hurras-arsenal-links a:hover{background:#594035}
+.dark-pdf-dot.on{background:var(--print-dot)!important;border-color:var(--print-dot)!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+@media screen and (max-width:720px){.hurras-arsenal-links a{flex:1 1 136px;text-align:center}}
