@@ -1,0 +1,16 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Galeria completa dos arquivos visuais assets/i do Hurras Fantasy.">
+<title>Galeria de Imagens — Hurras Fantasy</title>
+<link rel="stylesheet" href="css/bestiario.css"><link rel="stylesheet" href="css/galeria-i.css">
+<script defer src="../hurras-nav.js"></script></head><body>
+<header><strong>✧ HURRAS <span style="color:var(--gold)">GALERIA</span></strong><nav><a href="../index.html">Início</a><a href="deuses.html">Deuses</a><a href="bestiario.html">Bestiário</a><a href="arquivo-npcs.html">NPCs</a></nav></header>
+<main class="image-archive"><section class="hero"><span class="kicker">HURRAS FANTASY • ACERVO VISUAL</span><h1>Acervo completo de imagens</h1>
+<p>As imagens da pasta <code>assets/i</code> estão organizadas em um único arquivo pesquisável, mantendo cada ilustração no caminho original. O panteão usa os retratos vinculados às respectivas divindades; as outras artes continuam separadas por tema.</p>
+<div class="image-archive-links"><a class="btn" href="deuses.html">✧ Deuses por mitologia</a><a class="btn" href="bestiario.html">☠ Bestiário</a><a class="btn" href="arquivo-npcs.html">♛ NPCs</a></div></section>
+<section class="panel no-print image-archive-filters"><div class="filters">
+<label>Buscar imagem<input type="search" id="archiveSearch" placeholder="Buscar pelo nome do arquivo…" autocomplete="off"></label>
+<label>Categoria<select id="archiveCategory"><option value="">Todas as categorias</option></select></label>
+<label>Ordem<select id="archiveSort"><option value="name">Nome</option><option value="category">Categoria</option></select></label></div>
+<p id="archiveCount" role="status"></p></section>
+<div id="archiveGrid" class="image-archive-grid" aria-live="polite"></div></main>
+<script src="js/galeria-i.js"></script></body></html>
