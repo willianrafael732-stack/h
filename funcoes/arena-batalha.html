@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Arena independente de batalhas Hurras, rolagem de d10 e sucessos por dificuldade fixa 5.">
+<title>Arena de Batalha | Hurras Fantasy</title>
+<link rel="stylesheet" href="css/hurras-tools.css">
+<link rel="stylesheet" href="css/arena-batalha.css">
+<script defer src="../hurras-nav.js"></script></head>
+<body><header class="arena-header">
+ <a href="../index.html">← Portal Hurras</a><a href="ficha-dark-fantasy.html">Ficha Dark Fantasy</a>
+ <a href="dark-personagens.html">Cofre Dark Fantasy</a><a href="bestiario.html">Bestiário</a>
+</header>
+<main class="arena-main">
+ <section class="arena-intro">
+  <span class="arena-kicker">HURRAS · SISTEMA DE COMBATE</span>
+  <h1>⚔ Arena de Batalha</h1>
+  <p>Área independente do fichário. Rolagens de <strong>d10</strong>, sucesso por dado e dificuldade fixa <strong>5</strong>. Nenhuma soma dos valores das faces.</p>
+ </section>
+ <section class="arena-pick">
+  <label for="arenaCharacter">Personagem salvo do Dark Fantasy <select id="arenaCharacter"><option value="">Treinar sem ficha salva</option></select></label>
+  <button type="button" id="arenaReload">Atualizar personagens</button>
+  <p id="arenaStatus" role="status">Escolha uma ficha ou treine sem ficha salva. Os personagens ficam no navegador em que foram criados.</p>
+ </section>
+ <section class="arena-tools hurras-tools" aria-label="Sistema de batalha">
+  <div id="arena" class="ht-content"></div>
+ </section>
+</main>
+<script src="js/arena-batalha.js"></script>
+</body></html>

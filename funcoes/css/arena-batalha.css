@@ -1,0 +1,43 @@
+:root{color-scheme:dark}*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 50% -10%,#4a1929 0%,#140b15 50%,#09070c 90%);color:#f2e3d7;font:15px/1.55 Arial,sans-serif}
+.arena-header{display:flex;gap:12px;flex-wrap:wrap;padding:17px max(15px,calc((100vw - 1130px)/2));background:#110c13ee;border-bottom:1px solid #74514a}
+.arena-header a{color:#eed1a8;text-decoration:none;border:1px solid #624a40;border-radius:6px;padding:8px 10px}
+.arena-header a:hover{background:#35202b}
+.arena-main{max-width:1140px;margin:auto;padding:18px 16px 70px}
+.arena-intro{padding:25px;background:linear-gradient(110deg,#411d2b,#1a101b);border:1px solid #936c61;border-radius:12px}
+.arena-kicker{letter-spacing:.14em;color:#e5b888;font-size:12px;font-weight:700}
+.arena-intro h1{font:700 clamp(30px,5vw,49px) Georgia,serif;margin:5px 0;color:#f5cf9e}
+.arena-intro p{max-width:720px;color:#dfcfc7}
+.arena-pick{margin:16px 0;padding:16px;display:flex;flex-wrap:wrap;align-items:end;gap:12px;background:#211521;border:1px solid #7f564a;border-radius:10px}
+.arena-pick label{display:grid;gap:6px;flex:1 1 260px}
+.arena-pick select,.arena-pick button{padding:11px;background:#1a111c;color:#f4dcc0;border:1px solid #b3866d;border-radius:7px;min-height:43px;cursor:pointer}
+.arena-pick p{width:100%;margin:0;font-size:12px;color:#d6bcb1}
+.arena-tools{max-width:none!important;margin:0!important}
+#arena .ht-battle{margin:0;padding:18px}
+#arena .ht-battle h3{margin:0 0 10px;color:#efd1a0}
+#arena .ht-battle h4{margin:6px 0;color:#ead0ae}
+#arena .ht-battle .ht-btns{display:flex;gap:7px;flex-wrap:wrap}
+#arena .ht-battle button{cursor:pointer;padding:10px;border-radius:7px;background:#452631;border:1px solid #c39173;color:#f8e5cd}
+#arena .ht-battle button:disabled{opacity:.5;cursor:default}
+#arena .ht-battle .ht-battle-opponent{background:#1d1420;border:1px solid #7f5b56;border-radius:9px}
+#arena .ht-battle .ht-battle-opponent label{display:grid;gap:5px}
+#arena .ht-battle .ht-battle-grid input,#arena .ht-battle .ht-battle-grid select{width:100%;min-width:0}
+#arena .ht-battle .ht-battle-results{margin-top:15px}
+#arena .ht-battle .ht-battle-results strong{color:#f3d0ac}
+#arena .ht-battle :is(button,input,select):focus-visible,.arena-pick :is(select,button):focus-visible{outline:3px solid #fce6b7;outline-offset:2px}
+/* Batalha de dados exibida apenas na ficha Dark. */
+#arena .ht-battle{padding:16px;margin:16px 0;background:#1c121d;border:1px solid #98725e;border-radius:9px;color:#f2e5db}
+#arena .ht-battle h3{font:700 20px Georgia;color:#f1ca9a}
+#arena .ht-battle-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0}
+#arena .ht-battle-opponent{background:#201722}
+#arena .ht-battle-opponent label{min-width:0}
+#arena .ht-battle-results{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:7px}
+#arena .ht-battle-dice{display:flex;flex-wrap:wrap;gap:4px;margin:7px 0}
+#arena .ht-battle-die{display:inline-flex;width:32px;height:32px;justify-content:center;align-items:center;border-radius:6px;background:#514554;border:1px solid #a18a8c;font-weight:700}
+#arena .ht-battle-die.fail{background:#8d342f}
+#arena .ht-battle-die.ok{background:#286e4e}
+#arena .ht-battle-die.crit{background:#9b751c}
+#arena .ht-battle small{font:12px Arial,sans-serif}
+#arena .ht-battle summary{cursor:pointer}
+@media(max-width:720px){#arena .ht-battle-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#arena .ht-battle-results{grid-template-columns:1fr}}
+@media(max-width:410px){#arena .ht-battle-grid{grid-template-columns:1fr}}
