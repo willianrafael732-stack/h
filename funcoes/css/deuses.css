@@ -1,0 +1,32 @@
+body{background:radial-gradient(ellipse at 48% -8%,#522025 0,#161016 48%,#09090d 100%)}
+.pantheon{max-width:1420px;padding-bottom:75px}.pantheon .hero{border-color:#936d4e}
+.pantheon .hero h1{font-family:Georgia,serif;letter-spacing:.018em}
+.pantheon-nav{display:flex;flex-wrap:wrap;gap:9px;margin:20px 0 0}.pantheon-nav .current{background:#b98c54;color:#140f12}
+.deuses-filter{margin-bottom:16px}.deuses-filter .filters{display:flex;align-items:end;flex-wrap:wrap;gap:10px}
+.deuses-filter .filters label{display:grid;gap:7px;font:700 12px Arial,sans-serif;min-width:180px;flex:1}
+.deuses-filter .filters input,.deuses-filter .filters select{background:#120d13;color:#f9ebdf;border:1px solid #907257;border-radius:6px;min-height:45px;padding:10px;width:100%;font:14px Arial,sans-serif}
+.deuses-filter .filters button{min-height:45px}
+.pantheon-guide{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+.pantheon-guide button{cursor:pointer;border:1px solid #926c50;color:#efceb0;background:#22191d;border-radius:18px;padding:9px 17px;min-height:44px}
+.pantheon-guide button.active,.pantheon-guide button:hover{background:#b88a59;color:#191017}
+.god-section{margin:15px 0 35px;scroll-margin-top:80px}
+.god-section>h2{font:29px Georgia,serif;color:#f2d9b2;margin:6px 0}
+.god-description{color:#bea99e;margin:0 0 18px}
+.god-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:17px}
+.god-card{overflow:hidden;background:linear-gradient(155deg,#271a22,#121015 75%);border:1px solid #745343;border-radius:10px;box-shadow:0 8px 23px #0007;display:flex;flex-direction:column}
+.god-card>a{display:block;overflow:hidden;aspect-ratio:4/5;background:#100c10}
+.god-card img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 20%;transition:transform .2s}
+.god-card>a:hover img{transform:scale(1.035)}
+.god-fallback{display:grid;place-items:center;height:100%;color:#b9a59d}
+.god-details{padding:17px;display:flex;flex-direction:column;flex:1}
+.god-label{font:bold 10px Arial;color:#cdb486;letter-spacing:.12em}
+.god-details h3{font:27px Georgia,serif;color:#f2d9bd;margin:7px 0 14px}
+.god-details dl{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;margin:0}
+.god-details dt{color:#c6a87a;font:bold 11px Arial}.god-details dd{margin:0;color:#eee3d6;font:12px/1.4 Arial}
+.god-details p{font:13px/1.6 Arial;color:#d0beb8}
+.god-level{margin-top:auto;font:11px Arial;color:#bda99d;border-top:1px solid #644b42;padding-top:12px}
+.god-empty{padding:40px;text-align:center;border:1px dashed #6e4d4c}
+.pantheon-notice{margin-top:40px}.pantheon-legacy{display:grid;grid-template-columns:minmax(175px,360px) 1fr;gap:20px;align-items:center}
+.pantheon-legacy img{max-width:100%;border-radius:8px}.pantheon-legacy p{line-height:1.7}
+@media(max-width:640px){.pantheon{padding:16px 12px}.god-grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px}.god-details{padding:12px}.god-details h3{font-size:22px}.pantheon-legacy{grid-template-columns:1fr}.deuses-filter .filters label{flex-basis:100%}}
+@media print{header,.pantheon-nav,.deuses-filter,.pantheon-guide,#hurras-app-nav,.hurras-global-nav{display:none!important}body{background:#fff!important;color:#111!important}.pantheon{padding:0}.god-grid{grid-template-columns:repeat(3,1fr)}.god-card{break-inside:avoid;box-shadow:none;background:#fff!important;color:#111!important}.god-card img{max-height:220px;object-fit:cover}.god-details *{color:#111!important}.god-section>h2,.pantheon-notice h2{color:#222}.pantheon-notice{break-before:page}}
