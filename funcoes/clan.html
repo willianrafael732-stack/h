@@ -95,6 +95,17 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;ba
 <body class="hurras-classic">
 <nav class="navbar"><div class="container-nav"><div class="nav-links"><a href="inicio.html">Player</a><a class="active" href="clan.html">Minha Ficha</a><a href="sistema-completo.html">Sistema</a><a href="npcs.html">NPCs</a><a href="biblioteca.html">Biblioteca</a>
 <a href="../index.html">Player e Mestre</a></div></div></nav>
+<div class="classic-mode-bar" role="group" aria-label="Modo de visualização da ficha Hurras Fantasy">
+ <button type="button" class="classic-mode-selected" id="classicModeEdit" aria-pressed="true">✎ Editar no site</button>
+ <button type="button" id="classicModePDF" aria-pressed="false">▤ Pré-visualizar PDF (2 páginas)</button>
+ <button type="button" id="classicPrintView">⬇ Salvar em PDF / Imprimir</button>
+ <span class="classic-mode-help">Pré-visualização A4 • Volte para editar raça, classe e equipamentos.</span>
+</div>
+<div id="classicPreviewHeading" class="classic-preview-heading" hidden>
+ <span class="eyebrow">PRÉVIA DE IMPRESSÃO • 2 FOLHAS A4</span>
+ <h2>Ficha Hurras Fantasy</h2>
+ <p>Confira as duas páginas antes de salvar em PDF. Os dados são os mesmos da edição e do cofre.</p>
+</div>
 <section class="builder">
   <div class="builder-head"><div><span class="eyebrow">Forja do condenado</span><h1>Ficha Hurras Fantasy</h1><p>Forje o personagem em quatro etapas: identidade, origem e evolução, equipamento e arcano. A Ficha Hurras Fantasy clássica voltou à organização original. Por nível, são 10 pontos de Vida e 5 de Mana (nível 1: 10 de Vida / 5 de Mana).</p></div></div>
   <div class="character-hub"><a class="new" href="clan.html?new=1">✦ Novo personagem</a><a href="personagens.html">Abrir personagem gravado</a><a href="personagens.html">☠ Gerenciar / excluir personagem</a></div>
@@ -160,7 +171,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;ba
       <article><span class="eyebrow">TRAÇO DE RAÇA</span><strong id="raceTraitName">Traço racial</strong><p id="raceTraitText">O traço funciona junto da passiva racial.</p></article>
       <article><span class="eyebrow">TÉCNICAS DA CLASSE</span><strong id="classAbilityName">Habilidades de classe</strong><p id="classAbilityText">Escolha uma classe para ver suas técnicas.</p></article>
     </div>
-    <div class="pdf-note"><strong>PDF:</strong> clique em “Salvar ficha em PDF”. A impressão usa duas páginas A4 fixas e fundo escuro. No Edge/Chrome, escolha “Salvar como PDF” e ative “Gráficos de fundo” para máxima fidelidade.</div>
+    <div class="pdf-note"><strong>PDF:</strong> use “Pré-visualizar PDF” para conferir as duas páginas ou “Salvar ficha em PDF” para imprimir. A impressão usa duas páginas A4 fixas e fundo escuro. No Edge/Chrome, escolha “Salvar como PDF” e ative “Gráficos de fundo” para máxima fidelidade.</div>
     <section class="storage-panel" id="storagePanel">
       <div class="storage-head"><div><span class="eyebrow">COFRE DE PERSONAGENS</span><h3>Suas fichas neste navegador</h3><p>O rascunho é salvo automaticamente. Para guardar uma cópia use o PDF.</p></div><div class="storage-badges"><span class="storage-badge ok" id="browserBadge">Navegador: pronto</span></div></div>
       <div class="storage-actions"><button class="save-main" id="saveVault">Salvar no cofre</button><button id="newSheet">Nova ficha</button><button class="danger" id="clearDraft">Limpar rascunho</button></div>
@@ -169,10 +180,11 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;ba
     </section>
   </div>
 </section>
-<div class="sheets" id="sheets"></div>
+<div class="sheets" id="sheets" aria-label="Duas páginas A4 da ficha Hurras Fantasy"></div>
 <script src="js/rpg-system.js"></script>
 <script src="js/character-abilities.js"></script>
 <script src="js/clan.js"></script>
 <script src="js/ficha-storage.js"></script>
+<script src="js/ficha-classica-mode.js"></script>
 </body>
 </html>
