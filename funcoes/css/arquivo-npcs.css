@@ -18,3 +18,5 @@ main{max-width:1260px;margin:auto;padding:24px 18px 70px}h1,h2,h3{font-family:Ge
 
 /* Estilos adicionais da página */
 .portrait{width:100%;height:210px;object-fit:cover;border-radius:5px;background:radial-gradient(#564133,#140c0b)}.npc-card{overflow:hidden}.silhouette{height:210px;display:grid;place-items:center;font:72px Georgia,serif;color:#8f7156;background:radial-gradient(#513221,#120b13)}.npc-card p{margin:7px 0}.npc-card .badge{display:block;color:#ba9981;font-size:11px}
+/* Galeria com a imagem inteira, sem recorte: toque para abrir ampliada. */
+.npc-card .portrait{display:block;width:100%;height:auto!important;max-height:none!important;aspect-ratio:3/4;object-fit:contain!important;background:#09080e}.npc-card>a{display:block;cursor:zoom-in}.npc-card>a:focus-visible{outline:3px solid #e2b77a}.npc-card>a:hover img{filter:brightness(1.1)}.npc-card{display:flex;flex-direction:column;gap:5px}@media(min-width:1024px){#npcList.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}

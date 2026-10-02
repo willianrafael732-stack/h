@@ -12,11 +12,11 @@ const groups=[
 ['Início','index.html','Portal Player e Mestre'],
 ['Minhas fichas','funcoes/criacao-de-ficha.html','Retomar personagens clássicos'],
 ['Nova ficha clássica','funcoes/clan.html?new=1','Forja original'],
-['Fichário Dark Fantasy','funcoes/ficha-dark-fantasy.html','Segundo sistema de ficha'],
+['Fichário Dark Fantasy','funcoes/ficha-dark-fantasy.html','Segundo sistema de ficha'],['Cofre Dark Fantasy','funcoes/dark-personagens.html','Gerenciar fichas do novo modelo'],
 ['Biblioteca','funcoes/biblioteca.html','Todas as opções do jogo']]},
 {label:'Personagem',icon:'◈',items:[
 ['Criar ficha clássica','funcoes/clan.html','Editor de personagem'],
-['Cofre de personagens','funcoes/criacao-de-ficha.html','Fichas salvas'],
+['Cofre de personagens','funcoes/criacao-de-ficha.html','Fichas salvas'],['Cofre Dark','funcoes/dark-personagens.html','Fichas Dark salvas'],
 ['Fichário Dark Fantasy','funcoes/ficha-dark-fantasy.html','Bolinha e evolução'],
 ['Ficha de animal','animais/ficha-animal.html','Companheiros e mascotes'],
 ['Raças e classes','funcoes/racaeclasses.html','Escolher raça e estilo'],
