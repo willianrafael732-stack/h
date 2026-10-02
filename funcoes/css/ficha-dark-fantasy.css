@@ -161,3 +161,6 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 .dark-armeiro-links{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 15px}
 .dark-armeiro-links a{padding:9px 11px;border:1px solid #795d41;border-radius:6px;color:#f0d6a4;text-decoration:none;background:#271d18}
 @media(max-width:720px){.dark-elemental-controls{grid-template-columns:1fr}.dark-elemental-controls button{width:100%}}
+
+#darkEditor .dark-danger,.toolbar .dark-danger{border-color:#a8665f;color:#f3beb6;background:#2b1919}
+.toolbar .dark-danger:hover{background:#512621;color:#fff0eb}

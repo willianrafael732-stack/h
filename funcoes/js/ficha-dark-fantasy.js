@@ -125,7 +125,21 @@ function generateStats(){
  for(let i=0;i<18;i++)data.magicLevels[i]=randint(0,Math.min(10,2+boost));
  data.vitality=fullTrack(currentLevel()*10);data.mana=fullTrack(currentLevel()*5);render();autoSave();status('Pontos sorteados; vida, mana e vontade calculadas pelo nível.')
 }
+function zeroAllDarkPoints(){
+ if(!confirm('Zerar atributos, habilidades, magia, resistências, Vida e Mana atuais? Seus equipamentos e os buffs/debuffs das armas serão preservados.'))return;
+ data.stats={};
+ data.resist={};
+ data.magicLevels={};
+ data.vitality=[];
+ data.mana=[];
+ // Força de Vontade permanece automática conforme o nível.
+ normalizeProgress();
+ render();
+ autoSave();
+ status('Pontos zerados. Equipamentos e efeitos das armas preservados.');
+}
 $('randomStats').onclick=()=>generateStats();
+$('darkZeroPoints').onclick=zeroAllDarkPoints;
 $('randomSheet').onclick=()=>{
  if(!confirm('Criar uma nova ficha aleatória? A ficha atual será mantida salva.'))return;
  save(false);

@@ -61,3 +61,7 @@
  .classic-mode-bar,.classic-preview-heading{display:none!important}
  body.hurras-classic .sheet-page{transform:none!important;margin:0!important}
 }
+
+/* Ação de limpeza com confirmação, sem apagar itens, personagem ou efeitos. */
+.hurras-classic #zeroAllPoints{border-color:#a56a61;color:#efb2a7;background:#2a1919}
+.hurras-classic #zeroAllPoints:hover{background:#522623;color:#ffe7db}
