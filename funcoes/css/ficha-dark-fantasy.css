@@ -151,3 +151,13 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 /* Dark original sem painéis de vantagens automáticas ou subclasse. */
 #darkEditor .panel .two>.field{min-width:0}
 #darkEditor [data-gear]{min-height:44px}
+
+.dark-elemental-picker{border:1px solid #7f694e;border-radius:8px;background:#16131a;padding:14px;margin:10px 0 16px}
+.dark-elemental-picker strong{color:#e4c28b;font:700 17px Georgia,serif}
+.dark-elemental-controls{display:grid;grid-template-columns:1fr 2fr auto;align-items:end;gap:9px}
+.dark-elemental-controls label{display:grid;gap:6px;color:#e7dbc3;font-size:12px}
+.dark-elemental-controls select{min-width:0;width:100%;min-height:44px;background:#111219;color:#f6e9da;border:1px solid #75634f;border-radius:5px;padding:7px}
+.dark-elemental-controls button{min-height:44px}
+.dark-armeiro-links{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 15px}
+.dark-armeiro-links a{padding:9px 11px;border:1px solid #795d41;border-radius:6px;color:#f0d6a4;text-decoration:none;background:#271d18}
+@media(max-width:720px){.dark-elemental-controls{grid-template-columns:1fr}.dark-elemental-controls button{width:100%}}

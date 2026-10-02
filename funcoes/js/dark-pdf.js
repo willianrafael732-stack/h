@@ -38,7 +38,7 @@ function track(title,a,total,cls){let b=box(title),g=el('div','dark-pdf-track');
 function preview(){
  const d=api.get(),pages=$('pdfPages');if(!pages)return;pages.replaceChildren();
  const one=page(1),ident=el('div','dark-pdf-id');
- ['Nome','Player','Crônica','Raça','Classe','Nível','Profissão','Dinheiro','Experiência','Nível mágico'].forEach(k=>ident.append(detail(k,d.fields[k]||'—')));one.append(ident);
+ ['Nome','Player','Crônica','Raça','Classe','Nível','Profissão','Dinheiro','Experiência','Nível mágico','Elemento'].forEach(k=>ident.append(detail(k,d.fields[k]||'—')));one.append(ident);
  const cols=el('div','dark-pdf-columns');
  const blocks=[[],[],[]];
  groups.forEach(([title,items,c],i)=>{let b=box(title);items.forEach(k=>b.append(line(k,d.stats[k],12,c)));blocks[i%3].push(b)});
@@ -83,7 +83,7 @@ async function generatePdf(){
  pages.forEach((p,i)=>header(p,i+1));
  const textField=(page,name,value,x,y,w,h=16)=>{const f=form.createTextField(name);f.setText(clean(value).slice(0,200));f.addToPage(page,{x,y,width:w,height:h,borderColor:gold,backgroundColor:panel,textColor:white,borderWidth:.5,fontSize:8});return f};
  const form=doc.getForm();
- let top=756;const identity=['Nome','Player','Crônica','Raça','Classe','Nível','Profissão','Dinheiro','Experiência','Nível mágico'];
+ let top=756;const identity=['Nome','Player','Crônica','Raça','Classe','Nível','Profissão','Dinheiro','Experiência','Nível mágico','Elemento'];
  identity.forEach((k,i)=>{const col=i%2,idx=Math.floor(i/2),x=24+col*284,y=top-idx*29;pText(pages[0],k,x,y+16,8,bold,gold);textField(pages[0],'field_'+k,state.fields[k]||'',x,y-4,266,17)});
  const blocks=[
  {x:24,y:570,items:groups.slice(0,3)},
@@ -139,7 +139,7 @@ $('pdfUpload').onchange=async e=>{
  if(blob){state=JSON.parse(decodeURIComponent(blob));if(state._format!=='hurras_dark_pdf_v2')throw Error('Arquivo sem assinatura Hurras');}
  else{ // PDF preenchível externo ou PDF antigo: tenta ler os campos conhecidos
    state={fields:{},stats:{},magic:[],magicLevels:{},resist:{},gear:[],adv:[],disadv:[],vitality:[],mana:[]};let count=0;
-   ['Nome','Player','Crônica','Raça','Classe','Nível','Profissão','Dinheiro','Experiência','Nível mágico'].forEach(k=>{let v=get('field_'+k);if(v){state.fields[k]=v;count++}});
+   ['Nome','Player','Crônica','Raça','Classe','Nível','Profissão','Dinheiro','Experiência','Nível mágico','Elemento'].forEach(k=>{let v=get('field_'+k);if(v){state.fields[k]=v;count++}});
    for(const [group,items] of groups){for(const k of items){const n=get('stat_'+k);if(n){state.stats[k]=Math.min(12,Math.max(0,Number(n)||0));count++}}}
    const w=get('stat_Força de Vontade');if(w){state.stats['Força de Vontade']=Math.min(10,Number(w)||0);count++}
    for(let i=0;i<18;i++){let a=get('magic_'+i),b=get('magicLevel_'+i);state.magic[i]=a;state.magicLevels[i]=Math.min(10,Number(b)||0);if(a||b)count++}
@@ -165,7 +165,7 @@ $('pdfUpload').onchange=async e=>{
    if(count===0)throw Error('PDF sem campos reconhecidos. Use um PDF editável exportado pelo Hurras. PDFs de imagem não contêm dados editáveis.');
  }
  // If a PDF reader modified the visible AcroForm fields, sync those changes.
- for(const k of ['Nome','Player','Crônica','Raça','Classe','Nível','Profissão','Dinheiro','Experiência','Nível mágico','Passivas','Itens','Notas']){const v=get('field_'+k);if(v!=='')state.fields[k]=v}
+ for(const k of ['Nome','Player','Crônica','Raça','Classe','Nível','Profissão','Dinheiro','Experiência','Nível mágico','Elemento','Passivas','Itens','Notas']){const v=get('field_'+k);if(v!=='')state.fields[k]=v}
  for(const [group,items] of groups)for(const k of items){const v=get('stat_'+k);if(v!=='')state.stats[k]=Math.max(0,Math.min(12,Number(v)||0))}
  const will=get('stat_Força de Vontade');if(will!=='')state.stats['Força de Vontade']=Math.max(0,Math.min(10,Number(will)||0));
  for(let i=0;i<18;i++){const a=get('magic_'+i),b=get('magicLevel_'+i);if(a!=='')state.magic[i]=a;if(b!=='')state.magicLevels[i]=Math.max(0,Math.min(10,Number(b)||0))}
