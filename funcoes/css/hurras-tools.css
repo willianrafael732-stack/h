@@ -20,3 +20,20 @@
 .hurras-tools #htConditionList{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0}
 @media(max-width:750px){.hurras-tools{padding:12px;margin:10px}.hurras-tools .ht-magic{grid-template-columns:1fr}.hurras-tools .ht-magic p{grid-column:1}.hurras-tools .ht-nav>*{flex:1 1 125px}}
 @media print{.hurras-tools{display:none!important}}
+
+/* Batalha de dados exibida apenas na ficha Dark. */
+#darkEditor .ht-battle{padding:16px;margin:16px 0;background:#1c121d;border:1px solid #98725e;border-radius:9px;color:#f2e5db}
+#darkEditor .ht-battle h3{font:700 20px Georgia;color:#f1ca9a}
+#darkEditor .ht-battle-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0}
+#darkEditor .ht-battle-opponent{background:#201722}
+#darkEditor .ht-battle-opponent label{min-width:0}
+#darkEditor .ht-battle-results{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:7px}
+#darkEditor .ht-battle-dice{display:flex;flex-wrap:wrap;gap:4px;margin:7px 0}
+#darkEditor .ht-battle-die{display:inline-flex;width:32px;height:32px;justify-content:center;align-items:center;border-radius:6px;background:#514554;border:1px solid #a18a8c;font-weight:700}
+#darkEditor .ht-battle-die.fail{background:#8d342f}
+#darkEditor .ht-battle-die.ok{background:#286e4e}
+#darkEditor .ht-battle-die.crit{background:#9b751c}
+#darkEditor .ht-battle small{font:12px Arial,sans-serif}
+#darkEditor .ht-battle summary{cursor:pointer}
+@media(max-width:720px){#darkEditor .ht-battle-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#darkEditor .ht-battle-results{grid-template-columns:1fr}}
+@media(max-width:410px){#darkEditor .ht-battle-grid{grid-template-columns:1fr}}
