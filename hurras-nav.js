@@ -121,3 +121,5 @@ document.addEventListener('scroll',()=>{back.classList.toggle('visible',window.s
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build,{once:true});else build();
 })();
+/* Shared responsive styles for every page loading the Hurras menu. */
+(function(){if(typeof document==='undefined')return;const root=document.head||document.documentElement;const css=document.createElement('link');css.rel='stylesheet';css.href=new URL('assets/css/hurras-mobile.css',document.currentScript?.src||location.href).href;root.appendChild(css);if(/\/funcoes\/clan\.html/i.test(location.pathname)){const js=document.createElement('script');js.src=new URL('assets/js/hurras-mobile.js',document.currentScript?.src||location.href).href;root.appendChild(js)}})();

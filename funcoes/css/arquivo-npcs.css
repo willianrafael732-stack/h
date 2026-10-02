@@ -20,3 +20,16 @@ main{max-width:1260px;margin:auto;padding:24px 18px 70px}h1,h2,h3{font-family:Ge
 .portrait{width:100%;height:210px;object-fit:cover;border-radius:5px;background:radial-gradient(#564133,#140c0b)}.npc-card{overflow:hidden}.silhouette{height:210px;display:grid;place-items:center;font:72px Georgia,serif;color:#8f7156;background:radial-gradient(#513221,#120b13)}.npc-card p{margin:7px 0}.npc-card .badge{display:block;color:#ba9981;font-size:11px}
 /* Galeria com a imagem inteira, sem recorte: toque para abrir ampliada. */
 .npc-card .portrait{display:block;width:100%;height:auto!important;max-height:none!important;aspect-ratio:3/4;object-fit:contain!important;background:#09080e}.npc-card>a{display:block;cursor:zoom-in}.npc-card>a:focus-visible{outline:3px solid #e2b77a}.npc-card>a:hover img{filter:brightness(1.1)}.npc-card{display:flex;flex-direction:column;gap:5px}@media(min-width:1024px){#npcList.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Hurras v12: retratos legíveis em dispositivos móveis. */
+@media screen{
+ html,body{max-width:100%;overflow-x:clip}
+ main{width:min(100%,1560px);max-width:1560px;padding-inline:clamp(12px,3.5vw,32px)}
+ #npcList.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,425px),1fr));gap:22px}
+ .npc-card .portrait{display:block;width:100%;height:auto!important;aspect-ratio:4/5!important;object-fit:contain!important;background:#09080e}
+ .npc-card>a{background:#08080d;display:block}
+ .npc-card h3{font-size:clamp(22px,2.3vw,29px);overflow-wrap:anywhere}
+ .npc-card p{font-size:15px;line-height:1.6}
+ #npcFind{min-height:48px;font-size:16px}
+}
+@media screen and (max-width:720px){main{padding:14px 12px 44px}#npcList.grid{grid-template-columns:minmax(0,1fr);gap:16px}.npc-card{padding:13px}.npc-card .portrait{aspect-ratio:4/5!important}.hero{padding:14px 0 18px}#npcFind{width:100%!important;max-width:none!important}#npcCount{display:block;margin:10px 0 0!important}}

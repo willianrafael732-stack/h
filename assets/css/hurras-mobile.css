@@ -1,0 +1,13 @@
+/* Hurras - ajuste global a toque e telas pequenas. Não afeta a impressão A4. */
+@media screen and (max-width:720px){
+ html{font-size:16px;-webkit-text-size-adjust:100%}
+ body{max-width:100%;overflow-x:clip}
+ main,header,section,article,.panel,.toolbar,.grid{max-width:100%;box-sizing:border-box}
+ img,video,svg,canvas{max-width:100%;height:auto}
+ input,select,textarea{font-size:16px}
+ .toolbar,.actions,.filters{flex-wrap:wrap}
+ button,.btn,[role="button"],nav a{min-height:44px;touch-action:manipulation}
+ .grid{grid-template-columns:minmax(0,1fr)}
+ .panel{overflow-wrap:anywhere}
+ #hurras-app-nav .hnav-actions button{min-height:44px}
+}

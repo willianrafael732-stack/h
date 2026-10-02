@@ -83,3 +83,26 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 #darkEditor{position:relative;background:linear-gradient(#0c080be6,#130509ec),var(--dark-bg-image,url("../../assets/dark-hurras/fundo-brasas.svg")) center top/cover fixed}
 .dark-pdf-page:before{opacity:.44!important;background-size:cover!important;background-position:center!important}
 @media print{.dark-pdf-page:before{opacity:.35!important}}
+
+/* Fichário Dark: edição adaptável, PDF preservado no tamanho A4. */
+@media screen and (max-width:720px){
+ .toolbar,.dark-mode-bar{justify-content:flex-start;padding:10px;gap:8px}
+ .toolbar .btn,.dark-mode-bar .btn,.toolbar label,.dark-mode-bar label{min-height:44px;display:inline-flex;align-items:center;justify-content:center;flex:1 1 145px;text-align:center}
+ .toolbar select{width:100%;flex-basis:100%}
+ #darkEditor main{padding:12px 10px 34px;max-width:100%}
+ #darkEditor .grid,#darkEditor .two,#darkEditor .three,#darkEditor .traits{display:grid;grid-template-columns:minmax(0,1fr);min-width:0}
+ #darkEditor .panel{padding:14px 10px}
+ #darkEditor .trait{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+ #darkEditor .dots{justify-content:flex-start;flex-wrap:wrap;gap:7px}
+ #darkEditor .dot{width:23px;height:23px;min-width:23px;min-height:23px}
+ #darkEditor .sq{min-height:24px}
+ #darkEditor input,#darkEditor textarea{font-size:16px;max-width:100%}
+ #darkPdfView{max-width:100%;overflow-x:hidden;padding:8px}
+ .dark-pdf-page{width:100%;height:auto;min-height:unset;padding:18px 10px;overflow:visible}
+ .dark-pdf-columns,.dark-pdf-fields{grid-template-columns:minmax(0,1fr)}
+ .dark-pdf-id{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .dark-pdf-line{grid-template-columns:minmax(0,1fr);gap:8px;padding:6px 0}
+ .dark-pdf-dotrow{justify-content:flex-start;flex-wrap:wrap}
+ .dark-pdf-dot{width:11px;height:11px}
+}
+@media screen and (max-width:390px){.dark-pdf-id{grid-template-columns:1fr}}

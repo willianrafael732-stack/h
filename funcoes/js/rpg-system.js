@@ -626,11 +626,21 @@ window.HURRAS_RPG = {
         "Forca": 3,
         "Destreza": 3,
         "Inteligencia": 1,
-        "ForcaDeVontade": 2
+        "ForcaDeVontade": 2,
+        "Vigor": 2,
+        "Carisma": 1,
+        "Manipulacao": 1,
+        "Persuasao": 1,
+        "Percepcao": 3,
+        "Reacao": 2
       },
       "passiva": "Instinto da Fera: vantagem narrativa ao rastrear, caçar ou perceber perigo ligado à sua fera-guia.",
-      "bonus": {},
-      "fraqueza": {},
+      "bonus": {
+        "Adestramento": "+1"
+      },
+      "fraqueza": {
+        "Ocultacao": "-1"
+      },
       "evolucao": {},
       "link": "origem.html?id=animagos",
       "nome": "Animagos"
@@ -640,11 +650,21 @@ window.HURRAS_RPG = {
         "Forca": 2,
         "Destreza": 1,
         "Inteligencia": 3,
-        "ForcaDeVontade": 3
+        "ForcaDeVontade": 3,
+        "Vigor": 3,
+        "Carisma": 1,
+        "Manipulacao": 1,
+        "Persuasao": 1,
+        "Percepcao": 2,
+        "Reacao": 1
       },
       "passiva": "Corpo Preparado: resistência natural a venenos e doenças comuns.",
-      "bonus": {},
-      "fraqueza": {},
+      "bonus": {
+        "Ciencias": "+1"
+      },
+      "fraqueza": {
+        "Persuasao": "-1"
+      },
       "evolucao": {},
       "link": "origem.html?id=homunculo",
       "nome": "Homúnculo"
@@ -654,11 +674,21 @@ window.HURRAS_RPG = {
         "Forca": 4,
         "Destreza": 1,
         "Inteligencia": 2,
-        "ForcaDeVontade": 2
+        "ForcaDeVontade": 2,
+        "Vigor": 4,
+        "Carisma": 1,
+        "Manipulacao": 1,
+        "Persuasao": 1,
+        "Percepcao": 2,
+        "Reacao": 1
       },
       "passiva": "Carapaça Viva: absorve parte de impactos físicos leves.",
-      "bonus": {},
-      "fraqueza": {},
+      "bonus": {
+        "Bloqueio": "+1"
+      },
+      "fraqueza": {
+        "Esquiva": "-1"
+      },
       "evolucao": {},
       "link": "origem.html?id=golens",
       "nome": "Golens"
@@ -668,11 +698,21 @@ window.HURRAS_RPG = {
         "Forca": 3,
         "Destreza": 2,
         "Inteligencia": 1,
-        "ForcaDeVontade": 3
+        "ForcaDeVontade": 3,
+        "Vigor": 3,
+        "Carisma": 1,
+        "Manipulacao": 1,
+        "Persuasao": 1,
+        "Percepcao": 3,
+        "Reacao": 2
       },
       "passiva": "Faro do Inverno: rastreia criaturas e rotas em neve ou neblina.",
-      "bonus": {},
-      "fraqueza": {},
+      "bonus": {
+        "Sobrevivencia": "+1"
+      },
+      "fraqueza": {
+        "Persuasao": "-1"
+      },
       "evolucao": {},
       "link": "origem.html?id=wendigo",
       "nome": "Wendigo"
@@ -682,11 +722,21 @@ window.HURRAS_RPG = {
         "Forca": 1,
         "Destreza": 3,
         "Inteligencia": 3,
-        "ForcaDeVontade": 2
+        "ForcaDeVontade": 2,
+        "Vigor": 2,
+        "Carisma": 2,
+        "Manipulacao": 1,
+        "Persuasao": 2,
+        "Percepcao": 3,
+        "Reacao": 2
       },
       "passiva": "Respiração Anfíbia: respira ar e água.",
-      "bonus": {},
-      "fraqueza": {},
+      "bonus": {
+        "Percepcao": "+1"
+      },
+      "fraqueza": {
+        "Vigor": "-1"
+      },
       "evolucao": {},
       "link": "origem.html?id=elfos-do-mar",
       "nome": "Elfos do Mar"
@@ -696,11 +746,21 @@ window.HURRAS_RPG = {
         "Forca": 1,
         "Destreza": 4,
         "Inteligencia": 3,
-        "ForcaDeVontade": 1
+        "ForcaDeVontade": 1,
+        "Vigor": 2,
+        "Carisma": 2,
+        "Manipulacao": 3,
+        "Persuasao": 2,
+        "Percepcao": 3,
+        "Reacao": 2
       },
       "passiva": "Olhar Mimético: memoriza detalhes visuais de alguém após observação atenta.",
-      "bonus": {},
-      "fraqueza": {},
+      "bonus": {
+        "Manipulacao": "+1"
+      },
+      "fraqueza": {
+        "Bloqueio": "-1"
+      },
       "evolucao": {},
       "link": "origem.html?id=doppelganger",
       "nome": "Doppelganger"
@@ -710,11 +770,21 @@ window.HURRAS_RPG = {
         "Forca": 1,
         "Destreza": 2,
         "Inteligencia": 3,
-        "ForcaDeVontade": 3
+        "ForcaDeVontade": 3,
+        "Vigor": 1,
+        "Carisma": 1,
+        "Manipulacao": 2,
+        "Persuasao": 1,
+        "Percepcao": 3,
+        "Reacao": 3
       },
       "passiva": "Visão Etérea: percebe presenças espirituais e rastros sobrenaturais sutis.",
-      "bonus": {},
-      "fraqueza": {},
+      "bonus": {
+        "Ocultacao": "+1"
+      },
+      "fraqueza": {
+        "Vigor": "-1"
+      },
       "evolucao": {},
       "link": "origem.html?id=espectro",
       "nome": "Espectro"
@@ -724,11 +794,21 @@ window.HURRAS_RPG = {
         "Forca": 1,
         "Destreza": 3,
         "Inteligencia": 3,
-        "ForcaDeVontade": 2
+        "ForcaDeVontade": 2,
+        "Vigor": 2,
+        "Carisma": 3,
+        "Manipulacao": 3,
+        "Persuasao": 2,
+        "Percepcao": 3,
+        "Reacao": 2
       },
       "passiva": "Fogo-Fátuo: emite uma luz suave, fria e controlada.",
-      "bonus": {},
-      "fraqueza": {},
+      "bonus": {
+        "Manipulacao": "+1"
+      },
+      "fraqueza": {
+        "Bloqueio": "-1"
+      },
       "evolucao": {},
       "link": "origem.html?id=kitsune",
       "nome": "Kitsune"
@@ -1211,7 +1291,8 @@ window.HURRAS_RPG = {
       "nome": "Mago",
       "statusInicial": {
         "bonus": {
-          "Inteligencia": "+2"
+          "Inteligencia": "+2",
+          "Encantamento": "+1"
         },
         "fraqueza": {
           "Vigor": "-1"
@@ -1248,7 +1329,8 @@ window.HURRAS_RPG = {
       ],
       "shields": [],
       "pontosClasse": {
-        "Inteligencia": "+2"
+        "Inteligencia": "+2",
+        "Encantamento": "+1"
       },
       "penalidadesClasse": {
         "Vigor": "-1"
@@ -1363,7 +1445,8 @@ window.HURRAS_RPG = {
       "nome": "Ninja",
       "statusInicial": {
         "bonus": {
-          "Furtividade": "+2"
+          "Furtividade": "+2",
+          "Destreza": "+1"
         },
         "fraqueza": {
           "Forca": "-1"
@@ -1392,7 +1475,8 @@ window.HURRAS_RPG = {
       ],
       "shields": [],
       "pontosClasse": {
-        "Furtividade": "+2"
+        "Furtividade": "+2",
+        "Destreza": "+1"
       },
       "penalidadesClasse": {
         "Forca": "-1"

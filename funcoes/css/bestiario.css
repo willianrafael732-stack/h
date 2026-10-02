@@ -22,3 +22,30 @@ main{max-width:1260px;margin:auto;padding:24px 18px 70px}h1,h2,h3{font-family:Ge
 .monster-tracker{border:1px solid #4d4034;background:#171416;border-radius:6px;padding:12px;margin:10px 0;display:flex;flex-direction:column;gap:7px}.monster-tracker h4{font-size:14px;color:#dfbc7b;margin:0}.monster-tracker output{font-weight:bold;color:#c9e0c7}.monster-tracker progress{width:100%;height:18px;accent-color:#be5847}.monster-tracker-actions{display:flex;gap:6px;flex-wrap:wrap}.monster-tracker .monster-action{background:#34291e;border:1px solid #92704b;color:#f5d5a8;border-radius:5px;font:700 11px Arial,sans-serif;padding:8px;cursor:pointer}.monster-tracker .monster-action:hover{background:#4b3925}.monster-tracker .monster-action:focus-visible{outline:2px solid #edc88c}@media print{.monster-tracker{display:none}}
 
 /* Mostra a arte inteira, sem cortar as letras ou a ficha. */.monster-image-link{display:block;margin:-17px -17px 12px;width:calc(100% + 34px);cursor:zoom-in}.monster-image-link:focus-visible{outline:3px solid #eac78b}.monster-portrait{width:100%!important;height:auto!important;aspect-ratio:3/4;max-height:none!important;object-fit:contain!important;margin:0!important;background:#07070b}.monster-image-link:hover img{filter:brightness(1.10)}.monster-blank{height:350px!important}@media(min-width:1100px){.grid:has(.monster){grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Hurras v12: cartões grandes e touch-first, sem cortes nas ilustrações */
+@media screen{
+ html,body{max-width:100%;overflow-x:clip}
+ main{width:min(100%,1560px);max-width:1560px;padding-inline:clamp(12px,3.5vw,32px)}
+ #monsters.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,430px),1fr));gap:22px}
+ .monster-image-link{width:calc(100% + 34px);max-width:calc(100% + 34px);background:#09090e}
+ .monster-portrait{height:auto!important;aspect-ratio:4/5!important;object-fit:contain!important;object-position:center!important}
+ .monster h3{font-size:clamp(22px,2.5vw,29px)}
+ .monster dl{font-size:15px;line-height:1.6}
+ .filters input,.filters select,.filters button{min-height:46px;font-size:16px}
+ .monster summary{padding:12px 2px}
+ .monster-tracker .monster-action{min-height:44px;font-size:13px}
+}
+@media screen and (max-width:720px){
+ main{padding:14px 12px 44px}
+ .hero{padding:14px 0 18px}
+ #monsters.grid{grid-template-columns:minmax(0,1fr);gap:17px}
+ .panel.monster{padding:13px}
+ .monster-image-link{width:calc(100% + 26px);max-width:calc(100% + 26px);margin:-13px -13px 12px}
+ .monster-portrait{aspect-ratio:4/5!important}
+ .filters{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .filters input{grid-column:1/-1;width:100%}
+ .filters>*{min-width:0}
+ .monster dl{grid-template-columns:90px minmax(0,1fr)}
+}
+@media print{#monsters.grid{grid-template-columns:repeat(2,1fr)}.monster-portrait{max-height:200px!important;aspect-ratio:auto!important;object-fit:contain}}
