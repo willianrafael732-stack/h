@@ -36,13 +36,13 @@ function textBox(label,v){let b=box(label);b.append(el('div','dark-pdf-text',Str
 function page(num){let p=el('article','dark-pdf-page');p.setAttribute('aria-label','Página '+num+' da ficha');let h=el('div','dark-pdf-head');h.append(el('strong',null,'HURRAS DARK FANTASY'),el('p',null,'NEXALIS · FICHA DE PERSONAGEM · '+num+'/2'));p.append(h);return p}
 function track(title,a,total,cls){let b=box(title),g=el('div','dark-pdf-track');g.style.setProperty('--print-dot',cls);const active=new Set(a||[]);for(let i=0;i<total;i++){{let circle=el('i','dark-pdf-dot'+(active.has(i)?' on':''));circle.style.setProperty('--print-dot',dotHex(i));g.append(circle)}}b.append(g);return b}
 function williamWheel(title,kind,d){
- const panel=box(title),ring=el('div','william-ring');
+ const panel=box(title),ring=el('div','william-ring');panel.classList.add('william-pdf-wheel');
  const colors={'Fogo':'#da514c','Água':'#44a9ed','Vento':'#82be48','Terra':'#c87c40',
   'Raio':'#dece24','Veneno':'#745ca1','Mental':'#ed76af','Sagrado':'#f2efed','Sombrio':'#191923'};
  ['Fogo','Água','Vento','Terra','Raio','Veneno','Mental','Sagrado','Sombrio'].forEach((name,i)=>{
   const marker=el('span','william-wheel-stone',name);
   marker.style.setProperty('--element-color',colors[name]);
-  marker.style.setProperty('--ring-index',i);
+  marker.style.setProperty('--ring-index',i);marker.style.setProperty('--ring-angle',(i*40)+'deg');marker.style.setProperty('--ring-reverse',(-i*40)+'deg');
   if(name==='Sombrio')marker.style.color='#fff';
   const n=kind==='resist'?(Number(d.resist?.[name])||0):
    (name===d.fields?.Elemento?Number(d.fields?.['Nível mágico'])||0:0);

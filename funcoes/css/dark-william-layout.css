@@ -91,7 +91,7 @@ body{background:radial-gradient(ellipse at 50% 15%,#451a21,#110c13 62%,#09070a);
  display:flex;align-items:center;justify-content:center;
  color:#130e11;background:var(--element-color);font:bold 6.5px Arial,sans-serif;
  border:2px solid #efddda;box-shadow:0 2px 7px #0008;
- transform:translate(-50%,-50%) rotate(calc(var(--ring-index)*40deg)) translateY(-74px) rotate(calc(var(--ring-index)*-40deg));
+ transform:translate(-50%,-50%) rotate(var(--ring-angle)) translateY(-74px) rotate(var(--ring-reverse));
 }
 .william-wheel-stone[data-element="Sombrio"]{color:#fff}
 .william-wheel-stone.is-active{outline:2px solid #efd59e;outline-offset:1px}
@@ -139,7 +139,7 @@ body{background:radial-gradient(ellipse at 50% 15%,#451a21,#110c13 62%,#09070a);
  #darkEditor .william-sheet .dot{width:7px;min-width:7px;height:7px;min-height:7px}
  #darkEditor .william-sheet .trait{grid-template-columns:minmax(65px,1fr) auto}
  #darkEditor .william-sheet .trait strong{font-size:8px}
- .william-ring{width:145px;height:145px}.william-wheel-stone{width:31px;height:31px;transform:translate(-50%,-50%) rotate(calc(var(--ring-index)*40deg)) translateY(-58px) rotate(calc(var(--ring-index)*-40deg));font-size:5px}
+ .william-ring{width:145px;height:145px}.william-wheel-stone{width:31px;height:31px;transform:translate(-50%,-50%) rotate(var(--ring-angle)) translateY(-58px) rotate(var(--ring-reverse));font-size:5px}
 }
 @media screen and (max-width:680px){
  #darkEditor .william-sheet{padding:38px 25px 48px;gap:12px}

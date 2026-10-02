@@ -89,7 +89,7 @@ const wheel=(title,kind)=>{
  names.forEach((name,i)=>{
   const tag=document.createElement('span');tag.className='william-wheel-stone';
   tag.style.setProperty('--element-color',colors[name]);
-  tag.style.setProperty('--ring-index',i);
+  tag.style.setProperty('--ring-index',i);tag.style.setProperty('--ring-angle',(i*40)+'deg');tag.style.setProperty('--ring-reverse',(-i*40)+'deg');
   tag.title=name;tag.dataset.element=name;tag.dataset.wheel=kind;
   tag.textContent=name;ring.append(tag)
  });
