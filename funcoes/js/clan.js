@@ -47,7 +47,22 @@ function updateMagicSchools(){
  if(list.includes(old))E('magicSchool').value=old;
 }
 function updateSubclass(){const c=currentClass(),keys=Object.keys(c.variacoes||{});E('subclass').innerHTML='<option value="">—</option>'+keys.map(k=>`<option value="${k}">${k.replace(/([a-z])([A-Z])/g,'$1 $2')}</option>`).join('')}
-function equipOptions(){const c=currentClass(),w=(c.weapons||[]).filter(x=>D.weapons[x]);const opts='<option value="">— Sem arma —</option>'+w.map(x=>`<option value="${x}">${x}${D.weapons[x].rarity?' ['+D.weapons[x].rarity+']':''}</option>`).join('');const k1=E('weapon1').value,k2=E('weapon2').value;E('weapon1').innerHTML=opts;E('weapon2').innerHTML=opts;if(w.includes(k1))E('weapon1').value=k1;if(w.includes(k2))E('weapon2').value=k2;E('armor').innerHTML='<option value="">— Sem armadura —</option>'+(c.armor||[]).filter(x=>D.armors[x]).map(x=>`<option>${x}</option>`).join('');E('shield').innerHTML='<option value="">— Sem escudo —</option>'+(c.shields||[]).filter(x=>D.shields[x]).map(x=>`<option>${x}</option>`).join('')}
+function equipOptions(){
+ // Catálogo único de Nexalis, utilizado também pela ficha Dark, sem compartilhar salvamentos.
+ const c=currentClass(),preferred=new Set(c.weapons||[]);
+ const optItems=(items,allowed)=>Object.entries(items||{}).map(([id,info])=>({id,...info,compatible:allowed.includes(id)}));
+ const weapons=optItems(D.weapons,c.weapons||[]),armors=optItems(D.armors,c.armor||[]),shields=optItems(D.shields,c.shields||[]);
+ const keep=Object.fromEntries(['weapon1','weapon2','armor','shield'].map(id=>[id,E(id).value]));
+ const group=(name,items)=>items.length?'<optgroup label="'+safe(name)+'">'+items.map(x=>'<option value="'+safe(x.id)+'">'+safe(x.name||x.id)+(x.compatible?' ★':'')+'</option>').join('')+'</optgroup>':'';
+ const cats=[...new Set(weapons.map(x=>x.category||'Outras armas'))];
+ const w='<option value="">— Sem arma —</option>'+cats.map(cat=>group(cat,weapons.filter(x=>(x.category||'Outras armas')===cat))).join('');
+ E('weapon1').innerHTML=w;E('weapon2').innerHTML=w;
+ E('armor').innerHTML='<option value="">— Sem armadura —</option>'+group('Armaduras de Nexalis',armors);
+ E('shield').innerHTML='<option value="">— Sem escudo —</option>'+group('Escudos de Nexalis',shields);
+ for(const id of ['weapon1','weapon2','armor','shield']){
+  if([...E(id).options].some(o=>o.value===keep[id]))E(id).value=keep[id];
+ }
+}
 function fmtObj(o,sign=''){const e=Object.entries(o||{});return e.length?e.map(([k,v])=>`${k.replace(/([a-z])([A-Z])/g,'$1 $2')} ${sign}${String(v).replace(/^[-+]/,'')}`).join(' · '):'Nenhum'}
 function updateSummaries(){
  const r=currentRace(),c=currentClass(),w1=D.weapons[E('weapon1').value],w2=D.weapons[E('weapon2').value];
