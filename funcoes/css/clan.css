@@ -89,6 +89,6 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;ba
  .controls button,.controls label,.character-hub a,.character-hub button,.storage-actions button{min-height:44px}
  .character-hub{grid-template-columns:1fr}
  .sheets{align-items:flex-start;overflow-x:hidden;width:100%;max-width:100%;padding:0!important}
- .sheets .sheet-page{flex:none;width:210mm;max-width:none;transform-origin:top left!important;transform:scale(var(--hurras-sheet-scale,.42))!important;margin:0 0 calc(-297mm * (1 - var(--hurras-sheet-scale,.42))) 0!important}
+ .sheets .sheet-page{flex:none;width:210mm;max-width:none;transform-origin:top left!important;transform:scale(var(--hurras-sheet-scale,.42))!important;margin:0 0 var(--hurras-sheet-negative,-154mm) 0!important}
  .storage-head,.storage-actions{flex-wrap:wrap}
 }
