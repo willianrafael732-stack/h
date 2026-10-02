@@ -35,25 +35,79 @@ function detail(label,v){let col=el('div');col.append(el('b',null,label),el('spa
 function textBox(label,v){let b=box(label);b.append(el('div','dark-pdf-text',String(v??'')));return b}
 function page(num){let p=el('article','dark-pdf-page');p.setAttribute('aria-label','Página '+num+' da ficha');let h=el('div','dark-pdf-head');h.append(el('strong',null,'HURRAS DARK FANTASY'),el('p',null,'NEXALIS · FICHA DE PERSONAGEM · '+num+'/2'));p.append(h);return p}
 function track(title,a,total,cls){let b=box(title),g=el('div','dark-pdf-track');g.style.setProperty('--print-dot',cls);const active=new Set(a||[]);for(let i=0;i<total;i++){{let circle=el('i','dark-pdf-dot'+(active.has(i)?' on':''));circle.style.setProperty('--print-dot',dotHex(i));g.append(circle)}}b.append(g);return b}
+function williamWheel(title,kind,d){
+ const panel=box(title),ring=el('div','william-ring');
+ const colors={'Fogo':'#da514c','Água':'#44a9ed','Vento':'#82be48','Terra':'#c87c40',
+  'Raio':'#dece24','Veneno':'#745ca1','Mental':'#ed76af','Sagrado':'#f2efed','Sombrio':'#191923'};
+ ['Fogo','Água','Vento','Terra','Raio','Veneno','Mental','Sagrado','Sombrio'].forEach((name,i)=>{
+  const marker=el('span','william-wheel-stone',name);
+  marker.style.setProperty('--element-color',colors[name]);
+  marker.style.setProperty('--ring-index',i);
+  if(name==='Sombrio')marker.style.color='#fff';
+  const n=kind==='resist'?(Number(d.resist?.[name])||0):
+   (name===d.fields?.Elemento?Number(d.fields?.['Nível mágico'])||0:0);
+  marker.dataset.points=n;marker.title=name+': '+n+' pontos';
+  if(n)marker.classList.add('is-active');
+  ring.append(marker);
+ });
+ panel.append(ring);return panel
+}
 function preview(){
- const d=api.get(),pages=$('pdfPages');if(!pages)return;pages.replaceChildren();
+ const d=api.get(),pages=$('pdfPages');if(!pages)return;
+ pages.replaceChildren();
  const one=page(1),ident=el('div','dark-pdf-id');
- ['Nome','Player','Crônica','Raça','Classe','Nível','Profissão','Dinheiro','Experiência','Nível mágico','Elemento'].forEach(k=>ident.append(detail(k,d.fields[k]||'—')));one.append(ident);
- const cols=el('div','dark-pdf-columns');
- const blocks=[[],[],[]];
- groups.forEach(([title,items,c],i)=>{let b=box(title);items.forEach(k=>b.append(line(k,d.stats[k],12,c)));blocks[i%3].push(b)});
+ ['Nome','Player','Crônica','Raça','Classe','Nível','Profissão','Dinheiro','Experiência','Nível mágico','Elemento'].forEach(k=>ident.append(detail(k,d.fields[k]||'—')));
+ one.append(ident);
+ const attrs=el('section','william-pdf-attrs'),atTitle=el('h2',null,'ATRIBUTOS');
+ attrs.append(atTitle);
+ for(const [title,items,color] of groups.slice(0,3)){
+  const card=box(title);items.forEach(k=>card.append(line(k,d.stats[k],12,color)));attrs.append(card)
+ }
+ one.append(attrs);
+ const skills=el('section','william-pdf-skills'),sTitle=el('h2',null,'HABILIDADES');
+ skills.append(sTitle);
+ for(const [title,items,color] of groups.slice(4)){
+  const card=box(title);items.forEach(k=>card.append(line(k,d.stats[k],12,color)));skills.append(card)
+ }
+ one.append(skills);
  const level=Math.max(1,Math.min(10,Number(d.fields['Nível'])||1));
- let virtue=box('Força de Vontade · '+level+'/'+level);virtue.append(line('Vontade',level,10,'#e9c88e'));blocks[1].push(virtue);
- blocks[2].push(track('Vida · '+(d.vitality||[]).length+'/'+(level*10),(d.vitality||[]),level*10,'#cb6865'),track('Mana · '+(d.mana||[]).length+'/'+(level*5),(d.mana||[]),level*5,'#6096c2'));
- for(let k=0;k<3;k++){let wrap=el('div');blocks[k].forEach(b=>wrap.append(b));cols.append(wrap)}one.append(cols);
- const two=page(2),top=el('div','dark-pdf-fields');
- const magic=box('Magias e técnicas');for(let i=0;i<18;i++){let row=el('div','dark-pdf-magic-row');row.append(el('span',null,(i+1)+'. '+(d.magic[i]||'_________________________')),dots(d.magicLevels[i],10,'#9675ad'));magic.append(row)}
- const right=el('div'),res=box('Resistência mágica');resist.forEach(k=>res.append(line(k,d.resist[k],12,'#7199ad')));right.append(res);
- gear.forEach((k,i)=>{const b=box(k);const text=[d.gear[i],d.adv[i]?'Vantagem: '+d.adv[i]:'',d.disadv[i]?'Desvantagem: '+d.disadv[i]:''].filter(Boolean).join('\n');b.append(el('div','dark-pdf-text',text||'—'));right.append(b)});
- top.append(magic,right);two.append(top);
- const bottom=el('div','dark-pdf-fields');['Passivas','Itens','Notas'].forEach(k=>bottom.append(textBox(k==='Itens'?'Inventário':k,d.fields[k]||'')));two.append(bottom);
- pages.append(one,two);
- return d;
+ const resources=el('section','william-pdf-resources');
+ resources.append(track('VITALIDADE · '+(d.vitality||[]).length+'/'+(level*10),(d.vitality||[]),level*10,'#cb6865'));
+ const middle=el('section');
+ const virtues=box('VIRTUDES');
+ groups[3][1].forEach(k=>virtues.append(line(k,d.stats[k],10,'#a9b9ad')));
+ middle.append(virtues);
+ const will=box('FORÇA DE VONTADE · '+level+'/'+level);
+ will.append(dots(level,10,'#e9c88e'));middle.append(will);resources.append(middle);
+ resources.append(track('MANA · '+(d.mana||[]).length+'/'+(level*5),(d.mana||[]),level*5,'#6096c2'));
+ one.append(resources);
+ const two=page(2),magic=el('section','william-pdf-spells');
+ magic.append(el('h2','dark-pdf-section-title','MAGIAS / TÉCNICAS'));
+ const spellGrid=el('div','dark-pdf-magic-grid');
+ for(let i=0;i<18;i++){
+  const row=el('div','dark-pdf-magic-row');
+  row.append(el('span',null,(i+1)+'. '+(d.magic?.[i]||'________________')),dots(d.magicLevels?.[i],10,'#9675ad'));
+  spellGrid.append(row)
+ }
+ magic.append(spellGrid);two.append(magic);
+ const lower=el('section','william-pdf-lower');
+ const left=el('section');
+ left.append(williamWheel('NÍVEL MÁGICO', 'magic',d));
+ left.append(textBox('ELEMENTO',d.fields?.Elemento||'Não escolhido'));lower.append(left);
+ const center=el('section','william-pdf-gear');
+ gear.forEach((name,i)=>{
+  const text=[d.gear?.[i],d.adv?.[i]?'Vantagem: '+d.adv[i]:'',d.disadv?.[i]?'Desvantagem: '+d.disadv[i]:''].filter(Boolean).join('\n');
+  center.append(textBox(name,text||'—'))
+ });
+ center.append(textBox('PASSIVAS',d.fields?.Passivas||''));
+ center.append(textBox('ITENS',d.fields?.Itens||''));
+ center.append(textBox('NOTAS',d.fields?.Notas||''));
+ lower.append(center);
+ const right=el('section');right.append(williamWheel('RESISTÊNCIA MÁGICA','resist',d));
+ const resistBox=box('Resistências');
+ resist.forEach(k=>resistBox.append(line(k,d.resist?.[k],12,'#7199ad')));
+ right.append(resistBox);lower.append(right);two.append(lower);
+ pages.append(one,two);return d;
 }
 function selectMode(isPdf){$('darkPdfView').hidden=!isPdf;$('darkEditor').hidden=isPdf;document.body.classList.toggle('dark-pdf-mode',isPdf);$('modeEdit').classList.toggle('dark-mode-selected',!isPdf);$('modePDF').classList.toggle('dark-mode-selected',isPdf);$('modeEdit').setAttribute('aria-pressed',String(!isPdf));$('modePDF').setAttribute('aria-pressed',String(isPdf));if(isPdf)preview()}
 $('modeEdit').onclick=()=>selectMode(false);
@@ -70,7 +124,7 @@ async function generatePdf(){
  const state=api.get(),doc=await pdf.PDFDocument.create(),font=await doc.embedFont(pdf.StandardFonts.Helvetica),bold=await doc.embedFont(pdf.StandardFonts.HelveticaBold);
  const gold=pdf.rgb(.95,.80,.59),white=pdf.rgb(.94,.91,.89),black=pdf.rgb(.055,.045,.065),panel=pdf.rgb(.10,.08,.12);
  let bgImage=null;if(background){try{bgImage=await doc.embedJpg(bytesFromDataUrl(background))}catch(e){}}if(!bgImage){try{
-  const im=new Image();im.src='../assets/dark-hurras/fundo-brasas.svg';
+  const im=new Image();im.src='../assets/dark-hurras/william-moldura.svg';
   await new Promise(done=>{if(im.complete){done();return}im.onload=done;im.onerror=done;setTimeout(done,1500)});
   if(im.naturalWidth){let cv=document.createElement('canvas');cv.width=415;cv.height=740;cv.getContext('2d').drawImage(im,0,0,415,740);bgImage=await doc.embedJpg(bytesFromDataUrl(cv.toDataURL('image/jpeg',.8)))}
 }catch(e){}}
@@ -108,15 +162,19 @@ async function generatePdf(){
  const mval=(state.mana||[]).length;pText(pages[0],mval+' / '+maxLevel*5,400,110,9,bold,pdf.rgb(.40,.67,.95));textField(pages[0],'mana_count',mval,450,100,35);
  // Additional file fields page two
  let y2=751;pText(pages[1],'MAGIAS E TECNICAS',29,y2,12,bold,gold);
- for(let i=0;i<18;i++){const y=724-i*28;const x=26;pText(pages[1],String(i+1).padStart(2,'0'),x,y+4,8,bold,gold);
- textField(pages[1],'magic_'+i,(state.magic||[])[i]||'',x+21,y-1,345);
- const v=Number(state.magicLevels?.[i]||0);textField(pages[1],'magicLevel_'+i,v,402,y-1,26);
- for(let j=0;j<10;j++){pages[1].drawCircle({x:440+j*13,y:y+8,size:3.8,borderColor:color(dotHex(j)),color:j<v?color(dotHex(j)):panel})}
+ // Duas colunas de nove magias como na folha WILLIAM.
+ for(let i=0;i<18;i++){
+  const col=Math.floor(i/9),row=i%9,x=26+col*283,y=716-row*29;
+  pText(pages[1],String(i+1).padStart(2,'0'),x,y+5,8,bold,gold);
+  textField(pages[1],'magic_'+i,(state.magic||[])[i]||'',x+19,y-1,178,16);
+  const v=Number(state.magicLevels?.[i]||0);
+  textField(pages[1],'magicLevel_'+i,v,x+202,y-1,19,16);
+  for(let k=0;k<10;k++)pages[1].drawCircle({x:x+226+k*5.0,y:y+8,size:2.5,borderColor:color(dotHex(k)),color:k<v?color(dotHex(k)):panel});
  }
- let yR=194;const elemWidth=59;pText(pages[1],'RESISTENCIAS',29,yR,12,bold,gold);yR-=19;
+ let yR=414;const elemWidth=59;pText(pages[1],'RESISTENCIAS',29,yR,12,bold,gold);yR-=19;
  resist.forEach((k,i)=>{const x=29+(i%3)*188,y=yR-Math.floor(i/3)*25;pText(pages[1],k,x,y,8,bold,gold);textField(pages[1],'resist_'+k,Number(state.resist[k]||0),x+90,y-5,32)});
  // Inventário visível também no PDF: efeitos escolhidos manualmente ou pelo armeiro.
- let lower=94;
+ let lower=240;
  gear.forEach((k,i)=>{
   const x=29+(i%3)*187,y=lower-Math.floor(i/3)*34;
   pText(pages[1],k,x,y+10,7,bold,gold);
