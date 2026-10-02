@@ -28,7 +28,7 @@ rows($('vitality'),'vitality',100,'vit');rows($('mana'),'mana',50,'mana');list()
 function list(){var sel=$('savedSheets'),cur=data.id;sel.replaceChildren();var def=document.createElement('option');def.value='';def.textContent='Abrir ficha salva...';sel.append(def);
 readAll().forEach(x=>{var op=document.createElement('option');op.value=x.id;op.textContent=safeText(x.fields?.Nome||'Sem nome')+' · '+safeText(x.fields?.Player||'Player');sel.append(op)});sel.value=cur}
 function save(manual){if(!data.id)data.id='df-'+Date.now()+'-'+Math.random().toString(36).slice(2,7);
-var a=readAll(),idx=a.findIndex(x=>x.id===data.id);var item=JSON.parse(JSON.stringify(data));item.updatedAt=new Date().toISOString();if(idx<0)a.push(item);else a[idx]=item;try{writeAll(a);localStorage.setItem(CURRENT,data.id);if(manual){list();status('Ficha salva neste navegador. Faça um backup em JSON para não perder.')}}catch(e){status('Falha ao gravar: armazenamento cheio ou indisponível.')} }
+var a=readAll(),idx=a.findIndex(x=>x.id===data.id);var item=JSON.parse(JSON.stringify(data));item.updatedAt=new Date().toISOString();if(idx<0)a.push(item);else a[idx]=item;try{writeAll(a);localStorage.setItem(CURRENT,data.id);list();if(manual){status('Ficha salva no cofre deste navegador. Exporte PDF ou JSON como backup.')}}catch(e){status('Falha ao gravar: armazenamento cheio ou indisponível.')} }
 var ticking=false;function autoSave(){if(!ticking){ticking=true;setTimeout(function(){ticking=false;save(false)},350)}}
 document.querySelectorAll('[data-field]').forEach(x=>x.addEventListener('input',()=>{data.fields[x.dataset.field]=x.value;autoSave()}));
 document.querySelectorAll('[data-magic]').forEach(x=>x.addEventListener('input',()=>{data.magic[Number(x.dataset.magic)]=x.value;autoSave()}));
@@ -72,6 +72,18 @@ $('savedSheets').onchange=e=>{if(!e.target.value)return;var x=readAll().find(v=>
 $('deleteSheet').onclick=()=>{if(!data.id||!confirm('Excluir a ficha atual?'))return;writeAll(readAll().filter(x=>x.id!==data.id));localStorage.removeItem(CURRENT);location.reload()};
 $('exportSheet').onclick=()=>{save(false);var a=document.createElement('a'),blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),u=URL.createObjectURL(blob);a.href=u;a.download='hurras-dark-'+(safeText(data.fields.Nome||'ficha').replace(/\s+/g,'-')||'ficha')+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),3000);status('Arquivo JSON de backup exportado.')};
 $('importSheet').onchange=async e=>{var f=e.target.files?.[0];if(!f)return;try{var obj=JSON.parse(await f.text());if(!obj||!obj.fields||!obj.stats||!Array.isArray(obj.magic))throw Error('Estrutura diferente');data=Object.assign({fields:{},stats:{},resist:{},magic:[],magicLevels:{},gear:[],adv:[],disadv:[],vitality:[],mana:[]},obj,{id:'df-'+Date.now()});save(true);render();status('Ficha importada como nova cópia.')}catch(ex){status('Erro: arquivo JSON não é uma ficha Hurras Dark Fantasy.')}e.target.value=''};
-$('printSheet').onclick=()=>window.print();
-var first=readAll().find(x=>x.id===data.id);if(first)data=Object.assign(data,first);render();
+$('printSheet').onclick=()=>{ if(window.HurrasDarkPDF)window.HurrasDarkPDF.print(); else window.print();};
+function sanitizeState(v){
+ const defaults={id:'',fields:{},stats:{},resist:{},magic:[],magicLevels:{},gear:[],adv:[],disadv:[],vitality:[],mana:[]};
+ const x=v&&typeof v==='object'?v:{};const out={...defaults,...x};
+ ['fields','stats','resist','magicLevels'].forEach(k=>{if(!out[k]||typeof out[k]!=='object'||Array.isArray(out[k]))out[k]={}});
+ ['magic','gear','adv','disadv','vitality','mana'].forEach(k=>{if(!Array.isArray(out[k]))out[k]=[]});
+ return out;
+}
+window.HurrasDarkSheetAPI={
+ get:()=>JSON.parse(JSON.stringify(data)),
+ put:(obj,asNew)=>{data=sanitizeState(JSON.parse(JSON.stringify(obj)));if(asNew)data.id='';save(true);render();status('Ficha importada e salva no navegador.');return data.id},
+ save:()=>save(true),preview:()=>render()
+};
+var first=readAll().find(x=>x.id===data.id);if(first)data=sanitizeState(Object.assign(data,first));render();
 })();
