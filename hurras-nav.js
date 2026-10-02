@@ -47,7 +47,7 @@ const groups=[
 ['Armas instrumentais','armas/Instrumentais.html','Ferramentas especiais']]},
 {label:'Mundo & seres',icon:'♜',items:[
 ['Bestiário • 63 criaturas','funcoes/bestiario.html','Monstros, níveis e ataques'],
-['Deuses & mitologias','funcoes/deuses.html','Panteão de Nexalis, grego e nórdico'],
+['Deuses & mitologias','funcoes/deuses.html','Tradições mitológicas de várias regiões'],
 ['Animais','animais/animais.html','Criaturas e companheiros'],
 ['NPCs conhecidos','funcoes/npcs.html','Revelados aos jogadores'],
 ['Arquivo de NPCs • 43','funcoes/arquivo-npcs.html','Todos os NPCs reunidos'],
@@ -57,7 +57,7 @@ const groups=[
 ['NPCs do mestre','funcoes/mestre-npcs.html','Notas e segredos da campanha'],
 ['Arquivo de NPCs','funcoes/arquivo-npcs.html','43 NPCs da campanha'],
 ['Bestiário','funcoes/bestiario.html','Criaturas e chefes'],
-['Panteão dos Deuses','funcoes/deuses.html','Deuses separados por mitologia'],
+['Panteão dos Deuses','funcoes/deuses.html','Divindades de 28 tradições'],
 ['Regras completas','funcoes/sistema-completo.html','Livro do mestre'],
 ['Forja de ficha','funcoes/clan.html','Gerenciar personagens']]},
 {label:'Raças',icon:'♟',items:[
