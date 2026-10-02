@@ -16,7 +16,7 @@ const groups=[
  ['Conhecimentos',['Acadêmicos','Geografia','Encantamento','Selos','Medicina','Ciências','Tecnologia','Linguística','Sobrevivência'],'#7c9dce']
 ];
 const resist=['Fogo','Água','Vento','Terra','Veneno','Raio','Mental','Sagrado','Sombrio'];
-const gear=['Arma branca primária','Arma branca secundária','Distância primária','Distância secundária','Armadura','Arma mágica','Escudo','Outra arma'];
+const gear=['Arma branca primária','Arma branca secundária','Distância primária','Distância secundária','Armadura'];
 const COLORS={Físicos:'#ca5f55',Sociais:'#e6b875',Mentais:'#6e9acf',Virtudes:'#73c19c',Combate:'#bd82b2',Habilidades:'#cdb180',Conhecimentos:'#8ca9d9'};
 const STORAGE_BG='hurras_dark_sheet_background_v1';
 const status=message=>{if($('status'))$('status').textContent=message};
@@ -41,7 +41,7 @@ function preview(){
  ['Nome','Player','Crônica','Raça','Classe','Nível','Profissão','Dinheiro','Experiência','Nível mágico'].forEach(k=>ident.append(detail(k,d.fields[k]||'—')));one.append(ident);
  const cols=el('div','dark-pdf-columns');
  const blocks=[[],[],[]];
- groups.forEach(([title,items,c],i)=>{let b=box(title);items.forEach(k=>b.append(line(k,api.effectiveStat?api.effectiveStat(k):d.stats[k],12,c)));blocks[i%3].push(b)});
+ groups.forEach(([title,items,c],i)=>{let b=box(title);items.forEach(k=>b.append(line(k,d.stats[k],12,c)));blocks[i%3].push(b)});
  const level=Math.max(1,Math.min(10,Number(d.fields['Nível'])||1));
  let virtue=box('Força de Vontade · '+level+'/'+level);virtue.append(line('Vontade',level,10,'#e9c88e'));blocks[1].push(virtue);
  blocks[2].push(track('Vida · '+(d.vitality||[]).length+'/'+(level*10),(d.vitality||[]),level*10,'#cb6865'),track('Mana · '+(d.mana||[]).length+'/'+(level*5),(d.mana||[]),level*5,'#6096c2'));
@@ -93,7 +93,7 @@ async function generatePdf(){
  // Three columns, attribute values are editable text fields;
  // colored circles print in the selected count, including unselected outlines.
  blocks.forEach(b=>{let y=b.y;for(const [group,items,col] of b.items){const height=23+items.length*18;rect(pages[0],b.x,y-height,174,height);pText(pages[0],group.toUpperCase(),b.x+7,y-14,9,bold,gold);y-=24;
- for(const k of items){pText(pages[0],k,b.x+5,y-6,6,font,white);const n=Math.min(12,Number(api.effectiveStat?api.effectiveStat(k):state.stats[k])||0);const step=6.6;
+ for(const k of items){pText(pages[0],k,b.x+5,y-6,6,font,white);const n=Math.min(12,Number(state.stats[k])||0);const step=6.6;
  for(let i=0;i<12;i++)pages[0].drawCircle({x:b.x+78+i*step,y:y-3,size:3,borderColor:color(dotHex(i)),borderWidth:.65,color:i<n?color(dotHex(i)):panel});
  textField(pages[0],'stat_'+k,n,b.x+157,y-10,14,12);y-=18}y-=9}});
  // Willpower + health/mana as editable counters (dots visibly colored on the PDF)

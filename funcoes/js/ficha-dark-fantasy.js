@@ -3,7 +3,7 @@
 "use strict";
 var KEY='hurrasDarkFantasySheetsV1',CURRENT='hurrasDarkFantasyCurrentV1';
 var $=id=>document.getElementById(id);
-const RULES=window.HurrasDarkRules;
+const D=window.HURRAS_RPG||{};
 function readAll(){try{var x=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(x)?x:[]}catch(e){return []}}
 function writeAll(x){localStorage.setItem(KEY,JSON.stringify(x))}
 var data={id:(()=>{try{return localStorage.getItem(CURRENT)||''}catch(e){return ''}})(),fields:{},stats:{},resist:{},magic:[],magicLevels:{},gear:[],adv:[],disadv:[],vitality:[],mana:[]};
@@ -34,94 +34,18 @@ function applyLevelChange(raw){
  normalizeProgress();render();autoSave();
 }
 function setupOrigins(){
- if(!RULES)return;
- for(const [id,rows] of [['darkRace',RULES.data.races||{}],['darkClass',RULES.data.classes||{}]]){
-  const select=$(id);select.replaceChildren();
-  const initial=document.createElement('option');initial.value='';initial.textContent='— Selecione —';select.append(initial);
-  for(const name of Object.keys(rows)){const opt=document.createElement('option');opt.value=name;opt.textContent=name;select.append(opt)}
- }
+ const box=$('darkRace');if(!box)return;
+ box.replaceChildren();const first=document.createElement('option');first.value='';first.textContent='Selecione uma raça';box.append(first);
+ Object.keys(D.races||{}).forEach(k=>{const opt=document.createElement('option');opt.value=k;opt.textContent=k;box.append(opt)});
 }
-function updateOriginOptions(){
- if(!RULES)return;
- const c=RULES.cls(data),s=$('darkSubclass'),old=data.fields.Subclasse||'';
- s.replaceChildren();
- let opt=document.createElement('option');opt.value='';opt.textContent='Nenhuma';s.append(opt);
- for(const k of Object.keys(c?.variacoes||{})){opt=document.createElement('option');opt.value=k;opt.textContent=k.replace(/([a-z])([A-Z])/g,'$1 $2');s.append(opt)}
- if([...s.options].some(x=>x.value===old))s.value=old;else{data.fields.Subclasse='';s.value=''}
- const magic=$('darkMagicSchool'),previous=data.fields['Escola mágica']||'Nenhuma';
- magic.replaceChildren();
- const r=RULES.race(data),schools=[...new Set(['Nenhuma',...(c?.magicSchools||[]),...(r?.magicSchools||[])])];
- for(const v of schools){opt=document.createElement('option');opt.value=v;opt.textContent=v;magic.append(opt)}
- data.fields['Escola mágica']=schools.includes(previous)?previous:'Nenhuma';
-}
-function renderSpellPreview(){
- const all=RULES?.data?.spells||{},school=data.fields?.['Escola mágica']||'Nenhuma',spells=all[school]||[];
- const target=$('darkSpellPreview'),count=$('darkSpellCount');if(!target)return;
- target.replaceChildren();
- if(count)count.textContent=spells.length?spells.length+' magia(s) no grimório':'Escola sem magias cadastradas';
- for(const s of spells.slice(0,18)){
-  const row=document.createElement('div');row.className='dark-spell-entry';
-  const b=document.createElement('strong');b.textContent=s.name||'Magia';
-  const desc=document.createElement('span');desc.textContent=[s.tier,s.desc,s.info].filter(Boolean).join(' · ');
-  row.append(b,desc);target.append(row);
- }
-}
-function renderOriginInfo(){
- if(!RULES)return;
- const r=RULES.race(data),c=RULES.cls(data),sub=RULES.branch(data);
- const format=(o)=>Object.entries(o||{}).map(([k,v])=>k.replace(/([a-z])([A-Z])/g,'$1 $2')+': '+v).join(' • ')||'Nenhum';
- const show=(id,parts)=>{const e=$(id);if(e)e.textContent=parts.join('\n')};
- show('darkRaceInfo',r?[
- 'Raça: '+r.nome,'Passiva: '+(r.passiva||'Não cadastrada'),
- 'Traço: '+(r.tracoRacial?.name||'—')+' — '+(r.tracoRacial?.effect||'—'),
- 'Habilidade: '+(r.habilidadeRacial?.name||'—')+' — '+(r.habilidadeRacial?.effect||'—'),
- 'Custo: '+(r.habilidadeRacial?.cost||'—'),
- 'Pontos iniciais: '+format(r.template)
- ]:['Escolha uma raça para ver passivas, traços e atributos iniciais.']);
- show('darkClassInfo',c?[
- 'Classe: '+c.nome,'Bônus: '+format(c.statusInicial?.bonus||c.pontosClasse),
- 'Fraquezas: '+format(c.statusInicial?.fraqueza||c.penalidadesClasse),
- 'Subclasse: '+(data.fields.Subclasse||'Nenhuma'),
- sub?'Especialização: '+format(sub.bonus)+' • '+format(sub.fraqueza):'',
- ...(c.habilidadesClasse||[]).map(x=>x.name+' ('+(x.type||'Técnica')+'): '+x.effect)
- ]:['Escolha uma classe para consultar as técnicas e os bônus.']);
- const effects=document.querySelectorAll('[data-stat]'),mods=[];
- effects.forEach(el=>{
-  const stat=el.dataset.stat,m=RULES.effects(data,stat);
-  const row=el.closest('.trait');if(!row)return;
-  let badge=row.querySelector('.dark-stat-mod');
-  if(!badge){badge=document.createElement('span');badge.className='dark-stat-mod';row.append(badge)}
-  badge.textContent=m>0?'+'+m:m<0?String(m):'';
-  badge.classList.toggle('negative',m<0);
-  if(m)mods.push(stat+' '+(m>0?'+':'')+m);
- });
- show('darkModifiers',[mods.length?'Atributos ajustados: '+mods.join(' · '):'Sem bônus de atributos ativos.',
-   'Os valores preenchidos das bolinhas incluem bônus e penalidades de raça, classe, subclasse e equipamento.']);
- const invalid=(RULES.equipment(data)||[]).filter(item=>!RULES.compatible(data,item));
- const warning=$('darkGearStatus');
- if(warning){warning.textContent=invalid.length?
-  'Atenção: sua classe não possui treinamento padrão para '+invalid.map(x=>x.name).join(', ')+'. Os itens continuam selecionáveis, mas revise com o mestre.':
-  'Catálogo compartilhado com bônus e penalidades automáticos; fichas independentes.';
-  warning.classList.toggle('warning',invalid.length>0)}
-}
-function setRace(newRace){
- data.fields.Raça=newRace;
- if(RULES?.race(data)){
-  const stats=RULES.starting(data);
-  for(const [stat,val]of Object.entries(stats))if(['Força','Destreza','Vigor','Empatia','Manipulação','Persuasão','Percepção','Inteligência','Reação'].includes(stat))data.stats[stat]=val;
- }
- updateOriginOptions();render();autoSave();
-}
+function renderOriginInfo(){}
 function safeText(x){return String(x||'').replace(/[<>]/g,'').slice(0,120)}
 function status(s){$('status').textContent=s}
 function dots(host,key,total,collection){
 host.replaceChildren();host.style.setProperty('--accent',(host.closest('[data-color]')||{}).dataset?.color||'#ddb97a');
-var number=key==='Força de Vontade'?currentLevel():(RULES?RULES.effective(data,key):(Number(data[collection][key])||0));
+var number=key==='Força de Vontade'?currentLevel():(Number(data[collection][key])||0);
 for(var i=1;i<=total;i++){var b=document.createElement('button');b.type='button';b.className='dot'+(i<=number?' on':'');b.title=key+': '+i+' / '+total;b.style.setProperty('--accent',['#ce7167','#e0ae6c','#6fa4d3','#79bd9a'][Math.floor((i-1)/3)%4]);b.setAttribute('aria-label',key+' '+i);b.setAttribute('aria-pressed',String(i<=number));b.dataset.value=i;if(key==='Força de Vontade'){b.disabled=true;b.title='Força de Vontade automática: nível '+currentLevel();}
-b.addEventListener('click',function(){var val=Number(this.dataset.value);if(key==='Força de Vontade')return;const modifier=RULES?RULES.effects(data,key):0;
-const target=Math.max(0,Math.min(total,val-modifier));
-data[collection][key]=(Number(data[collection][key])||0)===target?0:target;
-render();autoSave()});
+b.addEventListener('click',function(){var val=Number(this.dataset.value);if(key==='Força de Vontade')return;data[collection][key]=(Number(data[collection][key])||0)===val?0:val;dots(host,key,total,collection);autoSave()});
 host.append(b)}
 }
 function rows(el,col,count,cls){
@@ -145,14 +69,13 @@ function updateCounters(){
 }
 function render(){
 normalizeProgress();
-updateOriginOptions();
 document.querySelectorAll('[data-field]').forEach(x=>x.value=data.fields[x.dataset.field]||'');
 document.querySelectorAll('[data-stat]').forEach(x=>dots(x,x.dataset.stat,x.dataset.stat==='Força de Vontade'?10:12,'stats'));
 document.querySelectorAll('[data-resist]').forEach(x=>dots(x,x.dataset.resist,12,'resist'));
 document.querySelectorAll('[data-magic]').forEach(x=>x.value=data.magic[Number(x.dataset.magic)]||'');
 document.querySelectorAll('[data-magic-dots]').forEach(x=>dots(x,x.dataset.magicDots,10,'magicLevels'));
 ['gear','adv','disadv'].forEach(k=>document.querySelectorAll('[data-'+k+']').forEach(x=>x.value=(data[k]||[])[Number(x.dataset[k])]||''));
-rows($('vitality'),'vitality',100,'vit');rows($('mana'),'mana',50,'mana');updateCounters();renderOriginInfo();renderSpellPreview();list();
+rows($('vitality'),'vitality',100,'vit');rows($('mana'),'mana',50,'mana');updateCounters();list();
 }
 function list(){var sel=$('savedSheets'),cur=data.id;sel.replaceChildren();var def=document.createElement('option');def.value='';def.textContent='Abrir ficha salva...';sel.append(def);
 readAll().forEach(x=>{var op=document.createElement('option');op.value=x.id;op.textContent=safeText(x.fields?.Nome||'Sem nome')+' · '+safeText(x.fields?.Player||'Player');sel.append(op)});sel.value=cur}
@@ -160,20 +83,16 @@ function save(manual){normalizeProgress();if(!data.id)data.id='df-'+Date.now()+'
 var a=readAll(),idx=a.findIndex(x=>x.id===data.id);var item=JSON.parse(JSON.stringify(data));item.updatedAt=new Date().toISOString();if(idx<0)a.push(item);else a[idx]=item;try{writeAll(a);localStorage.setItem(CURRENT,data.id);list();if(manual){status('Ficha salva no cofre deste navegador. Exporte o PDF editável como cópia de segurança.')}}catch(e){status('Falha ao gravar: armazenamento cheio ou indisponível.')} }
 var ticking=false;function autoSave(){if(!ticking){ticking=true;setTimeout(function(){ticking=false;save(false)},350)}}
 document.querySelectorAll('[data-field]').forEach(x=>x.addEventListener('input',()=>{
- const k=x.dataset.field;
- if(k==='Nível'){applyLevelChange(x.value);return}
- if(k==='Raça'){setRace(x.value);return}
+ const k=x.dataset.field;if(k==='Nível'){applyLevelChange(x.value);return}
  data.fields[k]=x.value;
- if(k==='Classe'){data.fields.Subclasse='';updateOriginOptions();render();autoSave();return}
- if(k==='Subclasse'||k==='Escola mágica'){render();autoSave();return}
  autoSave();
 }));
 document.querySelectorAll('[data-magic]').forEach(x=>x.addEventListener('input',()=>{data.magic[Number(x.dataset.magic)]=x.value;autoSave()}));
 ['gear','adv','disadv'].forEach(k=>document.querySelectorAll('[data-'+k+']').forEach(x=>x.addEventListener('input',()=>{data[k][Number(x.dataset[k])]=x.value;autoSave()})));
 const names=['Aeron','Elaria','Noths','Thalor','Kaelen','Mira','Talia','Ravok','Lyra','Faelorn','Dorian','Ysera','Dran','Borin','Eldric','Nyra'];
 const surnames=['da Névoa','dos Espinhos','da Cruz Partida','das Cinzas','do Véu','do Inverno','Sombrio','de Valeron','de Nexalis'];
-const races=Object.keys(RULES?.data.races||{});
-const classes=Object.keys(RULES?.data.classes||{});
+const races=Object.keys(D.races||{});
+const classes=Object.keys(D.classes||{});
 const profs=['Ferreiro','Viajante','Caçador','Alquimista','Mercador','Erudito','Escudeiro','Explorador'];
 function randint(min,max){return Math.floor(Math.random()*(max-min+1))+min}
 function randomChoice(arr){return arr[randint(0,arr.length-1)]}
@@ -185,7 +104,7 @@ function generateStats(){
  statKeys.forEach((stat,i)=>{
  const max=stat==='Força de Vontade'?10:12;
  const roll=randint(0,3)+boost+(i===main?2:0);
- data.stats[stat]=stat==='Força de Vontade'?currentLevel():Math.min(max,Math.max(roll,RULES?.starting(data)?.[stat]||0))
+ data.stats[stat]=stat==='Força de Vontade'?currentLevel():Math.min(max,roll)
  });
  document.querySelectorAll('[data-resist]').forEach(e=>data.resist[e.dataset.resist]=randint(0,Math.min(12,3+boost)));
  for(let i=0;i<18;i++)data.magicLevels[i]=randint(0,Math.min(10,2+boost));
@@ -199,18 +118,14 @@ $('randomSheet').onclick=()=>{
  data.fields={Nome:randomChoice(names)+' '+randomChoice(surnames),Player:'',Crônica:'Nexalis',Nível:String(randint(1,10)),Raça:randomChoice(races),Classe:randomChoice(classes),Profissão:randomChoice(profs),Dinheiro:String(randint(5,200)),Experiência:String(randint(0,450)), 'Nível mágico':String(randint(0,4))};
  data.magic[0]=randomChoice(['Chama viva','Escudo de sombra','Selo de proteção','Toque de cura','Lâmina astral','Rajada de vento','Raiz constritora']);
  data.magic[1]=randomChoice(['Pulso arcano','Véu silencioso','Proteção lunar','Muralha de terra','Marca espectral']);
- if(window.HurrasEquipment){
- for(const slot of [0,1,2,3,4,5,6,7]){
-  const list=window.HurrasEquipment.group(slot);if(!list.length)continue;
-  if([1,3,7].includes(slot)&&Math.random()<.4)continue;
-  const item=randomChoice(list);data.gear[slot]=item.name;
-  data.adv[slot]=item.bonus;data.disadv[slot]=item.penalty;
+ const ordinary=Object.values(D.weapons||{}).filter(x=>!/mágic|magic|rúnic|arcano/i.test(x.category||''));
+ const choice={0:ordinary.filter(x=>!/distância/i.test(x.category||'')),
+   2:ordinary.filter(x=>/distância|Médio alcance/i.test(x.category||'')),
+   4:Object.values(D.armors||{})};
+ for(const [i,list] of Object.entries(choice)){
+  if(!list.length)continue;const item=randomChoice(list);
+  data.gear[i]=item.name;data.adv[i]='';data.disadv[i]='';
  }
-}
- if(RULES){for(const [stat,v]of Object.entries(RULES.starting(data)))if(['Força','Destreza','Vigor','Empatia','Manipulação','Persuasão','Percepção','Inteligência','Reação'].includes(stat))data.stats[stat]=v}
- const cls=RULES?.cls(data);
- if(cls){data.fields.Subclasse=Object.keys(cls.variacoes||{})[0]||'';
- data.fields['Escola mágica']=(cls.magicSchools||[])[0]||'Nenhuma'}
  data.fields.Itens='Cantil; Tocha; Suprimentos; Poção simples';
  localStorage.removeItem(CURRENT);render();generateStats();save(true);status('Personagem aleatório criado e salvo: '+data.fields.Nome+'.');
 };
@@ -228,44 +143,26 @@ function sanitizeState(v){
 }
 window.HurrasDarkSheetAPI={
  get:()=>JSON.parse(JSON.stringify(data)),
- effectiveStat:key=>RULES?RULES.effective(data,key):Number(data.stats[key]||0),
+ effectiveStat:key=>Number(data.stats[key]||0),
  put:(obj,asNew)=>{data=sanitizeState(JSON.parse(JSON.stringify(obj)));if(asNew)data.id='';normalizeProgress();save(true);render();status('Ficha importada e salva no navegador.');return data.id},
  save:()=>save(true),preview:()=>render()
 };
 function initEquipmentCatalog(){
- const C=window.HurrasEquipment;if(!C)return;
- const targets=[['hurras-melee',0],['hurras-ranged',2],['hurras-armors',4],['hurras-magic',5],['hurras-shields',6],['hurras-all-weapons',7]];
- for(const [id,slot] of targets){
-  const datalist=$(id);if(!datalist)continue;
-  datalist.replaceChildren();
-  for(const info of C.group(slot)){
-   const option=document.createElement('option');option.value=info.name;option.label=(info.category||'Arma')+' — '+(info.bonus||'Sem bônus');datalist.append(option);
-  }
+ const ordinary=Object.values(D.weapons||{}).filter(item=>!/mágic|magic|rúnic|arcano/i.test(item.category||''));
+ const categories=[['dark-melee',ordinary.filter(x=>!/distância/i.test(x.category||''))],
+  ['dark-distance',ordinary.filter(x=>/distância|Médio alcance/i.test(x.category||''))],
+  ['dark-armor',Object.values(D.armors||{})]];
+ for(const [id,items]of categories){
+  const host=$(id);if(!host)continue;host.replaceChildren();
+  for(const it of items){const op=document.createElement('option');op.value=it.name;host.append(op)}
  }
  document.querySelectorAll('[data-gear]').forEach(input=>input.addEventListener('change',()=>{
-  const slot=Number(input.dataset.gear),item=C.find(input.value,slot);
-  if(!item)return;
-  data.gear[slot]=item.name;
-  data.adv[slot]=item.bonus;
-  data.disadv[slot]=item.penalty;
-  render();autoSave();
+  const i=Number(input.dataset.gear),source=i===4?Object.values(D.armors||{}):ordinary;
+  const chosen=source.find(x=>x.name===input.value);
+  if(!chosen)return;
+  data.gear[i]=chosen.name;autoSave();
  }));
 }
-const magicBtn=$('darkSuggestSpells');
-if(magicBtn)magicBtn.addEventListener('click',()=>{
- const spells=RULES?.data?.spells?.[data.fields?.['Escola mágica']]||[];
- if(!spells.length){status('Essa escola não tem magias catalogadas.');return}
- const existing=new Set((data.magic||[]).filter(Boolean));
- let added=0;
- for(const spell of spells){
-  if(existing.has(spell.name))continue;
-  let i=data.magic.findIndex(x=>!x);
-  if(i<0)i=data.magic.length<18?data.magic.length:-1;
-  if(i<0||i>=18)break;
-  data.magic[i]=spell.name;existing.add(spell.name);added++;
- }
- render();autoSave();status(added+' magia(s) do grimório adicionada(s).');
-});
 initEquipmentCatalog();setupOrigins();
 var first=readAll().find(x=>x.id===data.id);
 if(first)data=sanitizeState(Object.assign(data,first));
