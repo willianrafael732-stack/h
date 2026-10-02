@@ -30,3 +30,15 @@ body{background:radial-gradient(ellipse at 48% -8%,#522025 0,#161016 48%,#09090d
 .pantheon-legacy img{max-width:100%;border-radius:8px}.pantheon-legacy p{line-height:1.7}
 @media(max-width:640px){.pantheon{padding:16px 12px}.god-grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px}.god-details{padding:12px}.god-details h3{font-size:22px}.pantheon-legacy{grid-template-columns:1fr}.deuses-filter .filters label{flex-basis:100%}}
 @media print{header,.pantheon-nav,.deuses-filter,.pantheon-guide,#hurras-app-nav,.hurras-global-nav{display:none!important}body{background:#fff!important;color:#111!important}.pantheon{padding:0}.god-grid{grid-template-columns:repeat(3,1fr)}.god-card{break-inside:avoid;box-shadow:none;background:#fff!important;color:#111!important}.god-card img{max-height:220px;object-fit:cover}.god-details *{color:#111!important}.god-section>h2,.pantheon-notice h2{color:#222}.pantheon-notice{break-before:page}}
+
+/* Retratos ainda não disponíveis: emblemas tipográficos, sem imagens inventadas. */
+.god-illustration{min-height:220px;aspect-ratio:4/5;background:radial-gradient(circle at 45% 26%,#674350,#261721 64%,#130f17);
+ border-bottom:1px solid #876647;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;
+ position:relative;overflow:hidden}
+.god-illustration::before{content:"";inset:14px;position:absolute;pointer-events:none;border:1px solid #be98733b;
+ border-radius:48% 48% 5px 5px;box-shadow:inset 0 0 0 6px #130a164d}
+.god-symbol{font:80px Georgia,serif;color:#efcfa8;text-shadow:0 7px 22px #050208}
+.god-symbol-label{color:#e6cba5;text-align:center;max-width:90%;font:700 11px Arial;letter-spacing:.08em;text-transform:uppercase}
+.pantheon-guide{max-height:240px;overflow:auto;align-content:flex-start;scrollbar-width:thin}
+.pantheon-guide button{font-size:12px;padding:9px 13px}
+@media print{.god-illustration{min-height:190px;max-height:220px;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
