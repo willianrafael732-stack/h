@@ -67,7 +67,7 @@ function updateCounters(){
   ['darkManaTotal',countTrack(data.mana,mp)+' / '+mp],['darkWillTotal',level+' / '+level]])
   if($(id))$(id).textContent=value;
 }
-function isCommonWeapon(w){return !!w&&!/mágic|magic|rúnic|arcano|encantad|feitiç/i.test([w.category,w.name].join(' '))}
+function isCommonWeapon(w){return !!w&&!/mágic|magic|rúnic|arcano|encantad|feitiç|instrumental/i.test([w.category,w.name].join(' '))}
 function stripMagicGear(){
  const ordinary=Object.values(D.weapons||{}).filter(isCommonWeapon);
  const armors=Object.values(D.armors||{});
