@@ -35,11 +35,18 @@ function undo(){
  try{restore(JSON.parse(last.serial));setNotice('Última alteração restaurada.')}finally{recording=false}
  show();
 }
-const target=dark?byId('darkEditor'):document.querySelector('.builder');
-if(target){
- target.addEventListener('pointerdown',function(e){if(e.target.closest('button,.dot,.sq,.circle,.mana-grid,.vitality,[data-stat],[data-resist]'))remember()},true);
- target.addEventListener('focusin',function(e){if(e.target.matches('input,select,textarea,[contenteditable="true"]'))remember()},true);
- target.addEventListener('keydown',function(e){if(['Enter',' '].includes(e.key)&&e.target.closest('button,.dot,.sq'))remember()},true);
+// O cabeçalho Dark também contém os botões de zerar e sortear.
+const targets=dark?[byId('darkEditor'),document.querySelector('.toolbar')]:[document.querySelector('.builder')];
+for(const target of targets.filter(Boolean)){
+ target.addEventListener('pointerdown',function(e){
+  if(e.target.closest('button,.dot,.sq,.circle,.mana-grid,.vitality,[data-stat],[data-resist]'))remember();
+ },true);
+ target.addEventListener('focusin',function(e){
+  if(e.target.matches('input,select,textarea,[contenteditable="true"]'))remember();
+ },true);
+ target.addEventListener('keydown',function(e){
+  if(['Enter',' '].includes(e.key)&&e.target.closest('button,.dot,.sq'))remember();
+ },true);
 }
 function button(txt,callback,parent=content){
  const b=el('button',txt);b.type='button';b.addEventListener('click',callback);parent.append(b);return b
