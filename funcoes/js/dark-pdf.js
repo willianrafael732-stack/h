@@ -66,7 +66,11 @@ async function generatePdf(){
  const pdf=getPDFLib();if(!pdf)throw Error('Biblioteca pdf-lib não carregada');
  const state=api.get(),doc=await pdf.PDFDocument.create(),font=await doc.embedFont(pdf.StandardFonts.Helvetica),bold=await doc.embedFont(pdf.StandardFonts.HelveticaBold);
  const gold=pdf.rgb(.95,.80,.59),white=pdf.rgb(.94,.91,.89),black=pdf.rgb(.055,.045,.065),panel=pdf.rgb(.10,.08,.12);
- let bgImage=null;if(background){try{bgImage=await doc.embedJpg(bytesFromDataUrl(background))}catch(e){}}
+ let bgImage=null;if(background){try{bgImage=await doc.embedJpg(bytesFromDataUrl(background))}catch(e){}}if(!bgImage){try{
+  const im=new Image();im.src='../assets/dark-hurras/fundo-brasas.svg';
+  await new Promise(done=>{if(im.complete){done();return}im.onload=done;im.onerror=done;setTimeout(done,1500)});
+  if(im.naturalWidth){let cv=document.createElement('canvas');cv.width=415;cv.height=740;cv.getContext('2d').drawImage(im,0,0,415,740);bgImage=await doc.embedJpg(bytesFromDataUrl(cv.toDataURL('image/jpeg',.8)))}
+}catch(e){}}
  const a4=[595.28,841.89],pages=[doc.addPage(a4),doc.addPage(a4)];
  function pText(page,value,x,y,size=8,chosen=font,ink=white){page.drawText(clean(value).slice(0,130),{x,y,size,font:chosen,color:ink,maxWidth:560})}
  function rect(page,x,y,w,h,bg=panel){page.drawRectangle({x,y,width:w,height:h,color:bg,borderWidth:.5,borderColor:gold,opacity:.95})}
@@ -114,9 +118,11 @@ async function generatePdf(){
  const blob=form.createTextField('hurras_dark_data_v2');blob.enableMultiline();blob.setText(encodeURIComponent(JSON.stringify({...state,_format:'hurras_dark_pdf_v2'})));
  blob.addToPage(pages[1],{x:2,y:2,width:1,height:1,borderWidth:0,textColor:black,backgroundColor:black,fontSize:1});
  // store other text details in editable form fields on page 2 for direct editing
- const extras=form.createTextField('note_editor');extras.enableMultiline();extras.setText(clean((state.fields.Notas||'')+' | '+(state.fields.Itens||'')));
- extras.addToPage(pages[1],{x:28,y:13,width:520,height:16,borderWidth:.5,borderColor:gold,backgroundColor:panel,textColor:white,fontSize:7});
- form.updateFieldAppearances(font);
+ for(const [i,k] of ['Passivas','Itens','Notas'].entries()){
+   const x=28+i*183;pText(pages[1],k,x,31,7,bold,gold);
+   textField(pages[1],'field_'+k,state.fields[k]||'',x,10,166,16)
+ }
+ try{form.updateFieldAppearances(font)}catch(e){console.warn('Aparência de campo não disponível',e)}
  doc.setTitle('Ficha Hurras Dark Fantasy - '+clean(state.fields.Nome||'Personagem'));doc.setAuthor('Hurras Fantasy');doc.setSubject('Ficha exportada; pode ser reimportada no fichario Dark Fantasy');
  return await doc.save();
 }
@@ -139,7 +145,7 @@ $('pdfUpload').onchange=async e=>{
    if(count===0)throw Error('PDF sem campos reconhecidos. Use um PDF editável exportado pelo Hurras; PDFs de imagem não contêm dados para recuperar.');
  }
  // If a PDF reader modified the visible AcroForm fields, sync those changes.
- for(const k of ['Nome','Player','Crônica','Raça','Classe','Nível','Profissão','Dinheiro','Experiência','Nível mágico']){const v=get('field_'+k);if(v!=='')state.fields[k]=v}
+ for(const k of ['Nome','Player','Crônica','Raça','Classe','Nível','Profissão','Dinheiro','Experiência','Nível mágico','Passivas','Itens','Notas']){const v=get('field_'+k);if(v!=='')state.fields[k]=v}
  for(const [group,items] of groups)for(const k of items){const v=get('stat_'+k);if(v!=='')state.stats[k]=Math.max(0,Math.min(12,Number(v)||0))}
  const will=get('stat_Força de Vontade');if(will!=='')state.stats['Força de Vontade']=Math.max(0,Math.min(10,Number(will)||0));
  for(let i=0;i<18;i++){const a=get('magic_'+i),b=get('magicLevel_'+i);if(a!=='')state.magic[i]=a;if(b!=='')state.magicLevels[i]=Math.max(0,Math.min(10,Number(b)||0))}
