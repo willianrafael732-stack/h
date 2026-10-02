@@ -40,3 +40,4 @@ body.hnav-search-open{overflow:hidden}
 @media(max-width:700px){#hurras-app-nav .hnav-top{padding:10px 12px}#hurras-app-nav .hnav-brand{font-size:14px}#hurras-app-nav button{font-size:12px;padding:8px}#hurras-app-nav .hnav-shortcuts{padding:7px 10px}#hurras-app-nav .hnav-drawer{padding:13px 10px}#hurras-app-nav .hnav-groups{grid-template-columns:1fr 1fr}#hurras-app-nav .hnav-breadcrumb{padding:8px 12px}}@media(max-width:430px){#hurras-app-nav .hnav-brand{font-size:12px}#hurras-app-nav .hnav-menu-btn{font-size:0}#hurras-app-nav .hnav-menu-btn::before{content:"☰ Opções";font-size:12px}#hurras-app-nav .hnav-groups{grid-template-columns:1fr}}
 }
 @media print{#hurras-app-nav,#hnav-search-shade,.hnav-backtop{display:none!important}}
+@media screen{body.hurras-has-nav > .navbar:not(#hurras-app-nav){display:none!important}}

@@ -113,8 +113,8 @@ search.addEventListener('click',showSearch);close.addEventListener('click',hideS
 shade.addEventListener('click',e=>{if(e.target===shade)hideSearch()});
 document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();showSearch()}else if(e.key==='Escape'){if(!shade.hidden)hideSearch();else hideDrawer()}});
 document.addEventListener('pointerdown',e=>{if(!header.contains(e.target))hideDrawer()});
-const oldnav=document.querySelectorAll('body > header,body > nav,nav.player-nav,nav.master-nav,nav.navbar,nav.topbar,header.topbar,body > .topbar');
-for(const item of oldnav){if(item.id==='hurras-app-nav')continue;if(item.tagName==='NAV'||item.matches('.topbar,.guide-header')||item.querySelector('nav')){item.setAttribute('data-hurras-old-nav','true')}}
+const oldnav=document.querySelectorAll('body > header,body > nav,body > .navbar,nav.player-nav,nav.master-nav,nav.navbar,nav.topbar,header.topbar,body > .topbar');
+for(const item of oldnav){if(item.id==='hurras-app-nav')continue;if(item.tagName==='NAV'||item.matches('.topbar,.guide-header,.navbar')||item.querySelector('nav')){item.setAttribute('data-hurras-old-nav','true')}}
 document.body.prepend(header);document.body.append(shade,back);document.body.classList.add('hurras-has-nav');
 const relative=location.href.split('?')[0];if(relative!==url('index.html')&&location.pathname!=='/'){const all=unique.find(x=>url(x.path).split('?')[0]===relative),trail=E('div','hnav-breadcrumb');trail.setAttribute('aria-label','Caminho');trail.append(A('Início','index.html'));if(all){trail.append(E('span',null,'› '+all.group+' › '),E('strong',null,all.name))}else{trail.append(E('span',null,'› '),E('strong',null,document.title||'Página'))}header.append(trail)}
 document.addEventListener('scroll',()=>{back.classList.toggle('visible',window.scrollY>500)},{passive:true});
