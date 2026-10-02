@@ -1,0 +1,17 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hurras Fantasy | Visão do Mestre</title><link rel="stylesheet" href="css/hurras-tools.css">
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;padding:0;font:15px/1.6 Arial;background:#0e0d12;color:#e9dfd0}
+header{padding:26px;max-width:1200px;margin:auto}h1{color:#eed1a1;font:38px Georgia;margin:10px 0}h2{font:24px Georgia;color:#e8c993}
+main{max-width:1200px;margin:auto;padding:10px 20px 75px}.master-notice{color:#cbbaab}.master-controls{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}
+input,select,button,a{font:14px Arial;color:#f5debd;background:#211c1e;border:1px solid #856949;border-radius:6px;padding:12px}
+button{cursor:pointer}.master-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.master-card{padding:16px;background:#17131b;border:1px solid #66503d;border-radius:9px}.master-card h3{color:#ecd0a0;margin:0 0 8px}
+.master-card p{margin:5px 0;color:#cfbfad;font-size:13px}.master-detail{margin-top:24px;border:1px solid #826344;padding:20px;background:#19161d;border-radius:9px;white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:700px){header{padding:16px}main{padding:10px}}
+</style></head><body><header><a href="clan.html">Ficha clássica</a> <a href="ficha-dark-fantasy.html">Dark Fantasy</a> <a href="personagens.html">Biblioteca</a>
+<h1>Visão do Mestre</h1><p class="master-notice">Somente leitura. Reúne personagens clássicos e Dark Fantasy salvos neste navegador. Não sincroniza outros dispositivos nem altera as fichas originais.</p></header>
+<main><div class="master-controls"><input id="masterSearch" type="search" placeholder="Buscar nome, raça, classe ou jogador" aria-label="Buscar">
+<select id="masterType"><option value="all">Ambas as fichas</option><option value="classic">Clássica</option><option value="dark">Dark Fantasy</option></select><button id="masterRefresh">Atualizar</button></div>
+<p id="masterCount" role="status"></p><div id="masterCards" class="master-grid"></div><section id="masterDetail" class="master-detail" hidden aria-live="polite"></section></main>
+<script src="js/mestre-fichas.js"></script></body></html>
