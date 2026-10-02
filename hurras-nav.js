@@ -48,6 +48,7 @@ const groups=[
 {label:'Mundo & seres',icon:'♜',items:[
 ['Bestiário • 63 criaturas','funcoes/bestiario.html','Monstros, níveis e ataques'],
 ['Deuses & mitologias','funcoes/deuses.html','Tradições mitológicas de várias regiões'],
+['Galeria de imagens','funcoes/galeria-i.html','192 imagens originais assets/i'],
 ['Animais','animais/animais.html','Criaturas e companheiros'],
 ['NPCs conhecidos','funcoes/npcs.html','Revelados aos jogadores'],
 ['Arquivo de NPCs • 43','funcoes/arquivo-npcs.html','Todos os NPCs reunidos'],
