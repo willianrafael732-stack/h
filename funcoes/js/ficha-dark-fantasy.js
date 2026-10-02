@@ -3,6 +3,7 @@
 "use strict";
 var KEY='hurrasDarkFantasySheetsV1',CURRENT='hurrasDarkFantasyCurrentV1';
 var $=id=>document.getElementById(id);
+const RULES=window.HurrasDarkRules;
 function readAll(){try{var x=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(x)?x:[]}catch(e){return []}}
 function writeAll(x){localStorage.setItem(KEY,JSON.stringify(x))}
 var data={id:(()=>{try{return localStorage.getItem(CURRENT)||''}catch(e){return ''}})(),fields:{},stats:{},resist:{},magic:[],magicLevels:{},gear:[],adv:[],disadv:[],vitality:[],mana:[]};
@@ -32,13 +33,83 @@ function applyLevelChange(raw){
  data.mana=fullTrack(Math.max(0,next*5-Math.max(0,oldMana-hadMana)));
  normalizeProgress();render();autoSave();
 }
+function setupOrigins(){
+ if(!RULES)return;
+ for(const [id,rows] of [['darkRace',RULES.data.races||{}],['darkClass',RULES.data.classes||{}]]){
+  const select=$(id);select.replaceChildren();
+  const initial=document.createElement('option');initial.value='';initial.textContent='— Selecione —';select.append(initial);
+  for(const name of Object.keys(rows)){const opt=document.createElement('option');opt.value=name;opt.textContent=name;select.append(opt)}
+ }
+}
+function updateOriginOptions(){
+ if(!RULES)return;
+ const c=RULES.cls(data),s=$('darkSubclass'),old=data.fields.Subclasse||'';
+ s.replaceChildren();
+ let opt=document.createElement('option');opt.value='';opt.textContent='Nenhuma';s.append(opt);
+ for(const k of Object.keys(c?.variacoes||{})){opt=document.createElement('option');opt.value=k;opt.textContent=k.replace(/([a-z])([A-Z])/g,'$1 $2');s.append(opt)}
+ if([...s.options].some(x=>x.value===old))s.value=old;else{data.fields.Subclasse='';s.value=''}
+ const magic=$('darkMagicSchool'),previous=data.fields['Escola mágica']||'Nenhuma';
+ magic.replaceChildren();
+ const r=RULES.race(data),schools=[...new Set(['Nenhuma',...(c?.magicSchools||[]),...(r?.magicSchools||[])])];
+ for(const v of schools){opt=document.createElement('option');opt.value=v;opt.textContent=v;magic.append(opt)}
+ data.fields['Escola mágica']=schools.includes(previous)?previous:'Nenhuma';
+}
+function renderOriginInfo(){
+ if(!RULES)return;
+ const r=RULES.race(data),c=RULES.cls(data),sub=RULES.branch(data);
+ const format=(o)=>Object.entries(o||{}).map(([k,v])=>k.replace(/([a-z])([A-Z])/g,'$1 $2')+': '+v).join(' • ')||'Nenhum';
+ const show=(id,parts)=>{const e=$(id);if(e)e.textContent=parts.join('\n')};
+ show('darkRaceInfo',r?[
+ 'Raça: '+r.nome,'Passiva: '+(r.passiva||'Não cadastrada'),
+ 'Traço: '+(r.tracoRacial?.name||'—')+' — '+(r.tracoRacial?.effect||'—'),
+ 'Habilidade: '+(r.habilidadeRacial?.name||'—')+' — '+(r.habilidadeRacial?.effect||'—'),
+ 'Custo: '+(r.habilidadeRacial?.cost||'—'),
+ 'Pontos iniciais: '+format(r.template)
+ ]:['Escolha uma raça para ver passivas, traços e atributos iniciais.']);
+ show('darkClassInfo',c?[
+ 'Classe: '+c.nome,'Bônus: '+format(c.statusInicial?.bonus||c.pontosClasse),
+ 'Fraquezas: '+format(c.statusInicial?.fraqueza||c.penalidadesClasse),
+ 'Subclasse: '+(data.fields.Subclasse||'Nenhuma'),
+ sub?'Especialização: '+format(sub.bonus)+' • '+format(sub.fraqueza):'',
+ ...(c.habilidadesClasse||[]).map(x=>x.name+' ('+(x.type||'Técnica')+'): '+x.effect)
+ ]:['Escolha uma classe para consultar as técnicas e os bônus.']);
+ const effects=document.querySelectorAll('[data-stat]'),mods=[];
+ effects.forEach(el=>{
+  const stat=el.dataset.stat,m=RULES.effects(data,stat);
+  const row=el.closest('.trait');if(!row)return;
+  let badge=row.querySelector('.dark-stat-mod');
+  if(!badge){badge=document.createElement('span');badge.className='dark-stat-mod';row.append(badge)}
+  badge.textContent=m>0?'+'+m:m<0?String(m):'';
+  badge.classList.toggle('negative',m<0);
+  if(m)mods.push(stat+' '+(m>0?'+':'')+m);
+ });
+ show('darkModifiers',[mods.length?'Atributos ajustados: '+mods.join(' · '):'Sem bônus de atributos ativos.',
+   'Os valores preenchidos das bolinhas incluem bônus e penalidades de raça, classe, subclasse e equipamento.']);
+ const invalid=(RULES.equipment(data)||[]).filter(item=>!RULES.compatible(data,item));
+ const warning=$('darkGearStatus');
+ if(warning){warning.textContent=invalid.length?
+  'Atenção: sua classe não possui treinamento padrão para '+invalid.map(x=>x.name).join(', ')+'. Os itens continuam selecionáveis, mas revise com o mestre.':
+  'Catálogo compartilhado com bônus e penalidades automáticos; fichas independentes.';
+  warning.classList.toggle('warning',invalid.length>0)}
+}
+function setRace(newRace){
+ data.fields.Raça=newRace;
+ if(RULES?.race(data)){
+  const stats=RULES.starting(data);
+  for(const [stat,val]of Object.entries(stats))if(['Força','Destreza','Vigor','Empatia','Manipulação','Persuasão','Percepção','Inteligência','Reação'].includes(stat))data.stats[stat]=val;
+ }
+ updateOriginOptions();render();autoSave();
+}
 function safeText(x){return String(x||'').replace(/[<>]/g,'').slice(0,120)}
 function status(s){$('status').textContent=s}
 function dots(host,key,total,collection){
 host.replaceChildren();host.style.setProperty('--accent',(host.closest('[data-color]')||{}).dataset?.color||'#ddb97a');
-var number=key==='Força de Vontade'?currentLevel():(Number(data[collection][key])||0);
+var number=key==='Força de Vontade'?currentLevel():(RULES?RULES.effective(data,key):(Number(data[collection][key])||0));
 for(var i=1;i<=total;i++){var b=document.createElement('button');b.type='button';b.className='dot'+(i<=number?' on':'');b.title=key+': '+i+' / '+total;b.style.setProperty('--accent',['#ce7167','#e0ae6c','#6fa4d3','#79bd9a'][Math.floor((i-1)/3)%4]);b.setAttribute('aria-label',key+' '+i);b.setAttribute('aria-pressed',String(i<=number));b.dataset.value=i;if(key==='Força de Vontade'){b.disabled=true;b.title='Força de Vontade automática: nível '+currentLevel();}
-b.addEventListener('click',function(){var val=Number(this.dataset.value);if(key==='Força de Vontade')return;data[collection][key]=(data[collection][key]||0)===val?0:val;dots(host,key,total,collection);autoSave()});
+b.addEventListener('click',function(){var val=Number(this.dataset.value);if(key==='Força de Vontade')return;const modifier=RULES?RULES.effects(data,key):0;
+const target=Math.max(0,Math.min(total,val-modifier));
+data[collection][key]=(Number(data[collection][key])||0)===target?0:target;
+render();autoSave()});
 host.append(b)}
 }
 function rows(el,col,count,cls){
@@ -62,26 +133,35 @@ function updateCounters(){
 }
 function render(){
 normalizeProgress();
+updateOriginOptions();
 document.querySelectorAll('[data-field]').forEach(x=>x.value=data.fields[x.dataset.field]||'');
 document.querySelectorAll('[data-stat]').forEach(x=>dots(x,x.dataset.stat,x.dataset.stat==='Força de Vontade'?10:12,'stats'));
 document.querySelectorAll('[data-resist]').forEach(x=>dots(x,x.dataset.resist,12,'resist'));
 document.querySelectorAll('[data-magic]').forEach(x=>x.value=data.magic[Number(x.dataset.magic)]||'');
 document.querySelectorAll('[data-magic-dots]').forEach(x=>dots(x,x.dataset.magicDots,10,'magicLevels'));
 ['gear','adv','disadv'].forEach(k=>document.querySelectorAll('[data-'+k+']').forEach(x=>x.value=(data[k]||[])[Number(x.dataset[k])]||''));
-rows($('vitality'),'vitality',100,'vit');rows($('mana'),'mana',50,'mana');updateCounters();list();
+rows($('vitality'),'vitality',100,'vit');rows($('mana'),'mana',50,'mana');updateCounters();renderOriginInfo();list();
 }
 function list(){var sel=$('savedSheets'),cur=data.id;sel.replaceChildren();var def=document.createElement('option');def.value='';def.textContent='Abrir ficha salva...';sel.append(def);
 readAll().forEach(x=>{var op=document.createElement('option');op.value=x.id;op.textContent=safeText(x.fields?.Nome||'Sem nome')+' · '+safeText(x.fields?.Player||'Player');sel.append(op)});sel.value=cur}
 function save(manual){normalizeProgress();if(!data.id)data.id='df-'+Date.now()+'-'+Math.random().toString(36).slice(2,7);
 var a=readAll(),idx=a.findIndex(x=>x.id===data.id);var item=JSON.parse(JSON.stringify(data));item.updatedAt=new Date().toISOString();if(idx<0)a.push(item);else a[idx]=item;try{writeAll(a);localStorage.setItem(CURRENT,data.id);list();if(manual){status('Ficha salva no cofre deste navegador. Exporte o PDF editável como cópia de segurança.')}}catch(e){status('Falha ao gravar: armazenamento cheio ou indisponível.')} }
 var ticking=false;function autoSave(){if(!ticking){ticking=true;setTimeout(function(){ticking=false;save(false)},350)}}
-document.querySelectorAll('[data-field]').forEach(x=>x.addEventListener('input',()=>{if(x.dataset.field==='Nível'){applyLevelChange(x.value);return}data.fields[x.dataset.field]=x.value;autoSave()}));
+document.querySelectorAll('[data-field]').forEach(x=>x.addEventListener('input',()=>{
+ const k=x.dataset.field;
+ if(k==='Nível'){applyLevelChange(x.value);return}
+ if(k==='Raça'){setRace(x.value);return}
+ data.fields[k]=x.value;
+ if(k==='Classe'){data.fields.Subclasse='';updateOriginOptions();render();autoSave();return}
+ if(k==='Subclasse'||k==='Escola mágica'){render();autoSave();return}
+ autoSave();
+}));
 document.querySelectorAll('[data-magic]').forEach(x=>x.addEventListener('input',()=>{data.magic[Number(x.dataset.magic)]=x.value;autoSave()}));
 ['gear','adv','disadv'].forEach(k=>document.querySelectorAll('[data-'+k+']').forEach(x=>x.addEventListener('input',()=>{data[k][Number(x.dataset[k])]=x.value;autoSave()})));
 const names=['Aeron','Elaria','Noths','Thalor','Kaelen','Mira','Talia','Ravok','Lyra','Faelorn','Dorian','Ysera','Dran','Borin','Eldric','Nyra'];
 const surnames=['da Névoa','dos Espinhos','da Cruz Partida','das Cinzas','do Véu','do Inverno','Sombrio','de Valeron','de Nexalis'];
-const races=['Humano','Elfo','Anão','Orc','Goblin','Draconiano','Meio-elfo','Vampiro','Lobisomem','Fada','Metamorfo','Troll','Djinn'];
-const classes=['Guerreiro','Ladino','Mago','Druida','Arqueiro','Ninja','Alquimista','Bardo','Bruxo','Domador','Necromante','Clérigo','Monge'];
+const races=Object.keys(RULES?.data.races||{});
+const classes=Object.keys(RULES?.data.classes||{});
 const profs=['Ferreiro','Viajante','Caçador','Alquimista','Mercador','Erudito','Escudeiro','Explorador'];
 function randint(min,max){return Math.floor(Math.random()*(max-min+1))+min}
 function randomChoice(arr){return arr[randint(0,arr.length-1)]}
@@ -115,6 +195,10 @@ $('randomSheet').onclick=()=>{
   data.adv[slot]=item.bonus;data.disadv[slot]=item.penalty;
  }
 }
+ if(RULES){for(const [stat,v]of Object.entries(RULES.starting(data)))if(['Força','Destreza','Vigor','Empatia','Manipulação','Persuasão','Percepção','Inteligência','Reação'].includes(stat))data.stats[stat]=v}
+ const cls=RULES?.cls(data);
+ if(cls){data.fields.Subclasse=Object.keys(cls.variacoes||{})[0]||'';
+ data.fields['Escola mágica']=(cls.magicSchools||[])[0]||'Nenhuma'}
  data.fields.Itens='Cantil; Tocha; Suprimentos; Poção simples';
  localStorage.removeItem(CURRENT);render();generateStats();save(true);status('Personagem aleatório criado e salvo: '+data.fields.Nome+'.');
 };
@@ -132,6 +216,7 @@ function sanitizeState(v){
 }
 window.HurrasDarkSheetAPI={
  get:()=>JSON.parse(JSON.stringify(data)),
+ effectiveStat:key=>RULES?RULES.effective(data,key):Number(data.stats[key]||0),
  put:(obj,asNew)=>{data=sanitizeState(JSON.parse(JSON.stringify(obj)));if(asNew)data.id='';normalizeProgress();save(true);render();status('Ficha importada e salva no navegador.');return data.id},
  save:()=>save(true),preview:()=>render()
 };
@@ -154,6 +239,9 @@ function initEquipmentCatalog(){
   render();autoSave();
  }));
 }
-initEquipmentCatalog();
-var first=readAll().find(x=>x.id===data.id);if(first)data=sanitizeState(Object.assign(data,first));else{data.fields['Nível']='1';data.vitality=fullTrack(10);data.mana=fullTrack(5)}render();
+initEquipmentCatalog();setupOrigins();
+var first=readAll().find(x=>x.id===data.id);
+if(first)data=sanitizeState(Object.assign(data,first));
+else{data.fields['Nível']='1';data.vitality=fullTrack(10);data.mana=fullTrack(5)}
+render();
 })();

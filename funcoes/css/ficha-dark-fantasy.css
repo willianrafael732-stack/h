@@ -126,3 +126,17 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 #darkEditor .sq:disabled{pointer-events:none}
 #darkEditor .dot:disabled{cursor:default;opacity:1}
 #darkLifeTotal,#darkManaTotal,#darkWillTotal{color:#efc58b;font:700 13px Arial,sans-serif}
+
+.dark-origin-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.dark-origin-grid article{background:#151119;border:1px solid #605047;border-radius:8px;padding:14px}
+.dark-origin-grid h3{font-size:16px;margin:0 0 9px}
+.dark-rules-description{font-size:13px;color:#d2c6b4;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.dark-rules-description strong{color:#eacb8e}
+.dark-rules-description .rule-bonus{color:#9ed8b1}
+.dark-rules-description .rule-cost{color:#e6a6a0}
+#darkEditor .trait .dark-stat-mod{font:700 11px Arial;color:#c2d8c0;white-space:nowrap;grid-column:2}
+#darkEditor .trait .dark-stat-mod.negative{color:#e49b91}
+#darkEditor select[data-field]{width:100%;min-height:44px;max-width:100%;border:1px solid #645141;border-radius:5px;background:#0d0e13;color:#f6e8d1;font-size:16px;padding:9px}
+#darkGearStatus.warning{color:#e7aa86}
+@media(max-width:880px){.dark-origin-grid{grid-template-columns:1fr}}
+@media(max-width:700px){#darkEditor .trait .dark-stat-mod{grid-column:auto}}
