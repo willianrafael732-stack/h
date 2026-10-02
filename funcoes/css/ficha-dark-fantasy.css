@@ -140,3 +140,10 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 #darkGearStatus.warning{color:#e7aa86}
 @media(max-width:880px){.dark-origin-grid{grid-template-columns:1fr}}
 @media(max-width:700px){#darkEditor .trait .dark-stat-mod{grid-column:auto}}
+
+.dark-spell-toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0}
+.dark-spell-preview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;max-height:310px;overflow:auto}
+.dark-spell-entry{padding:10px;background:#100f14;border:1px solid #5e4e49;border-radius:5px;min-width:0;display:grid;gap:5px}
+.dark-spell-entry strong{color:#e9cb9b}
+.dark-spell-entry span{font-size:12px;color:#d6c6bd;line-height:1.45;overflow-wrap:anywhere}
+@media(max-width:700px){.dark-spell-preview{grid-template-columns:1fr}}

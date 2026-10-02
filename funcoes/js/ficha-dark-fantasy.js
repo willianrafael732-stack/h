@@ -54,6 +54,18 @@ function updateOriginOptions(){
  for(const v of schools){opt=document.createElement('option');opt.value=v;opt.textContent=v;magic.append(opt)}
  data.fields['Escola mágica']=schools.includes(previous)?previous:'Nenhuma';
 }
+function renderSpellPreview(){
+ const all=RULES?.data?.spells||{},school=data.fields?.['Escola mágica']||'Nenhuma',spells=all[school]||[];
+ const target=$('darkSpellPreview'),count=$('darkSpellCount');if(!target)return;
+ target.replaceChildren();
+ if(count)count.textContent=spells.length?spells.length+' magia(s) no grimório':'Escola sem magias cadastradas';
+ for(const s of spells.slice(0,18)){
+  const row=document.createElement('div');row.className='dark-spell-entry';
+  const b=document.createElement('strong');b.textContent=s.name||'Magia';
+  const desc=document.createElement('span');desc.textContent=[s.tier,s.desc,s.info].filter(Boolean).join(' · ');
+  row.append(b,desc);target.append(row);
+ }
+}
 function renderOriginInfo(){
  if(!RULES)return;
  const r=RULES.race(data),c=RULES.cls(data),sub=RULES.branch(data);
@@ -140,7 +152,7 @@ document.querySelectorAll('[data-resist]').forEach(x=>dots(x,x.dataset.resist,12
 document.querySelectorAll('[data-magic]').forEach(x=>x.value=data.magic[Number(x.dataset.magic)]||'');
 document.querySelectorAll('[data-magic-dots]').forEach(x=>dots(x,x.dataset.magicDots,10,'magicLevels'));
 ['gear','adv','disadv'].forEach(k=>document.querySelectorAll('[data-'+k+']').forEach(x=>x.value=(data[k]||[])[Number(x.dataset[k])]||''));
-rows($('vitality'),'vitality',100,'vit');rows($('mana'),'mana',50,'mana');updateCounters();renderOriginInfo();list();
+rows($('vitality'),'vitality',100,'vit');rows($('mana'),'mana',50,'mana');updateCounters();renderOriginInfo();renderSpellPreview();list();
 }
 function list(){var sel=$('savedSheets'),cur=data.id;sel.replaceChildren();var def=document.createElement('option');def.value='';def.textContent='Abrir ficha salva...';sel.append(def);
 readAll().forEach(x=>{var op=document.createElement('option');op.value=x.id;op.textContent=safeText(x.fields?.Nome||'Sem nome')+' · '+safeText(x.fields?.Player||'Player');sel.append(op)});sel.value=cur}
@@ -173,7 +185,7 @@ function generateStats(){
  statKeys.forEach((stat,i)=>{
  const max=stat==='Força de Vontade'?10:12;
  const roll=randint(0,3)+boost+(i===main?2:0);
- data.stats[stat]=stat==='Força de Vontade'?currentLevel():Math.min(max,roll)
+ data.stats[stat]=stat==='Força de Vontade'?currentLevel():Math.min(max,Math.max(roll,RULES?.starting(data)?.[stat]||0))
  });
  document.querySelectorAll('[data-resist]').forEach(e=>data.resist[e.dataset.resist]=randint(0,Math.min(12,3+boost)));
  for(let i=0;i<18;i++)data.magicLevels[i]=randint(0,Math.min(10,2+boost));
@@ -239,6 +251,21 @@ function initEquipmentCatalog(){
   render();autoSave();
  }));
 }
+const magicBtn=$('darkSuggestSpells');
+if(magicBtn)magicBtn.addEventListener('click',()=>{
+ const spells=RULES?.data?.spells?.[data.fields?.['Escola mágica']]||[];
+ if(!spells.length){status('Essa escola não tem magias catalogadas.');return}
+ const existing=new Set((data.magic||[]).filter(Boolean));
+ let added=0;
+ for(const spell of spells){
+  if(existing.has(spell.name))continue;
+  let i=data.magic.findIndex(x=>!x);
+  if(i<0)i=data.magic.length<18?data.magic.length:-1;
+  if(i<0||i>=18)break;
+  data.magic[i]=spell.name;existing.add(spell.name);added++;
+ }
+ render();autoSave();status(added+' magia(s) do grimório adicionada(s).');
+});
 initEquipmentCatalog();setupOrigins();
 var first=readAll().find(x=>x.id===data.id);
 if(first)data=sanitizeState(Object.assign(data,first));

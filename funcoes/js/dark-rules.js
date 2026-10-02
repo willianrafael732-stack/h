@@ -35,8 +35,8 @@
  };
  const effects=(s,stat)=>{
   const r=race(s),c=cls(s),sub=branch(s);
-  const positive=[r?.bonus,c?.statusInicial?.bonus,sub?.bonus,...equipment(s).map(v=>v.mods)];
-  const negative=[r?.fraqueza,c?.statusInicial?.fraqueza,sub?.fraqueza];
+  const positive=[r?.bonus,c?.statusInicial?.bonus||c?.pontosClasse,sub?.bonus,...equipment(s).map(v=>v.mods)];
+  const negative=[r?.fraqueza,c?.statusInicial?.fraqueza||c?.penalidadesClasse,sub?.fraqueza];
   let val=0;for(const obj of [...positive,...negative])val+=modifier(obj,stat);
   return val;
  };
