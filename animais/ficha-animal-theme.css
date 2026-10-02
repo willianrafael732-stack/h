@@ -1,0 +1,78 @@
+/* Hurras - Companheiros do Bosque. Tema exclusivo, separado das fichas Classica e Dark. */
+:root{--animal-bg:#091311;--animal-panel:#101e1b;--animal-ink:#ebf3e8;--animal-teal:#76c4b0;--animal-gold:#dac18d;--animal-border:#577365}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 80% 5%,#224f4036,transparent 42%),radial-gradient(circle at 5% 82%,#5b4a2825,transparent 40%),var(--animal-bg);color:var(--animal-ink);font:15px/1.55 Arial,sans-serif}
+.animal-shell{max-width:1170px;margin:25px auto 70px;padding:0 clamp(12px,3vw,26px)}
+.animal-header{padding:25px clamp(17px,3vw,32px);border-radius:16px;border:1px solid #61816c;background:linear-gradient(113deg,#142721,#162323 62%,#2d3325);box-shadow:0 16px 48px #0009;position:relative;overflow:hidden}
+.animal-header:after{content:"❧";position:absolute;right:22px;top:-52px;font:230px Georgia,serif;color:#bed8a313;pointer-events:none}
+.animal-kicker{font:800 11px Arial;letter-spacing:.18em;color:#8fd0b8}
+.animal-header h1{margin:5px 0 4px;color:#f1ecd6;font:bold clamp(31px,5vw,55px) Georgia,serif}
+.animal-header p{position:relative;margin:5px 0;color:#c3cec5;max-width:670px}
+.animal-toolbar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;padding:14px 0}
+.animal-toolbar button,.animal-toolbar a,.animal-editor button,.animal-editor .button{display:inline-flex;align-items:center;justify-content:center;min-height:45px;padding:10px 15px;border:1px solid #71988a;border-radius:8px;background:#1b312b;color:#e4f2e4;cursor:pointer;text-decoration:none;font:700 13px Arial;transition:background .18s}
+.animal-toolbar button:hover,.animal-toolbar button[aria-pressed="true"],.animal-editor button:hover,.animal-editor .button:hover{background:#8bc4aa;color:#101e1b;border-color:#b1dfc4}
+.animal-toolbar button:focus-visible,.animal-toolbar a:focus-visible,.animal-editor :is(input,select,textarea,button,.button):focus-visible{outline:3px solid #c1edce;outline-offset:2px}
+.animal-editor{border:1px solid #547365;background:linear-gradient(155deg,#10221c,#0e1615);padding:clamp(14px,3vw,26px);border-radius:15px;box-shadow:0 17px 44px #0008}
+.animal-hint{border-left:4px solid #84c4a9;background:#20372d;color:#dceadd;border-radius:5px;padding:11px 14px;margin:0 0 18px}
+.animal-editor .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.animal-editor .row{display:flex;flex-direction:column;gap:6px;min-width:0;padding:11px;border:1px solid #3c5b4e;border-radius:9px;background:#13261f}
+.animal-editor .full{grid-column:1/-1}.animal-editor label{color:var(--animal-gold);font-weight:700;font-size:13px}
+.animal-editor input,.animal-editor textarea,.animal-editor select{display:block;width:100%;min-width:0;min-height:43px;background:#0a1512;border:1px solid #6d8d7b;border-radius:7px;color:#f3f5ea;padding:10px;font:16px/1.45 Arial,sans-serif}
+.animal-editor textarea{min-height:100px;resize:vertical}
+.animal-editor .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
+.animal-editor .stats .row{background:#1a3029}
+.animal-editor .stats small{color:#8ec9b6}
+.resource-track{width:100%;height:10px;background:#070d0d;border-radius:9px;overflow:hidden;border:1px solid #3a5248}
+.resource-fill{height:100%;width:100%;transition:width .18s}
+.resource-fill.health{background:linear-gradient(90deg,#8b433f,#e77e6a)}.resource-fill.magic{background:linear-gradient(90deg,#3e88ac,#82bbed)}
+.animal-editor .actions{display:flex;flex-wrap:wrap;gap:9px;margin:20px 0 0}
+.animal-editor .actions>button,.animal-editor .actions>.button{flex:0 1 auto}
+.animal-editor #salvar{background:#b9c6a1;color:#1e2720}
+.animal-editor #limpar{border-color:#b87c78;color:#e7b5a6}
+.animal-status{min-height:24px;color:#b5dec0;font:13px/1.5 Arial;margin:12px 0 0}
+.animal-preview{display:none;max-width:210mm;min-height:260mm;margin:12px auto 30px;padding:16mm 15mm;background:linear-gradient(155deg,#15231f,#121919 68%,#27251b);color:#edf2e9;border:2px solid #b9c89c;box-shadow:0 0 0 5px #080e0c,0 20px 65px #000a;border-radius:5px;overflow-wrap:anywhere}
+.animal-preview .animal-pdf-top{border-bottom:2px solid #b5bb8d;padding-bottom:12px;margin-bottom:15px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.animal-preview .animal-pdf-top h2{font:700 25px Georgia,serif;letter-spacing:.05em;margin:0;color:#e9e0bf}
+.animal-preview .animal-pdf-top small{font-size:11px;letter-spacing:.16em;color:#9bcdbb}
+.animal-preview .animal-pdf-mark{font:60px Georgia,serif;color:#b4d2b5}
+.animal-pdf-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.animal-pdf-block{border:1px solid #557366;border-radius:6px;padding:11px;break-inside:avoid;background:#13251f}
+.animal-pdf-block.wide{grid-column:1/-1}
+.animal-pdf-block h3{font:700 12px Arial;letter-spacing:.12em;color:#d2bc84;margin:0 0 9px}
+.animal-pdf-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.animal-pdf-field{border-bottom:1px solid #4e6658;padding:4px 3px;min-width:0}
+.animal-pdf-field b{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#92bea7}
+.animal-pdf-field span{display:block;font:14px/1.5 Georgia,serif;color:#f2eee1;min-height:21px;white-space:pre-wrap;overflow-wrap:anywhere}
+.animal-pdf-description{margin:2px 0;white-space:pre-wrap;font:12px/1.5 Arial;min-height:24px}
+.animal-pdf-resource{display:flex;align-items:center;justify-content:space-between;gap:6px;margin:7px 0}
+.animal-pdf-resource strong{color:#e5e4ce}
+.animal-pdf-dots{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.animal-pdf-dots i{width:13px;height:13px;display:block;border-radius:50%;border:1.5px solid #809284;background:#0b1915;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+.animal-pdf-dots i.on.life{background:#d77e6f;border-color:#f0b4a3}
+.animal-pdf-dots i.on.energy{background:#75a9d0;border-color:#b0d4e9}
+.animal-pdf-dots i.partial{box-shadow:inset 0 0 0 3px #0b1915}
+.animal-pdf-foot{text-align:center;margin:15px 0 0;color:#a6bda9;font:11px Arial}
+body.animal-mode-pdf #animalEditor{display:none}
+body.animal-mode-pdf #animalPreview{display:block}
+@media screen and (max-width:760px){
+ .animal-shell{margin:12px auto 45px;padding:0 11px}
+ .animal-editor .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .animal-toolbar>*{flex:1 1 142px;text-align:center}
+ .animal-editor .grid{grid-template-columns:minmax(0,1fr)}
+ .animal-editor .full{grid-column:auto}
+ .animal-editor .stats{grid-column:1/-1}
+ .animal-preview{padding:19px 13px;min-height:unset}
+ .animal-pdf-grid{grid-template-columns:minmax(0,1fr)}
+ .animal-pdf-block.wide{grid-column:auto}
+}
+@media(max-width:390px){.animal-editor .stats{grid-template-columns:1fr}.animal-preview .animal-pdf-top h2{font-size:20px}.animal-pdf-fields{grid-template-columns:1fr}}
+@page{size:A4 portrait;margin:12mm}
+@media print{
+ html,body{background:#fff!important;color:#111!important;overflow:visible!important;print-color-adjust:exact!important;-webkit-print-color-adjust:exact!important}
+ body #hurras-app-nav,body #hnav-backtop,body .hnav-breadcrumb,body .animal-header,body .animal-toolbar,body #animalEditor{display:none!important}
+ .animal-shell{margin:0!important;padding:0!important;width:auto!important;max-width:none!important}
+ #animalPreview{display:block!important;width:100%!important;max-width:none!important;min-height:262mm!important;margin:0!important;padding:11mm!important;border:2px solid #b9c89c!important;box-shadow:none!important;border-radius:0!important;background:linear-gradient(155deg,#15231f,#121919 68%,#27251b)!important;color:#edf2e9!important}
+ .animal-pdf-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .animal-pdf-block.wide{grid-column:1/-1!important}
+ .animal-pdf-block,.animal-pdf-dots i{break-inside:avoid}
+}
