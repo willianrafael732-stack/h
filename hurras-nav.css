@@ -1,0 +1,42 @@
+/* Navegação consistente Hurras Fantasy. Isola os estilos do conteúdo e das fichas para impressão. */
+@media screen{
+body.hurras-has-nav [data-hurras-old-nav="true"]{display:none!important}
+body.hnav-search-open{overflow:hidden}
+#hurras-app-nav,#hurras-app-nav *,#hnav-search-shade,#hnav-search-shade *,#hnav-backtop{box-sizing:border-box}
+#hurras-app-nav{position:relative;z-index:1000!important;background:#121116!important;color:#f6f1e7!important;font:14px/1.45 Arial,sans-serif!important;border-bottom:1px solid #715639!important;box-shadow:0 8px 25px #0006!important;width:100%!important;min-height:0}
+#hurras-app-nav .hnav-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px max(16px,calc((100% - 1300px)/2));background:#18151a}
+#hurras-app-nav a{text-decoration:none!important;color:#e8d9bd!important}
+#hurras-app-nav .hnav-brand{font-size:18px;font-weight:900;letter-spacing:.09em;color:#efd29b!important;text-shadow:none}
+#hurras-app-nav .hnav-actions{display:flex;gap:8px;flex-wrap:wrap}
+#hurras-app-nav button,#hnav-search-shade button{font:inherit;color:#f2e4c9;background:#32291f;border:1px solid #82643b;border-radius:7px;cursor:pointer;padding:9px 13px}
+#hurras-app-nav button:hover,#hnav-search-shade button:hover{background:#51412f}
+#hurras-app-nav button:focus-visible,#hurras-app-nav a:focus-visible,#hnav-search-shade a:focus-visible,#hnav-search-shade button:focus-visible,#hnav-global-search:focus-visible{outline:3px solid #ecbd72;outline-offset:2px}
+#hurras-app-nav .hnav-shortcuts{display:flex;gap:5px;overflow-x:auto;scrollbar-width:thin;white-space:nowrap;padding:8px max(16px,calc((100% - 1300px)/2))}
+#hurras-app-nav .hnav-shortcut{display:inline-flex;align-items:center;justify-content:center;padding:7px 13px;border-radius:5px;border:1px solid transparent;font-size:13px;font-weight:700}
+#hurras-app-nav .hnav-shortcut:hover,#hurras-app-nav .hnav-shortcut.active{background:#42301e;border-color:#73583a}
+#hurras-app-nav .hnav-drawer{padding:18px max(16px,calc((100% - 1300px)/2));border-top:1px solid #40362e;background:#151318;max-height:min(73vh,750px);overflow:auto}
+#hurras-app-nav .hnav-drawer[hidden],#hnav-search-shade[hidden]{display:none!important}
+#hurras-app-nav .hnav-drawer-hint{margin:0 0 12px;color:#bfb1a0!important;font-size:12px}
+#hurras-app-nav .hnav-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:10px;align-items:start}
+#hurras-app-nav .hnav-group{background:#221b1c;border:1px solid #584438;border-radius:7px;min-width:0}
+#hurras-app-nav .hnav-group>summary{cursor:pointer;list-style-position:inside;padding:12px 14px;font-weight:800;color:#f1d5a7}
+#hurras-app-nav .hnav-group-links{display:flex;flex-direction:column;gap:2px;padding:4px 9px 10px;max-height:245px;overflow:auto}
+#hurras-app-nav .hnav-group-links a{font-size:13px;padding:7px;border-radius:4px}
+#hurras-app-nav .hnav-group-links a:hover{background:#3f302a}
+#hurras-app-nav .hnav-breadcrumb{padding:8px max(16px,calc((100% - 1300px)/2));background:#0f0e11;color:#bbb0a3;font-size:12px;border-top:1px solid #342e2c}
+#hurras-app-nav .hnav-breadcrumb strong{color:#e9d3a9}
+#hnav-search-shade{position:fixed;inset:0;z-index:999999;background:#000b;display:flex;justify-content:center;align-items:flex-start;padding:10vh 15px 20px;font:14px Arial,sans-serif}
+#hnav-search-shade[hidden]{display:none!important}
+#hnav-search-shade .hnav-search-panel{background:#19161b;width:min(680px,100%);max-height:75vh;display:flex;flex-direction:column;border:1px solid #896741;border-radius:12px;overflow:hidden;box-shadow:0 15px 70px #000b}
+#hnav-search-shade .hnav-search-head{display:flex;gap:10px;padding:14px;background:#221a1c}
+#hnav-search-shade input{flex:1;min-width:0;padding:13px;background:#100e12;color:#f4ece1;border:1px solid #7b5a37;border-radius:7px;font:15px Arial,sans-serif}
+#hnav-search-shade .hnav-results{overflow:auto;padding:10px}
+#hnav-search-shade .hnav-result{display:block;padding:12px 13px;margin-bottom:6px;border-radius:7px;text-decoration:none;color:#f4e1be!important;background:#292027;font-weight:700}
+#hnav-search-shade .hnav-result:hover{background:#46332c}
+#hnav-search-shade .hnav-result small{display:block;font-size:11px;font-weight:400;color:#c3b5a0;margin-top:5px}
+#hnav-search-shade .hnav-not-found{padding:15px;color:#ebc0ae}
+.hnav-backtop{position:fixed;right:20px;bottom:20px;z-index:998;background:#463124;color:#f9dc9f;border:1px solid #a17b43;border-radius:50%;width:42px;height:42px;opacity:0;pointer-events:none;cursor:pointer;box-shadow:0 10px 25px #0009}
+.hnav-backtop.visible{opacity:1;pointer-events:auto}
+@media(max-width:700px){#hurras-app-nav .hnav-top{padding:10px 12px}#hurras-app-nav .hnav-brand{font-size:14px}#hurras-app-nav button{font-size:12px;padding:8px}#hurras-app-nav .hnav-shortcuts{padding:7px 10px}#hurras-app-nav .hnav-drawer{padding:13px 10px}#hurras-app-nav .hnav-groups{grid-template-columns:1fr 1fr}#hurras-app-nav .hnav-breadcrumb{padding:8px 12px}}@media(max-width:430px){#hurras-app-nav .hnav-brand{font-size:12px}#hurras-app-nav .hnav-menu-btn{font-size:0}#hurras-app-nav .hnav-menu-btn::before{content:"☰ Opções";font-size:12px}#hurras-app-nav .hnav-groups{grid-template-columns:1fr}}
+}
+@media print{#hurras-app-nav,#hnav-search-shade,.hnav-backtop{display:none!important}}
