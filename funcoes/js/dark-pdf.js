@@ -104,13 +104,8 @@ function preview(){
  center.append(textBox('NOTAS',d.fields?.Notas||''));
  lower.append(center);
  const right=el('section');
- const resistBox=box('RESISTÊNCIAS');
- for(const k of resist){
-  const item=el('div','william-pdf-resist-line');
-  item.append(el('span',null,k),el('strong',null,String(Math.max(0,Math.min(12,Number(d.resist?.[k])||0)))));
-  resistBox.append(item)
- }
- right.append(resistBox);lower.append(right);two.append(lower);
+ right.append(williamWheel('RESISTÊNCIA MÁGICA','resist',d));
+ lower.append(right);two.append(lower);
  pages.append(one,two);return d;
 }
 function selectMode(isPdf){$('darkPdfView').hidden=!isPdf;$('darkEditor').hidden=isPdf;document.body.classList.toggle('dark-pdf-mode',isPdf);$('modeEdit').classList.toggle('dark-mode-selected',!isPdf);$('modePDF').classList.toggle('dark-mode-selected',isPdf);$('modeEdit').setAttribute('aria-pressed',String(!isPdf));$('modePDF').setAttribute('aria-pressed',String(isPdf));if(isPdf)preview()}
@@ -175,8 +170,26 @@ async function generatePdf(){
   textField(pages[1],'magicLevel_'+i,v,x+202,y-1,19,16);
   for(let k=0;k<10;k++)pages[1].drawCircle({x:x+226+k*5.0,y:y+8,size:2.5,borderColor:color(dotHex(k)),color:k<v?color(dotHex(k)):panel});
  }
- let yR=414;const elemWidth=59;pText(pages[1],'RESISTENCIAS',29,yR,12,bold,gold);yR-=19;
- resist.forEach((k,i)=>{const x=29+(i%3)*188,y=yR-Math.floor(i/3)*25;pText(pages[1],k,x,y,8,bold,gold);textField(pages[1],'resist_'+k,Number(state.resist[k]||0),x+90,y-5,32)});
+ // Dois círculos, sem lista de resistência no PDF A4 editável.
+ // Os números de cada pedra da resistência continuam campos editáveis e importáveis.
+ function pdfWheel(cx,cy,kind){
+  const title=kind==='resist'?'RESISTENCIA MAGICA':'NIVEL MAGICO';
+  pages[1].drawCircle({x:cx,y:cy,size:75,color:panel,borderColor:gold,borderWidth:1,opacity:.7});
+  pText(pages[1],title,cx-(kind==='resist'?55:41),cy+5,10,bold,gold);
+  const magicLvl=Math.max(0,Math.min(10,Number(state.fields?.['Nível mágico'])||0));
+  for(let i=0;i<resist.length;i++){
+   const key=resist[i],angle=(-90+i*40)*Math.PI/180;
+   const x=cx+63*Math.cos(angle),y=cy+63*Math.sin(angle);
+   const num=kind==='resist'?Math.max(0,Math.min(12,Number(state.resist?.[key])||0))
+       :(key===state.fields?.Elemento?magicLvl:0);
+   pages[1].drawCircle({x,y,size:16,color:num?color(dotHex(i)):panel,borderColor:gold,borderWidth:1});
+   pText(pages[1],clean(key).slice(0,3).toUpperCase(),x-9,y+10,5.5,bold,white);
+   if(kind==='resist')textField(pages[1],'resist_'+key,num,x-9,y-7,18,12);
+   else pText(pages[1],String(num),x-3,y-5,9,bold,white);
+  }
+ }
+ pdfWheel(145,370,'magic');
+ pdfWheel(450,370,'resist');
  // Inventário visível também no PDF: efeitos escolhidos manualmente ou pelo armeiro.
  let lower=240;
  gear.forEach((k,i)=>{

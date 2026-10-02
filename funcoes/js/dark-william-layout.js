@@ -87,7 +87,17 @@ const wheel=(title,kind)=>{
  'Raio':'#dece24','Veneno':'#745ca1','Mental':'#ed76af','Sagrado':'#f2efed','Sombrio':'#191923'};
  const names=['Fogo','Água','Vento','Terra','Raio','Veneno','Mental','Sagrado','Sombrio'];
  names.forEach((name,i)=>{
-  const tag=document.createElement('span');tag.className='william-wheel-stone';
+  const tag=document.createElement(kind==='resist'?'button':'span');tag.className='william-wheel-stone';
+  if(kind==='resist'){
+   tag.type='button';tag.classList.add('william-resist-control');
+   tag.setAttribute('aria-label','Resistência '+name+' — clique para aumentar (Shift para diminuir)');
+   tag.addEventListener('click',event=>{
+    const api=window.HurrasDarkSheetAPI;if(!api)return;
+    const state=api.get(),current=Number(state.resist?.[name])||0;
+    const next=event.shiftKey?Math.max(0,current-1):(current+1)%13;
+    state.resist[name]=next;api.update(state);updateWheels();
+   });
+  }
   tag.style.setProperty('--element-color',colors[name]);
   tag.style.setProperty('--ring-index',i);tag.style.setProperty('--ring-angle',(i*40)+'deg');tag.style.setProperty('--ring-reverse',(-i*40)+'deg');
   tag.title=name;tag.dataset.element=name;tag.dataset.wheel=kind;
@@ -108,7 +118,8 @@ if(gear)mid.append(gear);
 if(notes)mid.append(notes);
 lower.append(mid);
 const right=section('william-bottom-resist');
-// A resistência não usa mais um círculo nem uma segunda linha de bolinhas.
+// Os dois círculos ficam visíveis. O ajuste fino permanece opcional e recolhido.
+right.append(wheel('RESISTÊNCIA MÁGICA','resist'));
 if(resist){
  const kinds=Array.from(resist.querySelectorAll('[data-resist]')).map(x=>x.dataset.resist);
  const title=resist.querySelector('h2')?.textContent||'Resistência mágica';
@@ -129,7 +140,12 @@ if(resist){
   });
   label.append(name,input);list.append(label);
  }
- resist.append(list);right.append(resist);
+ resist.append(list);
+ const details=document.createElement('details');
+ details.className='william-resistance-settings';
+ const summary=document.createElement('summary');
+ summary.textContent='Ajustar valores de resistência (0–12)';
+ details.append(summary,resist);right.append(details);
 }
 lower.append(right);
 page2.append(lower);
@@ -141,10 +157,14 @@ function updateWheels(){
  const d=api();if(!d)return;
  const lvl=Math.max(0,Math.min(10,Number(d.fields?.['Nível mágico'])||0));
  document.querySelectorAll('.william-wheel-stone').forEach(node=>{
-  const n=lvl;
+  const kind=node.dataset.wheel,elem=node.dataset.element;
+  const n=kind==='resist'
+   ? Math.max(0,Math.min(12,Number(d.resist?.[elem])||0))
+   : (elem===d.fields?.Elemento?lvl:0);
   node.classList.toggle('is-active',n>0);
-  node.title=elem+': '+n+' ponto(s)';
+  node.title=elem+': '+n+' ponto(s)'+(kind==='resist'?' — clique para aumentar, Shift para diminuir':'');
   node.dataset.points=String(n);
+  if(kind==='resist')node.setAttribute('aria-label','Resistência '+elem+': '+n+' de 12');
  });
 }
 editor.addEventListener('input',()=>requestAnimationFrame(updateWheels));

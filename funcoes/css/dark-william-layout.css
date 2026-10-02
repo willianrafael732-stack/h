@@ -193,3 +193,21 @@ body{background:radial-gradient(ellipse at 50% 15%,#451a21,#110c13 62%,#09070a);
  #darkEditor .william-spell-rows .dot{width:17px;height:17px;min-width:17px;min-height:17px}
  #darkEditor .william-resistance-numbers{grid-template-columns:1fr 1fr}
 }
+
+/* Duas rodas elementais: nível mágico e resistência, com resistência editável pelo círculo. */
+#darkEditor .william-resist-control{
+ appearance:none;cursor:pointer;touch-action:manipulation;padding:0;
+ font:700 7px Arial,sans-serif;pointer-events:auto;z-index:1;
+}
+#darkEditor .william-resist-control:focus-visible{
+ outline:3px solid #fff4c2;outline-offset:3px;
+}
+#darkEditor .william-resist-control:hover{filter:brightness(1.18)}
+#darkEditor .william-resistance-settings{margin:9px 0 0;background:#231018a6;border:1px solid #a67b6c;border-radius:6px;padding:6px}
+#darkEditor .william-resistance-settings>summary{
+ cursor:pointer;color:#f0dac3;font:12px/1.6 Arial,sans-serif;text-align:center;
+}
+#darkEditor .william-resistance-settings .panel{padding-top:10px}
+#darkPdfView .william-pdf-wheel{margin:auto;text-align:center;border:none;min-width:0}
+#darkPdfView .william-pdf-wheel .william-ring{width:185px;height:185px;max-width:100%}
+@media print{#darkPdfView .william-pdf-wheel{min-width:0!important}}
