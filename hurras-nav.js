@@ -46,7 +46,8 @@ const groups=[
 ['Encantos','armas/encantos.html','Encantamentos'],
 ['Armas instrumentais','armas/Instrumentais.html','Ferramentas especiais']]},
 {label:'Mundo & seres',icon:'♜',items:[
-['Bestiário • 95 criaturas','funcoes/bestiario.html','Monstros, níveis e ataques'],
+['Bestiário • 63 criaturas','funcoes/bestiario.html','Monstros, níveis e ataques'],
+['Deuses & mitologias','funcoes/deuses.html','Panteão de Nexalis, grego e nórdico'],
 ['Animais','animais/animais.html','Criaturas e companheiros'],
 ['NPCs conhecidos','funcoes/npcs.html','Revelados aos jogadores'],
 ['Arquivo de NPCs • 43','funcoes/arquivo-npcs.html','Todos os NPCs reunidos'],
@@ -55,7 +56,8 @@ const groups=[
 ['Painel do mestre','funcoes/mestre.html','Preparar sessões'],
 ['NPCs do mestre','funcoes/mestre-npcs.html','Notas e segredos da campanha'],
 ['Arquivo de NPCs','funcoes/arquivo-npcs.html','43 NPCs da campanha'],
-['Bestiário','funcoes/bestiario.html','95 monstros e chefes'],
+['Bestiário','funcoes/bestiario.html','Criaturas e chefes'],
+['Panteão dos Deuses','funcoes/deuses.html','Deuses separados por mitologia'],
 ['Regras completas','funcoes/sistema-completo.html','Livro do mestre'],
 ['Forja de ficha','funcoes/clan.html','Gerenciar personagens']]},
 {label:'Raças',icon:'♟',items:[
@@ -81,7 +83,7 @@ const groups=[
 ['Ninja','raca/ninja.html','Classe'],['Tecnomante','raca/tecnomancer.html','Classe'],
 ['Transmutador','raca/transmutador.html','Classe']]}
 ];
-const mainLinks=[['Início','index.html'],['Fichas','funcoes/criacao-de-ficha.html'],['Dark Fantasy','funcoes/ficha-dark-fantasy.html'],['Regras','funcoes/sistema-completo.html'],['Bestiário','funcoes/bestiario.html'],['NPCs','funcoes/arquivo-npcs.html'],['Mestre','funcoes/mestre.html']];
+const mainLinks=[['Início','index.html'],['Fichas','funcoes/criacao-de-ficha.html'],['Dark Fantasy','funcoes/ficha-dark-fantasy.html'],['Regras','funcoes/sistema-completo.html'],['Bestiário','funcoes/bestiario.html'],['Deuses','funcoes/deuses.html'],['NPCs','funcoes/arquivo-npcs.html'],['Mestre','funcoes/mestre.html']];
 const normalize=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 const unique=[...new Map(groups.flatMap(g=>g.items.map(i=>[i[1],{...{group:g.label},name:i[0],path:i[1],detail:i[2]}]))).values()];
 function E(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined&&txt!==null)e.textContent=txt;return e}
