@@ -43,7 +43,7 @@ function preview(){
  +textblock('DESCRIÇÃO',value('descricao'))+'</div><p class="animal-pdf-foot">Hurras Fantasy • Ficha de Animal • Vida = Nível × 10 • Mana = Nível × 5</p>';
 }
 function persist(show=false){
- try{localStorage.setItem(KEY,JSON.stringify(capture()));if(show)status('Ficha salva neste navegador. Faça backup em JSON para outros dispositivos.');else status('Salvamento automático concluído.');return true}
+ try{localStorage.setItem(KEY,JSON.stringify(capture()));if(show)status('Ficha salva neste navegador. Guarde uma cópia em PDF para outros dispositivos.');else status('Salvamento automático concluído.');return true}
  catch(e){status('Não foi possível salvar. Verifique espaço ou permissões do navegador.');return false}
 }
 function schedule(){clearTimeout(timer);timer=setTimeout(()=>persist(false),450)}
@@ -75,15 +75,6 @@ $('randomAnimal').addEventListener('click',()=>{
  $('ataques').value=choice[2];$('habilidades').value=choice[3];$('fraquezas').value='A definir pelo mestre.';$('descricao').value='Criatura de Nexalis, nível '+level()+'.';
  renderResources();preview();persist(true);
 });
-$('exportAnimal').addEventListener('click',()=>{
- const blob=new Blob([JSON.stringify({_format:'hurras-animal-v1',animal:capture()},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),link=document.createElement('a');
- link.href=url;link.download='hurras-animal-'+(value('nome')||'personagem').replace(/[^\p{L}\p{N}-]/gu,'-')+'.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),2000);
-});
-$('importAnimal').addEventListener('change',async e=>{
- const file=e.target.files?.[0];if(!file)return;try{
- const data=JSON.parse(await file.text());if(data?._format!=='hurras-animal-v1'||!data.animal||typeof data.animal!=='object')throw Error('Formato inválido');
- for(const [k,v] of Object.entries(data.animal)){const f=form.elements.namedItem(k);if(f&&typeof v!=='object')f.value=String(v)}
- lastLevel=level();renderResources();preview();persist(true);status('Animal importado e salvo.')}catch(err){status('Falha na importação: '+err.message)}finally{e.target.value=''}
-});
+
 load();mode(false);
 })();

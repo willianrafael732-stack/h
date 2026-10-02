@@ -29,5 +29,4 @@ a.append(combat,details(x));all.append(a)}
 document.getElementById('count').textContent=filt.length+' de '+DATA.length+' monstros, chefes e criaturas'}
 q.addEventListener('input',render);t.addEventListener('change',render);l.addEventListener('change',render);sort.addEventListener('change',render);
 document.getElementById('print').onclick=()=>window.print();
-document.getElementById('json').onclick=()=>{const file=new Blob([JSON.stringify(DATA.map(x=>({nome:x[0],nivel:x[1],tipo:x[2],elemento:x[3],ataque:x[4],habilidade:x[5],imagem:x[6]||null})),null,2)],{type:'application/json'}),url=URL.createObjectURL(file),a=document.createElement('a');a.href=url;a.download='hurras-bestiario.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
 render()})();
