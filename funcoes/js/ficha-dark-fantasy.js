@@ -5,7 +5,7 @@ var KEY='hurrasDarkFantasySheetsV1',CURRENT='hurrasDarkFantasyCurrentV1';
 var $=id=>document.getElementById(id);
 function readAll(){try{var x=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(x)?x:[]}catch(e){return []}}
 function writeAll(x){localStorage.setItem(KEY,JSON.stringify(x))}
-var data={id:localStorage.getItem(CURRENT)||'',fields:{},stats:{},resist:{},magic:[],magicLevels:{},gear:[],adv:[],disadv:[],vitality:[],mana:[]};
+var data={id:(()=>{try{return localStorage.getItem(CURRENT)||''}catch(e){return ''}})(),fields:{},stats:{},resist:{},magic:[],magicLevels:{},gear:[],adv:[],disadv:[],vitality:[],mana:[]};
 function safeText(x){return String(x||'').replace(/[<>]/g,'').slice(0,120)}
 function status(s){$('status').textContent=s}
 function dots(host,key,total,collection){

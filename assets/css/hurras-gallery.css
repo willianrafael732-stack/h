@@ -1,0 +1,12 @@
+/* Fotos legíveis: abertura em tamanho integral, ampliação sem cortar. */
+.hurras-image-dialog{position:fixed;inset:2vh 2vw;margin:auto;box-sizing:border-box;max-width:96vw;max-height:96vh;width:1100px;height:94vh;border:1px solid #bd9360;border-radius:7px;padding:0;background:#08090d;color:#f5e8cf;box-shadow:0 20px 90px #000d}
+.hurras-image-dialog::backdrop{background:#000e}
+.hurras-image-toolbar{position:sticky;top:0;z-index:2;padding:12px;background:#191115;border-bottom:1px solid #806043;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.hurras-image-toolbar strong{font:700 17px Georgia,serif}
+.hurras-image-toolbar>div{display:flex;flex-wrap:wrap;gap:6px}
+.hurras-image-toolbar button,.hurras-image-toolbar a{display:inline-block;color:#f8e6bd;background:#35291d;border:1px solid #bc9358;border-radius:5px;font:700 13px Arial;padding:9px 11px;cursor:pointer;text-decoration:none}
+.hurras-image-toolbar button:focus-visible{outline:3px solid #ffd98b}
+.hurras-image-scroller{height:calc(100% - 79px);overflow:auto;text-align:center;overscroll-behavior:contain}
+.hurras-image-scroller img{display:block;margin:auto;width:100%;height:auto;max-width:none;object-fit:contain}
+@media(max-width:640px){.hurras-image-dialog{inset:1vh 1vw;max-width:98vw;height:97vh}.hurras-image-scroller{height:calc(100% - 130px)}}
+@media print{.hurras-image-dialog{display:none!important}}

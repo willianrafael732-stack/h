@@ -90,8 +90,8 @@ async function generatePdf(){
  // Three columns, attribute values are editable text fields;
  // colored circles print in the selected count, including unselected outlines.
  blocks.forEach(b=>{let y=b.y;for(const [group,items,col] of b.items){const height=23+items.length*18;rect(pages[0],b.x,y-height,174,height);pText(pages[0],group.toUpperCase(),b.x+7,y-14,9,bold,gold);y-=24;
- for(const k of items){pText(pages[0],k,b.x+5,y-6,6,font,white);const n=Math.min(12,Number(state.stats[k]||0));const step=7.5;
- for(let i=0;i<12;i++)pages[0].drawCircle({x:b.x+81+i*step,y:y-3,size:2.8,borderColor:color(col),borderWidth:.65,color:i<n?color(col):panel});
+ for(const k of items){pText(pages[0],k,b.x+5,y-6,6,font,white);const n=Math.min(12,Number(state.stats[k]||0));const step=6.6;
+ for(let i=0;i<12;i++)pages[0].drawCircle({x:b.x+78+i*step,y:y-3,size:3,borderColor:color(col),borderWidth:.65,color:i<n?color(col):panel});
  textField(pages[0],'stat_'+k,n,b.x+157,y-10,14,12);y-=18}y-=9}});
  // Willpower + health/mana as editable counters (dots visibly colored on the PDF)
  let y=151;rect(pages[0],24,40,550,112);pText(pages[0],'FORCA DE VONTADE',33,131,10,bold,gold);
@@ -147,10 +147,10 @@ $('pdfUpload').onchange=async e=>{
    if(count===0){const legacyNames=form.getFields().map(x=>x.getName());const legacy=legacyNames.includes('FOR1')||legacyNames.includes('DES1');
      if(legacy){
        const checked=key=>{try{return form.getCheckBox(key).isChecked()}catch(e){return false}};
-       const map=[['Força','FOR',12],['Destreza','DES',12],['Vigor','VIG',12],['Empatia','CAR',10],['Manipulação','MAN',10],['Persuasão','APA',10],['Percepção','PER',10],['Inteligência','INT',10],['Reação','REA',10],['Consciência','CONS',10],['Autocontrole','AUTCON',10],['Coragem','COR',10],['Força de Vontade','FDV',10]];
+       const map=[['Força','FOR',12],['Destreza','DES',12],['Vigor','VIG',12],['Empatia','CAR',12],['Manipulação','MAN',12],['Persuasão','APA',12],['Percepção','PER',12],['Inteligência','INT',12],['Reação','REA',12],['Consciência','CONS',12],['Autocontrole','AUTCON',12],['Coragem','COR',12],['Força de Vontade','FDV',10]];
        map.forEach(([name,prefix,max])=>{let count=0;for(let k=1;k<=max;k++)if(checked(prefix+k))count++;state.stats[name]=count});
        // Grupos sequenciais no formulário legado; preserva até dez pontos de cada.
-       [['T',['Intimidação','Liderança','Lábia','Bloqueio','Esquiva','Briga','Disparada','Crítico','Ocultismo']],['P',['Adestramento','Ofício','Condução','Armas à distância','Armas brancas','Segurança','Furtividade','Armadura','Investigação']],['C',['Acadêmicos','Geografia','Encantamento','Selos','Medicina','Ciências','Tecnologia','Linguística','Sobrevivência']]].forEach(([prefix,keys])=>keys.forEach((name,idx)=>{let total=0;for(let j=1;j<=10;j++)if(checked(prefix+(idx*10+j)))total++;state.stats[name]=total}));
+       [['T',['Intimidação','Liderança','Lábia','Bloqueio','Esquiva','Briga','Disparada','Crítico','Ocultismo']],['P',['Adestramento','Ofício','Condução','Armas à distância','Armas brancas','Segurança','Furtividade','Armadura','Investigação']],['C',['Acadêmicos','Geografia','Encantamento','Selos','Medicina','Ciências','Tecnologia','Linguística','Sobrevivência']]].forEach(([prefix,keys])=>keys.forEach((name,idx)=>{const width=legacyNames.includes(prefix+(keys.length*12))?12:10;let total=0;for(let j=1;j<=width;j++)if(checked(prefix+(idx*width+j)))total++;state.stats[name]=total}));
        state.mana=Array.from({length:50},(_,i)=>i).filter(i=>checked('MANA'+(i+1)));
        state.vitality=Array.from({length:10},(_,i)=>i).filter(i=>checked('VIT'+(i+1)));
        for(let i=0;i<18;i++){let total=0;for(let k=1;k<=10;k++)if(checked('MT'+(i+1)+'-'+k))total++;state.magicLevels[i]=total}

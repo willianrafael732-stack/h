@@ -80,6 +80,6 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 @media print{.dark-pdf-page:before{background-image:var(--dark-bg-image,radial-gradient(circle at 90% 10%,#f64f26 0 2px,transparent 4px),radial-gradient(circle at 55% 43%,#e64221 0 3px,transparent 5px),radial-gradient(ellipse at 80% 80%,#e52619b7,transparent 49%),radial-gradient(ellipse at 9% 97%,#b11911,transparent 45%))!important;opacity:.32!important}}
 
 /* Fundo vermelho em tela, fichas de cores imprimíveis */
-#darkEditor{position:relative;background:linear-gradient(#0c080be6,#130509ec),url("../../assets/dark-hurras/fundo-brasas.svg") center top/cover fixed}
+#darkEditor{position:relative;background:linear-gradient(#0c080be6,#130509ec),var(--dark-bg-image,url("../../assets/dark-hurras/fundo-brasas.svg")) center top/cover fixed}
 .dark-pdf-page:before{opacity:.44!important;background-size:cover!important;background-position:center!important}
 @media print{.dark-pdf-page:before{opacity:.35!important}}
