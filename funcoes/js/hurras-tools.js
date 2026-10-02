@@ -101,6 +101,39 @@ function equipment(){
 function equip(){
  const intro=el('p','Catálogo e características de cada item equipado. Os buffs e debuffs originais são mantidos.');
  content.append(intro);
+ const setup=el('article');
+ const slot=el('select'),category=el('select'),item=el('select');
+ const slots=dark?[['0','Principal'],['1','Secundária'],['2','Distância'],['3','Reserva'],['4','Armadura']]:
+ [['weapon1','Principal'],['weapon2','Secundária'],['armor','Armadura'],['shield','Escudo']];
+ for(const [value,label] of slots){const op=el('option',label);op.value=value;slot.append(op)}
+ for(const label of [...['1 Mão','2 Mãos','Médio alcance','À Distância','Armadura'],...(dark?[]:['Escudo'])]){
+  const op=el('option',label);op.value=label;category.append(op)
+ }
+ const allowed=x=>!dark||!/mágic|magic|rúnic|arcano|encantad|feitiç|instrumental/i.test([x.name,x.category].join(' '));
+ function choices(){
+  const cat=category.value;if(cat==='Armadura')return Object.values(D.armors||{});
+  if(cat==='Escudo')return dark?[]:Object.values(D.shields||{});
+  return Object.values(D.weapons||{}).filter(w=>allowed(w)&&
+   (cat==='Médio alcance'?/Médio alcance/i.test(w.category||''):
+    cat==='À Distância'?/Distância/i.test(w.category||''):
+    cat==='1 Mão'?/1 Mão/i.test(w.category||''):/2 Mãos?/i.test(w.category||'')));
+ }
+ function fill(){item.replaceChildren();for(const w of choices()){const opt=el('option',w.name);opt.value=w.name;item.append(opt)}}
+ category.onchange=fill;
+ slot.onchange=()=>{if(slot.value==='4'||slot.value==='armor')category.value='Armadura';if(slot.value==='shield')category.value='Escudo';fill()};
+ fill();const row=el('div');row.className='ht-btns';
+ row.append(slot,category,item);
+ button('Equipar',()=>{
+  const w=choices().find(x=>x.name===item.value);if(!w)return setNotice('Selecione um equipamento.');
+  remember();
+  if(dark){const state=get(),i=Number(slot.value);state.gear[i]=w.name;state.adv[i]=w.bonus||'';state.disadv[i]=w.penalty||'';restore(state)}
+  else {const select=byId(slot.value);const option=select&&[...select.options].find(x=>x.value===w.name);
+   if(!option)return setNotice('Selecione um espaço compatível com o tipo do equipamento.');
+   select.value=w.name;select.dispatchEvent(new Event('change',{bubbles:true}));window.HurrasStorage?.saveDraft?.()
+  }
+  setNotice('Equipamento aplicado.');show()
+ },row);
+ setup.append(el('b','Armeiro por categoria'),row);content.append(setup);
  const list=el('div');list.className='ht-equipment';content.append(list);
  for(const x of equipment()){
   const card=el('article');card.className='ht-equip';
