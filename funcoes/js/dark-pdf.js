@@ -124,7 +124,7 @@ async function generatePdf(){
  }
  try{form.updateFieldAppearances(font)}catch(e){console.warn('Aparência de campo não disponível',e)}
  doc.setTitle('Ficha Hurras Dark Fantasy - '+clean(state.fields.Nome||'Personagem'));doc.setAuthor('Hurras Fantasy');doc.setSubject('Ficha exportada; pode ser reimportada no fichario Dark Fantasy');
- return await doc.save();
+ return await doc.save({updateFieldAppearances:false});
 }
 function download(bytes,name){let u=URL.createObjectURL(new Blob([bytes],{type:'application/pdf'})),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),3000)}
 $('downloadPDF').onclick=async()=>{try{status('Preparando PDF editável...');api.save();const d=api.get(),bytes=await generatePdf();download(bytes,'hurras-dark-'+String(d.fields.Nome||'personagem').replace(/[^\p{L}\p{N}-]/gu,'-').slice(0,60)+'.pdf');status('PDF editável gerado. Você pode importar este arquivo novamente no site.')}catch(e){status('Erro ao criar PDF: '+e.message)}};
@@ -142,7 +142,23 @@ $('pdfUpload').onchange=async e=>{
    resist.forEach(k=>{let a=get('resist_'+k);state.resist[k]=Number(a)||0;if(a)count++});
    gear.forEach((k,i)=>{let a=get('gear_'+i);state.gear[i]=a;if(a)count++});
    const v=Number(get('vitality_count')||0),m=Number(get('mana_count')||0);state.vitality=Array.from({length:Math.max(0,Math.min(100,v))},(_,i)=>i);state.mana=Array.from({length:Math.max(0,Math.min(50,m))},(_,i)=>i);
-   if(count===0)throw Error('PDF sem campos reconhecidos. Use um PDF editável exportado pelo Hurras; PDFs de imagem não contêm dados para recuperar.');
+   // Fichas antigas do Hurras eram AcroForm com bolinhas em caixas de seleção.
+   // Importamos a marcação dos campos preservando o que o PDF realmente contém.
+   if(count===0){const legacyNames=form.getFields().map(x=>x.getName());const legacy=legacyNames.includes('FOR1')||legacyNames.includes('DES1');
+     if(legacy){
+       const checked=key=>{try{return form.getCheckBox(key).isChecked()}catch(e){return false}};
+       const map=[['Força','FOR',12],['Destreza','DES',12],['Vigor','VIG',12],['Empatia','CAR',10],['Manipulação','MAN',10],['Persuasão','APA',10],['Percepção','PER',10],['Inteligência','INT',10],['Reação','REA',10],['Consciência','CONS',10],['Autocontrole','AUTCON',10],['Coragem','COR',10],['Força de Vontade','FDV',10]];
+       map.forEach(([name,prefix,max])=>{let count=0;for(let k=1;k<=max;k++)if(checked(prefix+k))count++;state.stats[name]=count});
+       // Grupos sequenciais no formulário legado; preserva até dez pontos de cada.
+       [['T',['Intimidação','Liderança','Lábia','Bloqueio','Esquiva','Briga','Disparada','Crítico','Ocultismo']],['P',['Adestramento','Ofício','Condução','Armas à distância','Armas brancas','Segurança','Furtividade','Armadura','Investigação']],['C',['Acadêmicos','Geografia','Encantamento','Selos','Medicina','Ciências','Tecnologia','Linguística','Sobrevivência']]].forEach(([prefix,keys])=>keys.forEach((name,idx)=>{let total=0;for(let j=1;j<=10;j++)if(checked(prefix+(idx*10+j)))total++;state.stats[name]=total}));
+       state.mana=Array.from({length:50},(_,i)=>i).filter(i=>checked('MANA'+(i+1)));
+       state.vitality=Array.from({length:10},(_,i)=>i).filter(i=>checked('VIT'+(i+1)));
+       for(let i=0;i<18;i++){let total=0;for(let k=1;k<=10;k++)if(checked('MT'+(i+1)+'-'+k))total++;state.magicLevels[i]=total}
+       count=1;
+       status('Ficha antiga identificada. Atributos e bolinhas recuperados; nomes e anotações sem campos editáveis no PDF não podem ser reconstruídos.');
+     }
+   }
+   if(count===0)throw Error('PDF sem campos reconhecidos. Use um PDF editável exportado pelo Hurras. PDFs de imagem não contêm dados editáveis.');
  }
  // If a PDF reader modified the visible AcroForm fields, sync those changes.
  for(const k of ['Nome','Player','Crônica','Raça','Classe','Nível','Profissão','Dinheiro','Experiência','Nível mágico','Passivas','Itens','Notas']){const v=get('field_'+k);if(v!=='')state.fields[k]=v}
