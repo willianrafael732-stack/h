@@ -42,3 +42,28 @@ body{background:radial-gradient(ellipse at 48% -8%,#522025 0,#161016 48%,#09090d
 .pantheon-guide{max-height:240px;overflow:auto;align-content:flex-start;scrollbar-width:thin}
 .pantheon-guide button{font-size:12px;padding:9px 13px}
 @media print{.god-illustration{min-height:190px;max-height:220px;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* Refinamento visual do Panteão — mantém integralmente as descrições originais. */
+.pantheon .hero{background:linear-gradient(145deg,#25161d,#120f15 72%);box-shadow:0 18px 45px #0008,inset 0 0 35px #6d2e3618;padding:30px}
+.pantheon .hero h1{font-size:clamp(34px,5vw,58px);text-shadow:0 4px 18px #000}
+.pantheon .hero>p{max-width:1000px;font-size:15px;line-height:1.8;color:#d8c5bc}
+.pantheon-nav .btn{transition:transform .18s,box-shadow .18s,background .18s;border-color:#795743}
+.pantheon-nav .btn:hover{transform:translateY(-2px);box-shadow:0 7px 18px #0007}
+.deuses-filter{background:linear-gradient(145deg,#21171d,#141116)!important;border-color:#725247!important;box-shadow:0 10px 28px #0006}
+.deuses-filter .filters label{color:#d9c3b3}
+.god-section>h2{display:flex;align-items:center;gap:12px;padding-bottom:9px;border-bottom:1px solid #5f4540;text-shadow:0 3px 12px #000}
+.god-section>h2::before{content:"✦";color:#c9985d;font-size:18px}
+.god-description{max-width:1000px;font-size:14px;line-height:1.75}
+.god-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.god-card{border-color:#765044;transition:transform .18s,border-color .18s,box-shadow .18s}
+.god-card:hover{transform:translateY(-4px);border-color:#ad7c50;box-shadow:0 15px 34px #0009}
+.god-card>a{border-bottom:1px solid #694940}
+.god-details{padding:19px}
+.god-details h3{font-size:28px;margin-bottom:13px}
+.god-details p{font-size:13.5px;line-height:1.72;margin:15px 0;color:#d8c7c0}
+.god-details dl{padding:10px 0;border-top:1px solid #4d3937;border-bottom:1px solid #4d3937}
+.god-details dt{color:#d0a66e}
+.god-level{padding-top:13px;margin-top:14px}
+.pantheon-notice{background:linear-gradient(145deg,#21171d,#121015)!important;border-color:#6d4c45!important}
+.pantheon-notice h2{font-family:Georgia,serif;color:#f0d3ab}
+@media(max-width:640px){.pantheon .hero{padding:22px 16px}.god-grid{grid-template-columns:1fr}.god-details p{font-size:14px}}
