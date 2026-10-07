@@ -9,7 +9,7 @@ const url=(path)=>new URL(path,origin).href;
 const path=decodeURIComponent(location.pathname).toLowerCase();
 const groups=[
 {label:'Começar',icon:'⌂',items:[
-['Início','index.html','Portal Player e Mestre'],
+['Início','index.html','Portal Player e Mestre'],['Catálogo','funcoes/catalogo.html'],
 ['Minhas fichas','funcoes/criacao-de-ficha.html','Retomar personagens clássicos'],
 ['Nova ficha clássica','funcoes/clan.html?new=1','Forja original'],
 ['Fichário Dark Fantasy','funcoes/ficha-dark-fantasy.html','Segundo sistema de ficha'],['Cofre Dark Fantasy','funcoes/dark-personagens.html','Gerenciar fichas do novo modelo'],
