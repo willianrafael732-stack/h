@@ -1,0 +1,1 @@
+window.HURRAS_BESTIARIO_ORIGINAL=[];
