@@ -28,3 +28,46 @@
 .codex-text{white-space:pre-wrap;line-height:1.55;color:#e7dfd1}
 [hidden]{display:none!important}
 @media print{.archive-toolbar,.codex-toolbar,.archive-btn,.codex-btn,.noprint{display:none!important}.archive-grid,.codex-grid{display:block}.archive-card,.codex-card{break-inside:avoid;color:#111;background:#fff;border:1px solid #999;margin:10px 0}.archive-card *, .codex-card *{color:#111!important}.archive-details,.codex-details{display:block}.archive-pre,.codex-pre{font-size:10pt}}
+
+
+/* Trio do Thor: destaque com retrato, descrições e cálculos de dano legíveis. */
+.trio-section{max-width:1280px;margin:26px auto 38px;padding:22px;border:1px solid #977645;border-radius:18px;background:linear-gradient(150deg,#272027,#111719 75%);box-shadow:0 15px 38px #0006;color:#f0e7d7}
+.trio-eyebrow{display:inline-block;font-size:.78rem;letter-spacing:.14em;font-weight:800;color:#e3bd7d}
+.trio-intro h2{color:#ffe0a5;font-size:clamp(1.55rem,3vw,2.2rem);margin:8px 0 13px}
+.trio-intro p{max-width:1080px;line-height:1.64;color:#eee0d1;margin:10px 0}
+.trio-intro .trio-warning{border-left:4px solid #e8b76d;padding:13px 16px;border-radius:8px;background:rgba(190,129,43,.14)}
+.trio-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0}
+.trio-card{min-width:0;padding:14px;border:1px solid #7a6040;border-radius:13px;background:linear-gradient(150deg,#24262a,#17191c);overflow-wrap:anywhere;box-shadow:0 9px 23px #0005}
+.trio-card--thor{border:2px solid #e1b56c;background:linear-gradient(145deg,#34281f,#18232a 60%);box-shadow:0 0 25px #c49a5137}
+.trio-portrait{position:relative;display:flex;align-items:center;justify-content:center;margin:0 0 15px;width:100%;height:182px;overflow:hidden;border:1px solid #987442;border-radius:10px;background:radial-gradient(circle at 50% 32%,#6d7782,#24282e 70%);color:#ffe1a7}
+.trio-portrait img{width:100%;height:100%;object-fit:cover;object-position:center 29%;display:block}
+.trio-portrait--brynja{background:radial-gradient(circle at 50% 32%,#8a806e,#413c54 42%,#191e28 84%)}
+.trio-portrait--solveig{background:radial-gradient(circle at 48% 34%,#c39751,#60452e 44%,#192029 87%)}
+.trio-symbol{font-size:4.2rem;line-height:1;filter:drop-shadow(0 4px 14px #000)}
+.trio-portrait figcaption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,#0c1010ef);padding:25px 10px 8px;font-size:.74rem;text-align:center;color:#f5d9a7}
+.trio-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.trio-title-row h3{font-size:1.4rem;color:#f5d49b;margin:0}
+.trio-level{white-space:nowrap;font-size:.78rem;font-weight:750;padding:5px 9px;border-radius:40px;border:1px solid #ae8e58;background:#2e281d;color:#ffdc99}
+.trio-role{margin:7px 0;color:#cdbca7;font-size:.86rem}
+.trio-description{min-height:90px;color:#eee6db;font-size:.94rem;line-height:1.57}
+.trio-attributes{white-space:pre-wrap;line-height:1.7;color:#f9d9a8;border-top:1px solid #594b38;border-bottom:1px solid #594b38;padding:9px 0}
+.trio-weapon{font-size:.87rem;line-height:1.55;color:#d5d4d1;padding:9px;border-radius:8px;background:#24272a}
+.trio-card h4{color:#f4d59d;margin:16px 0 9px;font-size:1rem}
+.trio-attack{background:#171c20;border:1px solid #5b503f;border-radius:9px;padding:11px;margin:10px 0}
+.trio-attack>strong{display:block;color:#ffe0ad;margin-bottom:9px}
+.trio-damage-row{display:grid;gap:6px;font-size:.87rem;line-height:1.5}
+.trio-step{color:#e6dbce}
+.trio-step b{color:#dbb981}
+.trio-range{display:grid;gap:5px;border-top:1px dashed #5b4b36;margin-top:10px;padding-top:9px;font-size:.84rem;color:#c7dfbf}
+.trio-roll-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.trio-roll-btn{cursor:pointer;padding:8px 10px;background:#362d26;color:#f6d3a0;border:1px solid #957247;border-radius:7px;font-size:.85rem}
+.trio-roll-btn:hover,.trio-roll-btn:focus-visible{background:#63492c;outline-offset:3px}
+.trio-roll-output{display:block;min-height:1.4em;margin-top:7px;font-size:.82rem;color:#e8dcb7}
+.trio-more-attacks{margin:10px 0;border:1px solid #765b36;padding:9px 11px;border-radius:9px}
+.trio-more-attacks>summary{cursor:pointer;font-weight:700;color:#f1d29b;padding:5px 0}
+.trio-support{padding:11px;background:rgba(210,174,114,.08);border-left:3px solid #ba975b;border-radius:4px;font-size:.85rem;line-height:1.65;color:#e4dbc8;margin-top:15px}
+.trio-footnote{color:#c9c0b1;font-size:.84rem;line-height:1.5}
+.trio-error{padding:16px;border:1px solid #d4ad75;border-radius:8px;color:#f2cd97}
+@media(max-width:1120px){.trio-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.trio-card--thor{grid-column:span 2}.trio-card--thor .trio-portrait{height:235px}}
+@media(max-width:650px){.trio-section{padding:14px}.trio-grid{grid-template-columns:minmax(0,1fr);gap:13px}.trio-card--thor{grid-column:auto}.trio-card--thor .trio-portrait{height:175px}.trio-description{min-height:0}.trio-card{padding:12px}}
+@media print{.trio-section{background:#fff!important;color:#111;box-shadow:none;border-color:#999}.trio-grid{display:block}.trio-card,.trio-card--thor{background:#fff!important;box-shadow:none;border:1px solid #aaa;margin:10px 0;break-inside:avoid}.trio-section :is(h2,h3,h4,p,div,span,strong,b,summary){color:#111!important}.trio-roll-actions,.trio-roll-output{display:none!important}.trio-portrait{height:150px;max-width:265px}.trio-support{border-color:#555}.trio-more-attacks{display:block}}
