@@ -2,3 +2,37 @@
 @media(max-width:900px){.f-four{grid-template-columns:repeat(2,minmax(0,1fr))}.f-three{grid-template-columns:repeat(3,minmax(190px,1fr));overflow-x:auto;padding-bottom:4px}.f-lore{grid-template-columns:1fr}}
 @media(max-width:540px){main{padding:10px 9px 45px}.f-hero{padding:15px}.f-four{gap:7px}.f-three{grid-template-columns:repeat(3,minmax(185px,1fr))}.f-box{padding:8px}.f-section{padding:10px}.f-field{font-size:.72rem}.f-damage{padding:9px}}
 @media print{@page{size:A4;margin:8mm}body{background:white!important;color:black!important;font-size:10pt}.f-header,.f-hero,.f-controls,.f-notes,footer,.f-source{display:none!important}main{max-width:none;padding:0}.f-card{break-after:page;break-inside:avoid;background:white!important;color:black!important;border:1px solid #777;border-radius:0}.f-card-head,.f-section,.f-box,.f-damage,.f-power,.f-field{background:white!important;color:black!important;border-color:#999!important}.f-card :is(h2,h3,h4,strong,span,p,small){color:black!important}.f-four{grid-template-columns:repeat(4,minmax(0,1fr))}.f-three{grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}.f-lore{grid-template-columns:repeat(2,minmax(0,1fr))}.f-section{padding:7px}.f-field{padding:3px;font-size:8pt}.f-box{padding:6px}}
+
+/* Ataques adicionais: seis golpes com dano normal, equipado e condicional. */
+.f-moves{background:linear-gradient(145deg,#202a2a,#252523)}
+.f-moves-header{display:flex;justify-content:space-between;gap:12px;align-items:start}
+.f-moves-header h3{font:800 1.2rem/1.4 Georgia,serif;color:#ffe0a9;margin:0 0 6px}
+.f-moves-intro{color:#d9ddcd;font-size:.83rem;line-height:1.5;margin:0 0 14px}
+.f-moves-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.f-move-card{min-width:0;padding:13px;background:#172628;border:1px solid #7f785a;border-radius:12px;display:flex;flex-direction:column;gap:10px}
+.f-move-top{display:flex;justify-content:space-between;align-items:start;gap:8px;flex-wrap:wrap}
+.f-move-top small{display:block;color:#a9cabb;font-size:.68rem;font-weight:750}
+.f-move-top h4{font:800 1.03rem/1.35 Georgia,serif;margin:3px 0;color:#ffe0a2}
+.f-move-tag{padding:5px 8px;color:#fce8c2;border:1px solid #987a4f;background:#423928;border-radius:7px;font-size:.74rem;font-weight:750}
+.f-move-effect{margin:0;color:#e9e7d9;line-height:1.45;font-size:.84rem}
+.f-move-details{margin:0;color:#d4dacc;font-size:.75rem;line-height:1.5}
+.f-move-rule{border-left:2px solid #b99553;margin:0;padding:4px 9px;background:#282c25;font-size:.76rem;color:#e2d6bd}
+.f-move-variations{display:grid;gap:7px;margin-top:auto}
+.f-move-variation{border:1px solid #617167;border-radius:8px;padding:9px;background:#243330;min-width:0}
+.f-move-weapon{border-color:#a88b61;background:#372f26}
+.f-move-passive{border-color:#9186ad;background:#302d3f}
+.f-move-variation-label{display:block;color:#d7d4c2;font-weight:800;font-size:.73rem;margin-bottom:2px}
+.f-move-formula{display:block;font-size:.9rem;line-height:1.4;color:#fff0cb;overflow-wrap:anywhere}
+.f-move-roll-line{display:flex;flex-wrap:wrap;gap:8px;align-items:start;margin-top:5px}
+.f-roll{font-size:.73rem;cursor:pointer;padding:5px 9px;color:#f6e1ba;background:#4a3825;border:1px solid #a68b65;border-radius:7px;font-weight:850}
+.f-roll:focus-visible,.f-roll:hover{background:#72522e}
+.f-roll-result{font-size:.71rem;color:#cfe6d2;line-height:1.45}
+.f-move-roll-line small,.f-move-condition{font-size:.72rem;line-height:1.45;color:#d7d1bb}
+.f-move-condition{display:block;margin-top:4px}
+.f-original-moves{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:15px}
+.f-original-moves>h4{grid-column:1/-1;color:#f4d49a;margin:0}
+.f-original-move{background:#28352b;border:1px solid #89966d;border-radius:9px;padding:11px}
+.f-original-move strong{color:#ffe2a1}
+.f-original-move p{font-size:.82rem;line-height:1.5;color:#eae6d5;margin:5px 0 0}
+@media(max-width:770px){.f-moves-grid{grid-template-columns:1fr}.f-original-moves{grid-template-columns:1fr}}
+@media print{.f-moves,.f-move-card,.f-move-variation,.f-original-move{background:white!important;color:black!important;border-color:#aaa!important}.f-move-card{break-inside:avoid}.f-moves-grid{display:block}.f-move-card{margin:7px 0}.f-roll,.f-roll-result{display:none!important}.f-moves :is(h3,h4,p,strong,small,span){color:black!important}.f-card{break-inside:auto}}
