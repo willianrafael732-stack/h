@@ -6,6 +6,7 @@ const diceStr=parts=>parts?.length?parts.map(p=>p.count+"d10 "+p.type).join(" + 
 /* Pontos editáveis da coleção nórdica, sem sobrescrever o PDF original. */
 const POINT_KEY="hurras_nordicos26_pontos_v1";
 let pointState={};
+const fusionRefreshers=new Map();
 try{const data=JSON.parse(localStorage.getItem(POINT_KEY)||"{}");if(data&&typeof data==="object"&&!Array.isArray(data))pointState=data}catch(e){}
 function pointValue(c,scope,entry){
  const value=pointState[c.id]?.[scope+"|"+entry.name];
@@ -15,7 +16,7 @@ function savePoint(c,scope,entry,value){
  if(!pointState[c.id]||typeof pointState[c.id]!=="object")pointState[c.id]={};
  const key=scope+"|"+entry.name;
  if(value===entry.points)delete pointState[c.id][key];else pointState[c.id][key]=value;
- try{localStorage.setItem(POINT_KEY,JSON.stringify(pointState));return true}catch(e){return false}
+ try{localStorage.setItem(POINT_KEY,JSON.stringify(pointState));fusionRefreshers.get(c.id)?.refresh();return true}catch(e){return false}
 }
 function fDots(points,name){
  const value=Number(points),bar=make("span",null,"f-field-points");
@@ -101,7 +102,7 @@ function item(c){
   id:"26-"+c.id,settings:fusionFor(c),getLevel:element=>magicLevel(c,element),
   onChange:saveFusion
  });
- if(fusion)card.append(fusion.panel);
+ if(fusion){fusionRefreshers.set(c.id,fusion);card.append(fusion.panel)}
  const source=make("details",null,"f-source");source.append(make("summary","📜 Conferir os dados originais da ficha (PDF)"));
  const original=make("div",null,"f-source-content");
  for(const [label,value] of Object.entries(c.sourceSections)){const row=make("p");row.append(make("strong",label+": "),make("span",value));original.append(row)}
