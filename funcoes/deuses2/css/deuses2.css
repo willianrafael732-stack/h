@@ -319,3 +319,8 @@
 .d2-dot-track{display:block;flex:0 0 100%;width:100%;font-size:.79rem;line-height:1.4;letter-spacing:.07em;color:#f4ca79;overflow-wrap:anywhere}
 .d2-main-attribute{min-height:75px}
 @media print{.d2-dot-track{color:#111!important;letter-spacing:0}}
+
+/* Pontos das 27 habilidades editáveis. */
+.d2-skill-points{grid-column:1/-1;min-width:0}
+.d2-skill-points .d2-dot-track{font-size:.73rem;letter-spacing:.045em}
+@media print{.d2-skill-points .d2-dot-track{color:#111!important}}

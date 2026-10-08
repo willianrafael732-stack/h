@@ -833,7 +833,7 @@ function d2SkillsBoard(c,onEdit,editor){
    input.setAttribute("aria-label","Habilidade "+label+" de "+c.name);
    input.title="Edite os dados de "+label+" (salvamento automático)";
    input.value=String(Object.prototype.hasOwnProperty.call(s.attributes,key)?s.attributes[key]:(original??""));
-   const extra=el("small","","d2-skill-stat-extra");
+   const extra=el("small","","d2-skill-stat-extra"),points=el("div",null,"d2-skill-points");
    let prior=Object.prototype.hasOwnProperty.call(s.attributes,key)?s.attributes[key]:original;
    input.addEventListener("input",()=>{
      const raw=input.value.trim(),value=raw===""?null:Number(raw);
@@ -856,17 +856,18 @@ function d2SkillsBoard(c,onEdit,editor){
      const next=Object.prototype.hasOwnProperty.call(s.attributes,key)?s.attributes[key]:original;
      if(next!==prior){log(c,label+": "+(prior??"—")+" → "+(next??"—"),"habilidade");prior=next}
    });
-   row.append(name,input,extra);list.append(row);
-   inputRefs.push({input,extra,key,original});
+   row.append(name,input,points,extra);list.append(row);
+   inputRefs.push({input,extra,points,key,original});
   }
   card.append(list);columns.append(card);
  }
  container.append(columns,el("p","As alterações são salvas automaticamente e atualizam a ficha, os bônus da forma ativa e o PDF. Um traço indica dado não informado.","d2-skills-note"));
  function refresh(){
-  for(const {input,extra,key,original}of inputRefs){
+  for(const {input,extra,points,key,original}of inputRefs){
    const current=Object.prototype.hasOwnProperty.call(s.attributes,key)?s.attributes[key]:original;
    if(input!==document.activeElement)input.value=String(current??"");
    const bonus=d2FormBonus(c,key),effective=current===null?null:Number(current)+bonus;
+   points.replaceChildren(d2Dots(effective,key));
    extra.textContent=bonus>0&&effective!==null?"Com transformação: "+effective:(original!==null&&current!==null&&Number(current)!==original?"Original: "+original:"");
   }
  }
@@ -951,8 +952,6 @@ function sheetCard(c){
   det.append(editor);
   links.querySelectorAll?.("a").forEach(a=>{if(a.href?.includes("#d2-registro-"))a.addEventListener("click",()=>{editor.open=true})});
   const historic=d2Historical(c);if(historic)det.append(historic);
-  const exact=el("details",null,"d2-details-note");
-  exact.append(el("summary","📜 Ver transcrição integral sem alterações"),el("pre",c.raw));det.append(exact);
   refreshSheet();
  }
  det.addEventListener("toggle",()=>{if(det.open)build()});
