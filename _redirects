@@ -1,0 +1,3 @@
+# Antigas URLs da autenticação removida; manter links externos válidos
+/entrar/cadastro.html /index.html 301
+/entrar/tela-de-login.html /index.html 301

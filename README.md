@@ -14,15 +14,20 @@ Portal estático de RPG Nexalis, preparado para publicação no Netlify. A pági
 - **Ficha Dark Fantasy:** `funcoes/ficha-dark-fantasy.html`. Editor e sorteios em `funcoes/js/ficha-dark-fantasy.js`, aparência em `funcoes/css/ficha-dark-fantasy.css`. Usa chaves de armazenamento independentes das fichas clássicas. Permite sortear atributos, criar aleatório, imprimir e exportar/importar backup JSON.
 - As fichas e notas são salvas **neste navegador**, não nos repositórios do GitHub. Oriente os usuários a exportar cópias regulares.
 
-## Bestiário e NPCs
-- `funcoes/bestiario.html` + `funcoes/js/bestiario.js` + `funcoes/css/bestiario.css`: filtro, ordenação, impressão e exportação. Os **95 seres** exibem PV e dano médio indicativos; **não são dados oficiais de balanceamento**. Edite as entradas `DATA` no JavaScript se quiser mudar poderes ou níveis.
-- `funcoes/arquivo-npcs.html` + `funcoes/js/arquivo-npcs.js` + `funcoes/css/arquivo-npcs.css`: galeria com 43 NPCs e imagens existentes em `assets/`. Evite publicar notas secretas na página de jogador.
-- `animais/animais.html`: catálogo de animais comuns com PV, defesa, dano médio e ataques.
+## Deuses, bestiário e NPCs
+- **Deuses (versão principal):** `funcoes/deuses2/index.html`. Reúne 66 fichas da campanha, 228 divindades e figuras culturais, 8 capítulos do Ragnarök e o arquivo complementar de bestiário e NPCs. Código e estilos estão em `funcoes/deuses2/js/` e `funcoes/deuses2/css/`; os dados originais estão em `funcoes/deuses2/dados/`.
+- **Bestiário organizado:** `funcoes/bestiario/index.html`, com 142 registros citados pelo arquivo de campanha (110 fichas originais, 19 seres nórdicos e 13 adicionais). A página clássica `funcoes/bestiario.html` permanece para acesso antigo.
+- **NPCs:** `funcoes/arquivo-npcs.html` mostra o arquivo de 43 NPCs com imagens; `funcoes/npcs.html` apresenta os já conhecidos.
+- **Animais:** `animais/animais.html` inclui as criaturas e os companheiros.
+- Páginas antigas `funcoes/deuses.html` e `funcoes/deuses/index.html` **não devem ser excluídas**: redirecionam quem usa links antigos para o panteão atual. `funcoes/legado/` guarda cópias anteriores para recuperação.
 
 ## Manutenção e Netlify
 1. O site usa HTML, CSS e JavaScript, sem comando de build; não altere `netlify.toml` sem necessidade.
 2. Para adicionar uma nova página, inclua `<script defer src="../hurras-nav.js"></script>` no `<head>` (ou `hurras-nav.js` na raiz) e adicione o link à categoria adequada em `hurras-nav.js`.
 3. Mantenha caminhos e maiúsculas/minúsculas corretos: o Netlify distingue arquivos por capitalização.
 4. Não misture as chaves de `localStorage` e `IndexedDB` da ficha clássica com as do fichário Dark.
-5. A página de **mapas foi removida** da navegação e da publicação. Arquivos históricos de imagem podem ser retidos no repositório como backup para preservar as artes da campanha.
+5. A página de **mapas saiu da navegação**, mas as imagens em `funcoes/maps/` continuam incluídas na publicação porque `netlify.toml` publica a raiz do repositório. Não apague mapas ou imagens vinculadas sem verificar as referências.
 6. Teste a página inicial, botões aleatórios, salvamento, imagens, menu e impressão após cada implantação.
+
+7. As rotas antigas de cadastro e login são redirecionadas diretamente para o portal pelo arquivo `_redirects` do Netlify. Não é necessário reativar autenticação.
+8. Consulte `AUDITORIA_LIMPEZA.md` para os arquivos duplicados e cuidados antes de novas exclusões.
