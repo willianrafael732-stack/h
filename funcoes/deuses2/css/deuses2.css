@@ -65,3 +65,38 @@
 .d2-attr-group[open]>summary{background:#3c4333;color:#ffe3aa}
 @media(max-width:600px){.d2-weapon-section{margin:0 8px 11px;padding:13px}.d2-weapons{grid-template-columns:1fr}.d2-trait-rows{grid-template-columns:1fr}.d2-sheet-columns{padding:8px;gap:9px}.d2-pane{padding:11px}}
 @media print{.d2-weapon-section,.d2-weapon-card,.d2-trait-block,.d2-trait-row,.d2-ability-block{background:#fff!important;color:#111!important;border-color:#888!important;box-shadow:none!important}.d2-weapon-card h4,.d2-weapon-section>h3,.d2-weapon-kicker,.d2-damage-pill,.d2-ability-block h4,.d2-trait-block h4{color:#111!important;background:#fff!important}.d2-weapon-effects,.d2-weapon-effect{color:#111!important}}
+
+
+/* Fichas completas: ataque normal, variantes de bônus e versões anteriores */
+.d2-sheet-jumps{display:flex;flex-wrap:wrap;gap:8px;padding:2px 14px 16px}
+.d2-sheet-jumps a{display:inline-flex;align-items:center;justify-content:center;border:1px solid #8e8158;background:#28332b;color:#ffde9d;border-radius:99px;text-decoration:none;font-weight:750;font-size:.81rem;padding:7px 13px}
+.d2-sheet-jumps a:hover,.d2-sheet-jumps a:focus-visible{background:#4b4430}
+.d2-sheet-columns,.d2-weapon-section,.d2-battle,.d2-pane,.d2-buffs-section{scroll-margin-top:70px}
+.d2-damage-variants{display:grid;gap:8px;padding-top:14px;margin-top:12px;border-top:1px solid #927c4e}
+.d2-damage-variants h5{font-size:1rem;line-height:1.4;color:#f8dfaa;margin:0 0 6px}
+.d2-variation{border-radius:8px;padding:10px 12px;background:#211f1a;border:1px solid #796948;overflow-wrap:anywhere}
+.d2-variation:first-of-type{border-color:#dfb766;background:#343021}
+.d2-variation-header{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.d2-variation-header strong{color:#f5dda3;font-size:.86rem}
+.d2-variation-header button{border:1px solid #c9ac7d;background:#352d23;color:#f7d79b;border-radius:7px;padding:6px 10px;font-size:.82rem;font-weight:800}
+.d2-variation-formula{font:800 1rem/1.6 ui-monospace,Consolas,monospace;color:#ffeab9;margin:8px 0}
+.d2-variation-range{display:block;color:#d6ddc9;font-variant-numeric:tabular-nums}
+.d2-variation-hint{color:#b9bcae;font-size:.74rem;margin:6px 0 0}
+.d2-variation-roll{display:block;min-height:0;font-size:.83rem;color:#f4c87a;font-weight:800;margin-top:3px}
+.d2-buffs-section{margin:0 13px 14px;background:#1e2930;border:1px solid #8876a4;border-radius:12px;overflow:hidden}
+.d2-buffs-section>summary{cursor:pointer;padding:13px 16px;background:#343345;color:#e5d7ff;font-weight:850}
+.d2-buffs-note{font-size:.82rem;color:#c8c8d9;padding:0 14px}
+.d2-buff-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px;padding:0 14px 14px}
+.d2-buff-item{border:1px solid #665b80;background:#272638;border-radius:8px;padding:9px 11px;overflow-wrap:anywhere}
+.d2-buff-item strong{color:#e8d3ff;font-size:.84rem}.d2-buff-item p{font-size:.83rem;margin:5px 0 0}
+.d2-historical{margin:0 13px 15px;border:1px solid #797b79;border-radius:11px;overflow:hidden;background:#212629}
+.d2-historical>summary{cursor:pointer;padding:15px 17px;color:#ecdfbe;background:#323733;font-weight:850}
+.d2-historical-source{font-size:.84rem;color:#c4c7b9;margin:12px 15px}
+.d2-historical-warning{padding:12px 13px;margin:10px 15px;color:#f9dda5;background:#3d3425;border-left:3px solid #d4a65c;border-radius:5px;font-size:.83rem}
+.d2-historical-blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));align-items:start;gap:10px;padding:5px 15px 15px}
+.d2-historical-block{background:#151b1c;border:1px solid #4a5752;border-radius:8px;padding:12px;min-width:0}
+.d2-historical-block h5{font-size:.88rem;color:#e3c58e;margin:0 0 9px;overflow-wrap:anywhere}
+.d2-historical-block pre{margin:0;color:#e3e7e3;font:12.4px/1.65 ui-monospace,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+.d2-point-name{display:grid;gap:2px}.d2-point-original{display:block;color:#c8d39f;font-size:.71rem}
+@media(max-width:600px){.d2-sheet-jumps{padding:2px 9px 12px}.d2-buffs-section,.d2-historical{margin:0 8px 11px}.d2-historical-blocks{grid-template-columns:1fr}}
+@media print{.d2-variation,.d2-buffs-section,.d2-buff-item,.d2-historical,.d2-historical-block{background:#fff!important;color:#111!important;border-color:#777!important}.d2-variation-formula,.d2-variation-header strong,.d2-historical-block h5{color:#111!important}.d2-sheet-jumps,.d2-variation-header button{display:none!important}}
