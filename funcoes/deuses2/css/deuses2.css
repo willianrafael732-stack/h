@@ -291,3 +291,26 @@
 .d2-skills-note{color:#c3d0c7;font-size:.78rem;line-height:1.45;margin:12px 0 0}
 @media(max-width:720px){.d2-skills-board{margin:0 8px 13px;padding:11px}.d2-skills-columns{grid-template-columns:repeat(3,minmax(220px,1fr));overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:7px}.d2-skills-column{scroll-snap-align:start}}
 @media print{.d2-skills-board,.d2-skills-column,.d2-skill-stat{background:white!important;border-color:#777!important;break-inside:avoid}.d2-skills-column h4,.d2-skill-stat-name{color:black!important}}
+
+
+/* Três variações do ataque normal; bônus próprios e transformação ocupam o terceiro quadro. */
+.d2-attack-tier-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;padding:9px 0}
+.d2-attack-tier{display:flex;flex-direction:column;min-width:0;gap:8px;padding:14px;background:#202d2d;border:1px solid #6d8072;border-radius:10px;overflow-wrap:anywhere}
+.d2-attack-tier-base{border-color:#777c72}
+.d2-attack-tier-weapon{border-color:#b58e59;background:#342d26}
+.d2-attack-tier-form{border-color:#8d79b4;background:#302d42}
+.d2-attack-tier .d2-variation-header{display:flex;align-items:center;justify-content:space-between;gap:7px;flex-wrap:wrap}
+.d2-attack-tier .d2-variation-header strong{font-size:.93rem;line-height:1.4;color:#ffe2ad}
+.d2-attack-tier .d2-variation-formula{font-size:1.04rem;line-height:1.45;color:#f2eedb;font-weight:800;overflow-wrap:anywhere}
+.d2-attack-tier .d2-variation-hint{font-size:.79rem;line-height:1.5;color:#d1d7cb;margin:0}
+.d2-attack-tier .d2-variation-range{color:#c3d6c2;font-size:.73rem}
+.d2-attack-tier .d2-variation-header button:disabled{opacity:.44;cursor:not-allowed}
+.d2-attack-tier-sources{margin:0;padding-left:19px;color:#ecd6ae;display:grid;gap:4px;font-size:.77rem}
+.d2-form-attack-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:9px}
+.d2-form-attack-entry{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px;align-items:center;border-radius:9px;background:#293b3a;padding:10px}
+.d2-form-attack-entry>span{grid-column:1/-1;color:#f3deb6;font-size:.84rem}
+.d2-form-attack-entry input{width:100%;min-width:0;border:1px solid #789381;border-radius:7px;padding:9px;color:#f4ead0;background:#132325;text-align:center}
+.d2-form-attack-entry button{border:1px solid #ac935e;border-radius:7px;padding:7px 11px;background:#4d4330;color:#f8e6c1;cursor:pointer}
+@media(max-width:1060px){.d2-attack-tier-grid{grid-template-columns:1fr}}
+@media(max-width:620px){.d2-attack-tier-grid{grid-template-columns:1fr;gap:8px}.d2-attack-tier{padding:11px}.d2-attack-tier .d2-variation-formula{font-size:.98rem}}
+@media print{.d2-attack-tier,.d2-form-attack-entry{background:white!important;border-color:#777!important;break-inside:avoid}.d2-attack-tier .d2-variation-formula,.d2-attack-tier .d2-variation-header strong{color:black!important}}

@@ -46,7 +46,9 @@ function document(c,fields,stored,groups,parse,variantsFor,dynamicDetails){
  if(active){
   const bonus=Object.entries(active.bonuses||{}).filter(([key,value])=>Number.isInteger(Number(value))&&Number(value)>0);
   for(const [attr,value]of bonus)line(attr+": +"+value+"d10 (somente durante "+active.name+")",{indent:49});
-  if(!bonus.length)line("Forma nomeada, sem bonus de dados cadastrado.",{indent:49,color:soft,size:8});
+  const attackBonuses=Object.entries(active.damageBonuses||{}).filter(([type,value])=>Number.isInteger(Number(value))&&Number(value)>0);
+  for(const [type,value]of attackBonuses)line("Bônus de ataque "+type+": +"+value+"d10",{indent:49,bold:true});
+  if(!bonus.length&&!attackBonuses.length)line("Forma nomeada, sem bonus de dados cadastrado.",{indent:49,color:soft,size:8});
  }
  line("Regra: dados ajustados somente em golpes com vinculo de atributo e modalidade aplicavel.",{size:8.5,color:soft});
  section("Atributos, talentos, pericias e conhecimentos");
@@ -71,7 +73,9 @@ function document(c,fields,stored,groups,parse,variantsFor,dynamicDetails){
    if(typeof variantsFor==="function"){
      for(const entry of variantsFor(w,stored)){
        line(entry.name+": "+entry.formula,{indent:48,bold:true});
-       line("Dano teorico: "+entry.range,{indent:50,color:soft,size:8});
+       if(entry.range)line("Dano teorico: "+entry.range,{indent:50,color:soft,size:8});
+       if(entry.explanation)line(entry.explanation,{indent:50,color:soft,size:8});
+       for(const note of entry.notes||[])line(note,{indent:53,size:8,color:soft});
      }
    }
  }

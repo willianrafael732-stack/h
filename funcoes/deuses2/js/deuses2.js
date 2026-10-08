@@ -600,6 +600,36 @@ function d2TransformationPanel(c,onUpdate){
     selected.bonuses[select.value]=n;notify();refresh();
    });
    addRow.append(select,value,btn);bonuses.append(addRow);
+
+   bonuses.append(el("h5","⚔️ Bônus de dano da transformação"));
+   bonuses.append(el("p","Bônus próprios de ataque em d10, além dos dados de Força, Raio e outros atributos já configurados acima. Só valem enquanto esta forma estiver ativa; cada tipo só soma se a arma causar aquele dano.","d2-transform-help"));
+   const attackGrid=el("div",null,"d2-form-attack-list");
+   selected.damageBonuses??={};
+   for(const [type,diceAmount]of Object.entries(selected.damageBonuses)){
+    const line=el("label",null,"d2-form-attack-entry"),input=el("input");
+    line.append(el("span","Dano "+type+" (+d10)"));
+    input.type="number";input.min="0";input.max="500";input.step="1";input.value=diceAmount;
+    input.setAttribute("aria-label","Bônus de ataque da transformação "+type);
+    input.addEventListener("input",()=>{
+     const n=engine.integer(input.value,500);if(n===null)return;
+     selected.damageBonuses[type]=n;notify();
+    });
+    const remove=el("button","×");remove.type="button";remove.setAttribute("aria-label","Excluir bônus de ataque "+type);
+    remove.addEventListener("click",()=>{delete selected.damageBonuses[type];notify();refresh()});
+    line.append(input,remove);attackGrid.append(line);
+   }
+   bonuses.append(attackGrid);
+   const attackAdd=el("div",null,"d2-transform-add"),attackType=el("select"),attackNumber=el("input"),attackButton=el("button","＋ Bônus de ataque");
+   attackType.setAttribute("aria-label","Tipo do bônus de ataque");
+   for(const [type] of D2_ATTACK_ELEMENTS){const option=el("option",type);option.value=type;attackType.append(option)}
+   attackNumber.type="number";attackNumber.step="1";attackNumber.min="0";attackNumber.max="500";attackNumber.value="0";
+   attackNumber.setAttribute("aria-label","Dados d10 do bônus de ataque");
+   attackButton.type="button";attackButton.addEventListener("click",()=>{
+    const value=engine.integer(attackNumber.value,500);if(value===null)return;
+    selected.damageBonuses[attackType.value]=value;notify();refresh();
+   });
+   attackAdd.append(attackType,attackNumber,attackButton);bonuses.append(attackAdd);
+
   }
   suggestions.replaceChildren();
   const hints=d2TransformationHints(c);
@@ -617,7 +647,7 @@ function d2TransformationPanel(c,onUpdate){
  addBtn.addEventListener("click",()=>{
   const name=nameInput.value.trim();if(!name||name.length>60||model.forms.length>=12)return;
   const id="forma-"+Date.now()+"-"+(model.forms.length+1);
-  model.forms.push({id,name,bonuses:{}});model.active=id;nameInput.value="";
+  model.forms.push({id,name,bonuses:{},damageBonuses:{}});model.active=id;nameInput.value="";
   notify();refresh();wrap.open=true;
  });
  removeBtn.addEventListener("click",()=>{
