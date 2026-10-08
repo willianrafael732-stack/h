@@ -1,0 +1,6192 @@
+{
+  "format": "hurras-fichas-nordicas-26-v1",
+  "origin": "PDF enviado pelo usuário: Fichas_Deuses_Nordicos_HURRAS.pdf (páginas 2–27). Os valores são versões separadas e não substituem o banco da saga.",
+  "rules": "Dados d10; teste de dificuldade 5: 6–9 sucesso, 10 crítico, 1 falha crítica. O mestre define sucessos necessários.",
+  "count": 26,
+  "characters": [
+    {
+      "id": "pdf-nordico-01",
+      "order": 1,
+      "sourcePage": 2,
+      "title": "ODIN — Pai de Todos",
+      "name": "ODIN",
+      "level": 20,
+      "life": 200,
+      "mana": 150,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 16
+          },
+          {
+            "name": "Destreza",
+            "points": 14
+          },
+          {
+            "name": "Vigor",
+            "points": 17
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 23
+          },
+          {
+            "name": "Inteligência",
+            "points": 23
+          },
+          {
+            "name": "Reação",
+            "points": 19
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 18
+          },
+          {
+            "name": "Sagrado",
+            "points": 20
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 21
+          },
+          {
+            "name": "Manipulação",
+            "points": 19
+          },
+          {
+            "name": "Autocontrole",
+            "points": 17
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 16
+          },
+          {
+            "name": "Liderança",
+            "points": 23
+          },
+          {
+            "name": "Lábia",
+            "points": 23
+          },
+          {
+            "name": "Bloqueio",
+            "points": 17
+          },
+          {
+            "name": "Esquiva",
+            "points": 14
+          },
+          {
+            "name": "Briga",
+            "points": 16
+          },
+          {
+            "name": "Disparada",
+            "points": 14
+          },
+          {
+            "name": "Crítico",
+            "points": 19
+          },
+          {
+            "name": "Ocultismo",
+            "points": 18
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 14
+          },
+          {
+            "name": "Arma branca",
+            "points": 16
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 14
+          },
+          {
+            "name": "Armadura",
+            "points": 17
+          },
+          {
+            "name": "Investigação",
+            "points": 23
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 18
+          },
+          {
+            "name": "Selos",
+            "points": 18
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 23
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 17
+          }
+        ]
+      },
+      "weapon": "Gungnir",
+      "attacks": {
+        "base": [
+          {
+            "count": 16,
+            "type": "físico"
+          },
+          {
+            "count": 14,
+            "type": "mágico"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 4,
+            "type": "físico"
+          },
+          {
+            "count": 6,
+            "type": "mágico"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 20
+          },
+          {
+            "type": "mágico",
+            "count": 20
+          }
+        ],
+        "conditional": [],
+        "baseText": "16d10 físico + 14d10 mágico",
+        "bonusText": "+4d10 físico + 6d10 mágico"
+      },
+      "passive": "Visão das Runas: Antecipação: +3 sucessos na primeira defesa por cena",
+      "special": "Corvos de Odin — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Corvos de Odin Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Olho Rúnico; Fragmento de Gungnir",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "20 / 200 / 150",
+        "Atributos físicos": "Força 16 | Destreza 14 | Vigor 17",
+        "Atributos mentais": "Percepção 23 | Inteligência 23 | Reação 19",
+        "Atributos místicos": "Magia 18 | Sagrado 20",
+        "Atributos sociais": "Presença 21 | Manipulação 19 | Autocontrole 17",
+        "Habilidades (esquerda)": "Intimidação 16 | Liderança 23 | Lábia 23 | Bloqueio 17 | Esquiva 14 | Briga 16 | Disparada 14 | Crítico 19 | Ocultismo 18",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 14 | Arma branca 16 | Segurança 12 | Furtividade 14 | Armadura 17 | Investigação 23",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 18 | Selos 18 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 23 | Sobrevivência 17",
+        "Arma principal": "Gungnir",
+        "Ataque sem bônus": "16d10 físico + 14d10 mágico",
+        "Bônus de arma e poder": "+4d10 físico + 6d10 mágico",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Visão das Runas: Antecipação: +3 sucessos na primeira defesa por cena",
+        "Golpe especial": "Corvos de Odin — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Corvos de Odin Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Olho Rúnico; Fragmento de Gungnir"
+      }
+    },
+    {
+      "id": "pdf-nordico-02",
+      "order": 2,
+      "sourcePage": 3,
+      "title": "THOR — Deus do Trovão",
+      "name": "THOR",
+      "level": 20,
+      "life": 200,
+      "mana": 100,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 20
+          },
+          {
+            "name": "Destreza",
+            "points": 13
+          },
+          {
+            "name": "Vigor",
+            "points": 20
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 14
+          },
+          {
+            "name": "Inteligência",
+            "points": 11
+          },
+          {
+            "name": "Reação",
+            "points": 16
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 15
+          },
+          {
+            "name": "Sagrado",
+            "points": 10
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 9
+          },
+          {
+            "name": "Manipulação",
+            "points": 10
+          },
+          {
+            "name": "Autocontrole",
+            "points": 14
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 20
+          },
+          {
+            "name": "Liderança",
+            "points": 11
+          },
+          {
+            "name": "Lábia",
+            "points": 14
+          },
+          {
+            "name": "Bloqueio",
+            "points": 20
+          },
+          {
+            "name": "Esquiva",
+            "points": 13
+          },
+          {
+            "name": "Briga",
+            "points": 20
+          },
+          {
+            "name": "Disparada",
+            "points": 13
+          },
+          {
+            "name": "Crítico",
+            "points": 16
+          },
+          {
+            "name": "Ocultismo",
+            "points": 15
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 13
+          },
+          {
+            "name": "Arma branca",
+            "points": 20
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 13
+          },
+          {
+            "name": "Armadura",
+            "points": 20
+          },
+          {
+            "name": "Investigação",
+            "points": 14
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 15
+          },
+          {
+            "name": "Selos",
+            "points": 15
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 11
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 20
+          }
+        ]
+      },
+      "weapon": "Mjölnir",
+      "attacks": {
+        "base": [
+          {
+            "count": 20,
+            "type": "físico"
+          },
+          {
+            "count": 15,
+            "type": "raio"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 5,
+            "type": "físico"
+          },
+          {
+            "count": 5,
+            "type": "raio"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 25
+          },
+          {
+            "type": "raio",
+            "count": 20
+          }
+        ],
+        "conditional": [],
+        "baseText": "20d10 físico + 15d10 raio",
+        "bonusText": "+5d10 físico + 5d10 raio"
+      },
+      "passive": "Fúria do Trovão: Durante 3 turnos recebe +3d10 físico e resistência a raio",
+      "special": "Tempestade de Asgard — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Tempestade de Asgard Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Núcleo do Trovão; Cabo de Mjölnir",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "20 / 200 / 100",
+        "Atributos físicos": "Força 20 | Destreza 13 | Vigor 20",
+        "Atributos mentais": "Percepção 14 | Inteligência 11 | Reação 16",
+        "Atributos místicos": "Magia 15 | Sagrado 10",
+        "Atributos sociais": "Presença 9 | Manipulação 10 | Autocontrole 14",
+        "Habilidades (esquerda)": "Intimidação 20 | Liderança 11 | Lábia 14 | Bloqueio 20 | Esquiva 13 | Briga 20 | Disparada 13 | Crítico 16 | Ocultismo 15",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 13 | Arma branca 20 | Segurança 12 | Furtividade 13 | Armadura 20 | Investigação 14",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 15 | Selos 15 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 11 | Sobrevivência 20",
+        "Arma principal": "Mjölnir",
+        "Ataque sem bônus": "20d10 físico + 15d10 raio",
+        "Bônus de arma e poder": "+5d10 físico + 5d10 raio",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Fúria do Trovão: Durante 3 turnos recebe +3d10 físico e resistência a raio",
+        "Golpe especial": "Tempestade de Asgard — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Tempestade de Asgard Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Núcleo do Trovão; Cabo de Mjölnir"
+      }
+    },
+    {
+      "id": "pdf-nordico-03",
+      "order": 3,
+      "sourcePage": 4,
+      "title": "LOKI — Deus da Astúcia",
+      "name": "LOKI",
+      "level": 19,
+      "life": 165,
+      "mana": 160,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 11
+          },
+          {
+            "name": "Destreza",
+            "points": 20
+          },
+          {
+            "name": "Vigor",
+            "points": 13
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 21
+          },
+          {
+            "name": "Inteligência",
+            "points": 22
+          },
+          {
+            "name": "Reação",
+            "points": 22
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 20
+          },
+          {
+            "name": "Sagrado",
+            "points": 5
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 20
+          },
+          {
+            "name": "Manipulação",
+            "points": 17
+          },
+          {
+            "name": "Autocontrole",
+            "points": 20
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 11
+          },
+          {
+            "name": "Liderança",
+            "points": 22
+          },
+          {
+            "name": "Lábia",
+            "points": 21
+          },
+          {
+            "name": "Bloqueio",
+            "points": 13
+          },
+          {
+            "name": "Esquiva",
+            "points": 20
+          },
+          {
+            "name": "Briga",
+            "points": 11
+          },
+          {
+            "name": "Disparada",
+            "points": 20
+          },
+          {
+            "name": "Crítico",
+            "points": 22
+          },
+          {
+            "name": "Ocultismo",
+            "points": 20
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 20
+          },
+          {
+            "name": "Arma branca",
+            "points": 11
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 20
+          },
+          {
+            "name": "Armadura",
+            "points": 13
+          },
+          {
+            "name": "Investigação",
+            "points": 21
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 20
+          },
+          {
+            "name": "Selos",
+            "points": 20
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 22
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 13
+          }
+        ]
+      },
+      "weapon": "Adagas Ilusórias",
+      "attacks": {
+        "base": [
+          {
+            "count": 11,
+            "type": "físico"
+          },
+          {
+            "count": 12,
+            "type": "mágico"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 3,
+            "type": "físico"
+          },
+          {
+            "count": 6,
+            "type": "mágico"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 14
+          },
+          {
+            "type": "mágico",
+            "count": 18
+          }
+        ],
+        "conditional": [],
+        "baseText": "11d10 físico + 12d10 mágico",
+        "bonusText": "+3d10 físico + 6d10 mágico"
+      },
+      "passive": "Metamorfose: Assume outra forma e recebe +4d10 em enganação",
+      "special": "Labirinto de Espelhos — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Labirinto de Espelhos Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Máscara das Mil Faces",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "19 / 165 / 160",
+        "Atributos físicos": "Força 11 | Destreza 20 | Vigor 13",
+        "Atributos mentais": "Percepção 21 | Inteligência 22 | Reação 22",
+        "Atributos místicos": "Magia 20 | Sagrado 5",
+        "Atributos sociais": "Presença 20 | Manipulação 17 | Autocontrole 20",
+        "Habilidades (esquerda)": "Intimidação 11 | Liderança 22 | Lábia 21 | Bloqueio 13 | Esquiva 20 | Briga 11 | Disparada 20 | Crítico 22 | Ocultismo 20",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 20 | Arma branca 11 | Segurança 12 | Furtividade 20 | Armadura 13 | Investigação 21",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 20 | Selos 20 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 22 | Sobrevivência 13",
+        "Arma principal": "Adagas Ilusórias",
+        "Ataque sem bônus": "11d10 físico + 12d10 mágico",
+        "Bônus de arma e poder": "+3d10 físico + 6d10 mágico",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Metamorfose: Assume outra forma e recebe +4d10 em enganação",
+        "Golpe especial": "Labirinto de Espelhos — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Labirinto de Espelhos Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Máscara das Mil Faces"
+      }
+    },
+    {
+      "id": "pdf-nordico-04",
+      "order": 4,
+      "sourcePage": 5,
+      "title": "HEIMDALL — Guardião da Bifröst",
+      "name": "HEIMDALL",
+      "level": 19,
+      "life": 190,
+      "mana": 115,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 17
+          },
+          {
+            "name": "Destreza",
+            "points": 19
+          },
+          {
+            "name": "Vigor",
+            "points": 18
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 24
+          },
+          {
+            "name": "Inteligência",
+            "points": 17
+          },
+          {
+            "name": "Reação",
+            "points": 23
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 12
+          },
+          {
+            "name": "Sagrado",
+            "points": 17
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 15
+          },
+          {
+            "name": "Manipulação",
+            "points": 20
+          },
+          {
+            "name": "Autocontrole",
+            "points": 21
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 17
+          },
+          {
+            "name": "Liderança",
+            "points": 17
+          },
+          {
+            "name": "Lábia",
+            "points": 24
+          },
+          {
+            "name": "Bloqueio",
+            "points": 18
+          },
+          {
+            "name": "Esquiva",
+            "points": 19
+          },
+          {
+            "name": "Briga",
+            "points": 17
+          },
+          {
+            "name": "Disparada",
+            "points": 19
+          },
+          {
+            "name": "Crítico",
+            "points": 23
+          },
+          {
+            "name": "Ocultismo",
+            "points": 12
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 19
+          },
+          {
+            "name": "Arma branca",
+            "points": 17
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 19
+          },
+          {
+            "name": "Armadura",
+            "points": 18
+          },
+          {
+            "name": "Investigação",
+            "points": 24
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 12
+          },
+          {
+            "name": "Selos",
+            "points": 12
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 17
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 18
+          }
+        ]
+      },
+      "weapon": "Hofund",
+      "attacks": {
+        "base": [
+          {
+            "count": 17,
+            "type": "físico"
+          },
+          {
+            "count": 9,
+            "type": "sagrado"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 4,
+            "type": "físico"
+          },
+          {
+            "count": 4,
+            "type": "sagrado"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 21
+          },
+          {
+            "type": "sagrado",
+            "count": 13
+          }
+        ],
+        "conditional": [],
+        "baseText": "17d10 físico + 9d10 sagrado",
+        "bonusText": "+4d10 físico + 4d10 sagrado"
+      },
+      "passive": "Visão do Futuro: +2 sucessos em perceber furtividade; uma vez por rodada pode repetir defesa",
+      "special": "Chamado do Gjallarhorn — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Chamado do Gjallarhorn Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Fragmento de Hofund",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "19 / 190 / 115",
+        "Atributos físicos": "Força 17 | Destreza 19 | Vigor 18",
+        "Atributos mentais": "Percepção 24 | Inteligência 17 | Reação 23",
+        "Atributos místicos": "Magia 12 | Sagrado 17",
+        "Atributos sociais": "Presença 15 | Manipulação 20 | Autocontrole 21",
+        "Habilidades (esquerda)": "Intimidação 17 | Liderança 17 | Lábia 24 | Bloqueio 18 | Esquiva 19 | Briga 17 | Disparada 19 | Crítico 23 | Ocultismo 12",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 19 | Arma branca 17 | Segurança 12 | Furtividade 19 | Armadura 18 | Investigação 24",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 12 | Selos 12 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 17 | Sobrevivência 18",
+        "Arma principal": "Hofund",
+        "Ataque sem bônus": "17d10 físico + 9d10 sagrado",
+        "Bônus de arma e poder": "+4d10 físico + 4d10 sagrado",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Visão do Futuro: +2 sucessos em perceber furtividade; uma vez por rodada pode repetir defesa",
+        "Golpe especial": "Chamado do Gjallarhorn — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Chamado do Gjallarhorn Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Fragmento de Hofund"
+      }
+    },
+    {
+      "id": "pdf-nordico-05",
+      "order": 5,
+      "sourcePage": 6,
+      "title": "FREYJA — Deusa da Magia",
+      "name": "FREYJA",
+      "level": 19,
+      "life": 170,
+      "mana": 190,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 12
+          },
+          {
+            "name": "Destreza",
+            "points": 19
+          },
+          {
+            "name": "Vigor",
+            "points": 15
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 20
+          },
+          {
+            "name": "Inteligência",
+            "points": 22
+          },
+          {
+            "name": "Reação",
+            "points": 19
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 23
+          },
+          {
+            "name": "Sagrado",
+            "points": 19
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 20
+          },
+          {
+            "name": "Manipulação",
+            "points": 16
+          },
+          {
+            "name": "Autocontrole",
+            "points": 17
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 12
+          },
+          {
+            "name": "Liderança",
+            "points": 22
+          },
+          {
+            "name": "Lábia",
+            "points": 20
+          },
+          {
+            "name": "Bloqueio",
+            "points": 15
+          },
+          {
+            "name": "Esquiva",
+            "points": 19
+          },
+          {
+            "name": "Briga",
+            "points": 12
+          },
+          {
+            "name": "Disparada",
+            "points": 19
+          },
+          {
+            "name": "Crítico",
+            "points": 19
+          },
+          {
+            "name": "Ocultismo",
+            "points": 23
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 19
+          },
+          {
+            "name": "Arma branca",
+            "points": 12
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 19
+          },
+          {
+            "name": "Armadura",
+            "points": 15
+          },
+          {
+            "name": "Investigação",
+            "points": 20
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 23
+          },
+          {
+            "name": "Selos",
+            "points": 23
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 22
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 15
+          }
+        ]
+      },
+      "weapon": "Brísingamen",
+      "attacks": {
+        "base": [
+          {
+            "count": 10,
+            "type": "físico"
+          },
+          {
+            "count": 18,
+            "type": "mágico"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 2,
+            "type": "físico"
+          },
+          {
+            "count": 6,
+            "type": "mágico"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 12
+          },
+          {
+            "type": "mágico",
+            "count": 24
+          }
+        ],
+        "conditional": [],
+        "baseText": "10d10 físico + 18d10 mágico",
+        "bonusText": "+2d10 físico + 6d10 mágico"
+      },
+      "passive": "Seiðr: Pode enfeitiçar um alvo por 1 turno mediante teste resistido",
+      "special": "Chuva de Estrelas — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Chuva de Estrelas Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Pena do Manto de Falcão",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "19 / 170 / 190",
+        "Atributos físicos": "Força 12 | Destreza 19 | Vigor 15",
+        "Atributos mentais": "Percepção 20 | Inteligência 22 | Reação 19",
+        "Atributos místicos": "Magia 23 | Sagrado 19",
+        "Atributos sociais": "Presença 20 | Manipulação 16 | Autocontrole 17",
+        "Habilidades (esquerda)": "Intimidação 12 | Liderança 22 | Lábia 20 | Bloqueio 15 | Esquiva 19 | Briga 12 | Disparada 19 | Crítico 19 | Ocultismo 23",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 19 | Arma branca 12 | Segurança 12 | Furtividade 19 | Armadura 15 | Investigação 20",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 23 | Selos 23 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 22 | Sobrevivência 15",
+        "Arma principal": "Brísingamen",
+        "Ataque sem bônus": "10d10 físico + 18d10 mágico",
+        "Bônus de arma e poder": "+2d10 físico + 6d10 mágico",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Seiðr: Pode enfeitiçar um alvo por 1 turno mediante teste resistido",
+        "Golpe especial": "Chuva de Estrelas — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Chuva de Estrelas Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Pena do Manto de Falcão"
+      }
+    },
+    {
+      "id": "pdf-nordico-06",
+      "order": 6,
+      "sourcePage": 7,
+      "title": "FREYR — Deus da Fertilidade",
+      "name": "FREYR",
+      "level": 18,
+      "life": 180,
+      "mana": 145,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 16
+          },
+          {
+            "name": "Destreza",
+            "points": 17
+          },
+          {
+            "name": "Vigor",
+            "points": 18
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 18
+          },
+          {
+            "name": "Inteligência",
+            "points": 17
+          },
+          {
+            "name": "Reação",
+            "points": 17
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 18
+          },
+          {
+            "name": "Sagrado",
+            "points": 19
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 15
+          },
+          {
+            "name": "Manipulação",
+            "points": 14
+          },
+          {
+            "name": "Autocontrole",
+            "points": 15
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 16
+          },
+          {
+            "name": "Liderança",
+            "points": 17
+          },
+          {
+            "name": "Lábia",
+            "points": 18
+          },
+          {
+            "name": "Bloqueio",
+            "points": 18
+          },
+          {
+            "name": "Esquiva",
+            "points": 17
+          },
+          {
+            "name": "Briga",
+            "points": 16
+          },
+          {
+            "name": "Disparada",
+            "points": 17
+          },
+          {
+            "name": "Crítico",
+            "points": 17
+          },
+          {
+            "name": "Ocultismo",
+            "points": 18
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 17
+          },
+          {
+            "name": "Arma branca",
+            "points": 16
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 17
+          },
+          {
+            "name": "Armadura",
+            "points": 18
+          },
+          {
+            "name": "Investigação",
+            "points": 18
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 18
+          },
+          {
+            "name": "Selos",
+            "points": 18
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 17
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 18
+          }
+        ]
+      },
+      "weapon": "Espada Solar",
+      "attacks": {
+        "base": [
+          {
+            "count": 16,
+            "type": "físico"
+          },
+          {
+            "count": 12,
+            "type": "sagrado"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 4,
+            "type": "físico"
+          },
+          {
+            "count": 5,
+            "type": "sagrado"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 20
+          },
+          {
+            "type": "sagrado",
+            "count": 17
+          }
+        ],
+        "conditional": [],
+        "baseText": "16d10 físico + 12d10 sagrado",
+        "bonusText": "+4d10 físico + 5d10 sagrado"
+      },
+      "passive": "Luz da Colheita: Cura 15 Vitalidade dos aliados em 8m, 1 vez por cena",
+      "special": "Aurora da Prosperidade — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Aurora da Prosperidade Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Semente Solar",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "18 / 180 / 145",
+        "Atributos físicos": "Força 16 | Destreza 17 | Vigor 18",
+        "Atributos mentais": "Percepção 18 | Inteligência 17 | Reação 17",
+        "Atributos místicos": "Magia 18 | Sagrado 19",
+        "Atributos sociais": "Presença 15 | Manipulação 14 | Autocontrole 15",
+        "Habilidades (esquerda)": "Intimidação 16 | Liderança 17 | Lábia 18 | Bloqueio 18 | Esquiva 17 | Briga 16 | Disparada 17 | Crítico 17 | Ocultismo 18",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 17 | Arma branca 16 | Segurança 12 | Furtividade 17 | Armadura 18 | Investigação 18",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 18 | Selos 18 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 17 | Sobrevivência 18",
+        "Arma principal": "Espada Solar",
+        "Ataque sem bônus": "16d10 físico + 12d10 sagrado",
+        "Bônus de arma e poder": "+4d10 físico + 5d10 sagrado",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Luz da Colheita: Cura 15 Vitalidade dos aliados em 8m, 1 vez por cena",
+        "Golpe especial": "Aurora da Prosperidade — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Aurora da Prosperidade Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Semente Solar"
+      }
+    },
+    {
+      "id": "pdf-nordico-07",
+      "order": 7,
+      "sourcePage": 8,
+      "title": "TYR — Deus da Justiça",
+      "name": "TYR",
+      "level": 19,
+      "life": 195,
+      "mana": 95,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 19
+          },
+          {
+            "name": "Destreza",
+            "points": 16
+          },
+          {
+            "name": "Vigor",
+            "points": 19
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 18
+          },
+          {
+            "name": "Inteligência",
+            "points": 16
+          },
+          {
+            "name": "Reação",
+            "points": 18
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 9
+          },
+          {
+            "name": "Sagrado",
+            "points": 17
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 14
+          },
+          {
+            "name": "Manipulação",
+            "points": 14
+          },
+          {
+            "name": "Autocontrole",
+            "points": 16
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 19
+          },
+          {
+            "name": "Liderança",
+            "points": 16
+          },
+          {
+            "name": "Lábia",
+            "points": 18
+          },
+          {
+            "name": "Bloqueio",
+            "points": 19
+          },
+          {
+            "name": "Esquiva",
+            "points": 16
+          },
+          {
+            "name": "Briga",
+            "points": 19
+          },
+          {
+            "name": "Disparada",
+            "points": 16
+          },
+          {
+            "name": "Crítico",
+            "points": 18
+          },
+          {
+            "name": "Ocultismo",
+            "points": 9
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 16
+          },
+          {
+            "name": "Arma branca",
+            "points": 19
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 16
+          },
+          {
+            "name": "Armadura",
+            "points": 19
+          },
+          {
+            "name": "Investigação",
+            "points": 18
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 9
+          },
+          {
+            "name": "Selos",
+            "points": 9
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 16
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 19
+          }
+        ]
+      },
+      "weapon": "Lâmina do Juramento",
+      "attacks": {
+        "base": [
+          {
+            "count": 19,
+            "type": "físico"
+          },
+          {
+            "count": 6,
+            "type": "sagrado"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 5,
+            "type": "físico"
+          },
+          {
+            "count": 3,
+            "type": "sagrado"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 24
+          },
+          {
+            "type": "sagrado",
+            "count": 9
+          }
+        ],
+        "conditional": [],
+        "baseText": "19d10 físico + 6d10 sagrado",
+        "bonusText": "+5d10 físico + 3d10 sagrado"
+      },
+      "passive": "Juramento de Guerra: +3d10 bloqueio enquanto protege um aliado",
+      "special": "Veredito da Espada — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Veredito da Espada Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Selo da Justiça",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "19 / 195 / 95",
+        "Atributos físicos": "Força 19 | Destreza 16 | Vigor 19",
+        "Atributos mentais": "Percepção 18 | Inteligência 16 | Reação 18",
+        "Atributos místicos": "Magia 9 | Sagrado 17",
+        "Atributos sociais": "Presença 14 | Manipulação 14 | Autocontrole 16",
+        "Habilidades (esquerda)": "Intimidação 19 | Liderança 16 | Lábia 18 | Bloqueio 19 | Esquiva 16 | Briga 19 | Disparada 16 | Crítico 18 | Ocultismo 9",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 16 | Arma branca 19 | Segurança 12 | Furtividade 16 | Armadura 19 | Investigação 18",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 9 | Selos 9 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 16 | Sobrevivência 19",
+        "Arma principal": "Lâmina do Juramento",
+        "Ataque sem bônus": "19d10 físico + 6d10 sagrado",
+        "Bônus de arma e poder": "+5d10 físico + 3d10 sagrado",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Juramento de Guerra: +3d10 bloqueio enquanto protege um aliado",
+        "Golpe especial": "Veredito da Espada — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Veredito da Espada Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Selo da Justiça"
+      }
+    },
+    {
+      "id": "pdf-nordico-08",
+      "order": 8,
+      "sourcePage": 9,
+      "title": "BALDR — Deus da Luz",
+      "name": "BALDR",
+      "level": 19,
+      "life": 185,
+      "mana": 170,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 15
+          },
+          {
+            "name": "Destreza",
+            "points": 18
+          },
+          {
+            "name": "Vigor",
+            "points": 17
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 20
+          },
+          {
+            "name": "Inteligência",
+            "points": 19
+          },
+          {
+            "name": "Reação",
+            "points": 18
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 18
+          },
+          {
+            "name": "Sagrado",
+            "points": 24
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 17
+          },
+          {
+            "name": "Manipulação",
+            "points": 16
+          },
+          {
+            "name": "Autocontrole",
+            "points": 16
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 15
+          },
+          {
+            "name": "Liderança",
+            "points": 19
+          },
+          {
+            "name": "Lábia",
+            "points": 20
+          },
+          {
+            "name": "Bloqueio",
+            "points": 17
+          },
+          {
+            "name": "Esquiva",
+            "points": 18
+          },
+          {
+            "name": "Briga",
+            "points": 15
+          },
+          {
+            "name": "Disparada",
+            "points": 18
+          },
+          {
+            "name": "Crítico",
+            "points": 18
+          },
+          {
+            "name": "Ocultismo",
+            "points": 18
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 18
+          },
+          {
+            "name": "Arma branca",
+            "points": 15
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 18
+          },
+          {
+            "name": "Armadura",
+            "points": 17
+          },
+          {
+            "name": "Investigação",
+            "points": 20
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 18
+          },
+          {
+            "name": "Selos",
+            "points": 18
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 19
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 17
+          }
+        ]
+      },
+      "weapon": "Lança Radiante",
+      "attacks": {
+        "base": [
+          {
+            "count": 15,
+            "type": "físico"
+          },
+          {
+            "count": 15,
+            "type": "sagrado"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 3,
+            "type": "físico"
+          },
+          {
+            "count": 7,
+            "type": "sagrado"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 18
+          },
+          {
+            "type": "sagrado",
+            "count": 22
+          }
+        ],
+        "conditional": [],
+        "baseText": "15d10 físico + 15d10 sagrado",
+        "bonusText": "+3d10 físico + 7d10 sagrado"
+      },
+      "passive": "Corpo Luminoso: Reduz dano recebido em 20%, exceto de visco encantado",
+      "special": "Explosão da Alvorada — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Explosão da Alvorada Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Lágrima da Luz",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "19 / 185 / 170",
+        "Atributos físicos": "Força 15 | Destreza 18 | Vigor 17",
+        "Atributos mentais": "Percepção 20 | Inteligência 19 | Reação 18",
+        "Atributos místicos": "Magia 18 | Sagrado 24",
+        "Atributos sociais": "Presença 17 | Manipulação 16 | Autocontrole 16",
+        "Habilidades (esquerda)": "Intimidação 15 | Liderança 19 | Lábia 20 | Bloqueio 17 | Esquiva 18 | Briga 15 | Disparada 18 | Crítico 18 | Ocultismo 18",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 18 | Arma branca 15 | Segurança 12 | Furtividade 18 | Armadura 17 | Investigação 20",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 18 | Selos 18 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 19 | Sobrevivência 17",
+        "Arma principal": "Lança Radiante",
+        "Ataque sem bônus": "15d10 físico + 15d10 sagrado",
+        "Bônus de arma e poder": "+3d10 físico + 7d10 sagrado",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Corpo Luminoso: Reduz dano recebido em 20%, exceto de visco encantado",
+        "Golpe especial": "Explosão da Alvorada — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Explosão da Alvorada Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Lágrima da Luz"
+      }
+    },
+    {
+      "id": "pdf-nordico-09",
+      "order": 9,
+      "sourcePage": 10,
+      "title": "HEL — Rainha de Helheim",
+      "name": "HEL",
+      "level": 20,
+      "life": 210,
+      "mana": 190,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 14
+          },
+          {
+            "name": "Destreza",
+            "points": 15
+          },
+          {
+            "name": "Vigor",
+            "points": 20
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 21
+          },
+          {
+            "name": "Inteligência",
+            "points": 22
+          },
+          {
+            "name": "Reação",
+            "points": 16
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 24
+          },
+          {
+            "name": "Sagrado",
+            "points": 8
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 20
+          },
+          {
+            "name": "Manipulação",
+            "points": 17
+          },
+          {
+            "name": "Autocontrole",
+            "points": 14
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 14
+          },
+          {
+            "name": "Liderança",
+            "points": 22
+          },
+          {
+            "name": "Lábia",
+            "points": 21
+          },
+          {
+            "name": "Bloqueio",
+            "points": 20
+          },
+          {
+            "name": "Esquiva",
+            "points": 15
+          },
+          {
+            "name": "Briga",
+            "points": 14
+          },
+          {
+            "name": "Disparada",
+            "points": 15
+          },
+          {
+            "name": "Crítico",
+            "points": 16
+          },
+          {
+            "name": "Ocultismo",
+            "points": 24
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 15
+          },
+          {
+            "name": "Arma branca",
+            "points": 14
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 15
+          },
+          {
+            "name": "Armadura",
+            "points": 20
+          },
+          {
+            "name": "Investigação",
+            "points": 21
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 24
+          },
+          {
+            "name": "Selos",
+            "points": 24
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 22
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 20
+          }
+        ]
+      },
+      "weapon": "Cetro dos Mortos",
+      "attacks": {
+        "base": [
+          {
+            "count": 12,
+            "type": "físico"
+          },
+          {
+            "count": 20,
+            "type": "morte"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 3,
+            "type": "físico"
+          },
+          {
+            "count": 7,
+            "type": "morte"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 15
+          },
+          {
+            "type": "morte",
+            "count": 27
+          }
+        ],
+        "conditional": [
+          {
+            "count": 30,
+            "type": "morte"
+          }
+        ],
+        "baseText": "12d10 físico + 20d10 morte",
+        "bonusText": "+3d10 físico + 7d10 morte"
+      },
+      "passive": "Último Suspiro de Hel: Ao cair a 0 PV, libera 30d10 morte em área de 30m, uma vez",
+      "special": "Portões de Helheim — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Portões de Helheim Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Coroa do Submundo",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "20 / 210 / 190",
+        "Atributos físicos": "Força 14 | Destreza 15 | Vigor 20",
+        "Atributos mentais": "Percepção 21 | Inteligência 22 | Reação 16",
+        "Atributos místicos": "Magia 24 | Sagrado 8",
+        "Atributos sociais": "Presença 20 | Manipulação 17 | Autocontrole 14",
+        "Habilidades (esquerda)": "Intimidação 14 | Liderança 22 | Lábia 21 | Bloqueio 20 | Esquiva 15 | Briga 14 | Disparada 15 | Crítico 16 | Ocultismo 24",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 15 | Arma branca 14 | Segurança 12 | Furtividade 15 | Armadura 20 | Investigação 21",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 24 | Selos 24 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 22 | Sobrevivência 20",
+        "Arma principal": "Cetro dos Mortos",
+        "Ataque sem bônus": "12d10 físico + 20d10 morte",
+        "Bônus de arma e poder": "+3d10 físico + 7d10 morte",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Último Suspiro de Hel: Ao cair a 0 PV, libera 30d10 morte em área de 30m, uma vez",
+        "Golpe especial": "Portões de Helheim — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Portões de Helheim Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Coroa do Submundo"
+      }
+    },
+    {
+      "id": "pdf-nordico-10",
+      "order": 10,
+      "sourcePage": 11,
+      "title": "FRIGG — Rainha de Asgard",
+      "name": "FRIGG",
+      "level": 19,
+      "life": 175,
+      "mana": 195,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 12
+          },
+          {
+            "name": "Destreza",
+            "points": 16
+          },
+          {
+            "name": "Vigor",
+            "points": 16
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 22
+          },
+          {
+            "name": "Inteligência",
+            "points": 23
+          },
+          {
+            "name": "Reação",
+            "points": 20
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 22
+          },
+          {
+            "name": "Sagrado",
+            "points": 23
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 21
+          },
+          {
+            "name": "Manipulação",
+            "points": 18
+          },
+          {
+            "name": "Autocontrole",
+            "points": 18
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 12
+          },
+          {
+            "name": "Liderança",
+            "points": 23
+          },
+          {
+            "name": "Lábia",
+            "points": 22
+          },
+          {
+            "name": "Bloqueio",
+            "points": 16
+          },
+          {
+            "name": "Esquiva",
+            "points": 16
+          },
+          {
+            "name": "Briga",
+            "points": 12
+          },
+          {
+            "name": "Disparada",
+            "points": 16
+          },
+          {
+            "name": "Crítico",
+            "points": 20
+          },
+          {
+            "name": "Ocultismo",
+            "points": 22
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 16
+          },
+          {
+            "name": "Arma branca",
+            "points": 12
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 16
+          },
+          {
+            "name": "Armadura",
+            "points": 16
+          },
+          {
+            "name": "Investigação",
+            "points": 22
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 22
+          },
+          {
+            "name": "Selos",
+            "points": 22
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 23
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 16
+          }
+        ]
+      },
+      "weapon": "Fuso do Destino",
+      "attacks": {
+        "base": [
+          {
+            "count": 9,
+            "type": "físico"
+          },
+          {
+            "count": 18,
+            "type": "sagrado"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 2,
+            "type": "físico"
+          },
+          {
+            "count": 6,
+            "type": "sagrado"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 11
+          },
+          {
+            "type": "sagrado",
+            "count": 24
+          }
+        ],
+        "conditional": [],
+        "baseText": "9d10 físico + 18d10 sagrado",
+        "bonusText": "+2d10 físico + 6d10 sagrado"
+      },
+      "passive": "Trama do Destino: Uma vez por cena força um inimigo a repetir um ataque",
+      "special": "Fios do Porvir — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Fios do Porvir Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Fio do Destino",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "19 / 175 / 195",
+        "Atributos físicos": "Força 12 | Destreza 16 | Vigor 16",
+        "Atributos mentais": "Percepção 22 | Inteligência 23 | Reação 20",
+        "Atributos místicos": "Magia 22 | Sagrado 23",
+        "Atributos sociais": "Presença 21 | Manipulação 18 | Autocontrole 18",
+        "Habilidades (esquerda)": "Intimidação 12 | Liderança 23 | Lábia 22 | Bloqueio 16 | Esquiva 16 | Briga 12 | Disparada 16 | Crítico 20 | Ocultismo 22",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 16 | Arma branca 12 | Segurança 12 | Furtividade 16 | Armadura 16 | Investigação 22",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 22 | Selos 22 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 23 | Sobrevivência 16",
+        "Arma principal": "Fuso do Destino",
+        "Ataque sem bônus": "9d10 físico + 18d10 sagrado",
+        "Bônus de arma e poder": "+2d10 físico + 6d10 sagrado",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Trama do Destino: Uma vez por cena força um inimigo a repetir um ataque",
+        "Golpe especial": "Fios do Porvir — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Fios do Porvir Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Fio do Destino"
+      }
+    },
+    {
+      "id": "pdf-nordico-11",
+      "order": 11,
+      "sourcePage": 12,
+      "title": "MAGNI — Deus da Força",
+      "name": "MAGNI",
+      "level": 18,
+      "life": 195,
+      "mana": 90,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 22
+          },
+          {
+            "name": "Destreza",
+            "points": 13
+          },
+          {
+            "name": "Vigor",
+            "points": 20
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 14
+          },
+          {
+            "name": "Inteligência",
+            "points": 11
+          },
+          {
+            "name": "Reação",
+            "points": 16
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 10
+          },
+          {
+            "name": "Sagrado",
+            "points": 10
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 9
+          },
+          {
+            "name": "Manipulação",
+            "points": 10
+          },
+          {
+            "name": "Autocontrole",
+            "points": 14
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 22
+          },
+          {
+            "name": "Liderança",
+            "points": 11
+          },
+          {
+            "name": "Lábia",
+            "points": 14
+          },
+          {
+            "name": "Bloqueio",
+            "points": 20
+          },
+          {
+            "name": "Esquiva",
+            "points": 13
+          },
+          {
+            "name": "Briga",
+            "points": 22
+          },
+          {
+            "name": "Disparada",
+            "points": 13
+          },
+          {
+            "name": "Crítico",
+            "points": 16
+          },
+          {
+            "name": "Ocultismo",
+            "points": 10
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 13
+          },
+          {
+            "name": "Arma branca",
+            "points": 22
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 13
+          },
+          {
+            "name": "Armadura",
+            "points": 20
+          },
+          {
+            "name": "Investigação",
+            "points": 14
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 10
+          },
+          {
+            "name": "Selos",
+            "points": 10
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 11
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 20
+          }
+        ]
+      },
+      "weapon": "Hrafn",
+      "attacks": {
+        "base": [
+          {
+            "count": 20,
+            "type": "físico"
+          },
+          {
+            "count": 8,
+            "type": "raio"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 5,
+            "type": "físico"
+          },
+          {
+            "count": 3,
+            "type": "raio"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 25
+          },
+          {
+            "type": "raio",
+            "count": 11
+          }
+        ],
+        "conditional": [
+          {
+            "count": 4,
+            "type": "físico"
+          }
+        ],
+        "baseText": "20d10 físico + 8d10 raio",
+        "bonusText": "+5d10 físico + 3d10 raio"
+      },
+      "passive": "Força Colossal: +4d10 físico por 2 turnos, uma vez por cena",
+      "special": "Ruptura da Montanha — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Ruptura da Montanha Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Punho de Magni",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "18 / 195 / 90",
+        "Atributos físicos": "Força 22 | Destreza 13 | Vigor 20",
+        "Atributos mentais": "Percepção 14 | Inteligência 11 | Reação 16",
+        "Atributos místicos": "Magia 10 | Sagrado 10",
+        "Atributos sociais": "Presença 9 | Manipulação 10 | Autocontrole 14",
+        "Habilidades (esquerda)": "Intimidação 22 | Liderança 11 | Lábia 14 | Bloqueio 20 | Esquiva 13 | Briga 22 | Disparada 13 | Crítico 16 | Ocultismo 10",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 13 | Arma branca 22 | Segurança 12 | Furtividade 13 | Armadura 20 | Investigação 14",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 10 | Selos 10 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 11 | Sobrevivência 20",
+        "Arma principal": "Hrafn",
+        "Ataque sem bônus": "20d10 físico + 8d10 raio",
+        "Bônus de arma e poder": "+5d10 físico + 3d10 raio",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Força Colossal: +4d10 físico por 2 turnos, uma vez por cena",
+        "Golpe especial": "Ruptura da Montanha — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Ruptura da Montanha Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Punho de Magni"
+      }
+    },
+    {
+      "id": "pdf-nordico-12",
+      "order": 12,
+      "sourcePage": 13,
+      "title": "MODI — Deus da Coragem",
+      "name": "MODI",
+      "level": 18,
+      "life": 180,
+      "mana": 105,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 19
+          },
+          {
+            "name": "Destreza",
+            "points": 17
+          },
+          {
+            "name": "Vigor",
+            "points": 18
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 16
+          },
+          {
+            "name": "Inteligência",
+            "points": 13
+          },
+          {
+            "name": "Reação",
+            "points": 19
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 14
+          },
+          {
+            "name": "Sagrado",
+            "points": 11
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 11
+          },
+          {
+            "name": "Manipulação",
+            "points": 12
+          },
+          {
+            "name": "Autocontrole",
+            "points": 17
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 19
+          },
+          {
+            "name": "Liderança",
+            "points": 13
+          },
+          {
+            "name": "Lábia",
+            "points": 16
+          },
+          {
+            "name": "Bloqueio",
+            "points": 18
+          },
+          {
+            "name": "Esquiva",
+            "points": 17
+          },
+          {
+            "name": "Briga",
+            "points": 19
+          },
+          {
+            "name": "Disparada",
+            "points": 17
+          },
+          {
+            "name": "Crítico",
+            "points": 19
+          },
+          {
+            "name": "Ocultismo",
+            "points": 14
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 17
+          },
+          {
+            "name": "Arma branca",
+            "points": 19
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 17
+          },
+          {
+            "name": "Armadura",
+            "points": 18
+          },
+          {
+            "name": "Investigação",
+            "points": 16
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 14
+          },
+          {
+            "name": "Selos",
+            "points": 14
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 13
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 18
+          }
+        ]
+      },
+      "weapon": "Machado da Tormenta",
+      "attacks": {
+        "base": [
+          {
+            "count": 17,
+            "type": "físico"
+          },
+          {
+            "count": 11,
+            "type": "raio"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 4,
+            "type": "físico"
+          },
+          {
+            "count": 4,
+            "type": "raio"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 21
+          },
+          {
+            "type": "raio",
+            "count": 15
+          }
+        ],
+        "conditional": [],
+        "baseText": "17d10 físico + 11d10 raio",
+        "bonusText": "+4d10 físico + 4d10 raio"
+      },
+      "passive": "Coragem Furiosa: Imune a medo e recebe +2d10 ataque por 3 turnos",
+      "special": "Grito da Tempestade — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Grito da Tempestade Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Marca da Coragem",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "18 / 180 / 105",
+        "Atributos físicos": "Força 19 | Destreza 17 | Vigor 18",
+        "Atributos mentais": "Percepção 16 | Inteligência 13 | Reação 19",
+        "Atributos místicos": "Magia 14 | Sagrado 11",
+        "Atributos sociais": "Presença 11 | Manipulação 12 | Autocontrole 17",
+        "Habilidades (esquerda)": "Intimidação 19 | Liderança 13 | Lábia 16 | Bloqueio 18 | Esquiva 17 | Briga 19 | Disparada 17 | Crítico 19 | Ocultismo 14",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 17 | Arma branca 19 | Segurança 12 | Furtividade 17 | Armadura 18 | Investigação 16",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 14 | Selos 14 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 13 | Sobrevivência 18",
+        "Arma principal": "Machado da Tormenta",
+        "Ataque sem bônus": "17d10 físico + 11d10 raio",
+        "Bônus de arma e poder": "+4d10 físico + 4d10 raio",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Coragem Furiosa: Imune a medo e recebe +2d10 ataque por 3 turnos",
+        "Golpe especial": "Grito da Tempestade — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Grito da Tempestade Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Marca da Coragem"
+      }
+    },
+    {
+      "id": "pdf-nordico-13",
+      "order": 13,
+      "sourcePage": 14,
+      "title": "VIDAR — Deus da Vingança",
+      "name": "VIDAR",
+      "level": 19,
+      "life": 205,
+      "mana": 85,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 21
+          },
+          {
+            "name": "Destreza",
+            "points": 15
+          },
+          {
+            "name": "Vigor",
+            "points": 22
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 18
+          },
+          {
+            "name": "Inteligência",
+            "points": 14
+          },
+          {
+            "name": "Reação",
+            "points": 17
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 8
+          },
+          {
+            "name": "Sagrado",
+            "points": 12
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 12
+          },
+          {
+            "name": "Manipulação",
+            "points": 14
+          },
+          {
+            "name": "Autocontrole",
+            "points": 15
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 21
+          },
+          {
+            "name": "Liderança",
+            "points": 14
+          },
+          {
+            "name": "Lábia",
+            "points": 18
+          },
+          {
+            "name": "Bloqueio",
+            "points": 22
+          },
+          {
+            "name": "Esquiva",
+            "points": 15
+          },
+          {
+            "name": "Briga",
+            "points": 21
+          },
+          {
+            "name": "Disparada",
+            "points": 15
+          },
+          {
+            "name": "Crítico",
+            "points": 17
+          },
+          {
+            "name": "Ocultismo",
+            "points": 8
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 15
+          },
+          {
+            "name": "Arma branca",
+            "points": 21
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 15
+          },
+          {
+            "name": "Armadura",
+            "points": 22
+          },
+          {
+            "name": "Investigação",
+            "points": 18
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 8
+          },
+          {
+            "name": "Selos",
+            "points": 8
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 14
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 22
+          }
+        ]
+      },
+      "weapon": "Bota do Silêncio",
+      "attacks": {
+        "base": [
+          {
+            "count": 21,
+            "type": "físico"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 6,
+            "type": "físico"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 27
+          }
+        ],
+        "conditional": [
+          {
+            "count": 5,
+            "type": "físico"
+          }
+        ],
+        "baseText": "21d10 físico",
+        "bonusText": "+6d10 físico"
+      },
+      "passive": "Vingança Silenciosa: Contra alvo que feriu aliado, +5d10 físico",
+      "special": "Pisada do Fim — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Pisada do Fim Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Couro da Bota Mítica",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "19 / 205 / 85",
+        "Atributos físicos": "Força 21 | Destreza 15 | Vigor 22",
+        "Atributos mentais": "Percepção 18 | Inteligência 14 | Reação 17",
+        "Atributos místicos": "Magia 8 | Sagrado 12",
+        "Atributos sociais": "Presença 12 | Manipulação 14 | Autocontrole 15",
+        "Habilidades (esquerda)": "Intimidação 21 | Liderança 14 | Lábia 18 | Bloqueio 22 | Esquiva 15 | Briga 21 | Disparada 15 | Crítico 17 | Ocultismo 8",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 15 | Arma branca 21 | Segurança 12 | Furtividade 15 | Armadura 22 | Investigação 18",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 8 | Selos 8 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 14 | Sobrevivência 22",
+        "Arma principal": "Bota do Silêncio",
+        "Ataque sem bônus": "21d10 físico",
+        "Bônus de arma e poder": "+6d10 físico",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Vingança Silenciosa: Contra alvo que feriu aliado, +5d10 físico",
+        "Golpe especial": "Pisada do Fim — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Pisada do Fim Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Couro da Bota Mítica"
+      }
+    },
+    {
+      "id": "pdf-nordico-14",
+      "order": 14,
+      "sourcePage": 15,
+      "title": "VÁLI — Deus da Retribuição",
+      "name": "VÁLI",
+      "level": 18,
+      "life": 175,
+      "mana": 100,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 18
+          },
+          {
+            "name": "Destreza",
+            "points": 20
+          },
+          {
+            "name": "Vigor",
+            "points": 16
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 19
+          },
+          {
+            "name": "Inteligência",
+            "points": 16
+          },
+          {
+            "name": "Reação",
+            "points": 20
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 10
+          },
+          {
+            "name": "Sagrado",
+            "points": 12
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 14
+          },
+          {
+            "name": "Manipulação",
+            "points": 15
+          },
+          {
+            "name": "Autocontrole",
+            "points": 18
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 18
+          },
+          {
+            "name": "Liderança",
+            "points": 16
+          },
+          {
+            "name": "Lábia",
+            "points": 19
+          },
+          {
+            "name": "Bloqueio",
+            "points": 16
+          },
+          {
+            "name": "Esquiva",
+            "points": 20
+          },
+          {
+            "name": "Briga",
+            "points": 18
+          },
+          {
+            "name": "Disparada",
+            "points": 20
+          },
+          {
+            "name": "Crítico",
+            "points": 20
+          },
+          {
+            "name": "Ocultismo",
+            "points": 10
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 20
+          },
+          {
+            "name": "Arma branca",
+            "points": 18
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 20
+          },
+          {
+            "name": "Armadura",
+            "points": 16
+          },
+          {
+            "name": "Investigação",
+            "points": 19
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 10
+          },
+          {
+            "name": "Selos",
+            "points": 10
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 16
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 16
+          }
+        ]
+      },
+      "weapon": "Arco da Retribuição",
+      "attacks": {
+        "base": [
+          {
+            "count": 17,
+            "type": "físico"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 5,
+            "type": "físico"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 22
+          }
+        ],
+        "conditional": [],
+        "baseText": "17d10 físico",
+        "bonusText": "+5d10 físico"
+      },
+      "passive": "Vingança Implacável: Após derrotar inimigo, ganha uma ação de movimento",
+      "special": "Flecha Inevitável — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Flecha Inevitável Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Flecha do Juramento",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "18 / 175 / 100",
+        "Atributos físicos": "Força 18 | Destreza 20 | Vigor 16",
+        "Atributos mentais": "Percepção 19 | Inteligência 16 | Reação 20",
+        "Atributos místicos": "Magia 10 | Sagrado 12",
+        "Atributos sociais": "Presença 14 | Manipulação 15 | Autocontrole 18",
+        "Habilidades (esquerda)": "Intimidação 18 | Liderança 16 | Lábia 19 | Bloqueio 16 | Esquiva 20 | Briga 18 | Disparada 20 | Crítico 20 | Ocultismo 10",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 20 | Arma branca 18 | Segurança 12 | Furtividade 20 | Armadura 16 | Investigação 19",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 10 | Selos 10 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 16 | Sobrevivência 16",
+        "Arma principal": "Arco da Retribuição",
+        "Ataque sem bônus": "17d10 físico",
+        "Bônus de arma e poder": "+5d10 físico",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Vingança Implacável: Após derrotar inimigo, ganha uma ação de movimento",
+        "Golpe especial": "Flecha Inevitável — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Flecha Inevitável Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Flecha do Juramento"
+      }
+    },
+    {
+      "id": "pdf-nordico-15",
+      "order": 15,
+      "sourcePage": 16,
+      "title": "NJORD — Deus dos Mares",
+      "name": "NJORD",
+      "level": 18,
+      "life": 190,
+      "mana": 155,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 16
+          },
+          {
+            "name": "Destreza",
+            "points": 16
+          },
+          {
+            "name": "Vigor",
+            "points": 18
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 19
+          },
+          {
+            "name": "Inteligência",
+            "points": 18
+          },
+          {
+            "name": "Reação",
+            "points": 17
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 20
+          },
+          {
+            "name": "Sagrado",
+            "points": 16
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 16
+          },
+          {
+            "name": "Manipulação",
+            "points": 15
+          },
+          {
+            "name": "Autocontrole",
+            "points": 15
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 16
+          },
+          {
+            "name": "Liderança",
+            "points": 18
+          },
+          {
+            "name": "Lábia",
+            "points": 19
+          },
+          {
+            "name": "Bloqueio",
+            "points": 18
+          },
+          {
+            "name": "Esquiva",
+            "points": 16
+          },
+          {
+            "name": "Briga",
+            "points": 16
+          },
+          {
+            "name": "Disparada",
+            "points": 16
+          },
+          {
+            "name": "Crítico",
+            "points": 17
+          },
+          {
+            "name": "Ocultismo",
+            "points": 20
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 16
+          },
+          {
+            "name": "Arma branca",
+            "points": 16
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 16
+          },
+          {
+            "name": "Armadura",
+            "points": 18
+          },
+          {
+            "name": "Investigação",
+            "points": 19
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 20
+          },
+          {
+            "name": "Selos",
+            "points": 20
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 18
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 18
+          }
+        ]
+      },
+      "weapon": "Tridente das Marés",
+      "attacks": {
+        "base": [
+          {
+            "count": 16,
+            "type": "físico"
+          },
+          {
+            "count": 14,
+            "type": "água"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 4,
+            "type": "físico"
+          },
+          {
+            "count": 5,
+            "type": "água"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 20
+          },
+          {
+            "type": "água",
+            "count": 19
+          }
+        ],
+        "conditional": [],
+        "baseText": "16d10 físico + 14d10 água",
+        "bonusText": "+4d10 físico + 5d10 água"
+      },
+      "passive": "Maré Protetora: Reduz dano de água e gelo em 50%",
+      "special": "Tsunami Divino — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Tsunami Divino Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Pérola do Oceano",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "18 / 190 / 155",
+        "Atributos físicos": "Força 16 | Destreza 16 | Vigor 18",
+        "Atributos mentais": "Percepção 19 | Inteligência 18 | Reação 17",
+        "Atributos místicos": "Magia 20 | Sagrado 16",
+        "Atributos sociais": "Presença 16 | Manipulação 15 | Autocontrole 15",
+        "Habilidades (esquerda)": "Intimidação 16 | Liderança 18 | Lábia 19 | Bloqueio 18 | Esquiva 16 | Briga 16 | Disparada 16 | Crítico 17 | Ocultismo 20",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 16 | Arma branca 16 | Segurança 12 | Furtividade 16 | Armadura 18 | Investigação 19",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 20 | Selos 20 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 18 | Sobrevivência 18",
+        "Arma principal": "Tridente das Marés",
+        "Ataque sem bônus": "16d10 físico + 14d10 água",
+        "Bônus de arma e poder": "+4d10 físico + 5d10 água",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Maré Protetora: Reduz dano de água e gelo em 50%",
+        "Golpe especial": "Tsunami Divino — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Tsunami Divino Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Pérola do Oceano"
+      }
+    },
+    {
+      "id": "pdf-nordico-16",
+      "order": 16,
+      "sourcePage": 17,
+      "title": "SKADI — Deusa do Inverno",
+      "name": "SKADI",
+      "level": 18,
+      "life": 180,
+      "mana": 140,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 17
+          },
+          {
+            "name": "Destreza",
+            "points": 20
+          },
+          {
+            "name": "Vigor",
+            "points": 18
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 21
+          },
+          {
+            "name": "Inteligência",
+            "points": 16
+          },
+          {
+            "name": "Reação",
+            "points": 19
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 18
+          },
+          {
+            "name": "Sagrado",
+            "points": 12
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 14
+          },
+          {
+            "name": "Manipulação",
+            "points": 17
+          },
+          {
+            "name": "Autocontrole",
+            "points": 17
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 17
+          },
+          {
+            "name": "Liderança",
+            "points": 16
+          },
+          {
+            "name": "Lábia",
+            "points": 21
+          },
+          {
+            "name": "Bloqueio",
+            "points": 18
+          },
+          {
+            "name": "Esquiva",
+            "points": 20
+          },
+          {
+            "name": "Briga",
+            "points": 17
+          },
+          {
+            "name": "Disparada",
+            "points": 20
+          },
+          {
+            "name": "Crítico",
+            "points": 19
+          },
+          {
+            "name": "Ocultismo",
+            "points": 18
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 20
+          },
+          {
+            "name": "Arma branca",
+            "points": 17
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 20
+          },
+          {
+            "name": "Armadura",
+            "points": 18
+          },
+          {
+            "name": "Investigação",
+            "points": 21
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 18
+          },
+          {
+            "name": "Selos",
+            "points": 18
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 16
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 18
+          }
+        ]
+      },
+      "weapon": "Arco Glacial",
+      "attacks": {
+        "base": [
+          {
+            "count": 17,
+            "type": "físico"
+          },
+          {
+            "count": 13,
+            "type": "gelo"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 4,
+            "type": "físico"
+          },
+          {
+            "count": 5,
+            "type": "gelo"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 21
+          },
+          {
+            "type": "gelo",
+            "count": 18
+          }
+        ],
+        "conditional": [],
+        "baseText": "17d10 físico + 13d10 gelo",
+        "bonusText": "+4d10 físico + 5d10 gelo"
+      },
+      "passive": "Caçadora do Gelo: Ignora penalidades de terreno gelado; +3d10 rastrear",
+      "special": "Nevasca Eterna — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Nevasca Eterna Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Cristal Invernal",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "18 / 180 / 140",
+        "Atributos físicos": "Força 17 | Destreza 20 | Vigor 18",
+        "Atributos mentais": "Percepção 21 | Inteligência 16 | Reação 19",
+        "Atributos místicos": "Magia 18 | Sagrado 12",
+        "Atributos sociais": "Presença 14 | Manipulação 17 | Autocontrole 17",
+        "Habilidades (esquerda)": "Intimidação 17 | Liderança 16 | Lábia 21 | Bloqueio 18 | Esquiva 20 | Briga 17 | Disparada 20 | Crítico 19 | Ocultismo 18",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 20 | Arma branca 17 | Segurança 12 | Furtividade 20 | Armadura 18 | Investigação 21",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 18 | Selos 18 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 16 | Sobrevivência 18",
+        "Arma principal": "Arco Glacial",
+        "Ataque sem bônus": "17d10 físico + 13d10 gelo",
+        "Bônus de arma e poder": "+4d10 físico + 5d10 gelo",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Caçadora do Gelo: Ignora penalidades de terreno gelado; +3d10 rastrear",
+        "Golpe especial": "Nevasca Eterna — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Nevasca Eterna Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Cristal Invernal"
+      }
+    },
+    {
+      "id": "pdf-nordico-17",
+      "order": 17,
+      "sourcePage": 18,
+      "title": "IDUNN — Guardiã das Maçãs",
+      "name": "IDUNN",
+      "level": 17,
+      "life": 160,
+      "mana": 175,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 11
+          },
+          {
+            "name": "Destreza",
+            "points": 17
+          },
+          {
+            "name": "Vigor",
+            "points": 15
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 18
+          },
+          {
+            "name": "Inteligência",
+            "points": 20
+          },
+          {
+            "name": "Reação",
+            "points": 18
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 20
+          },
+          {
+            "name": "Sagrado",
+            "points": 19
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 18
+          },
+          {
+            "name": "Manipulação",
+            "points": 14
+          },
+          {
+            "name": "Autocontrole",
+            "points": 16
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 11
+          },
+          {
+            "name": "Liderança",
+            "points": 20
+          },
+          {
+            "name": "Lábia",
+            "points": 18
+          },
+          {
+            "name": "Bloqueio",
+            "points": 15
+          },
+          {
+            "name": "Esquiva",
+            "points": 17
+          },
+          {
+            "name": "Briga",
+            "points": 11
+          },
+          {
+            "name": "Disparada",
+            "points": 17
+          },
+          {
+            "name": "Crítico",
+            "points": 18
+          },
+          {
+            "name": "Ocultismo",
+            "points": 20
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 17
+          },
+          {
+            "name": "Arma branca",
+            "points": 11
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 17
+          },
+          {
+            "name": "Armadura",
+            "points": 15
+          },
+          {
+            "name": "Investigação",
+            "points": 18
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 20
+          },
+          {
+            "name": "Selos",
+            "points": 20
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 20
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 15
+          }
+        ]
+      },
+      "weapon": "Cajado da Renovação",
+      "attacks": {
+        "base": [
+          {
+            "count": 8,
+            "type": "físico"
+          },
+          {
+            "count": 14,
+            "type": "natureza"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 2,
+            "type": "físico"
+          },
+          {
+            "count": 5,
+            "type": "natureza"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 10
+          },
+          {
+            "type": "natureza",
+            "count": 19
+          }
+        ],
+        "conditional": [],
+        "baseText": "8d10 físico + 14d10 natureza",
+        "bonusText": "+2d10 físico + 5d10 natureza"
+      },
+      "passive": "Maçã da Juventude: Cura 30 Vitalidade de um aliado, 2 vezes por cena",
+      "special": "Jardim da Vida — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Jardim da Vida Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Maçã Dourada",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "17 / 160 / 175",
+        "Atributos físicos": "Força 11 | Destreza 17 | Vigor 15",
+        "Atributos mentais": "Percepção 18 | Inteligência 20 | Reação 18",
+        "Atributos místicos": "Magia 20 | Sagrado 19",
+        "Atributos sociais": "Presença 18 | Manipulação 14 | Autocontrole 16",
+        "Habilidades (esquerda)": "Intimidação 11 | Liderança 20 | Lábia 18 | Bloqueio 15 | Esquiva 17 | Briga 11 | Disparada 17 | Crítico 18 | Ocultismo 20",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 17 | Arma branca 11 | Segurança 12 | Furtividade 17 | Armadura 15 | Investigação 18",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 20 | Selos 20 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 20 | Sobrevivência 15",
+        "Arma principal": "Cajado da Renovação",
+        "Ataque sem bônus": "8d10 físico + 14d10 natureza",
+        "Bônus de arma e poder": "+2d10 físico + 5d10 natureza",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Maçã da Juventude: Cura 30 Vitalidade de um aliado, 2 vezes por cena",
+        "Golpe especial": "Jardim da Vida — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Jardim da Vida Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Maçã Dourada"
+      }
+    },
+    {
+      "id": "pdf-nordico-18",
+      "order": 18,
+      "sourcePage": 19,
+      "title": "BRAGI — Deus da Poesia",
+      "name": "BRAGI",
+      "level": 17,
+      "life": 155,
+      "mana": 170,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 12
+          },
+          {
+            "name": "Destreza",
+            "points": 16
+          },
+          {
+            "name": "Vigor",
+            "points": 15
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 19
+          },
+          {
+            "name": "Inteligência",
+            "points": 22
+          },
+          {
+            "name": "Reação",
+            "points": 17
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 20
+          },
+          {
+            "name": "Sagrado",
+            "points": 16
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 20
+          },
+          {
+            "name": "Manipulação",
+            "points": 15
+          },
+          {
+            "name": "Autocontrole",
+            "points": 15
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 12
+          },
+          {
+            "name": "Liderança",
+            "points": 22
+          },
+          {
+            "name": "Lábia",
+            "points": 19
+          },
+          {
+            "name": "Bloqueio",
+            "points": 15
+          },
+          {
+            "name": "Esquiva",
+            "points": 16
+          },
+          {
+            "name": "Briga",
+            "points": 12
+          },
+          {
+            "name": "Disparada",
+            "points": 16
+          },
+          {
+            "name": "Crítico",
+            "points": 17
+          },
+          {
+            "name": "Ocultismo",
+            "points": 20
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 16
+          },
+          {
+            "name": "Arma branca",
+            "points": 12
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 16
+          },
+          {
+            "name": "Armadura",
+            "points": 15
+          },
+          {
+            "name": "Investigação",
+            "points": 19
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 20
+          },
+          {
+            "name": "Selos",
+            "points": 20
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 22
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 15
+          }
+        ]
+      },
+      "weapon": "Harpa Rúnica",
+      "attacks": {
+        "base": [
+          {
+            "count": 9,
+            "type": "físico"
+          },
+          {
+            "count": 15,
+            "type": "mágico"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 2,
+            "type": "físico"
+          },
+          {
+            "count": 5,
+            "type": "mágico"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 11
+          },
+          {
+            "type": "mágico",
+            "count": 20
+          }
+        ],
+        "conditional": [],
+        "baseText": "9d10 físico + 15d10 mágico",
+        "bonusText": "+2d10 físico + 5d10 mágico"
+      },
+      "passive": "Canção de Bragi: Aliados em 12m recebem +2d10 em testes mentais",
+      "special": "Versos Cortantes — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Versos Cortantes Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Corda Rúnica",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "17 / 155 / 170",
+        "Atributos físicos": "Força 12 | Destreza 16 | Vigor 15",
+        "Atributos mentais": "Percepção 19 | Inteligência 22 | Reação 17",
+        "Atributos místicos": "Magia 20 | Sagrado 16",
+        "Atributos sociais": "Presença 20 | Manipulação 15 | Autocontrole 15",
+        "Habilidades (esquerda)": "Intimidação 12 | Liderança 22 | Lábia 19 | Bloqueio 15 | Esquiva 16 | Briga 12 | Disparada 16 | Crítico 17 | Ocultismo 20",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 16 | Arma branca 12 | Segurança 12 | Furtividade 16 | Armadura 15 | Investigação 19",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 20 | Selos 20 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 22 | Sobrevivência 15",
+        "Arma principal": "Harpa Rúnica",
+        "Ataque sem bônus": "9d10 físico + 15d10 mágico",
+        "Bônus de arma e poder": "+2d10 físico + 5d10 mágico",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Canção de Bragi: Aliados em 12m recebem +2d10 em testes mentais",
+        "Golpe especial": "Versos Cortantes — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Versos Cortantes Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Corda Rúnica"
+      }
+    },
+    {
+      "id": "pdf-nordico-19",
+      "order": 19,
+      "sourcePage": 20,
+      "title": "SIF — Deusa da Terra",
+      "name": "SIF",
+      "level": 18,
+      "life": 185,
+      "mana": 130,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 17
+          },
+          {
+            "name": "Destreza",
+            "points": 17
+          },
+          {
+            "name": "Vigor",
+            "points": 18
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 17
+          },
+          {
+            "name": "Inteligência",
+            "points": 17
+          },
+          {
+            "name": "Reação",
+            "points": 18
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 16
+          },
+          {
+            "name": "Sagrado",
+            "points": 16
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 15
+          },
+          {
+            "name": "Manipulação",
+            "points": 13
+          },
+          {
+            "name": "Autocontrole",
+            "points": 16
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 17
+          },
+          {
+            "name": "Liderança",
+            "points": 17
+          },
+          {
+            "name": "Lábia",
+            "points": 17
+          },
+          {
+            "name": "Bloqueio",
+            "points": 18
+          },
+          {
+            "name": "Esquiva",
+            "points": 17
+          },
+          {
+            "name": "Briga",
+            "points": 17
+          },
+          {
+            "name": "Disparada",
+            "points": 17
+          },
+          {
+            "name": "Crítico",
+            "points": 18
+          },
+          {
+            "name": "Ocultismo",
+            "points": 16
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 17
+          },
+          {
+            "name": "Arma branca",
+            "points": 17
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 17
+          },
+          {
+            "name": "Armadura",
+            "points": 18
+          },
+          {
+            "name": "Investigação",
+            "points": 17
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 16
+          },
+          {
+            "name": "Selos",
+            "points": 16
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 17
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 18
+          }
+        ]
+      },
+      "weapon": "Foice Dourada",
+      "attacks": {
+        "base": [
+          {
+            "count": 17,
+            "type": "físico"
+          },
+          {
+            "count": 10,
+            "type": "natureza"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 4,
+            "type": "físico"
+          },
+          {
+            "count": 4,
+            "type": "natureza"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 21
+          },
+          {
+            "type": "natureza",
+            "count": 14
+          }
+        ],
+        "conditional": [],
+        "baseText": "17d10 físico + 10d10 natureza",
+        "bonusText": "+4d10 físico + 4d10 natureza"
+      },
+      "passive": "Raízes de Ouro: Prende um inimigo por 1 turno se falhar em resistência",
+      "special": "Colheita Sagrada — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Colheita Sagrada Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Mecha Dourada",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "18 / 185 / 130",
+        "Atributos físicos": "Força 17 | Destreza 17 | Vigor 18",
+        "Atributos mentais": "Percepção 17 | Inteligência 17 | Reação 18",
+        "Atributos místicos": "Magia 16 | Sagrado 16",
+        "Atributos sociais": "Presença 15 | Manipulação 13 | Autocontrole 16",
+        "Habilidades (esquerda)": "Intimidação 17 | Liderança 17 | Lábia 17 | Bloqueio 18 | Esquiva 17 | Briga 17 | Disparada 17 | Crítico 18 | Ocultismo 16",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 17 | Arma branca 17 | Segurança 12 | Furtividade 17 | Armadura 18 | Investigação 17",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 16 | Selos 16 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 17 | Sobrevivência 18",
+        "Arma principal": "Foice Dourada",
+        "Ataque sem bônus": "17d10 físico + 10d10 natureza",
+        "Bônus de arma e poder": "+4d10 físico + 4d10 natureza",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Raízes de Ouro: Prende um inimigo por 1 turno se falhar em resistência",
+        "Golpe especial": "Colheita Sagrada — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Colheita Sagrada Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Mecha Dourada"
+      }
+    },
+    {
+      "id": "pdf-nordico-20",
+      "order": 20,
+      "sourcePage": 21,
+      "title": "ULLR — Deus da Caça",
+      "name": "ULLR",
+      "level": 18,
+      "life": 180,
+      "mana": 105,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 17
+          },
+          {
+            "name": "Destreza",
+            "points": 22
+          },
+          {
+            "name": "Vigor",
+            "points": 17
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 21
+          },
+          {
+            "name": "Inteligência",
+            "points": 15
+          },
+          {
+            "name": "Reação",
+            "points": 20
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 11
+          },
+          {
+            "name": "Sagrado",
+            "points": 11
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 13
+          },
+          {
+            "name": "Manipulação",
+            "points": 17
+          },
+          {
+            "name": "Autocontrole",
+            "points": 18
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 17
+          },
+          {
+            "name": "Liderança",
+            "points": 15
+          },
+          {
+            "name": "Lábia",
+            "points": 21
+          },
+          {
+            "name": "Bloqueio",
+            "points": 17
+          },
+          {
+            "name": "Esquiva",
+            "points": 22
+          },
+          {
+            "name": "Briga",
+            "points": 17
+          },
+          {
+            "name": "Disparada",
+            "points": 22
+          },
+          {
+            "name": "Crítico",
+            "points": 20
+          },
+          {
+            "name": "Ocultismo",
+            "points": 11
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 22
+          },
+          {
+            "name": "Arma branca",
+            "points": 17
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 22
+          },
+          {
+            "name": "Armadura",
+            "points": 17
+          },
+          {
+            "name": "Investigação",
+            "points": 21
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 11
+          },
+          {
+            "name": "Selos",
+            "points": 11
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 15
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 17
+          }
+        ]
+      },
+      "weapon": "Arco de Ullr",
+      "attacks": {
+        "base": [
+          {
+            "count": 18,
+            "type": "físico"
+          },
+          {
+            "count": 7,
+            "type": "gelo"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 5,
+            "type": "físico"
+          },
+          {
+            "count": 3,
+            "type": "gelo"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 23
+          },
+          {
+            "type": "gelo",
+            "count": 10
+          }
+        ],
+        "conditional": [],
+        "baseText": "18d10 físico + 7d10 gelo",
+        "bonusText": "+5d10 físico + 3d10 gelo"
+      },
+      "passive": "Mira Perfeita: Ignora cobertura leve e recebe +3d10 disparada",
+      "special": "Flechas do Inverno — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Flechas do Inverno Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Ponta de Flecha Divina",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "18 / 180 / 105",
+        "Atributos físicos": "Força 17 | Destreza 22 | Vigor 17",
+        "Atributos mentais": "Percepção 21 | Inteligência 15 | Reação 20",
+        "Atributos místicos": "Magia 11 | Sagrado 11",
+        "Atributos sociais": "Presença 13 | Manipulação 17 | Autocontrole 18",
+        "Habilidades (esquerda)": "Intimidação 17 | Liderança 15 | Lábia 21 | Bloqueio 17 | Esquiva 22 | Briga 17 | Disparada 22 | Crítico 20 | Ocultismo 11",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 22 | Arma branca 17 | Segurança 12 | Furtividade 22 | Armadura 17 | Investigação 21",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 11 | Selos 11 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 15 | Sobrevivência 17",
+        "Arma principal": "Arco de Ullr",
+        "Ataque sem bônus": "18d10 físico + 7d10 gelo",
+        "Bônus de arma e poder": "+5d10 físico + 3d10 gelo",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Mira Perfeita: Ignora cobertura leve e recebe +3d10 disparada",
+        "Golpe especial": "Flechas do Inverno — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Flechas do Inverno Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Ponta de Flecha Divina"
+      }
+    },
+    {
+      "id": "pdf-nordico-21",
+      "order": 21,
+      "sourcePage": 22,
+      "title": "SURTR — Senhor do Fogo",
+      "name": "SURTR",
+      "level": 22,
+      "life": 260,
+      "mana": 170,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 24
+          },
+          {
+            "name": "Destreza",
+            "points": 13
+          },
+          {
+            "name": "Vigor",
+            "points": 24
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 18
+          },
+          {
+            "name": "Inteligência",
+            "points": 16
+          },
+          {
+            "name": "Reação",
+            "points": 15
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 24
+          },
+          {
+            "name": "Sagrado",
+            "points": 4
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 14
+          },
+          {
+            "name": "Manipulação",
+            "points": 14
+          },
+          {
+            "name": "Autocontrole",
+            "points": 13
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 24
+          },
+          {
+            "name": "Liderança",
+            "points": 16
+          },
+          {
+            "name": "Lábia",
+            "points": 18
+          },
+          {
+            "name": "Bloqueio",
+            "points": 24
+          },
+          {
+            "name": "Esquiva",
+            "points": 13
+          },
+          {
+            "name": "Briga",
+            "points": 24
+          },
+          {
+            "name": "Disparada",
+            "points": 13
+          },
+          {
+            "name": "Crítico",
+            "points": 15
+          },
+          {
+            "name": "Ocultismo",
+            "points": 24
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 13
+          },
+          {
+            "name": "Arma branca",
+            "points": 24
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 13
+          },
+          {
+            "name": "Armadura",
+            "points": 24
+          },
+          {
+            "name": "Investigação",
+            "points": 18
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 24
+          },
+          {
+            "name": "Selos",
+            "points": 24
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 16
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 24
+          }
+        ]
+      },
+      "weapon": "Espada Flamejante",
+      "attacks": {
+        "base": [
+          {
+            "count": 24,
+            "type": "físico"
+          },
+          {
+            "count": 22,
+            "type": "fogo"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 7,
+            "type": "físico"
+          },
+          {
+            "count": 8,
+            "type": "fogo"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 31
+          },
+          {
+            "type": "fogo",
+            "count": 30
+          }
+        ],
+        "conditional": [
+          {
+            "count": 4,
+            "type": "fogo"
+          }
+        ],
+        "baseText": "24d10 físico + 22d10 fogo",
+        "bonusText": "+7d10 físico + 8d10 fogo"
+      },
+      "passive": "Crepúsculo Flamejante: Abaixo de 50% PV, todos os golpes aplicam 4d10 fogo extra",
+      "special": "Incêndio de Muspelheim — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Incêndio de Muspelheim Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Brasa Primordial",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "22 / 260 / 170",
+        "Atributos físicos": "Força 24 | Destreza 13 | Vigor 24",
+        "Atributos mentais": "Percepção 18 | Inteligência 16 | Reação 15",
+        "Atributos místicos": "Magia 24 | Sagrado 4",
+        "Atributos sociais": "Presença 14 | Manipulação 14 | Autocontrole 13",
+        "Habilidades (esquerda)": "Intimidação 24 | Liderança 16 | Lábia 18 | Bloqueio 24 | Esquiva 13 | Briga 24 | Disparada 13 | Crítico 15 | Ocultismo 24",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 13 | Arma branca 24 | Segurança 12 | Furtividade 13 | Armadura 24 | Investigação 18",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 24 | Selos 24 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 16 | Sobrevivência 24",
+        "Arma principal": "Espada Flamejante",
+        "Ataque sem bônus": "24d10 físico + 22d10 fogo",
+        "Bônus de arma e poder": "+7d10 físico + 8d10 fogo",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Crepúsculo Flamejante: Abaixo de 50% PV, todos os golpes aplicam 4d10 fogo extra",
+        "Golpe especial": "Incêndio de Muspelheim — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Incêndio de Muspelheim Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Brasa Primordial"
+      }
+    },
+    {
+      "id": "pdf-nordico-22",
+      "order": 22,
+      "sourcePage": 23,
+      "title": "FENRIR — Lobo do Ragnarök",
+      "name": "FENRIR",
+      "level": 22,
+      "life": 280,
+      "mana": 65,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 26
+          },
+          {
+            "name": "Destreza",
+            "points": 19
+          },
+          {
+            "name": "Vigor",
+            "points": 24
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 20
+          },
+          {
+            "name": "Inteligência",
+            "points": 10
+          },
+          {
+            "name": "Reação",
+            "points": 21
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 5
+          },
+          {
+            "name": "Sagrado",
+            "points": 0
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 8
+          },
+          {
+            "name": "Manipulação",
+            "points": 16
+          },
+          {
+            "name": "Autocontrole",
+            "points": 19
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 26
+          },
+          {
+            "name": "Liderança",
+            "points": 10
+          },
+          {
+            "name": "Lábia",
+            "points": 20
+          },
+          {
+            "name": "Bloqueio",
+            "points": 24
+          },
+          {
+            "name": "Esquiva",
+            "points": 19
+          },
+          {
+            "name": "Briga",
+            "points": 26
+          },
+          {
+            "name": "Disparada",
+            "points": 19
+          },
+          {
+            "name": "Crítico",
+            "points": 21
+          },
+          {
+            "name": "Ocultismo",
+            "points": 5
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 19
+          },
+          {
+            "name": "Arma branca",
+            "points": 26
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 19
+          },
+          {
+            "name": "Armadura",
+            "points": 24
+          },
+          {
+            "name": "Investigação",
+            "points": 20
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 5
+          },
+          {
+            "name": "Selos",
+            "points": 5
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 10
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 24
+          }
+        ]
+      },
+      "weapon": "Presas do Fim",
+      "attacks": {
+        "base": [
+          {
+            "count": 26,
+            "type": "físico"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 8,
+            "type": "físico"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 34
+          }
+        ],
+        "conditional": [
+          {
+            "count": 5,
+            "type": "físico"
+          }
+        ],
+        "baseText": "26d10 físico",
+        "bonusText": "+8d10 físico"
+      },
+      "passive": "Devorador de Deuses: Contra divindades, +5d10 físico; não pode ser amedrontado",
+      "special": "Mordida do Eclipse — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Mordida do Eclipse Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Presa de Fenrir",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "22 / 280 / 65",
+        "Atributos físicos": "Força 26 | Destreza 19 | Vigor 24",
+        "Atributos mentais": "Percepção 20 | Inteligência 10 | Reação 21",
+        "Atributos místicos": "Magia 5 | Sagrado 0",
+        "Atributos sociais": "Presença 8 | Manipulação 16 | Autocontrole 19",
+        "Habilidades (esquerda)": "Intimidação 26 | Liderança 10 | Lábia 20 | Bloqueio 24 | Esquiva 19 | Briga 26 | Disparada 19 | Crítico 21 | Ocultismo 5",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 19 | Arma branca 26 | Segurança 12 | Furtividade 19 | Armadura 24 | Investigação 20",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 5 | Selos 5 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 10 | Sobrevivência 24",
+        "Arma principal": "Presas do Fim",
+        "Ataque sem bônus": "26d10 físico",
+        "Bônus de arma e poder": "+8d10 físico",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Devorador de Deuses: Contra divindades, +5d10 físico; não pode ser amedrontado",
+        "Golpe especial": "Mordida do Eclipse — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Mordida do Eclipse Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Presa de Fenrir"
+      }
+    },
+    {
+      "id": "pdf-nordico-23",
+      "order": 23,
+      "sourcePage": 24,
+      "title": "JÖRMUNGANDR — Serpente do Mundo",
+      "name": "JÖRMUNGANDR",
+      "level": 22,
+      "life": 300,
+      "mana": 120,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 25
+          },
+          {
+            "name": "Destreza",
+            "points": 12
+          },
+          {
+            "name": "Vigor",
+            "points": 26
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 19
+          },
+          {
+            "name": "Inteligência",
+            "points": 12
+          },
+          {
+            "name": "Reação",
+            "points": 15
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 16
+          },
+          {
+            "name": "Sagrado",
+            "points": 0
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 10
+          },
+          {
+            "name": "Manipulação",
+            "points": 15
+          },
+          {
+            "name": "Autocontrole",
+            "points": 13
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 25
+          },
+          {
+            "name": "Liderança",
+            "points": 12
+          },
+          {
+            "name": "Lábia",
+            "points": 19
+          },
+          {
+            "name": "Bloqueio",
+            "points": 26
+          },
+          {
+            "name": "Esquiva",
+            "points": 12
+          },
+          {
+            "name": "Briga",
+            "points": 25
+          },
+          {
+            "name": "Disparada",
+            "points": 12
+          },
+          {
+            "name": "Crítico",
+            "points": 15
+          },
+          {
+            "name": "Ocultismo",
+            "points": 16
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 12
+          },
+          {
+            "name": "Arma branca",
+            "points": 25
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 12
+          },
+          {
+            "name": "Armadura",
+            "points": 26
+          },
+          {
+            "name": "Investigação",
+            "points": 19
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 16
+          },
+          {
+            "name": "Selos",
+            "points": 16
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 12
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 26
+          }
+        ]
+      },
+      "weapon": "Presas Venenosas",
+      "attacks": {
+        "base": [
+          {
+            "count": 23,
+            "type": "físico"
+          },
+          {
+            "count": 16,
+            "type": "veneno"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 7,
+            "type": "físico"
+          },
+          {
+            "count": 6,
+            "type": "veneno"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 30
+          },
+          {
+            "type": "veneno",
+            "count": 22
+          }
+        ],
+        "conditional": [
+          {
+            "count": 3,
+            "type": "veneno"
+          }
+        ],
+        "baseText": "23d10 físico + 16d10 veneno",
+        "bonusText": "+7d10 físico + 6d10 veneno"
+      },
+      "passive": "Veneno do Mundo: Alvos atingidos sofrem 3d10 veneno por 3 turnos",
+      "special": "Dilúvio Tóxico — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Dilúvio Tóxico Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Escama da Serpente",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "22 / 300 / 120",
+        "Atributos físicos": "Força 25 | Destreza 12 | Vigor 26",
+        "Atributos mentais": "Percepção 19 | Inteligência 12 | Reação 15",
+        "Atributos místicos": "Magia 16 | Sagrado 0",
+        "Atributos sociais": "Presença 10 | Manipulação 15 | Autocontrole 13",
+        "Habilidades (esquerda)": "Intimidação 25 | Liderança 12 | Lábia 19 | Bloqueio 26 | Esquiva 12 | Briga 25 | Disparada 12 | Crítico 15 | Ocultismo 16",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 12 | Arma branca 25 | Segurança 12 | Furtividade 12 | Armadura 26 | Investigação 19",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 16 | Selos 16 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 12 | Sobrevivência 26",
+        "Arma principal": "Presas Venenosas",
+        "Ataque sem bônus": "23d10 físico + 16d10 veneno",
+        "Bônus de arma e poder": "+7d10 físico + 6d10 veneno",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Veneno do Mundo: Alvos atingidos sofrem 3d10 veneno por 3 turnos",
+        "Golpe especial": "Dilúvio Tóxico — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Dilúvio Tóxico Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Escama da Serpente"
+      }
+    },
+    {
+      "id": "pdf-nordico-24",
+      "order": 24,
+      "sourcePage": 25,
+      "title": "NÍÐHÖGGR — Dragão das Raízes",
+      "name": "NÍÐHÖGGR",
+      "level": 21,
+      "life": 255,
+      "mana": 160,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 23
+          },
+          {
+            "name": "Destreza",
+            "points": 15
+          },
+          {
+            "name": "Vigor",
+            "points": 23
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 20
+          },
+          {
+            "name": "Inteligência",
+            "points": 17
+          },
+          {
+            "name": "Reação",
+            "points": 18
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 22
+          },
+          {
+            "name": "Sagrado",
+            "points": 0
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 15
+          },
+          {
+            "name": "Manipulação",
+            "points": 16
+          },
+          {
+            "name": "Autocontrole",
+            "points": 16
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 23
+          },
+          {
+            "name": "Liderança",
+            "points": 17
+          },
+          {
+            "name": "Lábia",
+            "points": 20
+          },
+          {
+            "name": "Bloqueio",
+            "points": 23
+          },
+          {
+            "name": "Esquiva",
+            "points": 15
+          },
+          {
+            "name": "Briga",
+            "points": 23
+          },
+          {
+            "name": "Disparada",
+            "points": 15
+          },
+          {
+            "name": "Crítico",
+            "points": 18
+          },
+          {
+            "name": "Ocultismo",
+            "points": 22
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 15
+          },
+          {
+            "name": "Arma branca",
+            "points": 23
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 15
+          },
+          {
+            "name": "Armadura",
+            "points": 23
+          },
+          {
+            "name": "Investigação",
+            "points": 20
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 22
+          },
+          {
+            "name": "Selos",
+            "points": 22
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 17
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 23
+          }
+        ]
+      },
+      "weapon": "Garras Corruptoras",
+      "attacks": {
+        "base": [
+          {
+            "count": 22,
+            "type": "físico"
+          },
+          {
+            "count": 18,
+            "type": "morte"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 6,
+            "type": "físico"
+          },
+          {
+            "count": 7,
+            "type": "morte"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 28
+          },
+          {
+            "type": "morte",
+            "count": 25
+          }
+        ],
+        "conditional": [],
+        "baseText": "22d10 físico + 18d10 morte",
+        "bonusText": "+6d10 físico + 7d10 morte"
+      },
+      "passive": "Devorador de Raízes: Recupera 15 PV quando derruba um inimigo",
+      "special": "Sopro da Ruína — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Sopro da Ruína Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Escama Corrompida",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "21 / 255 / 160",
+        "Atributos físicos": "Força 23 | Destreza 15 | Vigor 23",
+        "Atributos mentais": "Percepção 20 | Inteligência 17 | Reação 18",
+        "Atributos místicos": "Magia 22 | Sagrado 0",
+        "Atributos sociais": "Presença 15 | Manipulação 16 | Autocontrole 16",
+        "Habilidades (esquerda)": "Intimidação 23 | Liderança 17 | Lábia 20 | Bloqueio 23 | Esquiva 15 | Briga 23 | Disparada 15 | Crítico 18 | Ocultismo 22",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 15 | Arma branca 23 | Segurança 12 | Furtividade 15 | Armadura 23 | Investigação 20",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 22 | Selos 22 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 17 | Sobrevivência 23",
+        "Arma principal": "Garras Corruptoras",
+        "Ataque sem bônus": "22d10 físico + 18d10 morte",
+        "Bônus de arma e poder": "+6d10 físico + 7d10 morte",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Devorador de Raízes: Recupera 15 PV quando derruba um inimigo",
+        "Golpe especial": "Sopro da Ruína — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Sopro da Ruína Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Escama Corrompida"
+      }
+    },
+    {
+      "id": "pdf-nordico-25",
+      "order": 25,
+      "sourcePage": 26,
+      "title": "FÁFNIR — Dragão do Tesouro",
+      "name": "FÁFNIR",
+      "level": 20,
+      "life": 240,
+      "mana": 125,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 22
+          },
+          {
+            "name": "Destreza",
+            "points": 14
+          },
+          {
+            "name": "Vigor",
+            "points": 22
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 19
+          },
+          {
+            "name": "Inteligência",
+            "points": 18
+          },
+          {
+            "name": "Reação",
+            "points": 16
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 18
+          },
+          {
+            "name": "Sagrado",
+            "points": 0
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 16
+          },
+          {
+            "name": "Manipulação",
+            "points": 15
+          },
+          {
+            "name": "Autocontrole",
+            "points": 14
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 22
+          },
+          {
+            "name": "Liderança",
+            "points": 18
+          },
+          {
+            "name": "Lábia",
+            "points": 19
+          },
+          {
+            "name": "Bloqueio",
+            "points": 22
+          },
+          {
+            "name": "Esquiva",
+            "points": 14
+          },
+          {
+            "name": "Briga",
+            "points": 22
+          },
+          {
+            "name": "Disparada",
+            "points": 14
+          },
+          {
+            "name": "Crítico",
+            "points": 16
+          },
+          {
+            "name": "Ocultismo",
+            "points": 18
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 14
+          },
+          {
+            "name": "Arma branca",
+            "points": 22
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 14
+          },
+          {
+            "name": "Armadura",
+            "points": 22
+          },
+          {
+            "name": "Investigação",
+            "points": 19
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 18
+          },
+          {
+            "name": "Selos",
+            "points": 18
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 18
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 22
+          }
+        ]
+      },
+      "weapon": "Garras de Ouro",
+      "attacks": {
+        "base": [
+          {
+            "count": 21,
+            "type": "físico"
+          },
+          {
+            "count": 13,
+            "type": "fogo"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 6,
+            "type": "físico"
+          },
+          {
+            "count": 5,
+            "type": "fogo"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 27
+          },
+          {
+            "type": "fogo",
+            "count": 18
+          }
+        ],
+        "conditional": [],
+        "baseText": "21d10 físico + 13d10 fogo",
+        "bonusText": "+6d10 físico + 5d10 fogo"
+      },
+      "passive": "Ganância Amaldiçoada: Recebe +2d10 defesa enquanto protege seu tesouro",
+      "special": "Sopro da Cobiça — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Sopro da Cobiça Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Anel Amaldiçoado",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "20 / 240 / 125",
+        "Atributos físicos": "Força 22 | Destreza 14 | Vigor 22",
+        "Atributos mentais": "Percepção 19 | Inteligência 18 | Reação 16",
+        "Atributos místicos": "Magia 18 | Sagrado 0",
+        "Atributos sociais": "Presença 16 | Manipulação 15 | Autocontrole 14",
+        "Habilidades (esquerda)": "Intimidação 22 | Liderança 18 | Lábia 19 | Bloqueio 22 | Esquiva 14 | Briga 22 | Disparada 14 | Crítico 16 | Ocultismo 18",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 14 | Arma branca 22 | Segurança 12 | Furtividade 14 | Armadura 22 | Investigação 19",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 18 | Selos 18 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 18 | Sobrevivência 22",
+        "Arma principal": "Garras de Ouro",
+        "Ataque sem bônus": "21d10 físico + 13d10 fogo",
+        "Bônus de arma e poder": "+6d10 físico + 5d10 fogo",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Ganância Amaldiçoada: Recebe +2d10 defesa enquanto protege seu tesouro",
+        "Golpe especial": "Sopro da Cobiça — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Sopro da Cobiça Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Anel Amaldiçoado"
+      }
+    },
+    {
+      "id": "pdf-nordico-26",
+      "order": 26,
+      "sourcePage": 27,
+      "title": "YMIR — Gigante Primordial",
+      "name": "YMIR",
+      "level": 23,
+      "life": 350,
+      "mana": 140,
+      "attributes": {
+        "physical": [
+          {
+            "name": "Força",
+            "points": 28
+          },
+          {
+            "name": "Destreza",
+            "points": 10
+          },
+          {
+            "name": "Vigor",
+            "points": 28
+          }
+        ],
+        "mental": [
+          {
+            "name": "Percepção",
+            "points": 17
+          },
+          {
+            "name": "Inteligência",
+            "points": 14
+          },
+          {
+            "name": "Reação",
+            "points": 12
+          }
+        ],
+        "mystical": [
+          {
+            "name": "Magia",
+            "points": 19
+          },
+          {
+            "name": "Sagrado",
+            "points": 0
+          }
+        ],
+        "social": [
+          {
+            "name": "Presença",
+            "points": 12
+          },
+          {
+            "name": "Manipulação",
+            "points": 13
+          },
+          {
+            "name": "Autocontrole",
+            "points": 10
+          }
+        ]
+      },
+      "skills": {
+        "left": [
+          {
+            "name": "Intimidação",
+            "points": 28
+          },
+          {
+            "name": "Liderança",
+            "points": 14
+          },
+          {
+            "name": "Lábia",
+            "points": 17
+          },
+          {
+            "name": "Bloqueio",
+            "points": 28
+          },
+          {
+            "name": "Esquiva",
+            "points": 10
+          },
+          {
+            "name": "Briga",
+            "points": 28
+          },
+          {
+            "name": "Disparada",
+            "points": 10
+          },
+          {
+            "name": "Crítico",
+            "points": 12
+          },
+          {
+            "name": "Ocultismo",
+            "points": 19
+          }
+        ],
+        "middle": [
+          {
+            "name": "Adestramento",
+            "points": 8
+          },
+          {
+            "name": "Ofício",
+            "points": 10
+          },
+          {
+            "name": "Conduta",
+            "points": 12
+          },
+          {
+            "name": "Arma de distância",
+            "points": 10
+          },
+          {
+            "name": "Arma branca",
+            "points": 28
+          },
+          {
+            "name": "Segurança",
+            "points": 12
+          },
+          {
+            "name": "Furtividade",
+            "points": 10
+          },
+          {
+            "name": "Armadura",
+            "points": 28
+          },
+          {
+            "name": "Investigação",
+            "points": 17
+          }
+        ],
+        "right": [
+          {
+            "name": "Acadêmico",
+            "points": 10
+          },
+          {
+            "name": "Geografia",
+            "points": 12
+          },
+          {
+            "name": "Encantamento",
+            "points": 19
+          },
+          {
+            "name": "Selos",
+            "points": 19
+          },
+          {
+            "name": "Medicina",
+            "points": 8
+          },
+          {
+            "name": "Ciência",
+            "points": 9
+          },
+          {
+            "name": "Tecnologia",
+            "points": 5
+          },
+          {
+            "name": "Linguística",
+            "points": 14
+          },
+          {
+            "name": "Sobrevivência",
+            "points": 28
+          }
+        ]
+      },
+      "weapon": "Punhos Primordiais",
+      "attacks": {
+        "base": [
+          {
+            "count": 28,
+            "type": "físico"
+          },
+          {
+            "count": 14,
+            "type": "gelo"
+          }
+        ],
+        "bonus": [
+          {
+            "count": 9,
+            "type": "físico"
+          },
+          {
+            "count": 6,
+            "type": "gelo"
+          }
+        ],
+        "equipped": [
+          {
+            "type": "físico",
+            "count": 37
+          },
+          {
+            "type": "gelo",
+            "count": 20
+          }
+        ],
+        "conditional": [],
+        "baseText": "28d10 físico + 14d10 gelo",
+        "bonusText": "+9d10 físico + 6d10 gelo"
+      },
+      "passive": "Corpo Primordial: Reduz todo dano físico em 25%",
+      "special": "Inverno da Criação — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+      "ultimate": "Inverno da Criação Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+      "rewards": "Coração de Gelo Antigo",
+      "sourceSections": {
+        "Nível / Vitalidade / Mana": "23 / 350 / 140",
+        "Atributos físicos": "Força 28 | Destreza 10 | Vigor 28",
+        "Atributos mentais": "Percepção 17 | Inteligência 14 | Reação 12",
+        "Atributos místicos": "Magia 19 | Sagrado 0",
+        "Atributos sociais": "Presença 12 | Manipulação 13 | Autocontrole 10",
+        "Habilidades (esquerda)": "Intimidação 28 | Liderança 14 | Lábia 17 | Bloqueio 28 | Esquiva 10 | Briga 28 | Disparada 10 | Crítico 12 | Ocultismo 19",
+        "Habilidades (meio)": "Adestramento 8 | Ofício 10 | Conduta 12 | Arma de distância 10 | Arma branca 28 | Segurança 12 | Furtividade 10 | Armadura 28 | Investigação 17",
+        "Habilidades (direita)": "Acadêmico 10 | Geografia 12 | Encantamento 19 | Selos 19 | Medicina 8 | Ciência 9 | Tecnologia 5 | Linguística 14 | Sobrevivência 28",
+        "Arma principal": "Punhos Primordiais",
+        "Ataque sem bônus": "28d10 físico + 14d10 gelo",
+        "Bônus de arma e poder": "+9d10 físico + 6d10 gelo",
+        "Ataque equipado": "Somar os dados do ataque sem bônus aos bônus acima",
+        "Passiva": "Corpo Primordial: Reduz todo dano físico em 25%",
+        "Golpe especial": "Inverno da Criação — ataque básico + 4d10 do elemento principal; custo 15 Mana",
+        "Golpe supremo": "Inverno da Criação Supremo — ataque básico + 10d10 do elemento principal; custo 35 Mana; 1 vez por cena",
+        "Recompensas": "Coração de Gelo Antigo"
+      }
+    }
+  ],
+  "notes": "Os chefes do Ragnarök são adversários épicos. Lutas podem ter fases acima/abaixo de 50% PV e golpe final. Drops são sugestões.",
+  "sourcePageCount": 28
+}
