@@ -5,11 +5,11 @@ const mode=document.body.dataset.archiveMode;
 const root=$("organizedGrid"),query=$("organizedQuery"),group=$("organizedGroup"),level=$("organizedLevel"),sort=$("organizedSort"),counter=$("organizedCount"),more=$("organizedMore"),print=$("organizedPrint");
 if(!mode||!root||!query||!group||!level||!sort||!counter||!more||!print)return;
 const SOURCES={
- bestiario:["dados/criaturas.json","dados/ragnarok.json"],
+ bestiario:["dados/criaturas.json","dados/ragnarok.json","dados/seres-adicionais.json"],
  deuses:["dados/figuras-bestiario.json"],
  catalogo:["dados/adversarios.json","dados/documentos-nordicos.json"]
 };
-const pathGroup={"dados/criaturas.json":"Criaturas de Nexalis","dados/ragnarok.json":"Seres do Ragnarök","dados/figuras-bestiario.json":"Figuras divinas","dados/adversarios.json":"Adversários especiais","dados/documentos-nordicos.json":"Eventos e referências"};
+const pathGroup={"dados/criaturas.json":"Criaturas de Nexalis","dados/ragnarok.json":"Seres do Ragnarök","dados/seres-adicionais.json":"Seres adicionais do Ragnarök","dados/figuras-bestiario.json":"Figuras divinas","dados/adversarios.json":"Adversários especiais","dados/documentos-nordicos.json":"Eventos e referências"};
 const normalize=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase("pt-BR");
 const elem=(tag,content,cls)=>{const el=document.createElement(tag);if(content!==null)el.textContent=content;if(cls)el.className=cls;return el};
 const escapeText=s=>String(s||"").trim();
@@ -37,7 +37,7 @@ function portrait(item){
 }
 function placeholder(item){
  const div=elem("div",null,"organ-cover-placeholder");
- const symbol=elem("span",item.group==="Figuras divinas"?"✦":item.group==="Seres do Ragnarök"?"🐉":item.group==="Eventos e referências"?"📜":item.group==="Adversários especiais"?"♜":"⚔","organ-cover-symbol");
+ const symbol=elem("span",item.group==="Figuras divinas"?"✦":item.group.includes("Ragnarök")?"🐉":item.group==="Eventos e referências"?"📜":item.group==="Adversários especiais"?"♜":"⚔","organ-cover-symbol");
  const cap=elem("small","Sem retrato específico cadastrado • "+item.group,"organ-cover-caption");
  div.setAttribute("role","img");div.setAttribute("aria-label","Emblema ilustrativo de "+(item.name||item.title));
  div.append(symbol,cap);return div;
@@ -57,6 +57,19 @@ function card(item){
  else if(!Number.isInteger(item.level))side.append(elem("p","Documento complementar do compêndio nórdico; texto completo na ficha abaixo.","organ-description"));
  else side.append(elem("p","Descrição específica não identificada no documento original. Consulte a ficha integral abaixo.","organ-description"));
  if(item.habitat)side.append(elem("p","🌿 Habitat: "+escapeText(item.habitat),"organ-habitat"));
+ if(item.element)side.append(elem("p","🔥 Elemento: "+item.element,"organ-habitat"));
+ if(Array.isArray(item.abilities)&&item.abilities.length){
+  side.append(elem("h4","⚔️ Ataques e técnicas"));
+  const ul=elem("ul",null,"organ-power-list");
+  for(const attack of item.abilities)ul.append(elem("li",attack));
+  side.append(ul);
+ }
+ if(Array.isArray(item.specials)&&item.specials.length){
+  side.append(elem("h4","✨ Poderes e passivas"));
+  const ul=elem("ul",null,"organ-power-list organ-special-list");
+  for(const special of item.specials)ul.append(elem("li",special));
+  side.append(ul);
+ }
  top.append(side);art.append(top);
  const details=elem("details",null,"organ-full");
  details.append(elem("summary","📜 Abrir ficha integral, atributos, técnicas e drops"));
@@ -102,7 +115,8 @@ Promise.all((SOURCES[mode]||[]).map(async url=>{
  return json.items.map(entry=>({...entry,group:pathGroup[url]||"Arquivo"}));
 })).then(all=>{
  entries=all.flat();
- if(entries.length!==({bestiario:129,deuses:2,catalogo:16}[mode]))throw Error("Quantidade inesperada de registros: "+entries.length);
+ if(mode==="catalogo")entries=entries.filter(it=>![55,56,57].includes(it.page));
+ if(entries.length!==({bestiario:142,deuses:2,catalogo:13}[mode]))throw Error("Quantidade inesperada de registros: "+entries.length);
  buildOptions();update();
 }).catch(err=>{
  counter.textContent="Falha ao carregar o arquivo completo: "+err.message;
