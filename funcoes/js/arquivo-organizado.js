@@ -33,12 +33,13 @@ const MAIN_RPG_GROUPS=[
 ];
 function mainStatsFrom(item){
  const all=extractSections(item.raw||"");
- const selected=all.filter(s=>/^(?:atributos|atributo valor|dados originais)$/i.test(normalize(s.heading)));
+ const described=all.filter(s=>/^(?:atributos|atributo valor)$/i.test(normalize(s.heading)));
+ const selected=described.length?described:all.filter(s=>normalize(s.heading)==="dados originais");
  const text=selected.flatMap(s=>s.lines).join("\n");
  const values=Object.create(null);
  for(const name of MAIN_RPG_GROUPS.flatMap(g=>g.attrs)){
   const direct=new RegExp("(?:^|\\n)\\s*(?:[-•]\\s*)?"+name+"\\s*:?\\s+(-?\\d+)\\b","iu");
-  const reverse=new RegExp("(?:^|[^\\p{L}\\p{M}])(-?\\d+)\\s+"+name+"(?=[\\s,.;]|$)","iu");
+  const reverse=new RegExp("(?:^|[^\\p{L}\\p{M}])(-?\\d+)[ \\t]+"+name+"(?=[\\s,.;]|$)","iu");
   const match=text.match(direct)||text.match(reverse);
   values[name]=match?Number(match[1]):null;
  }
