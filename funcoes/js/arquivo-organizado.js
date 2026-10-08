@@ -61,6 +61,60 @@ function mainAttrCards(item){
  return grid;
 }
 
+
+/* Organização das habilidades em três painéis, preservando pontuações documentadas. */
+const MAIN_SKILL_GROUPS=[
+ {id:"esquerda",title:"⚔️ Habilidades • esquerda",attrs:[
+ ["Intimidação",["Intimidação"]],["Liderança",["Liderança"]],["Lábia",["Lábia"]],
+ ["Bloqueio",["Bloqueio"]],["Esquiva",["Esquiva"]],["Briga",["Briga"]],
+ ["Disparada",["Disparada"]],["Crítico",["Crítico"]],["Ocultismo",["Ocultismo"]]]},
+ {id:"meio",title:"🏹 Habilidades • meio",attrs:[
+ ["Adestramento",["Adestramento"]],["Ofício",["Ofício"]],["Conduta",["Conduta","Condução"]],
+ ["Arma de distância",["Arma de distância","Armas à distância","Armas a Distância"]],
+ ["Arma branca",["Arma branca","Armas brancas"]],
+ ["Segurança",["Segurança"]],["Furtividade",["Furtividade"]],["Armadura",["Armadura"]],
+ ["Investigação",["Investigação"]]]},
+ {id:"direita",title:"📚 Habilidades • direita",attrs:[
+ ["Acadêmico",["Acadêmico","Acadêmicos"]],["Geografia",["Geografia"]],
+ ["Encantamento",["Encantamento","Encantamentos"]],["Selos",["Selos"]],
+ ["Medicina",["Medicina"]],["Ciência",["Ciência","Ciências"]],
+ ["Tecnologia",["Tecnologia"]],["Linguística",["Linguística"]],
+ ["Sobrevivência",["Sobrevivência"]]]}
+];
+function readDocumentedSkills(item){
+ const sections=extractSections(item.raw||"");
+ const relevant=sections.filter(s=>/^(habilidades|talentos|pericias|conhecimentos)$/i.test(normalize(s.heading)));
+ const text=relevant.flatMap(s=>s.lines).join("\n");
+ const ascii=normalize(text),values=Object.create(null);
+ for(const g of MAIN_SKILL_GROUPS)for(const [name,aliases]of g.attrs){
+  let number=null;
+  for(const alias of aliases){
+   const n=normalize(alias);
+   const direct=new RegExp("(?:^|\\n)\\s*(?:[-•]\\s*)?"+n+"\\s*:\\s*(-?\\d+)(?=[^\\d]|$)","iu");
+   const reversed=new RegExp("(?:^|[^a-z])(-?\\d+)[ \\t]+"+n+"(?=[\\s,.;]|$)","iu");
+   const match=ascii.match(direct)||ascii.match(reversed);
+   if(match){number=Number(match[1]);break}
+  }
+  values[name]=number;
+ }
+ return values;
+}
+function documentedSkillsBoard(item){
+ const stats=readDocumentedSkills(item),grid=elem("div",null,"organ-skills-columns");
+ grid.setAttribute("aria-label","Habilidades organizadas em três colunas");
+ for(const group of MAIN_SKILL_GROUPS){
+  const column=elem("section",null,"organ-skills-column organ-skills-"+group.id);
+  column.append(elem("h4",group.title));
+  for(const [name]of group.attrs){
+   const row=elem("div",null,"organ-skills-row");
+   row.append(elem("span",name),elem("strong",stats[name]===null?"—":String(stats[name])));
+   column.append(row);
+  }
+  grid.append(column);
+ }
+ return grid;
+}
+
 function portrait(item){
  const figure=elem("figure",null,"organ-cover");
  const image=item.picture;
@@ -89,7 +143,11 @@ function card(item){
  meta.textContent=[item.life?"❤ Vitalidade "+item.life:"",item.mana?"✦ Mana "+item.mana:""].filter(Boolean).join("   •   ");
  side.append(tag,title);
  if(meta.textContent)side.append(meta);
- if(mode==="bestiario")side.append(mainAttrCards(item));
+ if(mode==="bestiario"){
+  side.append(mainAttrCards(item));
+  side.append(elem("h4","🎯 Habilidades"));
+  side.append(documentedSkillsBoard(item));
+ }
  const description=escapeText(item.description||"");
  if(description){side.append(elem("h4","Descrição"),elem("p",description,"organ-description"))}
  else if(!Number.isInteger(item.level))side.append(elem("p","Documento complementar do compêndio nórdico; texto completo na ficha abaixo.","organ-description"));
@@ -181,6 +239,7 @@ function makeHighlighted(item,category,note){
  if(item.mana!==null&&item.mana!==""&&item.mana!==undefined)badges.append(elem("span","✦ "+item.mana+" Mana"));
  shell.append(header,badges);
  shell.append(mainAttrCards(item));
+ shell.append(elem("h4","🎯 Habilidades","organ-highlight-skills-title"),documentedSkillsBoard(item));
  const impact=strongestLine(item,category);
  if(impact){
   const paragraph=elem("div",null,"organ-highlight-info");

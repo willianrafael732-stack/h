@@ -140,3 +140,24 @@
 .organ-highlight-card .organ-main-field strong{font-size:.82rem}
 @media(max-width:740px){.organ-main-attributes{grid-template-columns:repeat(3,minmax(170px,1fr));overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:3px}.organ-main-group{scroll-snap-align:start}}
 @media print{.organ-main-group,.organ-main-field{background:white!important;color:black!important;border-color:#aaa!important;break-inside:avoid}.organ-main-group h4,.organ-main-field strong{color:black!important}}
+
+
+/* Nove habilidades em cada uma das três colunas do bestiário */
+.organ-skills-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:11px 0 13px;min-width:0}
+.organ-skills-column{min-width:0;border:1px solid #667b71;border-radius:9px;padding:10px;background:#27312f}
+.organ-skills-esquerda{border-color:#b08d65;background:#352e28}
+.organ-skills-meio{border-color:#7593a9;background:#283641}
+.organ-skills-direita{border-color:#a18bad;background:#332d42}
+.organ-skills-column h4{margin:0 0 9px!important;padding:0 0 7px;border-bottom:1px solid #6c756b;color:#ffe1a3!important;font-size:.84rem}
+.organ-skills-row{display:flex;justify-content:space-between;gap:5px;align-items:center;background:#152123b8;border-radius:6px;padding:6px;margin-top:5px;min-width:0}
+.organ-skills-row span{font-size:.75rem;line-height:1.3;color:#f0ebe1;overflow-wrap:anywhere}
+.organ-skills-row strong{font-size:.92rem;color:#ffe0a1;font-variant-numeric:tabular-nums}
+.organ-highlight-skills-title{margin:0;color:#f4dda8;font-size:.92rem}
+.organ-highlight-card .organ-skills-columns{gap:5px;margin:0}
+.organ-highlight-card .organ-skills-column{padding:6px 5px}
+.organ-highlight-card .organ-skills-column h4{font-size:.7rem;line-height:1.25;min-height:27px}
+.organ-highlight-card .organ-skills-row{padding:4px 2px}
+.organ-highlight-card .organ-skills-row span{font-size:.65rem}
+.organ-highlight-card .organ-skills-row strong{font-size:.74rem}
+@media(max-width:800px){.organ-skills-columns{grid-template-columns:repeat(3,minmax(185px,1fr));overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:5px}.organ-skills-column{scroll-snap-align:start}}
+@media print{.organ-skills-column,.organ-skills-row{background:white!important;border-color:#888!important;break-inside:avoid}.organ-skills-column h4,.organ-skills-row strong{color:black!important}}
