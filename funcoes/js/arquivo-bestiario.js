@@ -61,6 +61,6 @@ function addSelect(){
 }
 search.addEventListener("input",()=>{limit=20;render()});level.addEventListener("change",()=>{limit=20;render()});
 more.addEventListener("click",()=>{limit+=20;render()});
-print.addEventListener("click",()=>{limit=Number.MAX_SAFE_INTEGER;render();window.print()});
+print.addEventListener("click",()=>{limit=Number.MAX_SAFE_INTEGER;render();root.querySelectorAll("details").forEach(d=>d.open=true);window.print()});
 fetch("dados/bestiario-original.txt").then(r=>{if(!r.ok)throw Error("HTTP "+r.status);return r.text()}).then(text=>{all=parse(text);addSelect();render();}).catch(err=>{count.textContent="Falha ao carregar arquivo: "+err.message;root.replaceChildren(elem("p","Não foi possível abrir as fichas. Recarregue a página.","archive-empty"))});
 })();
