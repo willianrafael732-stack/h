@@ -25,7 +25,8 @@ function parse(text){
   const page=Number(parts[i]),raw=parts[i+1].trim(),lines=raw.split("\n").map(s=>s.trim()).filter(Boolean),idx=lines.findIndex(s=>/^Nível:\s*\d+/.test(s));
   if(idx>0 && lines[idx-1].includes(" — ")){
    const title=lines[idx-1],name=title.split(" — ")[0],level=Number(lines[idx].match(/\d+/)[0]);
-   let type=page>=45?"Chefes do Ragnarök":page>=17?"Seres nórdicos":"Deuses nórdicos";
+   const beasts=new Set(["FENRIR","JÖRMUNGANDR","YGGDRASIL","SURTUR","SLEIPNIR","NÍÐHÖGGR","SKÖLL","HATI","GARMR"]);
+   let type=page>=45?"Chefes do Ragnarök":beasts.has(name)?"Seres nórdicos":"Deuses nórdicos";
    if(page===12||page===13||page===14||page===15)type="Descendentes divinos";
    chars.push({title,name,level,page,raw,type,created:false});
   }else if((page===5||page===9)&&chars.length){chars[chars.length-1].raw+="\n"+raw}
@@ -114,7 +115,7 @@ function buildExtras(arr){
 }
 for(const input of [search,kind,order])input.addEventListener(input===search?"input":"change",()=>{limit=18;render()});
 more.addEventListener("click",()=>{limit+=18;render()});
-print.addEventListener("click",()=>{limit=Number.MAX_SAFE_INTEGER;render();window.print()});
+print.addEventListener("click",()=>{limit=Number.MAX_SAFE_INTEGER;render();grid.querySelectorAll("details").forEach(d=>d.open=true);extras.querySelectorAll("details").forEach(d=>d.open=true);window.print()});
 fetch("dados/compendio-nordico.txt").then(r=>{if(!r.ok)throw Error("HTTP "+r.status);return r.text()}).then(text=>{
  const parsed=parse(text);all=parsed.chars.concat(created);buildExtras(parsed.other);render();
 }).catch(err=>{count.textContent="Erro ao abrir compêndio: "+err.message;grid.replaceChildren(e("p","Não foi possível carregar as fichas. Recarregue a página.","codex-empty"));});
