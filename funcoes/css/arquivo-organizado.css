@@ -120,3 +120,23 @@
 @media(max-width:950px){.organ-highlights-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:580px){.organ-highlights{padding:13px}.organ-highlights-grid{grid-template-columns:1fr}.organ-highlights-tabs button{font-size:.78rem;padding:8px 10px}}
 @media print{.organ-highlights-tabs,.organ-highlight-original summary,.organ-highlight-content button{display:none!important}.organ-highlights-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.organ-highlight-card{background:white!important;color:black!important;break-inside:avoid}}
+
+
+/* Físico, Social e Mental lado a lado nas criaturas e nos destaques. */
+.organ-main-attributes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:11px 0 14px;min-width:0}
+.organ-main-group{min-width:0;padding:10px;border:1px solid #837457;border-radius:9px;background:#252e2e}
+.organ-main-group h4{font-size:.88rem;color:#ffe1a5!important;margin:0 0 10px!important;padding:0 0 7px;border-bottom:1px solid #657268}
+.organ-main-fisico{background:#342e26;border-color:#a38760}
+.organ-main-social{background:#293442;border-color:#728ba7}
+.organ-main-mental{background:#302e40;border-color:#9585a9}
+.organ-main-field{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:5px;padding:7px 6px;border-radius:6px;background:#161f22a8;margin-top:5px}
+.organ-main-field span{font-size:.78rem;color:#f1ecdf;overflow-wrap:anywhere}
+.organ-main-field strong{font-size:.96rem;color:#ffdc9b;font-variant-numeric:tabular-nums}
+.organ-highlight-card .organ-main-attributes{margin:0;gap:5px}
+.organ-highlight-card .organ-main-group{padding:8px 6px}
+.organ-highlight-card .organ-main-group h4{font-size:.75rem;min-height:25px}
+.organ-highlight-card .organ-main-field{gap:3px;padding:5px 3px}
+.organ-highlight-card .organ-main-field span{font-size:.7rem}
+.organ-highlight-card .organ-main-field strong{font-size:.82rem}
+@media(max-width:740px){.organ-main-attributes{grid-template-columns:repeat(3,minmax(170px,1fr));overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:3px}.organ-main-group{scroll-snap-align:start}}
+@media print{.organ-main-group,.organ-main-field{background:white!important;color:black!important;border-color:#aaa!important;break-inside:avoid}.organ-main-group h4,.organ-main-field strong{color:black!important}}

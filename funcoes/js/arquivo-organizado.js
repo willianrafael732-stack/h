@@ -24,6 +24,42 @@ function extractSections(text){
  }
  return out.filter(x=>x.lines.some(v=>v.trim()));
 }
+
+/* O trio principal preserva a nomenclatura e as pontuações realmente presentes no documento. */
+const MAIN_RPG_GROUPS=[
+ {id:"fisico",title:"💪 Físico",attrs:["Força","Destreza","Vigor"]},
+ {id:"social",title:"🗣️ Social",attrs:["Empatia","Manipulação","Persuasão"]},
+ {id:"mental",title:"🧠 Mental",attrs:["Percepção","Inteligência","Reação"]}
+];
+function mainStatsFrom(item){
+ const all=extractSections(item.raw||"");
+ const selected=all.filter(s=>/^(?:atributos|atributo valor|dados originais)$/i.test(normalize(s.heading)));
+ const text=selected.flatMap(s=>s.lines).join("\n");
+ const values=Object.create(null);
+ for(const name of MAIN_RPG_GROUPS.flatMap(g=>g.attrs)){
+  const direct=new RegExp("(?:^|\\n)\\s*(?:[-•]\\s*)?"+name+"\\s*:?\\s+(-?\\d+)\\b","iu");
+  const reverse=new RegExp("(?:^|[^\\p{L}\\p{M}])(-?\\d+)\\s+"+name+"(?=[\\s,.;]|$)","iu");
+  const match=text.match(direct)||text.match(reverse);
+  values[name]=match?Number(match[1]):null;
+ }
+ return values;
+}
+function mainAttrCards(item){
+ const values=mainStatsFrom(item),grid=elem("div",null,"organ-main-attributes");
+ grid.setAttribute("aria-label","Atributos físicos, sociais e mentais da ficha");
+ for(const group of MAIN_RPG_GROUPS){
+  const block=elem("section",null,"organ-main-group organ-main-"+group.id);
+  block.append(elem("h4",group.title));
+  for(const name of group.attrs){
+   const row=elem("div",null,"organ-main-field");
+   row.append(elem("span",name),elem("strong",values[name]===null?"—":String(values[name])));
+   block.append(row);
+  }
+  grid.append(block);
+ }
+ return grid;
+}
+
 function portrait(item){
  const figure=elem("figure",null,"organ-cover");
  const image=item.picture;
@@ -52,6 +88,7 @@ function card(item){
  meta.textContent=[item.life?"❤ Vitalidade "+item.life:"",item.mana?"✦ Mana "+item.mana:""].filter(Boolean).join("   •   ");
  side.append(tag,title);
  if(meta.textContent)side.append(meta);
+ if(mode==="bestiario")side.append(mainAttrCards(item));
  const description=escapeText(item.description||"");
  if(description){side.append(elem("h4","Descrição"),elem("p",description,"organ-description"))}
  else if(!Number.isInteger(item.level))side.append(elem("p","Documento complementar do compêndio nórdico; texto completo na ficha abaixo.","organ-description"));
@@ -142,6 +179,7 @@ function makeHighlighted(item,category,note){
  if(item.life!==null&&item.life!==""&&item.life!==undefined)badges.append(elem("span","❤ "+item.life+" PV"));
  if(item.mana!==null&&item.mana!==""&&item.mana!==undefined)badges.append(elem("span","✦ "+item.mana+" Mana"));
  shell.append(header,badges);
+ shell.append(mainAttrCards(item));
  const impact=strongestLine(item,category);
  if(impact){
   const paragraph=elem("div",null,"organ-highlight-info");
