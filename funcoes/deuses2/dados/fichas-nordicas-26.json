@@ -235,25 +235,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 15,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 3,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 19,
+                  "count": 15,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "15d10 físico",
-              "weapon": "19d10 físico",
+              "normal": "12d10 físico + 3d10 mágico",
+              "weapon": "15d10 físico + 4d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-01-move-2",
@@ -271,25 +278,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 26,
+                  "count": 16,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 34,
+                  "count": 20,
                   "type": "físico"
+                },
+                {
+                  "count": 14,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "26d10 físico",
-              "weapon": "34d10 físico",
+              "normal": "16d10 físico + 10d10 mágico",
+              "weapon": "20d10 físico + 14d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-01-move-3",
@@ -307,25 +321,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 24,
+                  "count": 7,
                   "type": "físico"
+                },
+                {
+                  "count": 17,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 33,
+                  "count": 9,
                   "type": "físico"
+                },
+                {
+                  "count": 24,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "24d10 físico",
-              "weapon": "33d10 físico",
+              "normal": "7d10 físico + 17d10 mágico",
+              "weapon": "9d10 físico + 24d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-01-move-4",
@@ -343,25 +364,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 22,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 12,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 30,
+                  "count": 13,
                   "type": "físico"
+                },
+                {
+                  "count": 17,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "22d10 físico",
-              "weapon": "30d10 físico",
+              "normal": "10d10 físico + 12d10 mágico",
+              "weapon": "13d10 físico + 17d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-01-move-5",
@@ -379,25 +407,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 16,
+                  "count": 9,
                   "type": "físico"
+                },
+                {
+                  "count": 7,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 21,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (16d10 físico)",
-              "weapon": "2 ataques × (21d10 físico)",
+              "normal": "2 ataques × (9d10 físico + 7d10 mágico)",
+              "weapon": "2 ataques × (11d10 físico + 10d10 mágico)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-01-move-6",
@@ -415,25 +450,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 39,
+                  "count": 20,
                   "type": "físico"
+                },
+                {
+                  "count": 19,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 52,
+                  "count": 25,
                   "type": "físico"
+                },
+                {
+                  "count": 27,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "39d10 físico",
-              "weapon": "52d10 físico",
+              "normal": "20d10 físico + 19d10 mágico",
+              "weapon": "25d10 físico + 27d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -696,30 +738,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 18,
+                  "count": 14,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 23,
+                  "count": 18,
                   "type": "físico"
+                },
+                {
+                  "count": 5,
+                  "type": "raio"
                 }
               ],
               "passive": [
                 {
-                  "count": 25,
+                  "count": 20,
                   "type": "físico"
+                },
+                {
+                  "count": 5,
+                  "type": "raio"
                 }
               ]
             },
             "passiveCondition": "Fúria do Trovão: Durante 3 turnos recebe +3d10 físico e resistência a raio",
             "formula": {
-              "normal": "18d10 físico",
-              "weapon": "23d10 físico",
-              "passive": "25d10 físico"
-            },
-            "damageType": "físico"
+              "normal": "14d10 físico + 4d10 raio",
+              "weapon": "18d10 físico + 5d10 raio",
+              "passive": "20d10 físico + 5d10 raio"
+            }
           },
           {
             "id": "pdf-nordico-02-move-2",
@@ -737,30 +790,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 31,
+                  "count": 20,
                   "type": "físico"
+                },
+                {
+                  "count": 11,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 40,
+                  "count": 25,
                   "type": "físico"
+                },
+                {
+                  "count": 15,
+                  "type": "raio"
                 }
               ],
               "passive": [
                 {
-                  "count": 43,
+                  "count": 28,
                   "type": "físico"
+                },
+                {
+                  "count": 15,
+                  "type": "raio"
                 }
               ]
             },
             "passiveCondition": "Fúria do Trovão: Durante 3 turnos recebe +3d10 físico e resistência a raio",
             "formula": {
-              "normal": "31d10 físico",
-              "weapon": "40d10 físico",
-              "passive": "43d10 físico"
-            },
-            "damageType": "físico"
+              "normal": "20d10 físico + 11d10 raio",
+              "weapon": "25d10 físico + 15d10 raio",
+              "passive": "28d10 físico + 15d10 raio"
+            }
           },
           {
             "id": "pdf-nordico-02-move-3",
@@ -778,30 +842,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 27,
+                  "count": 9,
                   "type": "físico"
+                },
+                {
+                  "count": 18,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 35,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 24,
+                  "type": "raio"
                 }
               ],
               "passive": [
                 {
-                  "count": 38,
+                  "count": 14,
                   "type": "físico"
+                },
+                {
+                  "count": 24,
+                  "type": "raio"
                 }
               ]
             },
             "passiveCondition": "Fúria do Trovão: Durante 3 turnos recebe +3d10 físico e resistência a raio",
             "formula": {
-              "normal": "27d10 físico",
-              "weapon": "35d10 físico",
-              "passive": "38d10 físico"
-            },
-            "damageType": "físico"
+              "normal": "9d10 físico + 18d10 raio",
+              "weapon": "11d10 físico + 24d10 raio",
+              "passive": "14d10 físico + 24d10 raio"
+            }
           },
           {
             "id": "pdf-nordico-02-move-4",
@@ -819,30 +894,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 26,
+                  "count": 13,
                   "type": "físico"
+                },
+                {
+                  "count": 13,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 33,
+                  "count": 16,
                   "type": "físico"
+                },
+                {
+                  "count": 17,
+                  "type": "raio"
                 }
               ],
               "passive": [
                 {
-                  "count": 35,
+                  "count": 18,
                   "type": "físico"
+                },
+                {
+                  "count": 17,
+                  "type": "raio"
                 }
               ]
             },
             "passiveCondition": "Fúria do Trovão: Durante 3 turnos recebe +3d10 físico e resistência a raio",
             "formula": {
-              "normal": "26d10 físico",
-              "weapon": "33d10 físico",
-              "passive": "35d10 físico"
-            },
-            "damageType": "físico"
+              "normal": "13d10 físico + 13d10 raio",
+              "weapon": "16d10 físico + 17d10 raio",
+              "passive": "18d10 físico + 17d10 raio"
+            }
           },
           {
             "id": "pdf-nordico-02-move-5",
@@ -860,30 +946,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 19,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 8,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 25,
+                  "count": 14,
                   "type": "físico"
+                },
+                {
+                  "count": 11,
+                  "type": "raio"
                 }
               ],
               "passive": [
                 {
-                  "count": 27,
+                  "count": 16,
                   "type": "físico"
+                },
+                {
+                  "count": 11,
+                  "type": "raio"
                 }
               ]
             },
             "passiveCondition": "Fúria do Trovão: Durante 3 turnos recebe +3d10 físico e resistência a raio",
             "formula": {
-              "normal": "2 ataques × (19d10 físico)",
-              "weapon": "2 ataques × (25d10 físico)",
-              "passive": "2 ataques × (27d10 físico)"
-            },
-            "damageType": "físico"
+              "normal": "2 ataques × (11d10 físico + 8d10 raio)",
+              "weapon": "2 ataques × (14d10 físico + 11d10 raio)",
+              "passive": "2 ataques × (16d10 físico + 11d10 raio)"
+            }
           },
           {
             "id": "pdf-nordico-02-move-6",
@@ -901,30 +998,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 44,
+                  "count": 24,
                   "type": "físico"
+                },
+                {
+                  "count": 20,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 57,
+                  "count": 30,
                   "type": "físico"
+                },
+                {
+                  "count": 27,
+                  "type": "raio"
                 }
               ],
               "passive": [
                 {
-                  "count": 61,
+                  "count": 34,
                   "type": "físico"
+                },
+                {
+                  "count": 27,
+                  "type": "raio"
                 }
               ]
             },
             "passiveCondition": "Fúria do Trovão: Durante 3 turnos recebe +3d10 físico e resistência a raio",
             "formula": {
-              "normal": "44d10 físico",
-              "weapon": "57d10 físico",
-              "passive": "61d10 físico"
-            },
-            "damageType": "físico"
+              "normal": "24d10 físico + 20d10 raio",
+              "weapon": "30d10 físico + 27d10 raio",
+              "passive": "34d10 físico + 27d10 raio"
+            }
           }
         ]
       },
@@ -1182,25 +1290,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 11,
+                  "count": 8,
                   "type": "físico"
+                },
+                {
+                  "count": 3,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 14,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "11d10 físico",
-              "weapon": "14d10 físico",
+              "normal": "8d10 físico + 3d10 mágico",
+              "weapon": "10d10 físico + 4d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-03-move-2",
@@ -1218,25 +1333,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 19,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 8,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 26,
+                  "count": 14,
                   "type": "físico"
+                },
+                {
+                  "count": 12,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "19d10 físico",
-              "weapon": "26d10 físico",
+              "normal": "11d10 físico + 8d10 mágico",
+              "weapon": "14d10 físico + 12d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-03-move-3",
@@ -1254,25 +1376,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 19,
+                  "count": 5,
                   "type": "físico"
+                },
+                {
+                  "count": 14,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 27,
+                  "count": 6,
                   "type": "físico"
+                },
+                {
+                  "count": 21,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "19d10 físico",
-              "weapon": "27d10 físico",
+              "normal": "5d10 físico + 14d10 mágico",
+              "weapon": "6d10 físico + 21d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-03-move-4",
@@ -1290,25 +1419,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 17,
+                  "count": 7,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 24,
+                  "count": 9,
                   "type": "físico"
+                },
+                {
+                  "count": 15,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "17d10 físico",
-              "weapon": "24d10 físico",
+              "normal": "7d10 físico + 10d10 mágico",
+              "weapon": "9d10 físico + 15d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-03-move-5",
@@ -1326,25 +1462,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 12,
+                  "count": 6,
                   "type": "físico"
+                },
+                {
+                  "count": 6,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 17,
+                  "count": 8,
                   "type": "físico"
+                },
+                {
+                  "count": 9,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (12d10 físico)",
-              "weapon": "2 ataques × (17d10 físico)",
+              "normal": "2 ataques × (6d10 físico + 6d10 mágico)",
+              "weapon": "2 ataques × (8d10 físico + 9d10 mágico)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-03-move-6",
@@ -1362,25 +1505,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 29,
+                  "count": 13,
                   "type": "físico"
+                },
+                {
+                  "count": 16,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 41,
+                  "count": 17,
                   "type": "físico"
+                },
+                {
+                  "count": 24,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "29d10 físico",
-              "weapon": "41d10 físico",
+              "normal": "13d10 físico + 16d10 mágico",
+              "weapon": "17d10 físico + 24d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -1638,25 +1788,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 14,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 2,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 18,
+                  "count": 15,
                   "type": "físico"
+                },
+                {
+                  "count": 3,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "14d10 físico",
-              "weapon": "18d10 físico",
+              "normal": "12d10 físico + 2d10 sagrado",
+              "weapon": "15d10 físico + 3d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-04-move-2",
@@ -1674,25 +1831,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 23,
+                  "count": 17,
                   "type": "físico"
+                },
+                {
+                  "count": 6,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 30,
+                  "count": 21,
                   "type": "físico"
+                },
+                {
+                  "count": 9,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "23d10 físico",
-              "weapon": "30d10 físico",
+              "normal": "17d10 físico + 6d10 sagrado",
+              "weapon": "21d10 físico + 9d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-04-move-3",
@@ -1710,25 +1874,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 19,
+                  "count": 8,
                   "type": "físico"
+                },
+                {
+                  "count": 11,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 26,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 16,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "19d10 físico",
-              "weapon": "26d10 físico",
+              "normal": "8d10 físico + 11d10 sagrado",
+              "weapon": "10d10 físico + 16d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-04-move-4",
@@ -1746,25 +1917,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 19,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 8,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 25,
+                  "count": 14,
                   "type": "físico"
+                },
+                {
+                  "count": 11,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "19d10 físico",
-              "weapon": "25d10 físico",
+              "normal": "11d10 físico + 8d10 sagrado",
+              "weapon": "14d10 físico + 11d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-04-move-5",
@@ -1782,25 +1960,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 15,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 5,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 19,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 7,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (15d10 físico)",
-              "weapon": "2 ataques × (19d10 físico)",
+              "normal": "2 ataques × (10d10 físico + 5d10 sagrado)",
+              "weapon": "2 ataques × (12d10 físico + 7d10 sagrado)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-04-move-6",
@@ -1818,25 +2003,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 33,
+                  "count": 21,
                   "type": "físico"
+                },
+                {
+                  "count": 12,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 43,
+                  "count": 26,
                   "type": "físico"
+                },
+                {
+                  "count": 17,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "33d10 físico",
-              "weapon": "43d10 físico",
+              "normal": "21d10 físico + 12d10 sagrado",
+              "weapon": "26d10 físico + 17d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -2094,25 +2286,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 11,
+                  "count": 7,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 13,
+                  "count": 8,
                   "type": "físico"
+                },
+                {
+                  "count": 5,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "11d10 físico",
-              "weapon": "13d10 físico",
+              "normal": "7d10 físico + 4d10 mágico",
+              "weapon": "8d10 físico + 5d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-05-move-2",
@@ -2130,25 +2329,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 23,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 13,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 29,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 17,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "23d10 físico",
-              "weapon": "29d10 físico",
+              "normal": "10d10 físico + 13d10 mágico",
+              "weapon": "12d10 físico + 17d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-05-move-3",
@@ -2166,25 +2372,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 27,
+                  "count": 5,
                   "type": "físico"
+                },
+                {
+                  "count": 22,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 35,
+                  "count": 6,
                   "type": "físico"
+                },
+                {
+                  "count": 29,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "27d10 físico",
-              "weapon": "35d10 físico",
+              "normal": "5d10 físico + 22d10 mágico",
+              "weapon": "6d10 físico + 29d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-05-move-4",
@@ -2202,25 +2415,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 22,
+                  "count": 7,
                   "type": "físico"
+                },
+                {
+                  "count": 15,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 28,
+                  "count": 8,
                   "type": "físico"
+                },
+                {
+                  "count": 20,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "22d10 físico",
-              "weapon": "28d10 físico",
+              "normal": "7d10 físico + 15d10 mágico",
+              "weapon": "8d10 físico + 20d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-05-move-5",
@@ -2238,25 +2458,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 16,
+                  "count": 6,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 20,
+                  "count": 7,
                   "type": "físico"
+                },
+                {
+                  "count": 13,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (16d10 físico)",
-              "weapon": "2 ataques × (20d10 físico)",
+              "normal": "2 ataques × (6d10 físico + 10d10 mágico)",
+              "weapon": "2 ataques × (7d10 físico + 13d10 mágico)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-05-move-6",
@@ -2274,25 +2501,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 36,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 24,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 46,
+                  "count": 14,
                   "type": "físico"
+                },
+                {
+                  "count": 32,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "36d10 físico",
-              "weapon": "46d10 físico",
+              "normal": "12d10 físico + 24d10 mágico",
+              "weapon": "14d10 físico + 32d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -2550,25 +2784,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 15,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 3,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 19,
+                  "count": 15,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "15d10 físico",
-              "weapon": "19d10 físico",
+              "normal": "12d10 físico + 3d10 sagrado",
+              "weapon": "15d10 físico + 4d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-06-move-2",
@@ -2586,25 +2827,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 24,
+                  "count": 16,
                   "type": "físico"
+                },
+                {
+                  "count": 8,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 32,
+                  "count": 20,
                   "type": "físico"
+                },
+                {
+                  "count": 12,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "24d10 físico",
-              "weapon": "32d10 físico",
+              "normal": "16d10 físico + 8d10 sagrado",
+              "weapon": "20d10 físico + 12d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-06-move-3",
@@ -2622,25 +2870,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 21,
+                  "count": 7,
                   "type": "físico"
+                },
+                {
+                  "count": 14,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 29,
+                  "count": 9,
                   "type": "físico"
+                },
+                {
+                  "count": 20,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "21d10 físico",
-              "weapon": "29d10 físico",
+              "normal": "7d10 físico + 14d10 sagrado",
+              "weapon": "9d10 físico + 20d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-06-move-4",
@@ -2658,25 +2913,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 20,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 27,
+                  "count": 13,
                   "type": "físico"
+                },
+                {
+                  "count": 14,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "20d10 físico",
-              "weapon": "27d10 físico",
+              "normal": "10d10 físico + 10d10 sagrado",
+              "weapon": "13d10 físico + 14d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-06-move-5",
@@ -2694,25 +2956,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 15,
+                  "count": 9,
                   "type": "físico"
+                },
+                {
+                  "count": 6,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 20,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 9,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (15d10 físico)",
-              "weapon": "2 ataques × (20d10 físico)",
+              "normal": "2 ataques × (9d10 físico + 6d10 sagrado)",
+              "weapon": "2 ataques × (11d10 físico + 9d10 sagrado)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-06-move-6",
@@ -2730,25 +2999,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 36,
+                  "count": 20,
                   "type": "físico"
+                },
+                {
+                  "count": 16,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 48,
+                  "count": 25,
                   "type": "físico"
+                },
+                {
+                  "count": 23,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "36d10 físico",
-              "weapon": "48d10 físico",
+              "normal": "20d10 físico + 16d10 sagrado",
+              "weapon": "25d10 físico + 23d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -3006,25 +3282,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 15,
+                  "count": 14,
                   "type": "físico"
+                },
+                {
+                  "count": 1,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 20,
+                  "count": 18,
                   "type": "físico"
+                },
+                {
+                  "count": 2,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "15d10 físico",
-              "weapon": "20d10 físico",
+              "normal": "14d10 físico + 1d10 sagrado",
+              "weapon": "18d10 físico + 2d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-07-move-2",
@@ -3042,25 +3325,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 23,
+                  "count": 19,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 30,
+                  "count": 24,
                   "type": "físico"
+                },
+                {
+                  "count": 6,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "23d10 físico",
-              "weapon": "30d10 físico",
+              "normal": "19d10 físico + 4d10 sagrado",
+              "weapon": "24d10 físico + 6d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-07-move-3",
@@ -3078,25 +3368,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 16,
+                  "count": 9,
                   "type": "físico"
+                },
+                {
+                  "count": 7,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 22,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 11,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "16d10 físico",
-              "weapon": "22d10 físico",
+              "normal": "9d10 físico + 7d10 sagrado",
+              "weapon": "11d10 físico + 11d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-07-move-4",
@@ -3114,25 +3411,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 17,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 5,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 23,
+                  "count": 15,
                   "type": "físico"
+                },
+                {
+                  "count": 8,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "17d10 físico",
-              "weapon": "23d10 físico",
+              "normal": "12d10 físico + 5d10 sagrado",
+              "weapon": "15d10 físico + 8d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-07-move-5",
@@ -3150,25 +3454,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 14,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 3,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 19,
+                  "count": 14,
                   "type": "físico"
+                },
+                {
+                  "count": 5,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (14d10 físico)",
-              "weapon": "2 ataques × (19d10 físico)",
+              "normal": "2 ataques × (11d10 físico + 3d10 sagrado)",
+              "weapon": "2 ataques × (14d10 físico + 5d10 sagrado)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-07-move-6",
@@ -3186,25 +3497,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 31,
+                  "count": 23,
                   "type": "físico"
+                },
+                {
+                  "count": 8,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 41,
+                  "count": 29,
                   "type": "físico"
+                },
+                {
+                  "count": 12,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "31d10 físico",
-              "weapon": "41d10 físico",
+              "normal": "23d10 físico + 8d10 sagrado",
+              "weapon": "29d10 físico + 12d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -3462,25 +3780,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 15,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 19,
+                  "count": 13,
                   "type": "físico"
+                },
+                {
+                  "count": 6,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "15d10 físico",
-              "weapon": "19d10 físico",
+              "normal": "11d10 físico + 4d10 sagrado",
+              "weapon": "13d10 físico + 6d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-08-move-2",
@@ -3498,25 +3823,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 26,
+                  "count": 15,
                   "type": "físico"
+                },
+                {
+                  "count": 11,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 34,
+                  "count": 18,
                   "type": "físico"
+                },
+                {
+                  "count": 16,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "26d10 físico",
-              "weapon": "34d10 físico",
+              "normal": "15d10 físico + 11d10 sagrado",
+              "weapon": "18d10 físico + 16d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-08-move-3",
@@ -3534,25 +3866,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 25,
+                  "count": 7,
                   "type": "físico"
+                },
+                {
+                  "count": 18,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 34,
+                  "count": 8,
                   "type": "físico"
+                },
+                {
+                  "count": 26,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "25d10 físico",
-              "weapon": "34d10 físico",
+              "normal": "7d10 físico + 18d10 sagrado",
+              "weapon": "8d10 físico + 26d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-08-move-4",
@@ -3570,25 +3909,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 23,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 13,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 31,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 19,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "23d10 físico",
-              "weapon": "31d10 físico",
+              "normal": "10d10 físico + 13d10 sagrado",
+              "weapon": "12d10 físico + 19d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-08-move-5",
@@ -3606,25 +3952,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 16,
+                  "count": 8,
                   "type": "físico"
+                },
+                {
+                  "count": 8,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 22,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 12,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (16d10 físico)",
-              "weapon": "2 ataques × (22d10 físico)",
+              "normal": "2 ataques × (8d10 físico + 8d10 sagrado)",
+              "weapon": "2 ataques × (10d10 físico + 12d10 sagrado)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-08-move-6",
@@ -3642,25 +3995,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 38,
+                  "count": 18,
                   "type": "físico"
+                },
+                {
+                  "count": 20,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 51,
+                  "count": 22,
                   "type": "físico"
+                },
+                {
+                  "count": 29,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "38d10 físico",
-              "weapon": "51d10 físico",
+              "normal": "18d10 físico + 20d10 sagrado",
+              "weapon": "22d10 físico + 29d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -3918,25 +4278,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 14,
+                  "count": 9,
                   "type": "físico"
+                },
+                {
+                  "count": 5,
+                  "type": "morte"
                 }
               ],
               "weapon": [
                 {
-                  "count": 18,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 7,
+                  "type": "morte"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "14d10 físico",
-              "weapon": "18d10 físico",
+              "normal": "9d10 físico + 5d10 morte",
+              "weapon": "11d10 físico + 7d10 morte",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-09-move-2",
@@ -3954,25 +4321,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 26,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 14,
+                  "type": "morte"
                 }
               ],
               "weapon": [
                 {
-                  "count": 34,
+                  "count": 15,
                   "type": "físico"
+                },
+                {
+                  "count": 19,
+                  "type": "morte"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "26d10 físico",
-              "weapon": "34d10 físico",
+              "normal": "12d10 físico + 14d10 morte",
+              "weapon": "15d10 físico + 19d10 morte",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-09-move-3",
@@ -3990,25 +4364,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 29,
+                  "count": 5,
                   "type": "físico"
+                },
+                {
+                  "count": 24,
+                  "type": "morte"
                 }
               ],
               "weapon": [
                 {
-                  "count": 38,
+                  "count": 6,
                   "type": "físico"
+                },
+                {
+                  "count": 32,
+                  "type": "morte"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "29d10 físico",
-              "weapon": "38d10 físico",
+              "normal": "5d10 físico + 24d10 morte",
+              "weapon": "6d10 físico + 32d10 morte",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-09-move-4",
@@ -4026,25 +4407,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 25,
+                  "count": 8,
                   "type": "físico"
+                },
+                {
+                  "count": 17,
+                  "type": "morte"
                 }
               ],
               "weapon": [
                 {
-                  "count": 33,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 23,
+                  "type": "morte"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "25d10 físico",
-              "weapon": "33d10 físico",
+              "normal": "8d10 físico + 17d10 morte",
+              "weapon": "10d10 físico + 23d10 morte",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-09-move-5",
@@ -4062,25 +4450,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 18,
+                  "count": 7,
                   "type": "físico"
+                },
+                {
+                  "count": 11,
+                  "type": "morte"
                 }
               ],
               "weapon": [
                 {
-                  "count": 24,
+                  "count": 9,
                   "type": "físico"
+                },
+                {
+                  "count": 15,
+                  "type": "morte"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (18d10 físico)",
-              "weapon": "2 ataques × (24d10 físico)",
+              "normal": "2 ataques × (7d10 físico + 11d10 morte)",
+              "weapon": "2 ataques × (9d10 físico + 15d10 morte)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-09-move-6",
@@ -4098,25 +4493,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 42,
+                  "count": 15,
                   "type": "físico"
+                },
+                {
+                  "count": 27,
+                  "type": "morte"
                 }
               ],
               "weapon": [
                 {
-                  "count": 55,
+                  "count": 19,
                   "type": "físico"
+                },
+                {
+                  "count": 36,
+                  "type": "morte"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "42d10 físico",
-              "weapon": "55d10 físico",
+              "normal": "15d10 físico + 27d10 morte",
+              "weapon": "19d10 físico + 36d10 morte",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -4374,25 +4776,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 10,
+                  "count": 6,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 12,
+                  "count": 7,
                   "type": "físico"
+                },
+                {
+                  "count": 5,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "10d10 físico",
-              "weapon": "12d10 físico",
+              "normal": "6d10 físico + 4d10 sagrado",
+              "weapon": "7d10 físico + 5d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-10-move-2",
@@ -4410,25 +4819,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 22,
+                  "count": 9,
                   "type": "físico"
+                },
+                {
+                  "count": 13,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 28,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 17,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "22d10 físico",
-              "weapon": "28d10 físico",
+              "normal": "9d10 físico + 13d10 sagrado",
+              "weapon": "11d10 físico + 17d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-10-move-3",
@@ -4446,25 +4862,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 26,
+                  "count": 4,
                   "type": "físico"
+                },
+                {
+                  "count": 22,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 34,
+                  "count": 5,
                   "type": "físico"
+                },
+                {
+                  "count": 29,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "26d10 físico",
-              "weapon": "34d10 físico",
+              "normal": "4d10 físico + 22d10 sagrado",
+              "weapon": "5d10 físico + 29d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-10-move-4",
@@ -4482,25 +4905,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 21,
+                  "count": 6,
                   "type": "físico"
+                },
+                {
+                  "count": 15,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 27,
+                  "count": 7,
                   "type": "físico"
+                },
+                {
+                  "count": 20,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "21d10 físico",
-              "weapon": "27d10 físico",
+              "normal": "6d10 físico + 15d10 sagrado",
+              "weapon": "7d10 físico + 20d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-10-move-5",
@@ -4518,25 +4948,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 15,
+                  "count": 5,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 19,
+                  "count": 6,
                   "type": "físico"
+                },
+                {
+                  "count": 13,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (15d10 físico)",
-              "weapon": "2 ataques × (19d10 físico)",
+              "normal": "2 ataques × (5d10 físico + 10d10 sagrado)",
+              "weapon": "2 ataques × (6d10 físico + 13d10 sagrado)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-10-move-6",
@@ -4554,25 +4991,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 35,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 24,
+                  "type": "sagrado"
                 }
               ],
               "weapon": [
                 {
-                  "count": 45,
+                  "count": 13,
                   "type": "físico"
+                },
+                {
+                  "count": 32,
+                  "type": "sagrado"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "35d10 físico",
-              "weapon": "45d10 físico",
+              "normal": "11d10 físico + 24d10 sagrado",
+              "weapon": "13d10 físico + 32d10 sagrado",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -4835,30 +5279,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 16,
+                  "count": 14,
                   "type": "físico"
+                },
+                {
+                  "count": 2,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 21,
+                  "count": 18,
                   "type": "físico"
+                },
+                {
+                  "count": 3,
+                  "type": "raio"
                 }
               ],
               "passive": [
                 {
-                  "count": 24,
+                  "count": 21,
                   "type": "físico"
+                },
+                {
+                  "count": 3,
+                  "type": "raio"
                 }
               ]
             },
             "passiveCondition": "Força Colossal: +4d10 físico por 2 turnos, uma vez por cena",
             "formula": {
-              "normal": "16d10 físico",
-              "weapon": "21d10 físico",
-              "passive": "24d10 físico"
-            },
-            "damageType": "físico"
+              "normal": "14d10 físico + 2d10 raio",
+              "weapon": "18d10 físico + 3d10 raio",
+              "passive": "21d10 físico + 3d10 raio"
+            }
           },
           {
             "id": "pdf-nordico-11-move-2",
@@ -4876,30 +5331,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 26,
+                  "count": 20,
                   "type": "físico"
+                },
+                {
+                  "count": 6,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 33,
+                  "count": 25,
                   "type": "físico"
+                },
+                {
+                  "count": 8,
+                  "type": "raio"
                 }
               ],
               "passive": [
                 {
-                  "count": 37,
+                  "count": 29,
                   "type": "físico"
+                },
+                {
+                  "count": 8,
+                  "type": "raio"
                 }
               ]
             },
             "passiveCondition": "Força Colossal: +4d10 físico por 2 turnos, uma vez por cena",
             "formula": {
-              "normal": "26d10 físico",
-              "weapon": "33d10 físico",
-              "passive": "37d10 físico"
-            },
-            "damageType": "físico"
+              "normal": "20d10 físico + 6d10 raio",
+              "weapon": "25d10 físico + 8d10 raio",
+              "passive": "29d10 físico + 8d10 raio"
+            }
           },
           {
             "id": "pdf-nordico-11-move-3",
@@ -4917,30 +5383,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 19,
+                  "count": 9,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 25,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 14,
+                  "type": "raio"
                 }
               ],
               "passive": [
                 {
-                  "count": 29,
+                  "count": 15,
                   "type": "físico"
+                },
+                {
+                  "count": 14,
+                  "type": "raio"
                 }
               ]
             },
             "passiveCondition": "Força Colossal: +4d10 físico por 2 turnos, uma vez por cena",
             "formula": {
-              "normal": "19d10 físico",
-              "weapon": "25d10 físico",
-              "passive": "29d10 físico"
-            },
-            "damageType": "físico"
+              "normal": "9d10 físico + 10d10 raio",
+              "weapon": "11d10 físico + 14d10 raio",
+              "passive": "15d10 físico + 14d10 raio"
+            }
           },
           {
             "id": "pdf-nordico-11-move-4",
@@ -4958,30 +5435,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 20,
+                  "count": 13,
                   "type": "físico"
+                },
+                {
+                  "count": 7,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 26,
+                  "count": 16,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "raio"
                 }
               ],
               "passive": [
                 {
-                  "count": 29,
+                  "count": 19,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "raio"
                 }
               ]
             },
             "passiveCondition": "Força Colossal: +4d10 físico por 2 turnos, uma vez por cena",
             "formula": {
-              "normal": "20d10 físico",
-              "weapon": "26d10 físico",
-              "passive": "29d10 físico"
-            },
-            "damageType": "físico"
+              "normal": "13d10 físico + 7d10 raio",
+              "weapon": "16d10 físico + 10d10 raio",
+              "passive": "19d10 físico + 10d10 raio"
+            }
           },
           {
             "id": "pdf-nordico-11-move-5",
@@ -4999,30 +5487,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 15,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 20,
+                  "count": 14,
                   "type": "físico"
+                },
+                {
+                  "count": 6,
+                  "type": "raio"
                 }
               ],
               "passive": [
                 {
-                  "count": 22,
+                  "count": 16,
                   "type": "físico"
+                },
+                {
+                  "count": 6,
+                  "type": "raio"
                 }
               ]
             },
             "passiveCondition": "Força Colossal: +4d10 físico por 2 turnos, uma vez por cena",
             "formula": {
-              "normal": "2 ataques × (15d10 físico)",
-              "weapon": "2 ataques × (20d10 físico)",
-              "passive": "2 ataques × (22d10 físico)"
-            },
-            "damageType": "físico"
+              "normal": "2 ataques × (11d10 físico + 4d10 raio)",
+              "weapon": "2 ataques × (14d10 físico + 6d10 raio)",
+              "passive": "2 ataques × (16d10 físico + 6d10 raio)"
+            }
           },
           {
             "id": "pdf-nordico-11-move-6",
@@ -5040,30 +5539,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 35,
+                  "count": 24,
                   "type": "físico"
+                },
+                {
+                  "count": 11,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 45,
+                  "count": 30,
                   "type": "físico"
+                },
+                {
+                  "count": 15,
+                  "type": "raio"
                 }
               ],
               "passive": [
                 {
-                  "count": 50,
+                  "count": 35,
                   "type": "físico"
+                },
+                {
+                  "count": 15,
+                  "type": "raio"
                 }
               ]
             },
             "passiveCondition": "Força Colossal: +4d10 físico por 2 turnos, uma vez por cena",
             "formula": {
-              "normal": "35d10 físico",
-              "weapon": "45d10 físico",
-              "passive": "50d10 físico"
-            },
-            "damageType": "físico"
+              "normal": "24d10 físico + 11d10 raio",
+              "weapon": "30d10 físico + 15d10 raio",
+              "passive": "35d10 físico + 15d10 raio"
+            }
           }
         ]
       },
@@ -5321,25 +5831,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 15,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 3,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 19,
+                  "count": 15,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "raio"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "15d10 físico",
-              "weapon": "19d10 físico",
+              "normal": "12d10 físico + 3d10 raio",
+              "weapon": "15d10 físico + 4d10 raio",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-12-move-2",
@@ -5357,25 +5874,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 25,
+                  "count": 17,
                   "type": "físico"
+                },
+                {
+                  "count": 8,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 32,
+                  "count": 21,
                   "type": "físico"
+                },
+                {
+                  "count": 11,
+                  "type": "raio"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "25d10 físico",
-              "weapon": "32d10 físico",
+              "normal": "17d10 físico + 8d10 raio",
+              "weapon": "21d10 físico + 11d10 raio",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-12-move-3",
@@ -5393,25 +5917,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 21,
+                  "count": 8,
                   "type": "físico"
+                },
+                {
+                  "count": 13,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 28,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 18,
+                  "type": "raio"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "21d10 físico",
-              "weapon": "28d10 físico",
+              "normal": "8d10 físico + 13d10 raio",
+              "weapon": "10d10 físico + 18d10 raio",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-12-move-4",
@@ -5429,25 +5960,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 20,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 9,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 26,
+                  "count": 14,
                   "type": "físico"
+                },
+                {
+                  "count": 12,
+                  "type": "raio"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "20d10 físico",
-              "weapon": "26d10 físico",
+              "normal": "11d10 físico + 9d10 raio",
+              "weapon": "14d10 físico + 12d10 raio",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-12-move-5",
@@ -5465,25 +6003,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 16,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 6,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 20,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 8,
+                  "type": "raio"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (16d10 físico)",
-              "weapon": "2 ataques × (20d10 físico)",
+              "normal": "2 ataques × (10d10 físico + 6d10 raio)",
+              "weapon": "2 ataques × (12d10 físico + 8d10 raio)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-12-move-6",
@@ -5501,25 +6046,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 36,
+                  "count": 21,
                   "type": "físico"
+                },
+                {
+                  "count": 15,
+                  "type": "raio"
                 }
               ],
               "weapon": [
                 {
-                  "count": 46,
+                  "count": 26,
                   "type": "físico"
+                },
+                {
+                  "count": 20,
+                  "type": "raio"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "36d10 físico",
-              "weapon": "46d10 físico",
+              "normal": "21d10 físico + 15d10 raio",
+              "weapon": "26d10 físico + 20d10 raio",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -5792,8 +6344,7 @@
               "normal": "15d10 físico",
               "weapon": "19d10 físico",
               "passive": "23d10 físico"
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-13-move-2",
@@ -5833,8 +6384,7 @@
               "normal": "21d10 físico",
               "weapon": "27d10 físico",
               "passive": "32d10 físico"
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-13-move-3",
@@ -5874,8 +6424,7 @@
               "normal": "24d10 físico",
               "weapon": "31d10 físico",
               "passive": "37d10 físico"
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-13-move-4",
@@ -5915,8 +6464,7 @@
               "normal": "14d10 físico",
               "weapon": "18d10 físico",
               "passive": "21d10 físico"
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-13-move-5",
@@ -5956,8 +6504,7 @@
               "normal": "2 ataques × (12d10 físico)",
               "weapon": "2 ataques × (15d10 físico)",
               "passive": "2 ataques × (18d10 físico)"
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-13-move-6",
@@ -5997,8 +6544,7 @@
               "normal": "26d10 físico",
               "weapon": "33d10 físico",
               "passive": "39d10 físico"
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -6261,8 +6807,7 @@
               "normal": "12d10 físico",
               "weapon": "16d10 físico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-14-move-2",
@@ -6297,8 +6842,7 @@
               "normal": "17d10 físico",
               "weapon": "22d10 físico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-14-move-3",
@@ -6333,8 +6877,7 @@
               "normal": "19d10 físico",
               "weapon": "25d10 físico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-14-move-4",
@@ -6369,8 +6912,7 @@
               "normal": "11d10 físico",
               "weapon": "14d10 físico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-14-move-5",
@@ -6405,8 +6947,7 @@
               "normal": "2 ataques × (10d10 físico)",
               "weapon": "2 ataques × (13d10 físico)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-14-move-6",
@@ -6441,8 +6982,7 @@
               "normal": "21d10 físico",
               "weapon": "27d10 físico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -6700,25 +7240,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 15,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 3,
+                  "type": "água"
                 }
               ],
               "weapon": [
                 {
-                  "count": 19,
+                  "count": 15,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "água"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "15d10 físico",
-              "weapon": "19d10 físico",
+              "normal": "12d10 físico + 3d10 água",
+              "weapon": "15d10 físico + 4d10 água",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-15-move-2",
@@ -6736,25 +7283,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 26,
+                  "count": 16,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "água"
                 }
               ],
               "weapon": [
                 {
-                  "count": 34,
+                  "count": 20,
                   "type": "físico"
+                },
+                {
+                  "count": 14,
+                  "type": "água"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "26d10 físico",
-              "weapon": "34d10 físico",
+              "normal": "16d10 físico + 10d10 água",
+              "weapon": "20d10 físico + 14d10 água",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-15-move-3",
@@ -6772,25 +7326,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 24,
+                  "count": 7,
                   "type": "físico"
+                },
+                {
+                  "count": 17,
+                  "type": "água"
                 }
               ],
               "weapon": [
                 {
-                  "count": 32,
+                  "count": 9,
                   "type": "físico"
+                },
+                {
+                  "count": 23,
+                  "type": "água"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "24d10 físico",
-              "weapon": "32d10 físico",
+              "normal": "7d10 físico + 17d10 água",
+              "weapon": "9d10 físico + 23d10 água",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-15-move-4",
@@ -6808,25 +7369,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 22,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 12,
+                  "type": "água"
                 }
               ],
               "weapon": [
                 {
-                  "count": 29,
+                  "count": 13,
                   "type": "físico"
+                },
+                {
+                  "count": 16,
+                  "type": "água"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "22d10 físico",
-              "weapon": "29d10 físico",
+              "normal": "10d10 físico + 12d10 água",
+              "weapon": "13d10 físico + 16d10 água",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-15-move-5",
@@ -6844,25 +7412,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 16,
+                  "count": 9,
                   "type": "físico"
+                },
+                {
+                  "count": 7,
+                  "type": "água"
                 }
               ],
               "weapon": [
                 {
-                  "count": 21,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "água"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (16d10 físico)",
-              "weapon": "2 ataques × (21d10 físico)",
+              "normal": "2 ataques × (9d10 físico + 7d10 água)",
+              "weapon": "2 ataques × (11d10 físico + 10d10 água)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-15-move-6",
@@ -6880,25 +7455,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 39,
+                  "count": 20,
                   "type": "físico"
+                },
+                {
+                  "count": 19,
+                  "type": "água"
                 }
               ],
               "weapon": [
                 {
-                  "count": 51,
+                  "count": 25,
                   "type": "físico"
+                },
+                {
+                  "count": 26,
+                  "type": "água"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "39d10 físico",
-              "weapon": "51d10 físico",
+              "normal": "20d10 físico + 19d10 água",
+              "weapon": "25d10 físico + 26d10 água",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -7156,25 +7738,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 15,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 3,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 19,
+                  "count": 15,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "15d10 físico",
-              "weapon": "19d10 físico",
+              "normal": "12d10 físico + 3d10 gelo",
+              "weapon": "15d10 físico + 4d10 gelo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-16-move-2",
@@ -7192,25 +7781,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 26,
+                  "count": 17,
                   "type": "físico"
+                },
+                {
+                  "count": 9,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 34,
+                  "count": 21,
                   "type": "físico"
+                },
+                {
+                  "count": 13,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "26d10 físico",
-              "weapon": "34d10 físico",
+              "normal": "17d10 físico + 9d10 gelo",
+              "weapon": "21d10 físico + 13d10 gelo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-16-move-3",
@@ -7228,25 +7824,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 24,
+                  "count": 8,
                   "type": "físico"
+                },
+                {
+                  "count": 16,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 32,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 22,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "24d10 físico",
-              "weapon": "32d10 físico",
+              "normal": "8d10 físico + 16d10 gelo",
+              "weapon": "10d10 físico + 22d10 gelo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-16-move-4",
@@ -7264,25 +7867,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 22,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 11,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 29,
+                  "count": 14,
                   "type": "físico"
+                },
+                {
+                  "count": 15,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "22d10 físico",
-              "weapon": "29d10 físico",
+              "normal": "11d10 físico + 11d10 gelo",
+              "weapon": "14d10 físico + 15d10 gelo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-16-move-5",
@@ -7300,25 +7910,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 17,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 7,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 22,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (17d10 físico)",
-              "weapon": "2 ataques × (22d10 físico)",
+              "normal": "2 ataques × (10d10 físico + 7d10 gelo)",
+              "weapon": "2 ataques × (12d10 físico + 10d10 gelo)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-16-move-6",
@@ -7336,25 +7953,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 38,
+                  "count": 21,
                   "type": "físico"
+                },
+                {
+                  "count": 17,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 50,
+                  "count": 26,
                   "type": "físico"
+                },
+                {
+                  "count": 24,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "38d10 físico",
-              "weapon": "50d10 físico",
+              "normal": "21d10 físico + 17d10 gelo",
+              "weapon": "26d10 físico + 24d10 gelo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -7612,25 +8236,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 9,
+                  "count": 6,
                   "type": "físico"
+                },
+                {
+                  "count": 3,
+                  "type": "natureza"
                 }
               ],
               "weapon": [
                 {
-                  "count": 11,
+                  "count": 7,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "natureza"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "9d10 físico",
-              "weapon": "11d10 físico",
+              "normal": "6d10 físico + 3d10 natureza",
+              "weapon": "7d10 físico + 4d10 natureza",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-17-move-2",
@@ -7648,25 +8279,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 18,
+                  "count": 8,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "natureza"
                 }
               ],
               "weapon": [
                 {
-                  "count": 24,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 14,
+                  "type": "natureza"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "18d10 físico",
-              "weapon": "24d10 físico",
+              "normal": "8d10 físico + 10d10 natureza",
+              "weapon": "10d10 físico + 14d10 natureza",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-17-move-3",
@@ -7684,25 +8322,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 21,
+                  "count": 4,
                   "type": "físico"
+                },
+                {
+                  "count": 17,
+                  "type": "natureza"
                 }
               ],
               "weapon": [
                 {
-                  "count": 28,
+                  "count": 5,
                   "type": "físico"
+                },
+                {
+                  "count": 23,
+                  "type": "natureza"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "21d10 físico",
-              "weapon": "28d10 físico",
+              "normal": "4d10 físico + 17d10 natureza",
+              "weapon": "5d10 físico + 23d10 natureza",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-17-move-4",
@@ -7720,25 +8365,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 17,
+                  "count": 5,
                   "type": "físico"
+                },
+                {
+                  "count": 12,
+                  "type": "natureza"
                 }
               ],
               "weapon": [
                 {
-                  "count": 22,
+                  "count": 6,
                   "type": "físico"
+                },
+                {
+                  "count": 16,
+                  "type": "natureza"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "17d10 físico",
-              "weapon": "22d10 físico",
+              "normal": "5d10 físico + 12d10 natureza",
+              "weapon": "6d10 físico + 16d10 natureza",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-17-move-5",
@@ -7756,25 +8408,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 11,
+                  "count": 4,
                   "type": "físico"
+                },
+                {
+                  "count": 7,
+                  "type": "natureza"
                 }
               ],
               "weapon": [
                 {
-                  "count": 15,
+                  "count": 5,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "natureza"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (11d10 físico)",
-              "weapon": "2 ataques × (15d10 físico)",
+              "normal": "2 ataques × (4d10 físico + 7d10 natureza)",
+              "weapon": "2 ataques × (5d10 físico + 10d10 natureza)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-17-move-6",
@@ -7792,25 +8451,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 29,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 19,
+                  "type": "natureza"
                 }
               ],
               "weapon": [
                 {
-                  "count": 38,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 26,
+                  "type": "natureza"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "29d10 físico",
-              "weapon": "38d10 físico",
+              "normal": "10d10 físico + 19d10 natureza",
+              "weapon": "12d10 físico + 26d10 natureza",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -8068,25 +8734,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 10,
+                  "count": 6,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 12,
+                  "count": 7,
                   "type": "físico"
+                },
+                {
+                  "count": 5,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "10d10 físico",
-              "weapon": "12d10 físico",
+              "normal": "6d10 físico + 4d10 mágico",
+              "weapon": "7d10 físico + 5d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-18-move-2",
@@ -8104,25 +8777,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 20,
+                  "count": 9,
                   "type": "físico"
+                },
+                {
+                  "count": 11,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 26,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 15,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "20d10 físico",
-              "weapon": "26d10 físico",
+              "normal": "9d10 físico + 11d10 mágico",
+              "weapon": "11d10 físico + 15d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-18-move-3",
@@ -8140,25 +8820,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 22,
+                  "count": 4,
                   "type": "físico"
+                },
+                {
+                  "count": 18,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 29,
+                  "count": 5,
                   "type": "físico"
+                },
+                {
+                  "count": 24,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "22d10 físico",
-              "weapon": "29d10 físico",
+              "normal": "4d10 físico + 18d10 mágico",
+              "weapon": "5d10 físico + 24d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-18-move-4",
@@ -8176,25 +8863,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 19,
+                  "count": 6,
                   "type": "físico"
+                },
+                {
+                  "count": 13,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 24,
+                  "count": 7,
                   "type": "físico"
+                },
+                {
+                  "count": 17,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "19d10 físico",
-              "weapon": "24d10 físico",
+              "normal": "6d10 físico + 13d10 mágico",
+              "weapon": "7d10 físico + 17d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-18-move-5",
@@ -8212,25 +8906,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 13,
+                  "count": 5,
                   "type": "físico"
+                },
+                {
+                  "count": 8,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 17,
+                  "count": 6,
                   "type": "físico"
+                },
+                {
+                  "count": 11,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (13d10 físico)",
-              "weapon": "2 ataques × (17d10 físico)",
+              "normal": "2 ataques × (5d10 físico + 8d10 mágico)",
+              "weapon": "2 ataques × (6d10 físico + 11d10 mágico)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-18-move-6",
@@ -8248,25 +8949,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 31,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 20,
+                  "type": "mágico"
                 }
               ],
               "weapon": [
                 {
-                  "count": 40,
+                  "count": 13,
                   "type": "físico"
+                },
+                {
+                  "count": 27,
+                  "type": "mágico"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "31d10 físico",
-              "weapon": "40d10 físico",
+              "normal": "11d10 físico + 20d10 mágico",
+              "weapon": "13d10 físico + 27d10 mágico",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -8524,25 +9232,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 14,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 2,
+                  "type": "natureza"
                 }
               ],
               "weapon": [
                 {
-                  "count": 18,
+                  "count": 15,
                   "type": "físico"
+                },
+                {
+                  "count": 3,
+                  "type": "natureza"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "14d10 físico",
-              "weapon": "18d10 físico",
+              "normal": "12d10 físico + 2d10 natureza",
+              "weapon": "15d10 físico + 3d10 natureza",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-19-move-2",
@@ -8560,25 +9275,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 24,
+                  "count": 17,
                   "type": "físico"
+                },
+                {
+                  "count": 7,
+                  "type": "natureza"
                 }
               ],
               "weapon": [
                 {
-                  "count": 31,
+                  "count": 21,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "natureza"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "24d10 físico",
-              "weapon": "31d10 físico",
+              "normal": "17d10 físico + 7d10 natureza",
+              "weapon": "21d10 físico + 10d10 natureza",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-19-move-3",
@@ -8596,25 +9318,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 20,
+                  "count": 8,
                   "type": "físico"
+                },
+                {
+                  "count": 12,
+                  "type": "natureza"
                 }
               ],
               "weapon": [
                 {
-                  "count": 27,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 17,
+                  "type": "natureza"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "20d10 físico",
-              "weapon": "27d10 físico",
+              "normal": "8d10 físico + 12d10 natureza",
+              "weapon": "10d10 físico + 17d10 natureza",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-19-move-4",
@@ -8632,25 +9361,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 20,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 9,
+                  "type": "natureza"
                 }
               ],
               "weapon": [
                 {
-                  "count": 26,
+                  "count": 14,
                   "type": "físico"
+                },
+                {
+                  "count": 12,
+                  "type": "natureza"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "20d10 físico",
-              "weapon": "26d10 físico",
+              "normal": "11d10 físico + 9d10 natureza",
+              "weapon": "14d10 físico + 12d10 natureza",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-19-move-5",
@@ -8668,25 +9404,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 15,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 5,
+                  "type": "natureza"
                 }
               ],
               "weapon": [
                 {
-                  "count": 19,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 7,
+                  "type": "natureza"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (15d10 físico)",
-              "weapon": "2 ataques × (19d10 físico)",
+              "normal": "2 ataques × (10d10 físico + 5d10 natureza)",
+              "weapon": "2 ataques × (12d10 físico + 7d10 natureza)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-19-move-6",
@@ -8704,25 +9447,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 34,
+                  "count": 21,
                   "type": "físico"
+                },
+                {
+                  "count": 13,
+                  "type": "natureza"
                 }
               ],
               "weapon": [
                 {
-                  "count": 44,
+                  "count": 26,
                   "type": "físico"
+                },
+                {
+                  "count": 18,
+                  "type": "natureza"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "34d10 físico",
-              "weapon": "44d10 físico",
+              "normal": "21d10 físico + 13d10 natureza",
+              "weapon": "26d10 físico + 18d10 natureza",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -8980,25 +9730,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 15,
+                  "count": 13,
                   "type": "físico"
+                },
+                {
+                  "count": 2,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 20,
+                  "count": 17,
                   "type": "físico"
+                },
+                {
+                  "count": 3,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "15d10 físico",
-              "weapon": "20d10 físico",
+              "normal": "13d10 físico + 2d10 gelo",
+              "weapon": "17d10 físico + 3d10 gelo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-20-move-2",
@@ -9016,25 +9773,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 23,
+                  "count": 18,
                   "type": "físico"
+                },
+                {
+                  "count": 5,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 30,
+                  "count": 23,
                   "type": "físico"
+                },
+                {
+                  "count": 7,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "23d10 físico",
-              "weapon": "30d10 físico",
+              "normal": "18d10 físico + 5d10 gelo",
+              "weapon": "23d10 físico + 7d10 gelo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-20-move-3",
@@ -9052,25 +9816,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 16,
+                  "count": 8,
                   "type": "físico"
+                },
+                {
+                  "count": 8,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 22,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 12,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "16d10 físico",
-              "weapon": "22d10 físico",
+              "normal": "8d10 físico + 8d10 gelo",
+              "weapon": "10d10 físico + 12d10 gelo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-20-move-4",
@@ -9088,25 +9859,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 18,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 6,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 24,
+                  "count": 15,
                   "type": "físico"
+                },
+                {
+                  "count": 9,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "18d10 físico",
-              "weapon": "24d10 físico",
+              "normal": "12d10 físico + 6d10 gelo",
+              "weapon": "15d10 físico + 9d10 gelo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-20-move-5",
@@ -9124,25 +9902,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 14,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 19,
+                  "count": 13,
                   "type": "físico"
+                },
+                {
+                  "count": 6,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (14d10 físico)",
-              "weapon": "2 ataques × (19d10 físico)",
+              "normal": "2 ataques × (10d10 físico + 4d10 gelo)",
+              "weapon": "2 ataques × (13d10 físico + 6d10 gelo)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-20-move-6",
@@ -9160,25 +9945,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 31,
+                  "count": 22,
                   "type": "físico"
+                },
+                {
+                  "count": 9,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 41,
+                  "count": 28,
                   "type": "físico"
+                },
+                {
+                  "count": 13,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "31d10 físico",
-              "weapon": "41d10 físico",
+              "normal": "22d10 físico + 9d10 gelo",
+              "weapon": "28d10 físico + 13d10 gelo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -9441,30 +10233,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 22,
+                  "count": 17,
                   "type": "físico"
+                },
+                {
+                  "count": 5,
+                  "type": "fogo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 29,
+                  "count": 22,
                   "type": "físico"
+                },
+                {
+                  "count": 7,
+                  "type": "fogo"
                 }
               ],
               "passive": [
                 {
-                  "count": 32,
+                  "count": 22,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "fogo"
                 }
               ]
             },
             "passiveCondition": "Crepúsculo Flamejante: Abaixo de 50% PV, todos os golpes aplicam 4d10 fogo extra",
             "formula": {
-              "normal": "22d10 físico",
-              "weapon": "29d10 físico",
-              "passive": "32d10 físico"
-            },
-            "damageType": "físico"
+              "normal": "17d10 físico + 5d10 fogo",
+              "weapon": "22d10 físico + 7d10 fogo",
+              "passive": "22d10 físico + 10d10 fogo"
+            }
           },
           {
             "id": "pdf-nordico-21-move-2",
@@ -9482,30 +10285,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 39,
+                  "count": 24,
                   "type": "físico"
+                },
+                {
+                  "count": 15,
+                  "type": "fogo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 52,
+                  "count": 31,
                   "type": "físico"
+                },
+                {
+                  "count": 21,
+                  "type": "fogo"
                 }
               ],
               "passive": [
                 {
-                  "count": 56,
+                  "count": 31,
                   "type": "físico"
+                },
+                {
+                  "count": 25,
+                  "type": "fogo"
                 }
               ]
             },
             "passiveCondition": "Crepúsculo Flamejante: Abaixo de 50% PV, todos os golpes aplicam 4d10 fogo extra",
             "formula": {
-              "normal": "39d10 físico",
-              "weapon": "52d10 físico",
-              "passive": "56d10 físico"
-            },
-            "damageType": "físico"
+              "normal": "24d10 físico + 15d10 fogo",
+              "weapon": "31d10 físico + 21d10 fogo",
+              "passive": "31d10 físico + 25d10 fogo"
+            }
           },
           {
             "id": "pdf-nordico-21-move-3",
@@ -9523,30 +10337,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 37,
+                  "count": 11,
                   "type": "físico"
+                },
+                {
+                  "count": 26,
+                  "type": "fogo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 50,
+                  "count": 14,
                   "type": "físico"
+                },
+                {
+                  "count": 36,
+                  "type": "fogo"
                 }
               ],
               "passive": [
                 {
-                  "count": 54,
+                  "count": 14,
                   "type": "físico"
+                },
+                {
+                  "count": 40,
+                  "type": "fogo"
                 }
               ]
             },
             "passiveCondition": "Crepúsculo Flamejante: Abaixo de 50% PV, todos os golpes aplicam 4d10 fogo extra",
             "formula": {
-              "normal": "37d10 físico",
-              "weapon": "50d10 físico",
-              "passive": "54d10 físico"
-            },
-            "damageType": "físico"
+              "normal": "11d10 físico + 26d10 fogo",
+              "weapon": "14d10 físico + 36d10 fogo",
+              "passive": "14d10 físico + 40d10 fogo"
+            }
           },
           {
             "id": "pdf-nordico-21-move-4",
@@ -9564,30 +10389,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 35,
+                  "count": 16,
                   "type": "físico"
+                },
+                {
+                  "count": 19,
+                  "type": "fogo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 47,
+                  "count": 21,
                   "type": "físico"
+                },
+                {
+                  "count": 26,
+                  "type": "fogo"
                 }
               ],
               "passive": [
                 {
-                  "count": 50,
+                  "count": 21,
                   "type": "físico"
+                },
+                {
+                  "count": 29,
+                  "type": "fogo"
                 }
               ]
             },
             "passiveCondition": "Crepúsculo Flamejante: Abaixo de 50% PV, todos os golpes aplicam 4d10 fogo extra",
             "formula": {
-              "normal": "35d10 físico",
-              "weapon": "47d10 físico",
-              "passive": "50d10 físico"
-            },
-            "damageType": "físico"
+              "normal": "16d10 físico + 19d10 fogo",
+              "weapon": "21d10 físico + 26d10 fogo",
+              "passive": "21d10 físico + 29d10 fogo"
+            }
           },
           {
             "id": "pdf-nordico-21-move-5",
@@ -9605,30 +10441,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 25,
+                  "count": 13,
                   "type": "físico"
+                },
+                {
+                  "count": 12,
+                  "type": "fogo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 33,
+                  "count": 17,
                   "type": "físico"
+                },
+                {
+                  "count": 16,
+                  "type": "fogo"
                 }
               ],
               "passive": [
                 {
-                  "count": 35,
+                  "count": 17,
                   "type": "físico"
+                },
+                {
+                  "count": 18,
+                  "type": "fogo"
                 }
               ]
             },
             "passiveCondition": "Crepúsculo Flamejante: Abaixo de 50% PV, todos os golpes aplicam 4d10 fogo extra",
             "formula": {
-              "normal": "2 ataques × (25d10 físico)",
-              "weapon": "2 ataques × (33d10 físico)",
-              "passive": "2 ataques × (35d10 físico)"
-            },
-            "damageType": "físico"
+              "normal": "2 ataques × (13d10 físico + 12d10 fogo)",
+              "weapon": "2 ataques × (17d10 físico + 16d10 fogo)",
+              "passive": "2 ataques × (17d10 físico + 18d10 fogo)"
+            }
           },
           {
             "id": "pdf-nordico-21-move-6",
@@ -9646,30 +10493,41 @@
             "damage": {
               "normal": [
                 {
-                  "count": 58,
+                  "count": 29,
                   "type": "físico"
+                },
+                {
+                  "count": 29,
+                  "type": "fogo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 78,
+                  "count": 38,
                   "type": "físico"
+                },
+                {
+                  "count": 40,
+                  "type": "fogo"
                 }
               ],
               "passive": [
                 {
-                  "count": 83,
+                  "count": 38,
                   "type": "físico"
+                },
+                {
+                  "count": 45,
+                  "type": "fogo"
                 }
               ]
             },
             "passiveCondition": "Crepúsculo Flamejante: Abaixo de 50% PV, todos os golpes aplicam 4d10 fogo extra",
             "formula": {
-              "normal": "58d10 físico",
-              "weapon": "78d10 físico",
-              "passive": "83d10 físico"
-            },
-            "damageType": "físico"
+              "normal": "29d10 físico + 29d10 fogo",
+              "weapon": "38d10 físico + 40d10 fogo",
+              "passive": "38d10 físico + 45d10 fogo"
+            }
           }
         ]
       },
@@ -9942,8 +10800,7 @@
               "normal": "19d10 físico",
               "weapon": "25d10 físico",
               "passive": "29d10 físico"
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-22-move-2",
@@ -9983,8 +10840,7 @@
               "normal": "26d10 físico",
               "weapon": "34d10 físico",
               "passive": "39d10 físico"
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-22-move-3",
@@ -10024,8 +10880,7 @@
               "normal": "29d10 físico",
               "weapon": "38d10 físico",
               "passive": "44d10 físico"
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-22-move-4",
@@ -10065,8 +10920,7 @@
               "normal": "17d10 físico",
               "weapon": "22d10 físico",
               "passive": "25d10 físico"
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-22-move-5",
@@ -10106,8 +10960,7 @@
               "normal": "2 ataques × (15d10 físico)",
               "weapon": "2 ataques × (19d10 físico)",
               "passive": "2 ataques × (22d10 físico)"
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-22-move-6",
@@ -10147,8 +11000,7 @@
               "normal": "32d10 físico",
               "weapon": "42d10 físico",
               "passive": "48d10 físico"
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -10406,25 +11258,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 21,
+                  "count": 17,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "veneno"
                 }
               ],
               "weapon": [
                 {
-                  "count": 27,
+                  "count": 22,
                   "type": "físico"
+                },
+                {
+                  "count": 5,
+                  "type": "veneno"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "21d10 físico",
-              "weapon": "27d10 físico",
+              "normal": "17d10 físico + 4d10 veneno",
+              "weapon": "22d10 físico + 5d10 veneno",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-23-move-2",
@@ -10442,25 +11301,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 34,
+                  "count": 23,
                   "type": "físico"
+                },
+                {
+                  "count": 11,
+                  "type": "veneno"
                 }
               ],
               "weapon": [
                 {
-                  "count": 45,
+                  "count": 30,
                   "type": "físico"
+                },
+                {
+                  "count": 15,
+                  "type": "veneno"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "34d10 físico",
-              "weapon": "45d10 físico",
+              "normal": "23d10 físico + 11d10 veneno",
+              "weapon": "30d10 físico + 15d10 veneno",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-23-move-3",
@@ -10478,25 +11344,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 29,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 19,
+                  "type": "veneno"
                 }
               ],
               "weapon": [
                 {
-                  "count": 39,
+                  "count": 13,
                   "type": "físico"
+                },
+                {
+                  "count": 26,
+                  "type": "veneno"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "29d10 físico",
-              "weapon": "39d10 físico",
+              "normal": "10d10 físico + 19d10 veneno",
+              "weapon": "13d10 físico + 26d10 veneno",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-23-move-4",
@@ -10514,25 +11387,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 29,
+                  "count": 15,
                   "type": "físico"
+                },
+                {
+                  "count": 14,
+                  "type": "veneno"
                 }
               ],
               "weapon": [
                 {
-                  "count": 39,
+                  "count": 20,
                   "type": "físico"
+                },
+                {
+                  "count": 19,
+                  "type": "veneno"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "29d10 físico",
-              "weapon": "39d10 físico",
+              "normal": "15d10 físico + 14d10 veneno",
+              "weapon": "20d10 físico + 19d10 veneno",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-23-move-5",
@@ -10550,25 +11430,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 21,
+                  "count": 13,
                   "type": "físico"
+                },
+                {
+                  "count": 8,
+                  "type": "veneno"
                 }
               ],
               "weapon": [
                 {
-                  "count": 28,
+                  "count": 17,
                   "type": "físico"
+                },
+                {
+                  "count": 11,
+                  "type": "veneno"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (21d10 físico)",
-              "weapon": "2 ataques × (28d10 físico)",
+              "normal": "2 ataques × (13d10 físico + 8d10 veneno)",
+              "weapon": "2 ataques × (17d10 físico + 11d10 veneno)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-23-move-6",
@@ -10586,25 +11473,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 49,
+                  "count": 28,
                   "type": "físico"
+                },
+                {
+                  "count": 21,
+                  "type": "veneno"
                 }
               ],
               "weapon": [
                 {
-                  "count": 66,
+                  "count": 37,
                   "type": "físico"
+                },
+                {
+                  "count": 29,
+                  "type": "veneno"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "49d10 físico",
-              "weapon": "66d10 físico",
+              "normal": "28d10 físico + 21d10 veneno",
+              "weapon": "37d10 físico + 29d10 veneno",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -10862,25 +11756,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 20,
+                  "count": 16,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "morte"
                 }
               ],
               "weapon": [
                 {
-                  "count": 26,
+                  "count": 20,
                   "type": "físico"
+                },
+                {
+                  "count": 6,
+                  "type": "morte"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "20d10 físico",
-              "weapon": "26d10 físico",
+              "normal": "16d10 físico + 4d10 morte",
+              "weapon": "20d10 físico + 6d10 morte",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-24-move-2",
@@ -10898,25 +11799,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 35,
+                  "count": 22,
                   "type": "físico"
+                },
+                {
+                  "count": 13,
+                  "type": "morte"
                 }
               ],
               "weapon": [
                 {
-                  "count": 46,
+                  "count": 28,
                   "type": "físico"
+                },
+                {
+                  "count": 18,
+                  "type": "morte"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "35d10 físico",
-              "weapon": "46d10 físico",
+              "normal": "22d10 físico + 13d10 morte",
+              "weapon": "28d10 físico + 18d10 morte",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-24-move-3",
@@ -10934,25 +11842,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 32,
+                  "count": 10,
                   "type": "físico"
+                },
+                {
+                  "count": 22,
+                  "type": "morte"
                 }
               ],
               "weapon": [
                 {
-                  "count": 43,
+                  "count": 13,
                   "type": "físico"
+                },
+                {
+                  "count": 30,
+                  "type": "morte"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "32d10 físico",
-              "weapon": "43d10 físico",
+              "normal": "10d10 físico + 22d10 morte",
+              "weapon": "13d10 físico + 30d10 morte",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-24-move-4",
@@ -10970,25 +11885,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 29,
+                  "count": 14,
                   "type": "físico"
+                },
+                {
+                  "count": 15,
+                  "type": "morte"
                 }
               ],
               "weapon": [
                 {
-                  "count": 39,
+                  "count": 18,
                   "type": "físico"
+                },
+                {
+                  "count": 21,
+                  "type": "morte"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "29d10 físico",
-              "weapon": "39d10 físico",
+              "normal": "14d10 físico + 15d10 morte",
+              "weapon": "18d10 físico + 21d10 morte",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-24-move-5",
@@ -11006,25 +11928,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 22,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "morte"
                 }
               ],
               "weapon": [
                 {
-                  "count": 29,
+                  "count": 15,
                   "type": "físico"
+                },
+                {
+                  "count": 14,
+                  "type": "morte"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (22d10 físico)",
-              "weapon": "2 ataques × (29d10 físico)",
+              "normal": "2 ataques × (12d10 físico + 10d10 morte)",
+              "weapon": "2 ataques × (15d10 físico + 14d10 morte)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-24-move-6",
@@ -11042,25 +11971,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 51,
+                  "count": 27,
                   "type": "físico"
+                },
+                {
+                  "count": 24,
+                  "type": "morte"
                 }
               ],
               "weapon": [
                 {
-                  "count": 67,
+                  "count": 34,
                   "type": "físico"
+                },
+                {
+                  "count": 33,
+                  "type": "morte"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "51d10 físico",
-              "weapon": "67d10 físico",
+              "normal": "27d10 físico + 24d10 morte",
+              "weapon": "34d10 físico + 33d10 morte",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -11318,25 +12254,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 18,
+                  "count": 15,
                   "type": "físico"
+                },
+                {
+                  "count": 3,
+                  "type": "fogo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 23,
+                  "count": 19,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "fogo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "18d10 físico",
-              "weapon": "23d10 físico",
+              "normal": "15d10 físico + 3d10 fogo",
+              "weapon": "19d10 físico + 4d10 fogo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-25-move-2",
@@ -11354,25 +12297,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 30,
+                  "count": 21,
                   "type": "físico"
+                },
+                {
+                  "count": 9,
+                  "type": "fogo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 40,
+                  "count": 27,
                   "type": "físico"
+                },
+                {
+                  "count": 13,
+                  "type": "fogo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "30d10 físico",
-              "weapon": "40d10 físico",
+              "normal": "21d10 físico + 9d10 fogo",
+              "weapon": "27d10 físico + 13d10 fogo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-25-move-3",
@@ -11390,25 +12340,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 25,
+                  "count": 9,
                   "type": "físico"
+                },
+                {
+                  "count": 16,
+                  "type": "fogo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 34,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 22,
+                  "type": "fogo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "25d10 físico",
-              "weapon": "34d10 físico",
+              "normal": "9d10 físico + 16d10 fogo",
+              "weapon": "12d10 físico + 22d10 fogo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-25-move-4",
@@ -11426,25 +12383,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 25,
+                  "count": 14,
                   "type": "físico"
+                },
+                {
+                  "count": 11,
+                  "type": "fogo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 33,
+                  "count": 18,
                   "type": "físico"
+                },
+                {
+                  "count": 15,
+                  "type": "fogo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "25d10 físico",
-              "weapon": "33d10 físico",
+              "normal": "14d10 físico + 11d10 fogo",
+              "weapon": "18d10 físico + 15d10 fogo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-25-move-5",
@@ -11462,25 +12426,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 19,
+                  "count": 12,
                   "type": "físico"
+                },
+                {
+                  "count": 7,
+                  "type": "fogo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 25,
+                  "count": 15,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "fogo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (19d10 físico)",
-              "weapon": "2 ataques × (25d10 físico)",
+              "normal": "2 ataques × (12d10 físico + 7d10 fogo)",
+              "weapon": "2 ataques × (15d10 físico + 10d10 fogo)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-25-move-6",
@@ -11498,25 +12469,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 43,
+                  "count": 26,
                   "type": "físico"
+                },
+                {
+                  "count": 17,
+                  "type": "fogo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 57,
+                  "count": 33,
                   "type": "físico"
+                },
+                {
+                  "count": 24,
+                  "type": "fogo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "43d10 físico",
-              "weapon": "57d10 físico",
+              "normal": "26d10 físico + 17d10 fogo",
+              "weapon": "33d10 físico + 24d10 fogo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -11774,25 +12752,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 23,
+                  "count": 20,
                   "type": "físico"
+                },
+                {
+                  "count": 3,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 30,
+                  "count": 26,
                   "type": "físico"
+                },
+                {
+                  "count": 4,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "23d10 físico",
-              "weapon": "30d10 físico",
+              "normal": "20d10 físico + 3d10 gelo",
+              "weapon": "26d10 físico + 4d10 gelo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-26-move-2",
@@ -11810,25 +12795,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 38,
+                  "count": 28,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 51,
+                  "count": 37,
                   "type": "físico"
+                },
+                {
+                  "count": 14,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "38d10 físico",
-              "weapon": "51d10 físico",
+              "normal": "28d10 físico + 10d10 gelo",
+              "weapon": "37d10 físico + 14d10 gelo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-26-move-3",
@@ -11846,25 +12838,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 30,
+                  "count": 13,
                   "type": "físico"
+                },
+                {
+                  "count": 17,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 41,
+                  "count": 17,
                   "type": "físico"
+                },
+                {
+                  "count": 24,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "30d10 físico",
-              "weapon": "41d10 físico",
+              "normal": "13d10 físico + 17d10 gelo",
+              "weapon": "17d10 físico + 24d10 gelo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-26-move-4",
@@ -11882,25 +12881,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 30,
+                  "count": 18,
                   "type": "físico"
+                },
+                {
+                  "count": 12,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 41,
+                  "count": 24,
                   "type": "físico"
+                },
+                {
+                  "count": 17,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "30d10 físico",
-              "weapon": "41d10 físico",
+              "normal": "18d10 físico + 12d10 gelo",
+              "weapon": "24d10 físico + 17d10 gelo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-26-move-5",
@@ -11918,25 +12924,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 23,
+                  "count": 16,
                   "type": "físico"
+                },
+                {
+                  "count": 7,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 31,
+                  "count": 21,
                   "type": "físico"
+                },
+                {
+                  "count": 10,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "2 ataques × (23d10 físico)",
-              "weapon": "2 ataques × (31d10 físico)",
+              "normal": "2 ataques × (16d10 físico + 7d10 gelo)",
+              "weapon": "2 ataques × (21d10 físico + 10d10 gelo)",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           },
           {
             "id": "pdf-nordico-26-move-6",
@@ -11954,25 +12967,32 @@
             "damage": {
               "normal": [
                 {
-                  "count": 53,
+                  "count": 34,
                   "type": "físico"
+                },
+                {
+                  "count": 19,
+                  "type": "gelo"
                 }
               ],
               "weapon": [
                 {
-                  "count": 72,
+                  "count": 45,
                   "type": "físico"
+                },
+                {
+                  "count": 27,
+                  "type": "gelo"
                 }
               ],
               "passive": []
             },
             "passiveCondition": "",
             "formula": {
-              "normal": "53d10 físico",
-              "weapon": "72d10 físico",
+              "normal": "34d10 físico + 19d10 gelo",
+              "weapon": "45d10 físico + 27d10 gelo",
               "passive": ""
-            },
-            "damageType": "físico"
+            }
           }
         ]
       },
@@ -12008,9 +13028,7 @@
     "totalCreatedMoves": 156,
     "originalSpecialAndUltimatePerCharacter": 2,
     "totalDisplayedNamedMovesPerCharacter": 8,
-    "rule": "Os seis golpes novos são sugestões autorais com custos, alcances, dados e efeitos propostos para o Hurras. O especial e o supremo originais continuam separados, sem alterações. Uma passiva só acrescenta d10 quando a condição original se aplica; não se soma veneno contínuo nem explosão final automaticamente. Nesta versão, todos os ataques novos são do tipo físico; nomes e efeitos elementais são descritivos.",
-    "numericSource": "Dados básicos, bônus de arma e dano condicional tipado retirados das 26 fichas do PDF.",
-    "damageType": "físico",
-    "damageRule": "Todos os 156 ataques adicionais são exclusivamente físicos (d10), sem separação por Força, Destreza ou Inteligência. As quantidades de dados das parcelas anteriores são somadas num único dano físico, preservando o total de d10. Os golpes e armas originais do PDF são mantidos."
+    "rule": "Os seis golpes novos são sugestões autorais com custos, alcances, dados e efeitos propostos para o Hurras. O especial e o supremo originais continuam separados, sem alterações. Uma passiva só acrescenta d10 quando a condição original se aplica; não se soma veneno contínuo nem explosão final automaticamente.",
+    "numericSource": "Dados básicos, bônus de arma e dano condicional tipado retirados das 26 fichas do PDF."
   }
 }
