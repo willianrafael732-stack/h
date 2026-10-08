@@ -13,7 +13,7 @@ const integer=(x,max=500)=>Number.isSafeInteger(Number(x))&&x!==null&&String(x).
 const rx=/(\d+)d(6|8|10|12|20)\s*(?:dano\s+(?:de\s+)?)?(f[ií]sico|m[aá]gico|raio|el[eé]trico|sagrado|fogo|gelo|luz|trevas|morte|veneno|[aá]gua|natureza|terra|vento|sombra)\b/giu;
 function typed(line){
  const out=[];for(const m of String(line||"").matchAll(rx)){
-  const type=fold(m[3]),key=attrFor(type);
+  const type=types.find(([label])=>fold(label)===fold(m[3]))?.[0]||fold(m[3]),key=attrFor(type);
   if(!key)continue;
   out.push({count:Number(m[1]),sides:Number(m[2]),type,key,raw:m[0],index:m.index});
  }
@@ -48,9 +48,7 @@ function resolve(line,saved,id,official){
   fragments.push({...part,attribute:key,attributeDice:info?.value??null,transformationDice:bonus||0,calculated:target,reason});
  }
  // Rebuild only the D10 expressions tied to a declared damage type.
- for(const item of fragments){
-  modified=modified; // offsets always refer to the original input
- }
+
  const input=String(line||"");let reconstructed="";
  for(const item of fragments){
   reconstructed+=input.slice(last,item.index);
