@@ -66,7 +66,7 @@ function addList(body,title,items,c,adjust,supreme){
  const h=e("h4",title);body.append(h);
  const ul=e("ul",null,"codex-attack-list");
  for(const item of items){
-  const li=e("li"),balanced=adjust&&!c.created?suggested(item,c.level,supreme):item;
+  const li=e("li"),isSupport=/\b(?:cura|curar|defesa|resistência|regeneração|vitalidade|reação|percepção|inteligência|sucessos?)\b/i.test(item)&&!supreme;const balanced=adjust&&!c.created&&!isSupport?suggested(item,c.level,supreme):item;
   li.append(e("span",balanced));
   if(balanced!==item)li.append(e("small","Original: "+item));
   ul.append(li);
@@ -89,7 +89,7 @@ function card(c){
  if(attr.length){body.append(e("h4","🧬 Atributos originais"),e("pre",attr.join("\n"),"codex-pre"))}
  if(sec.arma.length)body.append(e("h4","🗡 Arma e bônus originais"),e("pre",sec.arma.join("\n"),"codex-pre"));
  addList(body,"⚔ Ataques em combate",sec.ataques,c,true,false);
- addList(body,"🔮 Magias e técnicas",sec.poderes,c,false,false);
+ addList(body,"🔮 Magias e técnicas",sec.poderes,c,true,false);
  addList(body,"🌋 Suprema",sec.suprema,c,true,true);
  addList(body,"♾ Passiva",sec.passiva,c,false,false);
  addList(body,"🎁 Drops",sec.drops,c,false,false);
