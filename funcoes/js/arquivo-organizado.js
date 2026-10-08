@@ -5,11 +5,11 @@ const mode=document.body.dataset.archiveMode;
 const root=$("organizedGrid"),query=$("organizedQuery"),group=$("organizedGroup"),level=$("organizedLevel"),sort=$("organizedSort"),counter=$("organizedCount"),more=$("organizedMore"),print=$("organizedPrint");
 if(!mode||!root||!query||!group||!level||!sort||!counter||!more||!print)return;
 const SOURCES={
- bestiario:["dados/criaturas.json","dados/ragnarok.json","dados/seres-adicionais.json"],
+ bestiario:["dados/criaturas.json","dados/ragnarok.json","dados/seres-adicionais.json","dados/essenciais-resgatados.json"],
  deuses:["dados/figuras-bestiario.json"],
  catalogo:["dados/adversarios.json","dados/documentos-nordicos.json"]
 };
-const pathGroup={"dados/criaturas.json":"Criaturas de Nexalis","dados/ragnarok.json":"Seres do Ragnarök","dados/seres-adicionais.json":"Seres adicionais do Ragnarök","dados/figuras-bestiario.json":"Figuras divinas","dados/adversarios.json":"Adversários especiais","dados/documentos-nordicos.json":"Eventos e referências"};
+const pathGroup={"dados/criaturas.json":"Criaturas de Nexalis","dados/ragnarok.json":"Seres do Ragnarök","dados/seres-adicionais.json":"Seres adicionais do Ragnarök","dados/essenciais-resgatados.json":"Fichas essenciais resgatadas","dados/figuras-bestiario.json":"Figuras divinas","dados/adversarios.json":"Adversários especiais","dados/documentos-nordicos.json":"Eventos e referências"};
 const normalize=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase("pt-BR");
 const elem=(tag,content,cls)=>{const el=document.createElement(tag);if(content!==null)el.textContent=content;if(cls)el.className=cls;return el};
 const escapeText=s=>String(s||"").trim();
@@ -84,6 +84,111 @@ function card(item){
  wrapper.append(original);details.append(wrapper);art.append(details);
  return art;
 }
+
+/* Destaques selecionados do acervo enviado. Nenhuma ficha original é alterada. */
+const HIGHLIGHTS=[
+ ["norse-46","chefes","Chefe final do Ragnarök"],
+ ["norse-45","chefes","Gigante primordial"],
+ ["norse-49","chefes","Destruidor de deuses"],
+ ["norse-50","chefes","Ameaça marítima de Midgard"],
+ ["norse-47","chefes","Corrupção de Yggdrasil"],
+ ["norse-48","chefes","Guardião de tesouro"],
+ ["norse-54","chefes","Guardião de Helheim"],
+ ["arquivo-essencial-cronos","lendas","Titã do tempo"],
+ ["arquivo-essencial-gaia","lendas","Força primordial da natureza"],
+ ["best-038","lendas","Dragão do silêncio"],
+ ["best-033","lendas","Dragão do poder"],
+ ["best-036","lendas","Fênix imortal"],
+ ["best-027","lendas","Dragão do raio"],
+ ["best-022","lendas","Dragão do fogo"],
+ ["best-017","raros","Fênix com renascimento"],
+ ["best-021","raros","Wyvern da tempestade"],
+ ["best-049","raros","Guardião das florestas"],
+ ["best-075","raros","Colosso das regiões geladas"],
+ ["best-014","raros","Líder de slimes"],
+ ["best-051","raros","Hidra da floresta"],
+ ["ragnarok-ser-03","tropas","Valquíria caída"],
+ ["ragnarok-ser-04","tropas","Guerreiro de Muspelheim"],
+ ["ragnarok-ser-01","tropas","Morto de Helheim"]
+];
+const HIGHLIGHT_CATEGORY={
+ chefes:"🔥 Chefes do Ragnarök",lendas:"🐉 Dragões e lendários",raros:"✨ Criaturas especiais",tropas:"⚔️ Tropas do fim"
+};
+const featuredRoot=$("organHighlightsGrid"),featuredCount=$("organHighlightsCount"),featuredTabs=$("organHighlightsTabs");
+let featuredKind="chefes";
+function strongestLine(item,kind){
+ if(Array.isArray(item.abilities)&&item.abilities.length)return item.abilities[0];
+ const segments=extractSections(item.raw||"");
+ const pick=head=>segments.find(x=>head.test(normalize(x.heading)))?.lines.map(x=>x.trim()).filter(x=>x&&!/^(?:niv[eí]l|pagina)\s+\d+$/i.test(x));
+ const candidates=[/suprema/,/magias|tecnicas|poderes/,/ataques/,/passivas?/];
+ for(const pattern of candidates){
+   const lines=pick(pattern);if(lines?.length)return lines[0].replace(/^[\s•-]+/,"");
+ }
+ return "";
+}
+function importantDrop(item){
+ const sections=extractSections(item.raw||"");
+ const drop=sections.find(x=>/^drops?$/.test(normalize(x.heading)));
+ const first=drop?.lines.find(x=>x.trim().length>3);
+ return first?.trim().replace(/^[\s•-]+/,"")||"";
+}
+function makeHighlighted(item,category,note){
+ const shell=elem("article",null,"organ-highlight-card");
+ const header=elem("div",null,"organ-highlight-head");
+ const title=elem("h3",item.name||item.title),subtitle=elem("span",note,"organ-highlight-note");
+ header.append(elem("small",HIGHLIGHT_CATEGORY[category],"organ-highlight-kind"),title,subtitle);
+ const badges=elem("div",null,"organ-highlight-status");
+ if(Number.isInteger(item.level))badges.append(elem("span","Nível "+item.level));
+ if(item.life!==null&&item.life!==""&&item.life!==undefined)badges.append(elem("span","❤ "+item.life+" PV"));
+ if(item.mana!==null&&item.mana!==""&&item.mana!==undefined)badges.append(elem("span","✦ "+item.mana+" Mana"));
+ shell.append(header,badges);
+ const impact=strongestLine(item,category);
+ if(impact){
+  const paragraph=elem("div",null,"organ-highlight-info");
+  paragraph.append(elem("strong","⚔️ Poder ou ataque"),elem("p",impact));shell.append(paragraph);
+ }
+ const drop=importantDrop(item);
+ if(drop){
+  const paragraph=elem("div",null,"organ-highlight-info organ-highlight-drop");
+  paragraph.append(elem("strong","🎁 Drop"),elem("p",drop));shell.append(paragraph);
+ }
+ const full=elem("details",null,"organ-highlight-original");
+ full.append(elem("summary","📜 Abrir ficha integral sem cortes"));
+ const content=elem("div",null,"organ-highlight-content");
+ content.append(elem("pre",item.raw||"","organ-original"));
+ const link=elem("button","🔎 Localizar na lista completa");
+ link.type="button";
+ link.addEventListener("click",()=>{
+   query.value=item.name;
+   group.value=item.group;
+   level.value="";
+   sort.value="original";
+   perPage=18;update();
+   root.scrollIntoView?.({behavior:"smooth",block:"start"});
+ });
+ content.append(link);full.append(content);
+ shell.append(full);
+ return shell;
+}
+function showHighlights(){
+ if(!featuredRoot||!featuredCount||!featuredTabs)return;
+ const selected=HIGHLIGHTS.filter(([id,kind])=>featuredKind==="todos"||kind===featuredKind);
+ const collection=selected.map(([id,kind,note])=>{
+  const item=entries.find(x=>x.id===id);
+  return item?makeHighlighted(item,kind,note):null;
+ }).filter(Boolean);
+ featuredRoot.replaceChildren(...collection);
+ featuredCount.textContent=collection.length+" destaques exibidos • "+HIGHLIGHTS.length+" selecionados do bestiário e do arquivo enviado.";
+ featuredTabs.querySelectorAll("button[data-kind]").forEach(btn=>btn.setAttribute("aria-pressed",String(btn.dataset.kind===featuredKind)));
+}
+if(featuredTabs){
+ featuredTabs.addEventListener("click",event=>{
+  const button=event.target.closest("button[data-kind]");
+  if(!button)return;
+  featuredKind=button.dataset.kind;showHighlights();
+ });
+}
+
 function update(){
  const q=normalize(query.value),g=group.value,lev=level.value,order=sort.value;
  const filtered=entries.filter(it=>(!q||normalize([it.name,it.title,it.description,it.habitat,it.raw,it.group].join(" ")).includes(q))
@@ -116,8 +221,8 @@ Promise.all((SOURCES[mode]||[]).map(async url=>{
 })).then(all=>{
  entries=all.flat();
  if(mode==="catalogo")entries=entries.filter(it=>![55,56,57].includes(it.page));
- if(entries.length!==({bestiario:142,deuses:2,catalogo:13}[mode]))throw Error("Quantidade inesperada de registros: "+entries.length);
- buildOptions();update();
+ if(entries.length!==({bestiario:144,deuses:2,catalogo:13}[mode]))throw Error("Quantidade inesperada de registros: "+entries.length);
+ buildOptions();update();showHighlights();
 }).catch(err=>{
  counter.textContent="Falha ao carregar o arquivo completo: "+err.message;
  root.replaceChildren(elem("p","Confira sua conexão e atualize a página. As fontes originais continuam disponíveis no repositório.","organ-empty"));

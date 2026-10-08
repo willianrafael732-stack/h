@@ -88,3 +88,35 @@
 @media(max-width:1050px){.rag-events{grid-template-columns:1fr 1fr}.rag-event--vigridr{grid-column:span 2}}
 @media(max-width:670px){.rag-guide{padding:13px}.rag-events,.rag-reference,.rag-hierarchy{grid-template-columns:1fr}.rag-event--vigridr{grid-column:auto}.rag-last-boss,.rag-hierarchy>.rag-source,.rag-reference>.rag-source{grid-column:auto}.rag-event{padding:13px}.rag-chip-list li{font-size:.8rem}}
 @media print{.rag-guide{background:white;box-shadow:none;color:#111}.rag-events,.rag-reference,.rag-hierarchy{display:block}.rag-event,.rag-reference-card,.rag-hierarchy-card{background:#fff!important;color:#111!important;break-inside:avoid;margin:10px 0}.rag-guide :is(h2,h3,h4,p,span,li,strong,pre){color:#111!important}.rag-source{display:block}}
+
+
+/* Destaques do Mestre — cartões legíveis e fontes originais intactas */
+.organ-highlights{margin:23px 0 30px;padding:20px;border:1px solid #957447;border-radius:15px;background:linear-gradient(155deg,#33291e,#1d2220 72%);scroll-margin-top:65px}
+.organ-highlights-heading h2{font:700 clamp(1.45rem,2.6vw,2rem)/1.3 Georgia,serif;color:#ffdfa0;margin:7px 0}
+.organ-highlights-heading p{max-width:900px;color:#e1d3bb;line-height:1.65;margin:6px 0 15px}
+.organ-highlights-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:13px}
+.organ-highlights-tabs button{cursor:pointer;padding:10px 13px;border-radius:24px;border:1px solid #967a54;background:#272b29;color:#ebdfd0;font-weight:780;font-size:.84rem}
+.organ-highlights-tabs button[aria-pressed="true"]{background:#755328;border-color:#e0b875;color:#fff2d9}
+.organ-highlights-tabs button:hover,.organ-highlights-tabs button:focus-visible{border-color:#f1d19c}
+.organ-highlights-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.organ-highlight-card{display:flex;flex-direction:column;gap:12px;min-width:0;padding:16px;background:#202a2a;border-radius:11px;border:1px solid #687966;box-shadow:0 2px 7px #0003}
+.organ-highlight-head{display:grid;gap:4px}
+.organ-highlight-kind{font-weight:750;color:#c6e0c0;font-size:.74rem}
+.organ-highlight-head h3{margin:3px 0 0;font:750 1.13rem/1.35 Georgia,serif;color:#ffdeaa;overflow-wrap:anywhere}
+.organ-highlight-note{font-size:.79rem;color:#c3cbbc}
+.organ-highlight-status{display:flex;flex-wrap:wrap;gap:6px}
+.organ-highlight-status span{font-size:.78rem;font-weight:800;color:#f4e0ae;padding:5px 8px;border:1px solid #a28b60;background:#39372d;border-radius:6px}
+.organ-highlight-info{padding:9px 11px;border:1px solid #45655e;background:#162c29;border-radius:9px;overflow-wrap:anywhere}
+.organ-highlight-info strong{display:block;color:#cfe5d4;font-size:.8rem;margin-bottom:4px}
+.organ-highlight-info p{margin:0;color:#f2ede1;font-size:.83rem;line-height:1.5}
+.organ-highlight-drop{border-color:#776948;background:#2e2b21}
+.organ-highlight-drop strong{color:#f0d79a}
+.organ-highlight-original{margin-top:auto;border-top:1px solid #55625a;padding-top:9px}
+.organ-highlight-original summary{color:#ffe1a1;font-weight:750;font-size:.85rem;cursor:pointer}
+.organ-highlight-content{max-height:480px;overflow:auto;padding:8px 0}
+.organ-highlight-content pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:none;color:#e4e7df;font:12.5px/1.6 ui-monospace,Consolas,monospace;margin:0 0 10px}
+.organ-highlight-content button{padding:8px 10px;border:1px solid #af8d57;border-radius:6px;background:#4b402f;color:#f9eac5;font-weight:750;cursor:pointer}
+.organ-highlights-hint{font-size:.81rem;color:#bfbfb1;margin:13px 0 0}
+@media(max-width:950px){.organ-highlights-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:580px){.organ-highlights{padding:13px}.organ-highlights-grid{grid-template-columns:1fr}.organ-highlights-tabs button{font-size:.78rem;padding:8px 10px}}
+@media print{.organ-highlights-tabs,.organ-highlight-original summary,.organ-highlight-content button{display:none!important}.organ-highlights-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.organ-highlight-card{background:white!important;color:black!important;break-inside:avoid}}
