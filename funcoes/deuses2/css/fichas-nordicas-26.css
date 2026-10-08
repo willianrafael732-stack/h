@@ -36,3 +36,7 @@
 .f-original-move p{font-size:.82rem;line-height:1.5;color:#eae6d5;margin:5px 0 0}
 @media(max-width:770px){.f-moves-grid{grid-template-columns:1fr}.f-original-moves{grid-template-columns:1fr}}
 @media print{.f-moves,.f-move-card,.f-move-variation,.f-original-move{background:white!important;color:black!important;border-color:#aaa!important}.f-move-card{break-inside:avoid}.f-moves-grid{display:block}.f-move-card{margin:7px 0}.f-roll,.f-roll-result{display:none!important}.f-moves :is(h3,h4,p,strong,small,span){color:black!important}.f-card{break-inside:auto}}
+
+/* Escala de pontos dos atributos e 27 habilidades de cada ficha nórdica. */
+.f-field{flex-wrap:wrap}.f-field-points{flex:0 0 100%;font-size:.75rem;line-height:1.4;letter-spacing:.07em;color:#f4ca79;overflow-wrap:anywhere}
+@media print{.f-field-points{color:#111!important;letter-spacing:0}}

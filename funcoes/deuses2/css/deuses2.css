@@ -314,3 +314,8 @@
 @media(max-width:1060px){.d2-attack-tier-grid{grid-template-columns:1fr}}
 @media(max-width:620px){.d2-attack-tier-grid{grid-template-columns:1fr;gap:8px}.d2-attack-tier{padding:11px}.d2-attack-tier .d2-variation-formula{font-size:.98rem}}
 @media print{.d2-attack-tier,.d2-form-attack-entry{background:white!important;border-color:#777!important;break-inside:avoid}.d2-attack-tier .d2-variation-formula,.d2-attack-tier .d2-variation-header strong{color:black!important}}
+
+/* Bolinhas para atributos, níveis mágicos e habilidades exibidas. */
+.d2-dot-track{display:block;flex:0 0 100%;width:100%;font-size:.79rem;line-height:1.4;letter-spacing:.07em;color:#f4ca79;overflow-wrap:anywhere}
+.d2-main-attribute{min-height:75px}
+@media print{.d2-dot-track{color:#111!important;letter-spacing:0}}

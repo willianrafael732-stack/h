@@ -3,11 +3,18 @@
 const $=id=>document.getElementById(id),fold=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
 const make=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined&&text!==null)n.textContent=String(text);if(cls)n.className=cls;return n};
 const diceStr=parts=>parts?.length?parts.map(p=>p.count+"d10 "+p.type).join(" + "):"Não especificado";
+function fDots(points,name){
+ const value=Number(points),bar=make("span",null,"f-field-points");
+ if(!Number.isFinite(value)||value<0){bar.textContent="—";return bar}
+ const n=Math.floor(value),slots=Math.max(12,Math.min(30,Math.ceil(n/6)*6));
+ bar.textContent="●".repeat(Math.min(n,slots))+"○".repeat(Math.max(0,slots-n))+(n>slots?" +"+(n-slots):"");
+ bar.setAttribute("role","img");bar.setAttribute("aria-label",name+": "+n+" pontos");return bar;
+}
 function values(title,arr,type){
  const card=make("section",null,"f-box f-"+type);
  card.append(make("h3",title));
  const rows=make("div",null,"f-field-list");
- for(const entry of arr){const field=make("div",null,"f-field");field.append(make("span",entry.name),make("strong",entry.points));rows.append(field)}
+ for(const entry of arr){const field=make("div",null,"f-field");field.append(make("span",entry.name),make("strong",entry.points),fDots(entry.points,entry.name));rows.append(field)}
  card.append(rows);return card;
 }
 function item(c){

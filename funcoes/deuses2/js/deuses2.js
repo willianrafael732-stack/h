@@ -234,7 +234,7 @@ function d2SourceSection(parent,title,lines,c){
   if(item&&item.id!=="recurso"){
     const actual=d2EffectiveValue(c,item.label);
     const label=el("span",item.label),number=el("strong",actual??item.value);
-    row.append(label,number);
+    row.append(label,number,d2Dots(actual,item.label));
     const bonus=d2FormBonus(c,item.label),base=d2OfficialValue(c,item.label);
     const edited=Object.prototype.hasOwnProperty.call(userState(c).attributes,item.label);
     if(actual!==null&&(Number(actual)!==Number(item.value)||edited)){
@@ -260,7 +260,7 @@ function d2ExtraAttributes(c,parsed){
   const list=el("div",null,"d2-trait-rows");
   for(const key of subset){
     const row=el("div",null,"d2-trait-row d2-overridden");
-    row.append(el("span",key),el("strong",d2EffectiveValue(c,key)));
+    row.append(el("span",key),el("strong",d2EffectiveValue(c,key)),d2Dots(d2EffectiveValue(c,key),key));
     const bonus=d2FormBonus(c,key);
     if(bonus>0)row.append(el("small","🜂 Forma: +"+bonus+"d10","d2-trait-transform"));
     list.append(row);
@@ -766,6 +766,15 @@ const D2_MAIN_ATTR=[
  {id:"social",label:"🗣️ Social",names:["Empatia","Manipulação","Persuasão"]},
  {id:"mental",label:"🧠 Mental",names:["Percepção","Inteligência","Reação"]}
 ];
+/* Um ponto por bolinha; os valores acima de trinta são exibidos no contador. */
+function d2Dots(value,name){
+ const n=value==null||value===""?NaN:Number(value),bar=el("span",null,"d2-dot-track");
+ if(!Number.isFinite(n)||n<0){bar.textContent="Não informado";return bar}
+ const count=Math.floor(n),slots=Math.max(12,Math.min(30,Math.ceil(count/6)*6));
+ bar.textContent="●".repeat(Math.min(count,slots))+"○".repeat(Math.max(0,slots-count))+(count>slots?" +"+(count-slots):"");
+ bar.setAttribute("role","img");bar.setAttribute("aria-label",name+": "+count+" pontos");
+ return bar;
+}
 function d2MainOverview(c){
  const container=el("section",null,"d2-primary-attributes");
  container.setAttribute("aria-label","Atributos físicos, sociais e mentais");
@@ -778,7 +787,7 @@ function d2MainOverview(c){
   for(const name of group.names){
    const official=d2OfficialValue(c,name),value=d2EffectiveValue(c,name),bonus=d2FormBonus(c,name),saved=userState(c).attributes;
    const unit=el("div",null,"d2-main-attribute");
-   unit.append(el("span",name),el("strong",value===null?"—":String(value)));
+   unit.append(el("span",name),el("strong",value===null?"—":String(value)),d2Dots(value,name));
    if(bonus>0&&value!==null)unit.append(el("small","+ "+bonus+"d10 transformação"));
    else if(Object.prototype.hasOwnProperty.call(saved,name)&&official!==null&&Number(saved[name])!==official)unit.append(el("small","Original: "+official));
    else if(value===null)unit.append(el("small","Não informado"));
