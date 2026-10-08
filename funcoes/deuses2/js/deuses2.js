@@ -1,8 +1,8 @@
 (function(){
 "use strict";
-const $=id=>document.getElementById(id),ui={sheetSearch:$("d2-sheet-search"),sheetCategory:$("d2-sheet-category"),sheetOrder:$("d2-sheet-order"),sheets:$("d2-sheets"),sheetCount:$("d2-sheet-count"),sheetMore:$("d2-sheet-more"),cultureSearch:$("d2-culture-search"),cultureSelect:$("d2-culture-select"),cultures:$("d2-cultures"),cultureCount:$("d2-culture-count"),cultureMore:$("d2-culture-more"),chapters:$("d2-chapters"),chronology:$("d2-chronology-list"),backupStatus:$("d2-backup-status")};
+const $=id=>document.getElementById(id),ui={sheetSearch:$("d2-sheet-search"),sheetCategory:$("d2-sheet-category"),sheetOrder:$("d2-sheet-order"),sheets:$("d2-sheets"),sheetCount:$("d2-sheet-count"),sheetMore:$("d2-sheet-more"),chapters:$("d2-chapters"),chronology:$("d2-chronology-list"),backupStatus:$("d2-backup-status")};
 const KEY="hurras_deuses2_batalhas_v1";
-let data=null,sheetLimit=14,cultureLimit=24,state={};
+let data=null,sheetLimit=14,state={};
 try{const existing=JSON.parse(localStorage.getItem(KEY)||"{}");if(existing&&typeof existing==="object"&&!Array.isArray(existing))state=existing}catch(e){}
 const el=(tag,content,cls)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(content!==null&&content!==undefined)node.textContent=String(content);return node};
 const norm=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase("pt-BR");
@@ -964,15 +964,6 @@ function renderSheets(){const q=norm(ui.sheetSearch.value.trim()),type=ui.sheetC
  ui.sheets.replaceChildren();visibleSheets.slice(0,sheetLimit).forEach(c=>ui.sheets.append(sheetCard(c)));ui.sheetCount.textContent=visibleSheets.length+" fichas encontradas • mostrando "+Math.min(sheetLimit,visibleSheets.length);
  ui.sheetMore.hidden=visibleSheets.length<=sheetLimit;if(!visibleSheets.length)ui.sheets.append(el("p","Nenhuma ficha encontrada.","d2-empty"));
 }
-function cultureCard(c){const card=el("article",null,"d2-culture");if(c.image){const im=el("img");im.src="../../assets/i/"+c.image.split("/").map(encodeURIComponent).join("/");im.alt="Arte de "+c.name;im.loading="lazy";im.onerror=()=>{im.replaceWith(el("p","Retrato não disponível.","d2-empty"))};card.append(im)}
- card.append(el("div",c.culture+" • "+c.affinity,"d2-badge"),el("h3",c.name),el("p",c.domain));
- const details=el("details");details.append(el("summary","Descrição original"),el("p",c.description),el("small","Nível no RPG: não definido"));card.append(details);return card
-}
-let visibleCultures=[];
-function renderCultures(){const q=norm(ui.cultureSearch.value.trim()),kind=ui.cultureSelect.value;visibleCultures=data.pantheons.filter(c=>(!kind||c.culture===kind)&&(!q||norm([c.name,c.domain,c.affinity,c.description,c.culture].join(" ")).includes(q))).sort((a,b)=>a.culture.localeCompare(b.culture,"pt-BR")||a.name.localeCompare(b.name,"pt-BR"));
- ui.cultures.replaceChildren();visibleCultures.slice(0,cultureLimit).forEach(c=>ui.cultures.append(cultureCard(c)));ui.cultureCount.textContent=visibleCultures.length+" divindades e figuras • mostrando "+Math.min(cultureLimit,visibleCultures.length);
- ui.cultureMore.hidden=visibleCultures.length<=cultureLimit;if(!visibleCultures.length)ui.cultures.append(el("p","Nenhum resultado.","d2-empty"));
-}
 function narrative(){data.chapters.forEach((c,i)=>{const chapter=el("details",null,"d2-chapter");chapter.open=i===0;chapter.append(el("summary",c.title));const body=el("div",null,"d2-chapter-content");c.paragraphs.forEach(p=>body.append(el("p",p,/^\d+\./.test(p)?"d2-chapter-event":null)));chapter.append(body);ui.chapters.append(chapter)});
  data.chronology.forEach(p=>ui.chronology.append(el("p",p)))}
 function featured(){
@@ -984,13 +975,13 @@ function featured(){
    stage.append(button);
  }
 }
-function begin(d){if(d.dossiers.length!==66||d.pantheons.length!==228||d.chapters.length!==8)throw Error("Contagem da fonte inválida");data=d;
- const cats=[...new Set(d.dossiers.map(x=>x.group))],cultures=[...new Set(d.pantheons.map(x=>x.culture))].sort((a,b)=>a.localeCompare(b,"pt-BR"));cats.forEach(x=>{let opt=el("option",x);opt.value=x;ui.sheetCategory.append(opt)});cultures.forEach(x=>{let opt=el("option",x==="Nexalis"?"Nexalis (RPG)":x);opt.value=x;ui.cultureSelect.append(opt)});
+function begin(d){if(d.dossiers.length!==66||d.chapters.length!==8)throw Error("Contagem da fonte inválida");data=d;
+ const cats=[...new Set(d.dossiers.map(x=>x.group))];cats.forEach(x=>{let opt=el("option",x);opt.value=x;ui.sheetCategory.append(opt)});
  ui.sheetSearch.addEventListener("input",()=>{sheetLimit=14;renderSheets()});ui.sheetCategory.addEventListener("change",()=>{sheetLimit=14;renderSheets()});ui.sheetOrder.addEventListener("change",renderSheets);
- ui.sheetMore.addEventListener("click",()=>{sheetLimit+=14;renderSheets()});ui.cultureSearch.addEventListener("input",()=>{cultureLimit=24;renderCultures()});ui.cultureSelect.addEventListener("change",()=>{cultureLimit=24;renderCultures()});ui.cultureMore.addEventListener("click",()=>{cultureLimit+=24;renderCultures()});
+ ui.sheetMore.addEventListener("click",()=>{sheetLimit+=14;renderSheets()});
  $("d2-export").addEventListener("click",()=>{const txt=JSON.stringify({format:"hurras_deuses2_batalhas_v1",saved:new Date().toISOString(),history:state},null,2),blob=new Blob([txt],{type:"application/json"}),url=URL.createObjectURL(blob),a=el("a");a.href=url;a.download="deuses2-historicos.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);ui.backupStatus.textContent="Backup gerado."});
  $("d2-import").addEventListener("change",async e=>{const file=e.target.files?.[0];if(!file)return;try{if(file.size>4e6)throw Error("Arquivo muito grande");const obj=JSON.parse(await file.text());if(obj.format!=="hurras_deuses2_batalhas_v1"||!obj.history||typeof obj.history!=="object"||Array.isArray(obj.history))throw Error("Backup incompatível");if(!confirm("Substituir os históricos locais pelo backup?"))return;state=obj.history;save();renderSheets();ui.backupStatus.textContent="Históricos importados."}catch(err){ui.backupStatus.textContent="Erro: "+err.message}finally{e.target.value=""}});
- renderSheets();renderCultures();narrative();featured();
+ renderSheets();narrative();featured();
 }
-fetch("dados/arquivo.json").then(res=>{if(!res.ok)throw Error("HTTP "+res.status);return res.json()}).then(begin).catch(e=>{ui.sheetCount.textContent="Não foi possível abrir as fichas: "+e.message;ui.cultureCount.textContent="Não foi possível abrir o catálogo."});
+fetch("dados/arquivo.json").then(res=>{if(!res.ok)throw Error("HTTP "+res.status);return res.json()}).then(begin).catch(e=>{ui.sheetCount.textContent="Não foi possível abrir as fichas: "+e.message;});
 })();
