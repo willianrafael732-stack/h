@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "source": "Texto colado(7).txt",
+  "note": "Fichas destacadas que estavam ausentes do índice existente. Transcrição completa e números sem alterações.",
+  "items": [
+    {
+      "raw": "Gaia, A Mãe da Natureza\n\nRaça: Titã\nClasse: Guardião da Natureza\nVitalidade: 140\nMana: 70\nForça de Vontade: 11\n\nAtributos\n- Físico: 12 Força, 6 Destreza, 14 Vigor.\n- Social: 14 Carisma, 6 Manipulação, 10 Persuasão.\n- Mental: 5 Percepção, 10 Inteligência, 5 Reação.\n\nHabilidades\n- Talentos: 12 Intimidação, 13 Liderança, 6 Lábia, -5 Esquiva, 14 Briga, -5 Investida, 10 crítico, 10 Bloqueio, 10 Avaliação.\n- Perícias: 14 Animais, 10 Sobrevivência.\n- Conhecimentos: 10 Acadêmicos, 14 Ocultação, 14 Medicina, 10 Linguística.\n\nPassivas\n   - Fator de Cura: Se regenera em 30 pontos de vida por turno sem nenhum custo.\n   - Ataque Duplo: Ataca duas vezes por turno, uma vez com cada “mão”.\n   - Técnicas de Classe: Recebe magias e técnicas da classe.\n   - Vantagens e desvantagens: Os benefícios e malefícios de sua raça humanoide também se aplicam a esta criatura.\n   - Magias de Terra/Natureza: Pode usar todas as magias de Terra/Natureza.\n\nElementos Mágicos\n   - Terra/Natureza: 14\n\nResistências Magica\n   - Fogo: -5\n   - Água/Gelo: 10\n   - Vento: 10\n   - Terra/Natureza: 14\n   - Raio: 10\n   - Veneno: 5\n   - Mental: 12\n   - Sagrado: 6\n   - Sombra: 6\n\nDescrição\n   Gaia é a personificação da Terra em sua forma mais poderosa. Ela é uma força primordial que pode moldar e destruir o mundo com sua vontade.\n\nHabitat\n   Desconhecido.\n\nDrop\n   - Fragmento de Gaia: Usado para criar itens que oferecem grande poder de defesa e manipulação da terra.\n   - Pó de Criação: Pode ser usado para transformar e melhorar terrenos e locais.",
+      "id": "arquivo-essencial-gaia",
+      "name": "Gaia, A Mãe da Natureza",
+      "level": 14,
+      "life": "140",
+      "mana": "70",
+      "description": "Gaia é a personificação da Terra em sua forma mais poderosa. Ela é uma força primordial que pode moldar e destruir o mundo com sua vontade.",
+      "habitat": "Desconhecido.",
+      "picture": "",
+      "origin": "Texto colado(7).txt • ficha original enviada"
+    },
+    {
+      "raw": "Cronos, o Titã do Tempo\n\nRaça: Titã\nClasse: Arcano Zen\nVitalidade: 150\nMana: 75\nForça de Vontade: 12\n\nAtributos\n- Físico: 9 Força, 11 Destreza, 13 Vigor.\n- Social: 15 Carisma, 15 Manipulação, 15 Persuasão.\n- Mental: 10 Percepção, 13 Inteligência, 9 Reação.\n\nHabilidades\n- Talentos: 13 Intimidação, 14 Liderança 15 Lábia, 9 Esquiva, 15 Briga, 1 Investida, 10 crítico, 10 Bloqueio, 15 Avaliação.\n- Perícias: 15 Armas Magicas, 15 Armas 1H, 10 Sobrevivência.\n- Conhecimentos: 10 Acadêmicos, 10 Encantamentos, 15 Ocultação, 10 Runas, 10 Linguística.\n\nMagias/Técnicas\n   - Seta do Tempo: Pode enviar todos em um raio de 6 turnos de distância para o futuro ou passado, aqueles atingidos por este poder podem ficar mais novos até antes de sua existência, ou ir para o futuro até morre de velhice (Não funciona com Hurras, Deuses ou criaturas míticas superiores).\n   - Reversão: Obriga um inimigo a refazer uma ação.\n   - Escudo do Tempo: Cria um escudo temporal que causa dano a armas e armaduras diminuindo em -1 seus pontos sempre que for atingido\n   - Try Again: Pode refazer uma ação.\n\nPassivas\n   - Fator de Cura: Se regenera em 30 pontos de vida por turno sem nenhum custo.\n   - Ataque Duplo: Ataca duas vezes por turno, uma vez com cada “mão”.\n   - Técnicas de Classe: Recebe magias e técnicas da classe.\n   - Vantagens e desvantagens: Os benefícios e malefícios de sua raça humanoide também se aplicam a esta criatura.\n\nElementos Mágicos\n- Fogo: 10\n- Água/Gelo: 10\n- Vento: 10\n- Terra/Natureza: 10\n- Mental: 10\n\nResistências Magica\n- Fogo: 10\n- Água/Gelo: 10\n- Vento: 10\n- Terra/Natureza: 10\n- Raio: 10\n- Veneno: 10\n- Mental: 15\n- Sagrado: 5\n- Sombra: 5\n\nDescrição\n   Cronos é um titã que representa o controle absoluto sobre o tempo. Ele é uma entidade imponente que pode manipular o fluxo do tempo e é um símbolo de poder absoluto e desespero.\n\nHabitat\n   Desconhecido.\n\nDrop\n   - Relógio de Cronos: Um artefato que pode manipular o tempo em pequenas escalas.\n   - Essência Temporal: Usada para criar itens que podem afetar a percepção e a manipulação do tempo.",
+      "id": "arquivo-essencial-cronos",
+      "name": "Cronos, o Titã do Tempo",
+      "level": 15,
+      "life": "150",
+      "mana": "75",
+      "description": "Cronos é um titã que representa o controle absoluto sobre o tempo. Ele é uma entidade imponente que pode manipular o fluxo do tempo e é um símbolo de poder absoluto e desespero.",
+      "habitat": "Desconhecido.",
+      "picture": "",
+      "origin": "Texto colado(7).txt • ficha original enviada"
+    }
+  ]
+}
