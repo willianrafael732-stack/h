@@ -133,7 +133,106 @@ function placeholder(item){
  div.setAttribute("role","img");div.setAttribute("aria-label","Emblema ilustrativo de "+(item.name||item.title));
  div.append(symbol,cap);return div;
 }
+
+/* Ficha de inimigo: leitura por prioridade no combate, sem mexer no texto de origem. */
+const ENEMY_GROUPS=[
+ ["combat","⚔️ Armas e ataques"],
+ ["powers","🔮 Magias e técnicas"],
+ ["passives","✨ Passivas, supremas e transformações"],
+ ["defenses","🛡️ Resistências, fraquezas e elementos"],
+ ["drops","🎁 Drops e recompensas"]
+];
+function enemyCategory(heading){
+ const h=normalize(heading).trim();
+ if(/^(ataques?|armas?|arma principal|equipamento de combate)/.test(h))return "combat";
+ if(/^(magias|tecnicas|poderes|habilidades especiais|arvores de magia)/.test(h))return "powers";
+ if(/^(passivas?|suprema|metamorfose|evolucao)/.test(h))return "passives";
+ if(/^(resistencias?|fraquezas|elementos magicos)/.test(h))return "defenses";
+ if(/^(drops?|recompensas?|equipamento)$/.test(h))return "drops";
+ return null;
+}
+function enemySections(item,category){
+ const original=extractSections(item.raw||"").filter(s=>enemyCategory(s.heading)===category);
+ if(category==="combat"&&Array.isArray(item.abilities)&&item.abilities.length){
+  return [{heading:"Golpes documentados",lines:item.abilities}];
+ }
+ if(category==="passives"&&Array.isArray(item.specials)&&item.specials.length){
+  return [{heading:"Efeitos especiais",lines:item.specials},...original];
+ }
+ return original;
+}
+function enemyIdentity(raw,label){
+ const m=String(raw||"").match(new RegExp("(?:^|\\n)\\s*"+label+"\\s*:\\s*([^\\n\\r]+)","iu"));
+ return m?m[1].trim():"";
+}
+function enemyGroupCard(title,sections,id){
+ const panel=elem("section",null,"organ-enemy-section organ-enemy-"+id);
+ panel.append(elem("h4",title));
+ if(!sections.length){panel.append(elem("p","Não informado na ficha original.","organ-enemy-unreported"));return panel}
+ const list=elem("div",null,"organ-enemy-list");
+ for(const section of sections){
+  const entry=elem("article",null,"organ-enemy-entry");
+  if(section.heading)entry.append(elem("strong",section.heading,"organ-enemy-entry-title"));
+  const lines=elem("div",null,"organ-enemy-lines");
+  for(const raw of section.lines){const line=String(raw).trim();if(line)lines.append(elem("p",line))}
+  if(lines.children.length)entry.append(lines);
+  list.append(entry);
+ }
+ panel.append(list);return panel;
+}
+function enemyCard(item){
+ const card=elem("article",null,"organ-card organ-enemy-card");
+ const header=elem("div",null,"organ-enemy-header");
+ const figure=elem("div",null,"organ-enemy-figure");figure.append(portrait(item));
+ const info=elem("div",null,"organ-enemy-info");
+ info.append(elem("small",item.group+" • "+(Number.isInteger(item.level)?"Nível "+item.level:"Nível não informado"),"organ-tag"),elem("h3",item.name||item.title));
+ const identity=elem("div",null,"organ-enemy-identity");
+ for(const key of ["Raça","Classe","Função"]){
+  const value=enemyIdentity(item.raw,key);
+  if(value)identity.append(elem("span",key+": "+value));
+ }
+ if(identity.children.length)info.append(identity);
+ const resources=elem("div",null,"organ-enemy-resources");
+ for(const [label,value] of [["❤️ Vitalidade",item.life],["🔵 Mana",item.mana],["🔥 Força de Vontade",enemyIdentity(item.raw,"Força de Vontade")]]){
+  if(value!==null&&value!==undefined&&value!=="")resources.append(elem("span",label+": "+value));
+ }
+ if(item.element)resources.append(elem("span","Elemento: "+item.element));
+ if(resources.children.length)info.append(resources);
+ header.append(figure,info);card.append(header);
+ const sheet=elem("div",null,"organ-enemy-body");
+ const attrs=elem("section",null,"organ-enemy-section");
+ attrs.append(elem("h4","🧬 Atributos físicos, sociais e mentais"),mainAttrCards(item));
+ sheet.append(attrs);
+ const skills=elem("section",null,"organ-enemy-section");
+ skills.append(elem("h4","🎯 Habilidades"),documentedSkillsBoard(item));
+ sheet.append(skills);
+ for(const [id,title] of ENEMY_GROUPS)sheet.append(enemyGroupCard(title,enemySections(item,id),id));
+ const history=elem("section",null,"organ-enemy-section organ-enemy-history");
+ history.append(elem("h4","📖 Descrição e habitat"));
+ if(item.description)history.append(elem("p",escapeText(item.description),"organ-description"));
+ if(item.habitat)history.append(elem("p","🌿 Habitat: "+escapeText(item.habitat),"organ-habitat"));
+ const story=extractSections(item.raw||"").filter(x=>/^(descricao|habitat|historia)$/.test(normalize(x.heading)));
+ if(!item.description&&!item.habitat&&story.length){
+  for(const x of story)history.append(elem("pre",x.lines.join("\n").trim(),"organ-original"));
+ }
+ if(!item.description&&!item.habitat&&!story.length)history.append(elem("p","Não informados na ficha original.","organ-enemy-unreported"));
+ sheet.append(history);card.append(sheet);
+ const details=elem("details",null,"organ-full organ-enemy-full");
+ details.append(elem("summary","📜 Todas as seções e transcrição original, sem cortes"));
+ const contents=elem("div",null,"organ-full-sections");
+ for(const section of extractSections(item.raw||"")){
+  const segment=elem("section",null,"organ-full-section");
+  segment.append(elem("h4",section.heading),elem("pre",section.lines.join("\n").trim(),"organ-original"));
+  contents.append(segment);
+ }
+ const verbatim=elem("details",null,"organ-verbatim");
+ verbatim.append(elem("summary","Ver texto original sem cortes"),elem("pre",item.raw||"","organ-original"));
+ contents.append(verbatim);details.append(contents);card.append(details);
+ return card;
+}
+
 function card(item){
+ if(mode==="bestiario")return enemyCard(item);
  const art=elem("article",null,"organ-card");
  const top=elem("div",null,"organ-card-top");
  top.append(portrait(item));
