@@ -48,7 +48,7 @@ const groups=[
 {label:'Mundo & seres',icon:'♜',items:[
 ['Bestiário • fichas completas','funcoes/bestiario/index.html','110 criaturas do arquivo + 19 seres nórdicos'],
 ['Deuses & mitologias','funcoes/deuses/index.html','Panteões, semideuses e combate nórdico'],
-['Deuses 2 • saga completa','funcoes/deuses2/index.html','57 fichas, 228 figuras divinas e crônica em oito partes'],
+['Deuses 2 • arquivo completo','funcoes/deuses2/index.html','66 fichas, panteões, bestiário, NPCs e saga'],
 ['Galeria de imagens','funcoes/galeria-i.html','192 imagens originais assets/i'],
 ['Animais','animais/animais.html','Criaturas e companheiros'],
 ['NPCs conhecidos','funcoes/npcs.html','Revelados aos jogadores'],
