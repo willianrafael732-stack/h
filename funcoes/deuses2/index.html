@@ -1,67 +1,453 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Deuses 2 Hurras: saga do Ragnarök, fichas de combate de deuses e panteões organizados por mitologia.">
-<title>Deuses 2 • Hurras Fantasy</title><link rel="icon" href="../../hurras-icon.svg"><link rel="stylesheet" href="css/deuses2.css">
-<script defer src="../../hurras-nav.js"></script><script defer src="js/dados-vivos.js"></script><script defer src="js/ficha-pdf.js"></script><script defer src="js/deuses2.js"></script><script defer src="js/anexos.js"></script><script defer src="js/texto-integral.js"></script></head>
-<body><header class="d2-header"><a class="d2-brand" href="../../index.html">✦ HURRAS FANTASY</a><nav aria-label="Navegação dos deuses"><a href="#panteoes">Todos os panteões</a><a href="../bestiario/index.html">Bestiário</a><a href="../../index.html">Portal</a></nav></header>
-<main><section class="d2-hero"><span class="eyebrow">HURRAS RPG • COLEÇÃO ORGANIZADA</span><h1>Deuses <span>2</span></h1><p>O compêndio principal dos deuses de Hurras: Saga do Ragnarök, fichas de combate, mitologias, bestiário e NPCs reunidos numa única página.</p>
-<div class="d2-counters"><div><strong>66</strong><span>Fichas de combate</span></div><div><strong>228</strong><span>Divindades e figuras de panteões</span></div><div><strong>8</strong><span>Capítulos da saga</span></div></div>
-<div class="d2-shortcuts"><a href="fichas-nordicas-26.html">📘 26 fichas nórdicas (PDF)</a><a href="#fichas">⚔ Fichas e ataques</a><a href="#texto-integral">📚 Texto integral das fichas</a><a href="#panteoes">✧ Todos os panteões</a><a href="#saga">📜 Saga e cronologia</a><a href="#anexos">🐉 Bestiário, NPCs e anexos</a></div>
-<p class="d2-info">As fichas da saga e as nove criações presentes no material foram organizadas sem trocar ataques ou níveis. Fichas complementares divergentes permanecem identificadas em seção separada. Registros culturais são referências, e não possuem níveis de combate automaticamente. O material original <code>funcoes/deuses2 .htm</code> foi mantido.</p></section>
-<section class="d2-section" id="fichas-nordicas-pdf"><div class="section-title"><span class="eyebrow">EDIÇÃO SEPARADA • MATERIAL ENVIADO</span><h2>📘 26 fichas nórdicas organizadas</h2><p>Personagens e chefes do Ragnarök em fichas completas: nível, Vitalidade, Mana, atributos, 27 habilidades, armas, três versões de ataque, passiva, golpe especial, supremo e recompensas. Valores retirados do PDF enviado, sem substituir os números do fichário principal.</p></div><div class="d2-shortcuts"><a href="fichas-nordicas-26.html">📚 Abrir as 26 fichas</a><a href="pdf/HURRAS_156_Golpes_Nordicos.pdf" target="_blank" rel="noopener">⚔️ Manual de 156 ataques</a><a href="pdf/HURRAS_Fichas_Nordicas_Organizadas.pdf" target="_blank" rel="noopener">⬇ PDF completo</a></div></section>
-<section id="destaques" class="d2-section">
- <div class="section-title"><span class="eyebrow">ENCONTRO ESPECIAL</span><h2>Thor, Brynja e Solveig</h2><p>Acesse rapidamente as três fichas do encontro de Asgard. Thor mantém os golpes do compêndio; Brynja e Solveig vêm do conjunto de semideuses do arquivo enviado.</p></div>
- <div id="d2-spotlight" class="d2-spotlight"></div>
- </section>
- <section class="d2-section" id="fichas"><div class="section-title"><span class="eyebrow">ARQUIVO DE COMBATE</span><h2>Fichas da saga</h2><p>As fichas mantêm o formato original, com atributos e habilidades em quadradinhos. Agora os dados d10 dos golpes acompanham os atributos editados, com vínculos configuráveis e bônus de transformação opcionais. Valores de outras versões permanecem separados. Inclui as 57 fichas da saga e os nove personagens adicionais do material HTML. Os campos editados alteram os status do personagem imediatamente, são salvos automaticamente neste navegador e geram uma versão PDF atualizada para baixar.</p></div>
-<div class="d2-toolbar"><label>Buscar deus, golpe ou poder<input id="d2-sheet-search" type="search" placeholder="Thor, Freyr, Höðr, Thróðr, gelo..."></label><label>Grupo<select id="d2-sheet-category"><option value="">Todos os grupos</option></select></label><label>Ordem<select id="d2-sheet-order"><option value="original">Ordem do arquivo</option><option value="name">Nome A–Z</option><option value="level">Nível maior</option></select></label></div>
-<p id="d2-sheet-count" class="d2-count" role="status" aria-live="polite">Carregando as fichas...</p><div id="d2-sheets" class="d2-sheet-grid"></div><button id="d2-sheet-more" class="d2-more" type="button" hidden>Mostrar mais fichas</button>
-<div class="d2-backups"><button type="button" id="d2-export">⬇ Exportar históricos JSON</button><label for="d2-import">⬆ Importar histórico JSON<input id="d2-import" type="file" accept=".json,application/json" hidden></label><span id="d2-backup-status" role="status"></span></div>
-</section>
-<section class="d2-section" id="panteoes"><div class="section-title"><span class="eyebrow">PANTEÕES CULTURAIS E DE NEXALIS</span><h2>Todos os deuses e figuras divinas</h2><p>As 228 entradas do arquivo de panteões original, organizadas por cultura. Nomes, domínios e descrições seguem o material cadastrado; não foram atribuídos níveis de RPG a essas tradições.</p></div>
-<div class="d2-toolbar"><label>Buscar divindade ou domínio<input id="d2-culture-search" type="search" placeholder="Atena, sabedoria, Nexalis..."></label><label>Mitologia<select id="d2-culture-select"><option value="">Todas as mitologias</option></select></label></div><p id="d2-culture-count" class="d2-count" role="status" aria-live="polite">Carregando o panteão...</p><div id="d2-cultures" class="d2-culture-grid"></div><button id="d2-culture-more" class="d2-more" type="button" hidden>Mostrar mais deuses</button></section>
-<section class="d2-section d2-full-section" id="texto-integral" aria-labelledby="d2-full-heading">
- <div class="section-title">
-  <span class="eyebrow">HURRAS RPG • TRANSCRIÇÕES NA ÍNTEGRA</span>
-  <h2 id="d2-full-heading">📚 Texto integral de todos os deuses</h2>
-  <p>Leia o conteúdo completo que você enviou. São <strong>66 fichas principais</strong>, <strong>31 transcrições do compêndio nórdico</strong> e <strong>4 complementos históricos</strong>, sem resumir nem apagar ataques, atributos, armas, magias, passivas, bônus, transformações ou drops. Valores divergentes permanecem em versões separadas.</p>
-  <p class="d2-warning">Este arquivo é uma reprodução fiel dos textos de origem. Alterações feitas na ficha editável e os novos cálculos de d10 ficam na área de combate e no PDF, sem sobrescrever as transcrições originais.</p>
- </div>
- <div class="d2-full-toolbar">
-  <label>Procurar personagem ou trecho
-   <input type="search" id="d2-full-search" placeholder="Thor, Gungnir, passiva, transformação, drops…" autocomplete="off">
-  </label>
-  <label>Tipo de texto
-   <select id="d2-full-group"><option value="">Todas as versões</option></select>
-  </label>
-  <button id="d2-full-all" type="button">⬇ Baixar todas as fichas em TXT</button>
- </div>
- <p id="d2-full-count" class="d2-count" role="status" aria-live="polite">Carregando transcrições completas…</p>
- <div class="d2-full-layout">
-  <div id="d2-full-list" class="d2-full-list" aria-label="Fichas e versões disponíveis"></div>
-  <article class="d2-full-reader" aria-label="Texto integral da ficha selecionada">
-   <div class="d2-full-reader-title">
-    <div><h3 id="d2-full-title">Escolha um personagem</h3><p id="d2-full-meta">Selecione uma ficha à esquerda para ver todo o texto original.</p></div>
-    <button id="d2-full-download" type="button">⬇ Baixar esta ficha</button>
-   </div>
-   <pre id="d2-full-text" class="d2-full-pre" tabindex="0" aria-label="Transcrição completa da ficha"></pre>
-  </article>
- </div>
- <details class="d2-full-originals">
-  <summary>📜 Documentos de origem completos • compêndio, bestiário, NPCs, HTML e RTF</summary>
-  <p>Os arquivos abaixo são mostrados <strong>sem cortes</strong>, incluindo os documentos originais em formato bruto. A opção HTML exibe o código como texto, sem executá-lo; a opção RTF preserva as marcações do arquivo original.</p>
-  <div class="d2-full-source-toolbar">
-   <label>Escolher arquivo original <select id="d2-full-source" aria-label="Arquivo original completo"></select></label>
-   <button id="d2-full-source-download" type="button">⬇ Baixar arquivo original</button>
-  </div>
-  <pre id="d2-full-source-content" class="d2-full-pre d2-full-source-pre" tabindex="0" aria-label="Arquivo de origem sem cortes"></pre>
- </details>
- <p id="d2-full-message" class="d2-count" role="status" aria-live="polite">Carregando o arquivo dos deuses…</p>
-</section>
+<html lang="pt-BR">
 
-<section class="d2-section" id="anexos">
- <div class="section-title"><span class="eyebrow">BESTIÁRIO • NPCS • FICHAS COMPLEMENTARES</span><h2>Arquivo completo do material enviado</h2><p>Todo o conteúdo que estava depois do fechamento do HTML original, agora em blocos pesquisáveis e separados por assunto. Inclui criaturas com atributos, habitats e drops; fichas de NPCs; e versões complementares de Thor, Magni, Modi e Heimdall.</p><p class="d2-warning">Quando uma ficha complementar divergir da ficha da saga, as duas versões são mantidas para consulta. Os valores não foram misturados nem substituídos.</p></div>
- <div class="d2-toolbar"><label>Buscar no arquivo inteiro<input id="d2-archive-query" type="search" placeholder="Slime, Fenrir, Mjölnir, Visão do Futuro, drops..."></label><label>Assunto<select id="d2-archive-section"><option value="">Todos os anexos</option></select></label></div>
- <div class="d2-backups"><button id="d2-download-archive" type="button">⬇ Baixar texto integral</button><span id="d2-archive-status" role="status"></span></div>
- <p id="d2-archive-count" class="d2-count" role="status" aria-live="polite">Carregando arquivo complementar...</p><div id="d2-archive-results" class="d2-archive-results"></div><button class="d2-more" type="button" id="d2-archive-more" hidden>Mostrar mais trechos</button></section>
- <section class="d2-section" id="saga"><div class="section-title"><span class="eyebrow">NARRATIVA ORIGINAL</span><h2>A Saga do Ragnarök</h2><p>Oito capítulos e a ordem dos acontecimentos, extraídos do seu novo arquivo. Nesta cronologia, Loki morre antes do Ragnarök.</p></div><div id="d2-chapters"></div><details class="d2-chronology"><summary>📜 Ordem definitiva dos acontecimentos</summary><div id="d2-chronology-list"></div></details></section>
-</main><footer>Hurras RPG · Deuses 2 · Fonte de campanha e catálogo cultural exibidos separadamente.</footer></body></html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description"
+        content="Deuses 2 Hurras: saga do Ragnarök, fichas de combate de deuses e panteões organizados por mitologia.">
+    <title>Deuses 2 • Hurras Fantasy</title>
+    <link rel="icon" href="../../hurras-icon.svg">
+    <link rel="stylesheet" href="css/deuses2.css">
+    <script defer src="../../hurras-nav.js"></script>
+    <script defer src="js/dados-vivos.js"></script>
+    <script defer src="js/ficha-pdf.js"></script>
+    <script defer src="js/deuses2.js"></script>
+    <script defer src="js/anexos.js"></script>
+    <script defer src="js/texto-integral.js"></script>
+</head>
+
+<body>
+    <header class="d2-header"><a class="d2-brand" href="../../index.html">✦ HURRAS FANTASY</a>
+        <nav aria-label="Navegação dos deuses"><a href="#panteoes">Todos os panteões</a><a
+                href="../bestiario/index.html">Bestiário</a><a href="../../index.html">Portal</a></nav>
+    </header>
+    <main>
+        <section class="d2-hero"><span class="eyebrow">HURRAS RPG • COLEÇÃO ORGANIZADA</span>
+            <h1>Deuses <span>2</span></h1>
+            <p>O compêndio principal dos deuses de Hurras: Saga do Ragnarök, fichas de combate, mitologias, bestiário e
+                NPCs reunidos numa única página.</p>
+            <div class="d2-counters">
+                <div><strong>66</strong><span>Fichas de combate</span></div>
+                <div><strong>228</strong><span>Divindades e figuras de panteões</span></div>
+                <div><strong>8</strong><span>Capítulos da saga</span></div>
+            </div>
+            <div class="d2-shortcuts"><a href="fichas-nordicas-26.html">📘 26 fichas nórdicas (PDF)</a><a
+                    href="#fichas">⚔ Fichas e ataques</a><a href="#texto-integral">📚 Texto integral das fichas</a><a
+                    href="#panteoes">✧ Todos os panteões</a><a href="#saga">📜 Saga e cronologia</a><a href="#anexos">🐉
+                    Bestiário, NPCs e anexos</a></div>
+            <p class="d2-info">As fichas da saga e as nove criações presentes no material foram organizadas sem trocar
+                ataques ou níveis. Fichas complementares divergentes permanecem identificadas em seção separada.
+                Registros culturais são referências, e não possuem níveis de combate automaticamente. O material
+                original <code>funcoes/deuses2 .htm</code> foi mantido.</p>
+        </section>
+        <section class="d2-section" id="fichas-nordicas-pdf">
+            <div class="section-title"><span class="eyebrow">EDIÇÃO SEPARADA • MATERIAL ENVIADO</span>
+                <h2>📘 26 fichas nórdicas organizadas</h2>
+                <p>Personagens e chefes do Ragnarök em fichas completas: nível, Vitalidade, Mana, atributos, 27
+                    habilidades, armas, três versões de ataque, passiva, golpe especial, supremo e recompensas. Valores
+                    retirados do PDF enviado, sem substituir os números do fichário principal.</p>
+            </div>
+            <div class="d2-shortcuts"><a href="fichas-nordicas-26.html">📚 Abrir as 26 fichas</a><a
+                    href="pdf/HURRAS_156_Golpes_Nordicos.pdf" target="_blank" rel="noopener">⚔️ Manual de 156
+                    ataques</a><a href="pdf/HURRAS_Fichas_Nordicas_Organizadas.pdf" target="_blank" rel="noopener">⬇ PDF
+                    completo</a></div>
+        </section>
+        <section id="destaques" class="d2-section">
+            <div class="section-title"><span class="eyebrow">ENCONTRO ESPECIAL</span>
+                <h2>Thor, Brynja e Solveig</h2>
+                <p>Acesse rapidamente as três fichas do encontro de Asgard. Thor mantém os golpes do compêndio; Brynja e
+                    Solveig vêm do conjunto de semideuses do arquivo enviado.</p>
+            </div>
+            <div id="d2-spotlight" class="d2-spotlight"></div>
+        </section>
+        <section class="d2-section" id="fichas">
+            <div class="section-title"><span class="eyebrow">ARQUIVO DE COMBATE</span>
+                <h2>Fichas da saga</h2>
+                <p>As fichas mantêm o formato original, com atributos e habilidades em quadradinhos. Agora os dados d10
+                    dos golpes acompanham os atributos editados, com vínculos configuráveis e bônus de transformação
+                    opcionais. Valores de outras versões permanecem separados. Inclui as 57 fichas da saga e os nove
+                    personagens adicionais do material HTML. Os campos editados alteram os status do personagem
+                    imediatamente, são salvos automaticamente neste navegador e geram uma versão PDF atualizada para
+                    baixar.</p>
+            </div>
+            <div class="d2-toolbar"><label>Buscar deus, golpe ou poder<input id="d2-sheet-search" type="search"
+                        placeholder="Thor, Freyr, Höðr, Thróðr, gelo..."></label><label>Grupo<select
+                        id="d2-sheet-category">
+                        <option value="">Todos os grupos</option>
+                    </select></label><label>Ordem<select id="d2-sheet-order">
+                        <option value="original">Ordem do arquivo</option>
+                        <option value="name">Nome A–Z</option>
+                        <option value="level">Nível maior</option>
+                    </select></label></div>
+            <p id="d2-sheet-count" class="d2-count" role="status" aria-live="polite">Carregando as fichas...</p>
+            <div id="d2-sheets" class="d2-sheet-grid"></div><button id="d2-sheet-more" class="d2-more" type="button"
+                hidden>Mostrar mais fichas</button>
+            <div class="d2-backups"><button type="button" id="d2-export">⬇ Exportar históricos JSON</button><label
+                    for="d2-import">⬆ Importar histórico JSON<input id="d2-import" type="file"
+                        accept=".json,application/json" hidden></label><span id="d2-backup-status" role="status"></span>
+            </div>
+        </section>
+        <section class="d2-section" id="panteoes">
+            <div class="section-title"><span class="eyebrow">PANTEÕES CULTURAIS E DE NEXALIS</span>
+                <h2>Todos os deuses e figuras divinas</h2>
+                <p>As 228 entradas do arquivo de panteões original, organizadas por cultura. Nomes, domínios e
+                    descrições seguem o material cadastrado; não foram atribuídos níveis de RPG a essas tradições.</p>
+            </div>
+            <div class="d2-toolbar"><label>Buscar divindade ou domínio<input id="d2-culture-search" type="search"
+                        placeholder="Atena, sabedoria, Nexalis..."></label><label>Mitologia<select
+                        id="d2-culture-select">
+                        <option value="">Todas as mitologias</option>
+                    </select></label></div>
+            <p id="d2-culture-count" class="d2-count" role="status" aria-live="polite">Carregando o panteão...</p>
+            <div id="d2-cultures" class="d2-culture-grid"></div><button id="d2-culture-more" class="d2-more"
+                type="button" hidden>Mostrar mais deuses</button>
+        </section>
+        <section class="d2-section d2-full-section" id="texto-integral" aria-labelledby="d2-full-heading">
+            <div class="section-title">
+                <span class="eyebrow">HURRAS RPG • TRANSCRIÇÕES NA ÍNTEGRA</span>
+                <h2 id="d2-full-heading">📚 Texto integral de todos os deuses</h2>
+                <p>Leia o conteúdo completo que você enviou. São <strong>66 fichas principais</strong>, <strong>31
+                        transcrições do compêndio nórdico</strong> e <strong>4 complementos históricos</strong>, sem
+                    resumir nem apagar ataques, atributos, armas, magias, passivas, bônus, transformações ou drops.
+                    Valores divergentes permanecem em versões separadas.</p>
+                <p class="d2-warning">Este arquivo é uma reprodução fiel dos textos de origem. Alterações feitas na
+                    ficha editável e os novos cálculos de d10 ficam na área de combate e no PDF, sem sobrescrever as
+                    transcrições originais.</p>
+            </div>
+            <div class="d2-full-toolbar">
+                <label>Procurar personagem ou trecho
+                    <input type="search" id="d2-full-search" placeholder="Thor, Gungnir, passiva, transformação, drops…"
+                        autocomplete="off">
+                </label>
+                <label>Tipo de texto
+                    <select id="d2-full-group">
+                        <option value="">Todas as versões</option>
+                    </select>
+                </label>
+                <button id="d2-full-all" type="button">⬇ Baixar todas as fichas em TXT</button>
+            </div>
+            <p id="d2-full-count" class="d2-count" role="status" aria-live="polite">Carregando transcrições completas…
+            </p>
+            <div class="d2-full-layout">
+                <div id="d2-full-list" class="d2-full-list" aria-label="Fichas e versões disponíveis"></div>
+                <article class="d2-full-reader" aria-label="Texto integral da ficha selecionada">
+                    <div class="d2-full-reader-title">
+                        <div>
+                            <h3 id="d2-full-title">Escolha um personagem</h3>
+                            <p id="d2-full-meta">Selecione uma ficha à esquerda para ver todo o texto original.</p>
+                        </div>
+                        <button id="d2-full-download" type="button">⬇ Baixar esta ficha</button>
+                    </div>
+                    <pre id="d2-full-text" class="d2-full-pre" tabindex="0"
+                        aria-label="Transcrição completa da ficha"></pre>
+                </article>
+            </div>
+            <details class="d2-full-originals">
+                <summary>📜 Documentos de origem completos • compêndio, bestiário, NPCs, HTML e RTF</summary>
+                <p>Os arquivos abaixo são mostrados <strong>sem cortes</strong>, incluindo os documentos originais em
+                    formato bruto. A opção HTML exibe o código como texto, sem executá-lo; a opção RTF preserva as
+                    marcações do arquivo original.</p>
+                <div class="d2-full-source-toolbar">
+                    <label>Escolher arquivo original <select id="d2-full-source"
+                            aria-label="Arquivo original completo"></select></label>
+                    <button id="d2-full-source-download" type="button">⬇ Baixar arquivo original</button>
+                </div>
+                <pre id="d2-full-source-content" class="d2-full-pre d2-full-source-pre" tabindex="0"
+                    aria-label="Arquivo de origem sem cortes"></pre>
+            </details>
+            <p id="d2-full-message" class="d2-count" role="status" aria-live="polite">Carregando o arquivo dos deuses…
+            </p>
+        </section>
+
+        <section class="d2-section" id="anexos">
+            <div class="section-title"><span class="eyebrow">BESTIÁRIO • NPCS • FICHAS COMPLEMENTARES</span>
+                <h2>Arquivo completo do material enviado</h2>
+                <p>Todo o conteúdo que estava depois do fechamento do HTML original, agora em blocos pesquisáveis e
+                    separados por assunto. Inclui criaturas com atributos, habitats e drops; fichas de NPCs; e versões
+                    complementares de Thor, Magni, Modi e Heimdall.</p>
+                <p class="d2-warning">Quando uma ficha complementar divergir da ficha da saga, as duas versões são
+                    mantidas para consulta. Os valores não foram misturados nem substituídos.</p>
+            </div>
+            <div class="d2-toolbar"><label>Buscar no arquivo inteiro<input id="d2-archive-query" type="search"
+                        placeholder="Slime, Fenrir, Mjölnir, Visão do Futuro, drops..."></label><label>Assunto<select
+                        id="d2-archive-section">
+                        <option value="">Todos os anexos</option>
+                    </select></label></div>
+            <div class="d2-backups"><button id="d2-download-archive" type="button">⬇ Baixar texto integral</button><span
+                    id="d2-archive-status" role="status"></span></div>
+            <p id="d2-archive-count" class="d2-count" role="status" aria-live="polite">Carregando arquivo
+                complementar...</p>
+            <div id="d2-archive-results" class="d2-archive-results"></div><button class="d2-more" type="button"
+                id="d2-archive-more" hidden>Mostrar mais trechos</button>
+        </section>
+        <section class="d2-section" id="saga">
+            <div class="section-title"><span class="eyebrow">NARRATIVA ORIGINAL</span>
+                <h2>A Saga do Ragnarök</h2>
+                <p>Oito capítulos e a ordem dos acontecimentos, extraídos do seu novo arquivo. Nesta cronologia, Loki
+                    morre antes do Ragnarök.</p>
+            </div>
+            <div id="d2-chapters"></div>
+            <details class="d2-chronology">
+                <summary>📜 Ordem definitiva dos acontecimentos</summary>
+                <div id="d2-chronology-list"></div>
+            </details>
+        </section>
+    </main>
+    <footer>Hurras RPG · Deuses 2 · Fonte de campanha e catálogo cultural exibidos separadamente.</footer>
+
+    # 🐺 HURRAS RPG — Sköll e Hati
+
+Duas fichas de chefes nórdicos para o seu RPG, com sistema de combate em d10, ataques físicos, magia, passivas, transformações e drops.
+
+São adaptações para o HURRAS, inspiradas nos lobos que perseguem o Sol e a Lua na mitologia nórdica.
+
+## Sköll — O Devorador do Sol
+
+[Que veut dire Skoll en norrois ? Démystification et exploration mythol – Viking-celtic](https://images.openai.com/static-rsc-4/7CuD18eEuhM0whsb4ZNZ3QGK8LS2ZjHT59KnlYtW2KnH0dCML0Qvk8hdryNWybyLH0T_CR1sA2gooWgDigmRIBgNm9aeiMeM3_SrUFNpHmwBD5fdV2HpITXsANVAWY8zAZLG5XJ0wFayUecRfRw4w_HzxJNoK3oYGUDDJwrn_80?purpose=inline)
+
+[vikingceltic.fr](https://www.vikingceltic.fr/pt/blogs/news/que-veut-dire-skoll-en-norrois-demystification-et-exploration-mythologique)
+
+Chefe nível 15
+
+Fogo e trevas
+
+| Característica  | Valor |
+| --------------- | ----- |
+| ❤️ Vitalidade   | 180   |
+| 🔵 Mana         | 90    |
+| 💪 Força        | 19    |
+| 🏃 Destreza     | 18    |
+| 🛡️ Vigor       | 17    |
+| 👁️ Percepção   | 19    |
+| 🧠 Inteligência | 9     |
+| ⚡ Reação        | 19    |
+| 🔮 Magia        | 15    |
+| 🌑 Trevas       | 16    |
+| 🔥 Fogo         | 12    |
+| ✨ Sagrado       | 5     |
+
+Arma natural — Presas do Eclipse
+
+- Dano básico: 12d10 físico
+- Bônus das presas: +4d10 físico
+- Total: 16d10 físico
+- Mordidas podem causar queimadura e sangramento.
+
+### Ataques de Sköll
+
+| Ataque               | Sem bônus                 | Com bônus                 |
+| -------------------- | ------------------------- | ------------------------- |
+| Mordida Solar        | 12d10 físico              | 16d10 físico              |
+| Garras Flamejantes   | 10d10 físico + 5d10 fogo  | 14d10 físico + 9d10 fogo  |
+| Investida do Eclipse | 14d10 físico              | 18d10 físico              |
+| Uivo do Sol Negro    | 10d10 trevas              | 15d10 trevas              |
+| Chamas Devoradoras   | 12d10 fogo                | 17d10 fogo                |
+| Presas do Caçador    | 15d10 físico              | 19d10 físico              |
+| Explosão Solar       | 15d10 fogo                | 20d10 fogo                |
+| Corrida Celestial    | 12d10 físico + 5d10 fogo  | 16d10 físico + 9d10 fogo  |
+| Eclipse Parcial      | 10d10 trevas + 10d10 fogo | 15d10 trevas + 15d10 fogo |
+| Devorar o Sol        | 20d10 fogo + 15d10 trevas | 25d10 fogo + 20d10 trevas |
+
+### Passivas
+
+Caçador Celestial: +3d10 em testes de perseguição e rastreamento.
+
+Fúria Solar: quando a Vitalidade fica abaixo de 50%, recebe +3d10 de dano físico.
+
+Devorador de Luz: recebe 50% menos dano de fogo.
+
+### Transformação — Eclipse Solar
+
+Quando Sköll chega a 0 de Vitalidade pela primeira vez, assume sua forma de Eclipse.
+
+- Recupera 90 de Vitalidade.
+- Recebe +5d10 de dano de fogo.
+- Todos os inimigos em até 20 metros sofrem 10d10 de fogo.
+- Duração: 5 turnos.
+
+Drops: Presas do Eclipse, Pele do Lobo Solar e Núcleo do Sol Negro.
+
+## Hati Hróðvitnisson — O Devorador da Lua
+
+[Hati - Norse Lunar Wolf | mythicalcreatures.info](https://images.openai.com/static-rsc-4/0odY7V-2q58MKaURct486eKAEL_mKAyJtTxiqz2QoQEB76w3O90kSaNc-waIDgFh3Vh9Q-siFErwBbJyAvnvK2rCREZbivMNiy1ONjz6rf3G6rSho2O4wqJfENBBO1ZtkFJqyZiraSVitvGydFPgGV_ZPG7GSjCA-bsameIUjN8?purpose=inline)
+
+[mythicalcreatures.info](https://mythicalcreatures.info/characters/hati/)
+
+Chefe nível 15
+
+Gelo e trevas
+
+| Característica  | Valor |
+| --------------- | ----- |
+| ❤️ Vitalidade   | 170   |
+| 🔵 Mana         | 110   |
+| 💪 Força        | 17    |
+| 🏃 Destreza     | 20    |
+| 🛡️ Vigor       | 16    |
+| 👁️ Percepção   | 21    |
+| 🧠 Inteligência | 11    |
+| ⚡ Reação        | 21    |
+| 🔮 Magia        | 17    |
+| ❄️ Gelo         | 15    |
+| 🌑 Trevas       | 17    |
+| ✨ Sagrado       | 5     |
+
+Arma natural — Garras da Lua Eterna
+
+- Dano básico: 10d10 físico
+- Bônus das garras: +5d10 físico
+- Total: 15d10 físico
+- Os ataques podem causar congelamento.
+
+### Ataques de Hati
+
+| Ataque               | Sem bônus                  | Com bônus                   |
+| -------------------- | -------------------------- | --------------------------- |
+| Mordida Lunar        | 11d10 físico               | 16d10 físico                |
+| Garras Congelantes   | 10d10 físico + 5d10 gelo   | 15d10 físico + 10d10 gelo   |
+| Investida da Lua     | 13d10 físico               | 18d10 físico                |
+| Uivo da Noite Eterna | 12d10 trevas               | 17d10 trevas                |
+| Tempestade Lunar     | 14d10 gelo                 | 19d10 gelo                  |
+| Presas da Escuridão  | 14d10 físico + 5d10 trevas | 19d10 físico + 10d10 trevas |
+| Passo das Sombras    | 10d10 trevas               | 15d10 trevas                |
+| Chuva de Cristais    | 15d10 gelo                 | 20d10 gelo                  |
+| Eclipse Lunar        | 12d10 gelo + 12d10 trevas  | 17d10 gelo + 17d10 trevas   |
+| Devorar a Lua        | 20d10 trevas + 15d10 gelo  | 25d10 trevas + 20d10 gelo   |
+
+### Passivas
+
+Caçador Noturno: +4d10 em furtividade durante a noite.
+
+Olhos Lunares: consegue enxergar em escuridão completa e detectar criaturas invisíveis por magia comum.
+
+Predador Gelado: recebe 50% menos dano de gelo.
+
+### Transformação — Eclipse Lunar
+
+Quando Hati chega a 0 de Vitalidade pela primeira vez, assume sua forma de Eclipse.
+
+- Recupera 85 de Vitalidade.
+- Recebe +5d10 de dano de trevas.
+- Todos os inimigos em até 20 metros sofrem 10d10 de gelo.
+- Duração: 5 turnos.
+
+Drops: Garras da Lua Eterna, Pele do Lobo Lunar e Cristal da Lua Negra.
+
+## Evento especial — Eclipse Duplo do Ragnarök
+
+[Éclipse solaire: mythes et légendes autour des éclipses](https://images.openai.com/static-rsc-4/MQX8nPTwoF_8mTiHXK3zApqqKnX97whA_YCkJP6EeYMcsaKyOUWrpf-BD6sfAVCH3FsUb3RpZxNamE6NMNb78Vm-EaLtdgvXSbFfI7IFqT6ImEVN6-Egf40oMOU5OhQlOHRE2geJ4Uss_9lP5X-dv0KHg9FNK6MMvxeLORTQlAY?purpose=inline)
+
+[successcolaire.ca](https://www.successcolaire.ca/ressources/blogues/eclipse-solaire-mythes-et-legendes-autour-des-eclipses)
+
+Quando Sköll e Hati aparecem juntos no campo de batalha, ativam o evento O Fim do Sol e da Lua.
+
+- Ambos recebem +3d10 em ataques físicos.
+- Sköll ganha +5d10 de fogo.
+- Hati ganha +5d10 de gelo.
+- O campo de batalha fica em escuridão sobrenatural por 5 turnos.
+- Uma vez por combate, podem usar o ataque conjunto Ruptura dos Céus, causando 20d10 fogo + 20d10 gelo + 15d10 trevas em uma área de 30 metros. Cada alvo faz um teste de Reação para reduzir o dano pela metade.
+
+Se um dos lobos morrer, o sobrevivente entra em Fúria do Ragnarök, recebendo +5d10 físico até o final da batalha.
+
+Essas fichas deixam Sköll mais forte em dano bruto e Hati mais perigoso em velocidade, furtividade e controle de combate.
+
+
+
+# ⚔️ BRYNJA — SANGUE DE VALQUÍRIA
+
+HURRAS RPG | Semideusa nórdica | Nível 15
+
+[Bijoux Collection VALKYRIE Guerrières Nordiques Pierres Naturelles - ODAL LA VIE  – ODAL LA VIE](https://images.openai.com/static-rsc-4/rfGYhBhQeXtFFfkqyX1tbGTKFy32zX8VDKvPly6s8G1YDu5BdsS5RXAhrM9JV45qZ70g22tYqL8ylld3RaghMMxPDOxG9UMd9azHjMnuTeJy6Djsb3_MZ9Fhh0fXNcX41xKOdQV3bkBfqV72El9x9QV7XQ75KmctQ9icyx_NCBM?purpose=inline)
+
+[odallavie.com](https://www.odallavie.com/collections/collection-valkyrie)
+
+Brynja é uma guerreira de sangue divino, descendente das Valquírias de Odin. Sua missão é proteger os guerreiros dignos de Valhalla e conduzir as almas dos mortos em batalha.
+
+## ❤️ Ficha principal
+
+| Característica   | Valor |
+| ---------------- | ----- |
+| Nível            | 15    |
+| Vitalidade       | 160   |
+| Mana             | 110   |
+| Força de Vontade | 12    |
+| Força            | 15    |
+| Destreza         | 18    |
+| Vigor            | 15    |
+| Percepção        | 18    |
+| Inteligência     | 14    |
+| Reação           | 19    |
+| Magia            | 15    |
+| Sagrado          | 18    |
+| Vento            | 12    |
+
+## 🗡️ Arma — Hrafnljós, a Lança das Almas
+
+Uma lança celestial forjada com fragmentos das armas dos Einherjar. Sua lâmina brilha quando uma alma está prestes a morrer.
+
+| Dano                 | Dados                       |
+| -------------------- | --------------------------- |
+| Físico base          | 10d10                       |
+| Bônus da arma        | +4d10 físico                |
+| Dano sagrado da arma | +6d10                       |
+| Golpe completo       | 14d10 físico + 6d10 sagrado |
+
+Propriedade: contra mortos-vivos, adiciona +3d10 de dano sagrado.
+
+## ⚔️ Dez ataques de Brynja
+
+| Ataque                  | Sem bônus                    | Com bônus                    |
+| ----------------------- | ---------------------------- | ---------------------------- |
+| Golpe da Valquíria      | 10d10 físico                 | 14d10 físico + 6d10 sagrado  |
+| Estocada Celestial      | 12d10 físico                 | 16d10 físico + 6d10 sagrado  |
+| Asas Cortantes          | 10d10 vento                  | 15d10 vento                  |
+| Lança de Valhalla       | 12d10 sagrado                | 18d10 sagrado                |
+| Investida Alada         | 12d10 físico + 5d10 vento    | 16d10 físico + 10d10 vento   |
+| Julgamento dos Caídos   | 15d10 sagrado                | 21d10 sagrado                |
+| Dança das Lanças        | 3 ataques de 6d10 físico     | 3 ataques de 10d10 físico    |
+| Tempestade de Penas     | 12d10 vento + 5d10 sagrado   | 17d10 vento + 11d10 sagrado  |
+| Ira de Odin             | 15d10 físico + 10d10 sagrado | 19d10 físico + 16d10 sagrado |
+| Último Voo da Valquíria | 20d10 sagrado + 10d10 vento  | 26d10 sagrado + 15d10 vento  |
+
+Os bônus acima são próprios desta ficha e não incluem modificadores externos de equipamentos ou aliados.
+
+## ✨ Passivas divinas
+
+Sangue de Valquíria: quando sua Vitalidade chega a 0 pela primeira vez, Brynja recupera 50% da Vitalidade máxima. Ativa uma vez por combate.
+
+Escolhida de Valhalla: +3d10 em testes de Reação e Percepção contra ataques surpresa.
+
+Olhos dos Caídos: consegue identificar criaturas próximas da morte e perceber espíritos invisíveis.
+
+Escudo das Almas: reduz em 30% o dano recebido de ataques de trevas.
+
+## 🪽 Transformação — Valquíria Ascendida
+
+[Valkyrie — Past Daily Challenge | BudgetPixel | BudgetPixel AI](https://images.openai.com/static-rsc-4/_NrvVPlTC8wF5pRzHsALZ478-pZbldinFhnxuqJOGfDqKhsIgKKVxj4KeFvknBKwdfnBrXQ65nl5fEAxcB1WFgQNa2EEbR1maHL28TS2ZbX_J2lhUSr8IptoWF5KynRF6joX_MCzUvHsUQYxiK5A3ZhrYNMiuw_MipvrQ_rarG0?purpose=inline)
+
+[budgetpixel.com](https://budgetpixel.com/challenges/valkyrie-2026-04-30)
+
+Quando Brynja fica abaixo de 30% da Vitalidade, pode despertar seu sangue divino.
+
+- +5d10 em ataques físicos.
+- +5d10 em ataques sagrados.
+- Recupera 30 de Mana imediatamente.
+- Pode voar livremente durante 5 turnos.
+- Recebe 25% menos dano físico.
+
+Golpe supremo — Portões de Valhalla: invoca lanças celestiais sobre uma área de 20 metros, causando 30d10 sagrado. Custa 35 Mana e pode ser usado uma vez por transformação.
+
+## 🎁 Drops
+
+| Item                  | Efeito                                        |
+| --------------------- | --------------------------------------------- |
+| Hrafnljós             | Lança com 10d10 físico + 6d10 sagrado         |
+| Pena de Valquíria     | +2d10 Reação enquanto equipada                |
+| Sangue Celestial      | Recupera 50 Vitalidade e 30 Mana              |
+| Fragmento de Valhalla | Material raro para forjar equipamento sagrado |
+
+Função no Ragnarök: Brynja pode atuar como protetora dos heróis, comandante dos Einherjar ou chefe opcional que testa se os jogadores são dignos de entrar em Valhalla.s
+</body>
+
+</html>
