@@ -338,83 +338,125 @@ function d2Variants(basics,bonuses){
  if(bonuses.length)res.push({name:"Com todos os bônus diretos da arma",parts:[...basics,...bonuses],explanation:bonuses.some(x=>x.type==="dano não classificado")?"Inclui bônus genérico sem atribuir tipo de dano; sua aplicação depende do Mestre.":"Combinação teórica dos bônus de dano diretos da arma; não acrescentar novamente a golpes que já contenham esses bônus."});
  return res;
 }
+
+/* Comparação cumulativa: base; base + bônus tipados da arma; arma + bônus pessoais/forma.
+   Não soma buffs de atributo aos golpes já pré-calculados no documento. */
+const D2_ATTACK_ELEMENTS=[
+ ["físico","Força"],["mágico","Magia"],["raio","Raio"],["sagrado","Sagrado"],
+ ["fogo","Fogo"],["gelo","Gelo"],["morte","Morte"],["veneno","Veneno"],
+ ["luz","Luz"],["trevas","Trevas"],["água","Água"],["natureza","Natureza"],
+ ["terra","Terra"],["vento","Vento"],["elétrico","Raio"],["sombra","Trevas"]
+];
+function d2ComparisonParts(basics,stored){
+ const extra=[],notes=[],form=d2Live().currentForm(stored);
+ const available=new Set(basics.map(x=>norm(x.type)));
+ const add=(value,type,description)=>{
+  const n=Number(value);
+  if(!Number.isSafeInteger(n)||n<=0||n>500)return;
+  extra.push({count:n,sides:10,type});
+  notes.push(description+" +"+n+"d10 "+type);
+ };
+ const manual=stored.modifiers||{};
+ if(available.has("fisico"))add(manual.physical,"físico","Bônus pessoal");
+ else if(Number(manual.physical||0)>0)notes.push("Bônus físico pessoal sem dano físico base: não aplicado");
+ const elemental=basics.find(x=>x.type!=="físico"&&x.type!=="dano não classificado");
+ if(elemental)add(manual.elemental,elemental.type,"Bônus pessoal");
+ else if(Number(manual.elemental||0)>0)notes.push("Bônus elemental sem tipo correspondente: não aplicado");
+ if(form){
+  for(const [type,attr] of D2_ATTACK_ELEMENTS){
+   if(!available.has(norm(type)))continue;
+   const attribute=Object.keys(form.bonuses||{}).find(key=>norm(key)===norm(attr));
+   if(attribute!==undefined)add(form.bonuses[attribute],type,form.name+" (atributo "+attribute+")");
+   const direct=Object.keys(form.damageBonuses||{}).find(key=>norm(key)===norm(type));
+   if(direct!==undefined)add(form.damageBonuses[direct],type,form.name+" (bônus de ataque)");
+  }
+ }
+ return {extra,notes,form};
+}
+function d2ThreeAttackVariants(w,stored){
+ const summary=d2WeaponDamage(w);
+ if(!summary.basics.length)return [];
+ const valid=summary.bonuses.filter(x=>x.type!=="dano não classificado");
+ const ambiguous=summary.bonuses.filter(x=>x.type==="dano não classificado");
+ const self=d2ComparisonParts([...summary.basics,...valid],stored);
+ const arm=[...summary.basics,...valid],ready=self.extra.length>0;
+ const warning=ambiguous.length?"Bônus de dano sem tipo informado ("+ambiguous.map(x=>x.count+"d"+x.sides).join(", ")+") não somados automaticamente.":"";
+ return [
+  {id:"base",name:"1. Ataque normal • sem bônus",parts:summary.basics,available:true,explanation:"Somente dados básicos da arma, sem bônus.",notes:[]},
+  {id:"weapon",name:"2. Ataque com bônus da arma",parts:arm,available:true,explanation:"Dados básicos + bônus de dano tipados documentados na arma."+(warning?" "+warning:""),notes:valid.map(x=>"Arma: +"+x.count+"d"+x.sides+" "+x.type)},
+  {id:"form",name:"3. Ataque com bônus próprios e transformação",parts:[...arm,...self.extra],available:ready,
+   explanation:ready?"Arma + bônus pessoais configurados"+(self.form?" + transformação "+self.form.name:"")+".":"Ainda sem bônus próprios aplicáveis. Ative uma transformação e configure seus dados extras, ou informe bônus pessoais na edição da ficha.",
+   notes:self.notes}
+ ];
+}
 function d2WeaponSection(c,weapons,notify){
  const display=el("section",null,"d2-weapon-section");display.id="d2-arsenal-"+c.id;
- display.append(el("div","⚔ ARSENAL DO PERSONAGEM","d2-weapon-kicker"),el("h3","🗡️ Armas, ataque normal e variações de dano"));
+ display.append(el("div","⚔ ARSENAL DO PERSONAGEM","d2-weapon-kicker"),el("h3","🗡️ Comparação dos três tipos de ataque"));
+ display.append(el("p","Confira lado a lado o ataque normal, o ataque com bônus da arma e o ataque com bônus do personagem/transformação. Os números da fonte não são modificados.","d2-weapon-note"));
  const collection=el("div",null,"d2-weapons");
  if(!weapons.length){
-   const empty=el("div",null,"d2-weapon-card");
-   empty.append(el("h4","Ataque normal sem arma declarada"),el("p","Esta ficha não informa o dano base de uma arma. Consulte os golpes originais na seção de ataques — eles não foram renomeados como golpes normais.","d2-weapon-empty"));
-   const actions=c.actions||[];
-   const first=actions.find(x=>d2DamageDice(x).length>0);
-   if(first)empty.append(el("p","Primeiro dano registrado entre as técnicas: "+first,"d2-weapon-note"));
-   collection.append(empty);
- }else{
-   for(const [i,w] of weapons.entries()){
-     const card=el("article",null,"d2-weapon-card");
-     const top=el("small",i===0?"EQUIPAMENTO PRINCIPAL":"EQUIPAMENTO "+(i+1));
-     card.append(top,el("h4",w.name));
-     const damage=[],other=[];
-     for(const line of w.lines){
-       if(d2DamageDice(line).length&&!d2IsDamageBonus(line))damage.push(line);else other.push(line);
-     }
-     const damageGrid=el("div",null,"d2-weapon-damage");
-     for(const line of damage)damageGrid.append(el("span",line,"d2-damage-pill"));
-     if(damage.length)card.append(damageGrid);
-     if(other.length){
-       card.append(el("div","Bônus • alcance • efeitos","d2-weapon-subhead"));
-       const list=el("div",null,"d2-weapon-effects");
-       other.forEach(t=>list.append(el("div",t,"d2-weapon-effect")));
-       card.append(list);
-     }
-     const summary=d2WeaponDamage(w),variants=d2Variants(summary.basics,summary.bonuses);
-     const manual=userState(c).modifiers||{};
-     if(summary.basics.length&&(Number(manual.physical||0)>0||Number(manual.elemental||0)>0)){
-       const extras=[];
-       if(Number(manual.physical||0)>0)extras.push({count:Number(manual.physical),sides:10,type:"físico"});
-       const element=summary.basics.find(x=>x.type!=="físico");
-       if(Number(manual.elemental||0)>0&&element)extras.push({count:Number(manual.elemental),sides:10,type:element.type});
-       if(extras.length)variants.push({name:"Com bônus manuais da ficha",parts:[...summary.basics,...summary.bonuses,...extras],explanation:"Variação manual; os bônus selecionados foram adicionados à arma. Não aplique duas vezes a golpes cujo dano já inclua bônus."});
-     }
-     const compare=el("div",null,"d2-damage-variants");
-     compare.append(el("h5","🎲 Comparação do ataque normal"));
-     if(!variants.length){
-       compare.append(el("p","Dano base não informado para este equipamento. Os bônus permanecem listados acima, mas não foi inventado um ataque normal.","d2-weapon-empty"));
-     }else{
-       for(const v of variants){
-         const item=el("div",null,"d2-variation");
-         const header=el("div",null,"d2-variation-header");
-         header.append(el("strong",v.name));
-         const formula=d2Formula(v.parts);
-         const button=el("button","🎲 Rolar");button.type="button";
-         const output=el("output","","d2-variation-roll");
-         button.addEventListener("click",()=>{
-           const val=roll(c,formula,w.name+" — "+v.name,notify);
-           output.textContent=val===undefined?"Sem dados para rolar":"Rolagem: "+val;
-         });
-         header.append(button);
-         item.append(header,el("p",formula,"d2-variation-formula"),el("small",d2Range(v.parts),"d2-variation-range"),el("p",v.explanation,"d2-variation-hint"),output);
-         compare.append(item);
-       }
-     }
-     card.append(compare);collection.append(card);
+  const empty=el("div",null,"d2-weapon-card");
+  empty.append(el("h4","Nenhuma arma com dano base declarado"),el("p","Não foi inventado um ataque normal: consulte as técnicas documentadas mais abaixo. As comparações exigem dano base de arma.","d2-weapon-empty"));
+  const first=(c.actions||[]).find(x=>d2DamageDice(x).length>0);
+  if(first)empty.append(el("p","Primeiro dano documentado: "+first,"d2-weapon-note"));
+  collection.append(empty);
+ }else for(const [i,w] of weapons.entries()){
+  const card=el("article",null,"d2-weapon-card");
+  card.append(el("small",i===0?"EQUIPAMENTO PRINCIPAL":"EQUIPAMENTO "+(i+1)),el("h4",w.name));
+  const damage=[],other=[];
+  for(const line of w.lines){
+   if(d2DamageDice(line).length&&!d2IsDamageBonus(line))damage.push(line);else other.push(line);
+  }
+  const dmg=el("div",null,"d2-weapon-damage");
+  damage.forEach(x=>dmg.append(el("span",x,"d2-damage-pill")));
+  if(damage.length)card.append(dmg);
+  if(other.length){
+   card.append(el("div","Bônus • alcance • efeitos","d2-weapon-subhead"));
+   const list=el("div",null,"d2-weapon-effects");
+   other.forEach(x=>list.append(el("div",x,"d2-weapon-effect")));
+   card.append(list);
+  }
+  const tiers=d2ThreeAttackVariants(w,userState(c)),compare=el("div",null,"d2-damage-variants");
+  compare.append(el("h5","🎲 Ataques e variações"));
+  const grid=el("div",null,"d2-attack-tier-grid");
+  for(const tier of tiers){
+   const item=el("div",null,"d2-variation d2-attack-tier d2-attack-tier-"+tier.id);
+   const header=el("div",null,"d2-variation-header");
+   header.append(el("strong",tier.name));
+   const button=el("button","🎲 Rolar");button.type="button";button.disabled=!tier.available;
+   const formula=tier.available?d2Formula(tier.parts):"— Configure bônus pessoais ou uma transformação";
+   const output=el("output","","d2-variation-roll");
+   button.setAttribute("aria-label","Rolar "+tier.name+" de "+c.name+" com "+w.name);
+   button.addEventListener("click",()=>{
+    if(!tier.available)return;
+    const value=roll(c,d2Formula(tier.parts),w.name+" — "+tier.name,notify);
+    output.textContent=value===undefined?"Sem dados para rolar":"Rolagem: "+value;
+   });
+   header.append(button);
+   item.append(header,el("p",formula,"d2-variation-formula"));
+   if(tier.available)item.append(el("small",d2Range(tier.parts),"d2-variation-range"));
+   item.append(el("p",tier.explanation,"d2-variation-hint"));
+   if(tier.notes.length){
+    const list=el("ul",null,"d2-attack-tier-sources");
+    tier.notes.forEach(n=>list.append(el("li",n)));item.append(list);
    }
+   item.append(output);grid.append(item);
+  }
+  if(!tiers.length)grid.append(el("p","O documento não contém dados de dano base para este equipamento. Nenhum número foi estimado.","d2-weapon-empty"));
+  compare.append(grid);card.append(compare);collection.append(card);
  }
- display.append(collection);
- if(weapons.length)display.append(el("p","Os cálculos distinguem dano base e bônus diretos da arma. Bônus de atributo (Força, Reação etc.) não são convertidos em dano. Golpes já calculados na fonte não recebem bônus adicionais automaticamente.","d2-weapon-note"));
+ display.append(collection,el("p","Atributos e bônus específicos da forma ativa entram somente no terceiro resultado, para tipos de dano compatíveis. Golpes especiais cujo dano já aparece calculado no documento não recebem novamente os bônus da arma.","d2-weapon-note"));
  return display;
 }
 function d2PdfVariants(w,stored){
- const summary=d2WeaponDamage(w),variants=d2Variants(summary.basics,summary.bonuses),manual=stored.modifiers||{};
- if(summary.basics.length&&(Number(manual.physical||0)>0||Number(manual.elemental||0)>0)){
-  const extra=[];
-  if(Number(manual.physical||0)>0)extra.push({count:Number(manual.physical),sides:10,type:"físico"});
-  const element=summary.basics.find(x=>x.type!=="físico");
-  if(Number(manual.elemental||0)>0&&element)extra.push({count:Number(manual.elemental),sides:10,type:element.type});
-  if(extra.length)variants.push({name:"Com bônus manuais da ficha",parts:[...summary.basics,...summary.bonuses,...extra]});
- }
- return variants.map(v=>({name:v.name,formula:d2Formula(v.parts),range:d2Range(v.parts)}));
+ return d2ThreeAttackVariants(w,stored).map(t=>({
+  name:t.name,formula:t.available?d2Formula(t.parts):"Sem bonus proprio ativo",
+  range:t.available?d2Range(t.parts):"",
+  explanation:t.explanation,
+  notes:t.notes
+ }));
 }
+
 function d2ConditionalBuffs(c){
  const lines=[...(c.stats||[]),...(c.actions||[])],found=[];
  let current="";
