@@ -991,7 +991,7 @@ function sheetCard(c){
      block.replaceChildren(...Array.from(temp.childNodes));
    }
    const updatedOverview=d2MainOverview(c);overviewPanel.replaceWith(updatedOverview);overviewPanel=updatedOverview;
-   skillsPanel?.refresh();
+   tracker.refresh();skillsPanel?.refresh();
    const nextExtra=d2ExtraAttributes(c,parsed);extra.replaceWith(nextExtra);extra=nextExtra;
    if(arsenal){const next=d2WeaponSection(c,parsed.weapons,update);arsenal.replaceWith(next);arsenal=next}
    for(const refresh of liveRefreshers)refresh();
