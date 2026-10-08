@@ -8,7 +8,7 @@ const normalize=x=>String(x||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'')
 function card(g){
  const [tradition,name,domain,note,affinity,art]=g,article=make('article',null,'god-card');
  if(art){
-  const imageLink=make('a');imageLink.href='../assets/i/'+encodeURIComponent(art);
+  const imageLink=make('a');imageLink.href=(document.querySelector('meta[name="hurras-assets"]')?.content||'../assets/i/')+encodeURIComponent(art);
   imageLink.target='_blank';imageLink.rel='noopener';imageLink.title='Ampliar retrato de '+name;
   const image=make('img');image.src=imageLink.href;image.loading='lazy';image.decoding='async';image.alt='Arte de '+name;
   image.onerror=()=>{image.onerror=null;image.replaceWith(make('div','Retrato indisponível','god-fallback'))};
