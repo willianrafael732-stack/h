@@ -1,0 +1,1195 @@
+Hurras RPG • Compêndio Nórdico • Página 1
+    ⚔️ HURRAS RPG
+    COMPÊNDIO DOS DEUSES
+    NÓRDICOS
+    Deuses • Descendentes • Criaturas • Chefes do Ragnarök
+    Versão reunida para campanha de RPG. Fichas com foco em combate,
+    poderes, eventos e chefes.
+    Hurras RPG • Compêndio Nórdico • Página 2
+    ODIN — PAI DE TODOS
+    Nível: 15
+    Atributo Valor
+    Vitalidade 150
+    Mana 100
+    Força 14
+    Destreza 14
+    Vigor 15
+    Percepção 22
+    Inteligência 22
+    Reação 18
+    Magia 20
+    Sagrado 17
+    Arma
+    • 14d10 físico
+    • 12d10 mágico
+    • Alcance 30m
+    • Ignora 40% da Defesa
+    • Retorna automaticamente
+    • Percepção +6d10
+    • Inteligência +5d10
+    • Dano físico +4d10
+    • Dano mágico +6d10
+    • Reação +4d10
+    Ataques
+    Estocada de Gungnir — 20d10 físico + 12d10 mágico
+    Lança do Destino — 25d10 mágico; ignora 50% da resistência mágica
+    Julgamento de Odin — 20d10 físico + 20d10 mágico; marca por 2 turnos
+    Poderes / Técnicas
+    Olho de Odin — +8d10 Percepção; revela invisibilidade, ilusões e fraquezas
+    Runas do Destino — 3 turnos; +3 sucessos garantidos
+    Huginn e Muninn — vê e ouve através dos corvos
+    Ragnarök Parcial — 35d10 mágico + 15d10 sagrado; área 15m; paralisa 1 turno
+    Suprema
+    Ragnarök — 50d10 mágico + 20d10 sagrado; área 20m; ignora 60% da resistência mágica; paralisa 1
+    turno.
+    ♾️ Passiva
+    Pai de Todos — 1 vez por combate, uma ação decisiva que falharia vira sucesso crítico.
+    Hurras RPG • Compêndio Nórdico • Página 3
+    THOR — DEUS DO TROVÃO
+    Nível: 20
+    Atributo Valor
+    Vitalidade 200
+    Mana 100
+    Força de Vontade 12
+    Raio 15
+    Sagrado 10
+    Arma
+    • Mjölnir: 17d10 físico + 10d10 raio
+    • Força +4d10
+    • Dano físico +5d10
+    • Dano raio +5d10
+    • Bloqueio +3d10
+    • Reação +3d10
+    • Retorna automaticamente
+    • 50% de chance de atordoar
+    Ataques
+    Golpe de Mjölnir — 26d10 físico + 15d10 raio
+    Martelo Trovejante — 26d10 físico
+    Investida do Trovão — 26d10 físico + 15d10 raio
+    Arremesso de Mjölnir — 26d10 físico + 15d10 raio
+    Mjölnir Giratório — 26d10 físico + 15d10 raio
+    Impacto de Asgard — 26d10 físico + 15d10 raio
+    Queda do Trovão — 26d10 físico + 15d10 raio
+    Martelo do Guardião — 26d10 físico + 15d10 raio
+    Golpe da Tempestade — 26d10 físico + 41d10 raio
+    Quebra-Montanhas — 26d10 físico
+    Relâmpago de Asgard — 41d10 raio
+    Raio de Mjölnir — 41d10 raio
+    Tempestade de Asgard — 41d10 raio
+    Ira dos Céus — 19d10 físico + 41d10 raio
+    Trovão de Mjölnir — 26d10 físico + 41d10 raio
+    Hurras RPG • Compêndio Nórdico • Página 4
+    LOKI — DEUS DA TRAPAÇA
+    Nível: 15
+    Atributo Valor
+    Vitalidade 140
+    Mana 100
+    Força 10
+    Destreza 21
+    Vigor 12
+    Percepção 19
+    Inteligência 22
+    Reação 21
+    Magia 20
+    Arma
+    • Lâminas do Caos: 12d10 físico + 10d10 mágico
+    • Destreza +6d10
+    • Reação +5d10
+    • Dano +5d10
+    • Furtividade +7d10
+    Ataques
+    Punhal da Ilusão — 18d10 físico; +5d10 se furtivo
+    Golpe pelas Costas — 25d10 físico; +10d10 se o alvo não souber sua posição
+    Dança das Lâminas — 3 ataques; cada um 10d10 físico + 5d10 mágico
+    Poderes / Técnicas
+    Ilusão Perfeita — até 3 cópias
+    Caos dos Nove Reinos — 30d10 mágico; área 10m
+    Forma de Jörmungandr — 3 turnos; +8d10 dano, +5d10 Defesa, +5d10 Reação; ataques aplicam veneno
+    Troca de Identidade — assume aparência de outro alvo
+    Reflexo Falso — cria uma réplica para receber o próximo ataque
+    Passo do Trapaceiro — teleporta em curta distância
+    Veneno da Serpente — próximo ataque +8d10 veneno; depois 5d10 veneno e -3d10 Reação por 2 turnos
+    Suprema
+    Fim da Ilusão — 50d10 físico + 35d10 mágico; área 10m. O alvo precisa identificar o verdadeiro Loki; erro
+    permite contra-ataque.
+    ♾️ Passiva
+    Nunca Acredite em Loki — ao sofrer um golpe mortal, pode revelar que era uma ilusão e reaparecer a até
+    15m com 30d10 Vitalidade.
+    Drop
+    • 1: Escama de Jörmungandr Divina
+    • 2: Lâmina do Caos Mítica
+    • 3: Máscara de Loki Mítica
+    • 4–5: Veneno de Jörmungandr Lendária
+    • 6–7: Fragmento da Ilusão Lendária
+    Hurras RPG • Compêndio Nórdico • Página 5
+    • 8: Manto do Trapaceiro Épica
+    • 9: Adaga do Caos Épica
+    • 10: Fragmento de Ilusão Rara
+    Hurras RPG • Compêndio Nórdico • Página 6
+    TYR — DEUS DA GUERRA
+    Nível: 15
+    Atributo Valor
+    Vitalidade 170
+    Mana 60
+    Força 19
+    Destreza 15
+    Vigor 19
+    Percepção 15
+    Inteligência 14
+    Reação 17
+    Arma
+    • Espada do Juramento: 20d10 físico
+    • Força +5d10
+    • Dano +6d10
+    • Defesa +4d10
+    • Reação +3d10
+    Ataques
+    Corte do Juramento — 39d10 físico
+    Golpe do Guerreiro — 46d10 físico; ignora 40% da resistência física
+    Execução de Tyr — 51d10 físico; +10d10 abaixo de 30%
+    Duelo de Tyr — 3 turnos; só o alvo pode atacar Tyr; +5d10 ataque, +5d10 Defesa, +3 sucessos garantidos
+    Investida do Deus da Guerra — 36d10; +5d10 se o alvo estiver a mais de 5m
+    Fúria de Asgard — 3 ataques de 31d10
+    Lâmina do Juramento — +6d10 físico e +3d10 Defesa por 3 turnos; ignora 20%; não pode ser desarmada
+    Marca do Traidor — +5d10 dano contra marcado; alvo -3d10 Defesa
+    Justiça de Tyr — 56d10; +15d10 abaixo de 30%
+    Suprema
+    Espada do Destino — 71d10 físico; +15d10 abaixo de 30% (86d10); ignora 60% da resistência.
+    ♾️ Passiva
+    Coragem de Tyr — não sofre penalidades por perder membros, armas ou sofrer ferimentos graves. Abaixo
+    de 50%: +3d10 dano; abaixo de 25%: +6d10 dano.
+    Drop
+    • 1: Espada do Destino Divina
+    • 2: Mão de Tyr Mítica
+    • 3: Fragmento da Espada de Tyr Lendária
+    • 4–5: Escudo do Juramento Lendária
+    • 6–7: Anel do Guerreiro Épica
+    • 8: Fragmento de Lâmina Épica
+    • 9: Emblema de Tyr Rara
+    • 10: Aço de Asgard Rara
+    Hurras RPG • Compêndio Nórdico • Página 7
+    BALDUR — DEUS DA LUZ
+    Nível: 15
+    Atributo Valor
+    Vitalidade 160
+    Mana 100
+    Luz 22
+    Força 14
+    Destreza 16
+    Vigor 17
+    Percepção 18
+    Inteligência 17
+    Reação 18
+    Arma
+    • Lâmina Solar: 15d10 físico + 15d10 luz
+    • Luz +7d10
+    • Dano físico +3d10
+    • Defesa +4d10
+    • Regeneração +3d10/turno
+    Ataques
+    Corte Solar — 37d10 físico + 47d10 luz
+    Lâmina Radiante — 32d10 físico + 54d10 luz; +10d10 contra mortos-vivos
+    Explosão Solar — 59d10 luz; área 10m
+    Poderes / Técnicas
+    Raio Solar — 54d10 luz; alcance 30m
+    Toque de Baldur — 45d10 cura
+    Manto Solar — +9d10 Defesa, +22d10 Luz, +5d10 resistência mágica por 3 turnos
+    Regeneração Divina — +6d10 Vitalidade/turno por 3 turnos
+    Fulgor de Baldur — 49d10 luz; área 8m
+    Aurora Divina — área 15m; cura 5d10/turno; aliados +3d10 Defesa; inimigos profanos -5d10 Reação
+    Espada do Sol — +5d10 físico, +10d10 luz, ignora 20% resistência mágica, cura 3d10 por acerto
+    Julgamento Solar — 69d10 luz; 84d10 contra mortos-vivos/profanos
+    Renascimento Solar — abaixo de 25%: recupera 30d10, +5d10 Defesa e +5d10 Luz
+    Suprema
+    Sol Invencível — 84d10 luz; 99d10 contra mortos-vivos/profanos; área 20m.
+    ♾️ Passiva
+    Luz Inatingível — recebe 50% menos dano mágico; ao chegar a 0, retorna uma vez com 50d10 Vitalidade.
+    Hurras RPG • Compêndio Nórdico • Página 8
+    FREYA — DEUSA DA MAGIA E DA GUERRA
+    Nível: 15
+    Atributo Valor
+    Vitalidade 150
+    Mana 110
+    Força 13
+    Destreza 18
+    Vigor 14
+    Percepção 20
+    Inteligência 21
+    Reação 19
+    Magia 22
+    Arma
+    • Espada de Fólkvangr: 13d10 físico + 12d10 mágico
+    • Magia +7d10
+    • Destreza +5d10
+    • Reação +4d10
+    • Dano +4d10
+    Ataques
+    Corte de Fólkvangr — 22d10 físico + 44d10 mágico
+    Dança da Valquíria — 3 ataques; cada um 16d10 físico + 37d10 mágico
+    Lâmina Encantada — 54d10 mágico; ignora 30% da resistência
+    Poderes / Técnicas
+    Maldição de Freya — 49d10 mágico; -5d10 Defesa por 3 turnos
+    Encanto de Freya — falha mental faz o alvo perder a próxima ação
+    Chamas de Fólkvangr — 59d10 mágico; área 10m
+    Bênção de Freya — 46d10 cura; +5d10 ataque por 2 turnos
+    Chamado das Valquírias — 3 valquírias espectrais; cada uma 15d10 físico + 10d10 mágico
+    Seidr da Previsão — +5d10 Percepção; +3 sucessos garantidos
+    Ritual de Fólkvangr — perde 15 Vitalidade; +8d10 magia e +5d10 Reação
+    Valquíria de Freya — +5d10 Destreza, +5d10 Reação, +5d10 Defesa, +6d10 dano físico
+    Exército dos Mortos — 5 guerreiros; cada um 8d10 físico
+    Suprema
+    Rainha dos Mortos — 69d10 mágico; invoca 5 guerreiros espectrais de 8d10; enquanto 3 ou mais
+    estiverem vivos, Freya recebe +5d10 Defesa e +5d10 Reação.
+    ♾️ Passiva
+    Senhora do Seidr — 2 vezes por combate, pode conceder +3 ou impor -3 sucessos.
+    Drop
+    • 1: Coração de Freya Divina
+    • 2: Espada de Fólkvangr Mítica
+    • 3: Colar de Seidr Mítica
+    • 4–5: Runa de Freya Lendária
+    Hurras RPG • Compêndio Nórdico • Página 9
+    • 6–7: Pena de Valquíria Lendária
+    • 8: Cristal de Seidr Épica
+    • 9: Fragmento de Magia Rara
+    • 10: Runa Menor Rara
+    Hurras RPG • Compêndio Nórdico • Página 10
+    HEL — SENHORA DOS MORTOS
+    Nível: 15
+    Atributo Valor
+    Vitalidade 180
+    Mana 100
+    Morte 23
+    Força 15
+    Destreza 12
+    Vigor 20
+    Percepção 20
+    Inteligência 19
+    Reação 14
+    Arma
+    • Garra de Hel: 20d10 físico + 10d10 morte
+    • Morte +8d10
+    • Resistência física +6d10
+    • Resistência mágica +7d10
+    Ataques
+    Garra de Helheim — 40d10 físico + 46d10 morte
+    Ceifadora dos Mortos — 61d10 morte; perde 2d10 Vitalidade/turno por 2 turnos
+    Abraço de Hel — 51d10 morte; -5d10 Defesa por 2 turnos
+    Poderes / Técnicas
+    Toque da Morte — 56d10 morte
+    Correntes de Helheim — 51d10 morte; prende por 2 turnos
+    Exército dos Mortos — 5 mortos; cada um 8d10 físico
+    Peste de Helheim — 56d10 morte; área 8m; -3d10 Vigor e -3d10 Reação
+    Olhar de Hel — teste de Vigor contra Morte 23; falha causa medo e -5d10 Defesa
+    Mão de Helheim — 49d10 morte; -5d10 Destreza
+    Sepultamento de Hel — 66d10 morte; abaixo de 30% pode incapacitar
+    Cortejo dos Mortos — 59d10 morte; área 12m
+    Forma de Helheim — +8d10 Morte, +6d10 resistência física, +7d10 resistência mágica, +5d10 Defesa
+    Suprema
+    Portões de Helheim — 86d10 morte; área 20m; paralisa 1 turno; abaixo de 20% o alvo fica marcado para a
+    morte.
+    ♾️ Passiva
+    Rainha dos Mortos — imune à morte instantânea; ao chegar a 0, retorna uma vez por combate com 60d10
+    Vitalidade.
+    Hurras RPG • Compêndio Nórdico • Página 11
+    NJORD — DEUS DOS MARES
+    Nível: 15
+    Atributo Valor
+    Vitalidade 160
+    Mana 100
+    Água 22
+    Vento 20
+    Força 15
+    Destreza 15
+    Vigor 18
+    Percepção 18
+    Inteligência 18
+    Reação 17
+    Arma
+    • Tridente de Njord: 15d10 físico + 12d10 água
+    • Água +7d10
+    • Vento +6d10
+    • Dano +4d10
+    • Defesa +4d10
+    Ataques
+    Estocada Oceânica — 39d10 físico + 44d10 água
+    Impacto da Maré — 54d10 água; área 5m; derruba
+    Lança do Oceano — 59d10 água; alcance 30m
+    Poderes / Técnicas
+    Maré Violenta — 54d10 água; área 10m
+    Tempestade Marinha — 54d10 água + 46d10 vento; área 15m
+    Fúria dos Ventos — 56d10 vento; área 15m; empurra 8m
+    Bênção do Oceano — 46d10 cura; +5d10 Defesa por 3 turnos
+    Tsunami de Njord — 64d10 água; área 15m; derruba/empurra 10m
+    Coroa dos Ventos — +6d10 Defesa, +5d10 Reação, +6d10 Vento
+    Abismo Oceânico — 69d10 água; prende 1 turno
+    Tempestade de Asgard — 49d10 água + 56d10 vento; área 20m; 2 turnos
+    Rei das Marés — +8d10 Água, +8d10 Vento, +5d10 Defesa, +5d10 Reação
+    Suprema
+    Fúria do Oceano — 79d10 água + 56d10 vento; área 25m; derruba/empurra 10m.
+    ♾️ Passiva
+    Senhor dos Mares — perto de água: +5d10 Vitalidade/turno, +5d10 Defesa, +5d10 dano de Água; em
+    grande massa de água, +3d10 Vento.
+    Hurras RPG • Compêndio Nórdico • Página 12
+    MAGNI — FILHO DE THOR
+    Nível: 17
+    Atributo Valor
+    Vitalidade 190
+    Mana 70
+    Força 24
+    Destreza 17
+    Vigor 22
+    Percepção 16
+    Inteligência 13
+    Reação 19
+    Raio 15
+    Sagrado 10
+    Arma
+    • Hrafnr: 18d10 físico + 8d10 raio
+    • Força +6d10
+    • Dano físico +6d10
+    • Raio +4d10
+    • Defesa +4d10
+    Ataques
+    Golpe de Hrafn — 30d10 físico + 8d10 raio
+    Corte Relâmpago — 30d10 físico + 18d10 raio
+    Dança da Tempestade — 3 ataques; cada um 24d10 físico + 12d10 raio
+    Martelo do Herdeiro — 38d10 físico; 50% atordoa
+    Impacto de Magni — 42d10 físico; área 5m
+    Poderes / Técnicas
+    Sangue de Thor — +8d10 raio por 3 turnos; +5d10 Força
+    Força do Gigante — +10d10 físico no próximo ataque
+    Passo do Trovão — avança 15m instantaneamente
+    Suprema
+    Ira do Filho do Trovão — 50d10 físico + 25d10 raio; área 15m; atordoa.
+    ♾️ Passiva
+    Força Herdada — abaixo de 50%: +6d10 dano e +5d10 Defesa.
+    Hurras RPG • Compêndio Nórdico • Página 13
+    MODI — FILHO DE THOR
+    Nível: 16
+    Atributo Valor
+    Vitalidade 180
+    Mana 70
+    Força 22
+    Destreza 20
+    Vigor 20
+    Percepção 17
+    Inteligência 14
+    Reação 22
+    Raio 15
+    Arma
+    • Machado de Modi: 17d10 físico + 8d10 raio
+    • Força +5d10
+    • Reação +5d10
+    • Dano +6d10
+    Ataques
+    Corte do Trovão — 28d10 físico + 13d10 raio
+    Machado Relâmpago — 28d10 físico + 18d10 raio
+    Investida de Modi — 35d10 físico; 10m
+    Tempestade do Herdeiro — 35d10 raio; área 10m
+    Fúria de Modi — 4 ataques de 20d10 físico
+    Poderes / Técnicas
+    Fúria do Trovão — +8d10 raio +5d10 físico por 3 turnos
+    Reflexo de Asgard — +8d10 Reação por 2 turnos
+    Machado Incansável — cura 10d10 após derrotar um inimigo
+    Suprema
+    Tempestade de Modi — 45d10 físico + 30d10 raio; área 20m; atordoa.
+    ♾️ Passiva
+    Filho da Tempestade — não pode ser atordoado duas vezes seguidas.
+    Hurras RPG • Compêndio Nórdico • Página 14
+    VALI — FILHO DE ODIN
+    Nível: 16
+    Atributo Valor
+    Vitalidade 160
+    Mana 100
+    Força 16
+    Destreza 22
+    Vigor 16
+    Percepção 23
+    Inteligência 20
+    Reação 22
+    Sagrado 18
+    Magia 20
+    Arma
+    • Arco de Vali: 16d10 físico + 8d10 sagrado
+    • Alcance 40m
+    • Percepção +6d10
+    • Destreza +5d10
+    Ataques
+    Flecha Divina — 30d10 físico + 15d10 sagrado
+    Flecha do Destino — 40d10 sagrado; ignora 40% da Defesa
+    Chuva de Flechas — 5 ataques de 18d10 físico
+    Tiro Perfeito — 45d10 físico; não pode ser desviado por meios comuns
+    Poderes / Técnicas
+    Olhar de Odin — revela ilusões e invisibilidade
+    Flecha Marcada — marca por 3 turnos; +8d10 dano
+    Passo do Caçador — move 15m sem provocar ataque
+    Suprema
+    Flecha do Ragnarök — 50d10 físico + 30d10 sagrado; alcance 50m; ignora 60% da Defesa.
+    ♾️ Passiva
+    Vingança de Vali — contra quem matou um aliado: +10d10 dano e +3 sucessos.
+    Hurras RPG • Compêndio Nórdico • Página 15
+    VIDAR — FILHO DE ODIN
+    Nível: 18
+    Atributo Valor
+    Vitalidade 210
+    Mana 70
+    Força 25
+    Destreza 15
+    Vigor 25
+    Percepção 17
+    Inteligência 15
+    Reação 18
+    Sagrado 15
+    Arma
+    • Botas de Vidar: +8d10 dano físico, +8d10 Defesa; ignoram terreno difícil
+    Ataques
+    Soco de Vidar — 40d10 físico
+    Pisada do Gigante — 45d10 físico; área 6m
+    Quebra-Mandíbula — 50d10 físico; ignora 40% da Defesa
+    Força Silenciosa — 35d10 físico; não pode ser interrompido
+    Poderes / Técnicas
+    Vingança de Asgard — +15d10 no próximo ataque
+    Passo do Gigante — avança 20m e derruba inimigos
+    Suprema
+    Fim do Lobo — 70d10 físico; dano dobrado contra monstros.
+    ♾️ Passiva
+    Silêncio de Vidar — abaixo de 50%: +10d10 dano e +10d10 Defesa.
+    Hurras RPG • Compêndio Nórdico • Página 16
+    HEIMDALL — GUARDIÃO DA PONTE
+    Nível: 17
+    Atributo Valor
+    Vitalidade 170
+    Mana 100
+    Força 17
+    Destreza 19
+    Vigor 18
+    Percepção 30
+    Inteligência 21
+    Reação 24
+    Sagrado 20
+    Arma
+    • Hofund: 18d10 físico + 12d10 sagrado
+    • Percepção +8d10
+    • Reação +5d10
+    Ataques
+    Corte de Bifröst — 28d10 físico + 15d10 sagrado
+    Luz de Heimdall — 40d10 sagrado; alcance 30m
+    Corte do Guardião — 35d10 físico; ignora 30% da Defesa
+    Poderes / Técnicas
+    Visão dos Nove Reinos — vê invisibilidade, ilusões e coisas ocultas
+    Alerta de Heimdall — não pode ser surpreendido
+    Bifröst — teleporta 3 aliados
+    Suprema
+    Ragnarök Vigiado — 50d10 sagrado; área 20m; paralisa 1 turno.
+    ♾️ Passiva
+    Olhos de Heimdall — sempre age primeiro quando o combate começa.
+    Hurras RPG • Compêndio Nórdico • Página 17
+    FENRIR — LOBO DO RAGNARÖK
+    Nível: 20
+    Atributo Valor
+    Vitalidade 300
+    Mana 50
+    Força 30
+    Destreza 23
+    Vigor 28
+    Percepção 20
+    Reação 25
+    Ataques
+    Mordida — 55d10 físico
+    Garra — 40d10 físico
+    Uivo — 35d10 físico; área 15m; -5d10 Defesa
+    Devoração — 60d10 físico; cura 20d10
+    Suprema
+    Fim dos Deuses — 90d10 físico; área 20m; ignora 50% da Defesa.
+    ♾️ Passiva
+    Abaixo de 50%: +15d10 dano e +10d10 Reação.
+    Hurras RPG • Compêndio Nórdico • Página 18
+    JÖRMUNGANDR — SERPENTE DO MUNDO
+    Nível: 20
+    Atributo Valor
+    Vitalidade 280
+    Mana 100
+    Força 25
+    Destreza 18
+    Vigor 30
+    Percepção 20
+    Reação 18
+    Veneno 25
+    Ataques
+    Mordida — 50d10 físico + 20d10 veneno
+    Cauda — 55d10 físico; área 15m
+    Veneno do Mundo — 40d10 veneno; -5d10 Vigor
+    Espiral de Midgard — 60d10 físico; prende
+    Suprema
+    Veneno do Ragnarök — 80d10 veneno; área 25m; -10d10 Vigor por 3 turnos.
+    ♾️ Passiva
+    Alvos envenenados sofrem +5d10 veneno por 3 turnos.
+    Hurras RPG • Compêndio Nórdico • Página 19
+    YGGDRASIL — ÁRVORE DOS NOVE REINOS
+    Nível: 20
+    Atributo Valor
+    Vitalidade 500
+    Mana 200
+    Poderes / Técnicas
+    Raízes dos Nove Reinos — prende até 10 inimigos
+    Frutos da Vida — cura 30d10
+    Caminho dos Reinos — permite viajar entre reinos
+    Suprema
+    Ira de Yggdrasil — 70d10 mágico; área 30m; prende todos os inimigos.
+    ♾️ Passiva
+    Enquanto viva, os Nove Reinos não podem ser completamente destruídos.
+    Hurras RPG • Compêndio Nórdico • Página 20
+    SURTUR — SENHOR DE MUSPELHEIM
+    Nível: 20
+    Atributo Valor
+    Vitalidade 300
+    Mana 150
+    Fogo 30
+    Arma
+    • Espada de Fogo: 25d10 físico + 20d10 fogo
+    • +10d10 fogo
+    Ataques
+    Corte Flamejante — 40d10 físico + 30d10 fogo
+    Chamas de Muspelheim — 60d10 fogo; área 15m
+    Espada do Fim — 55d10 físico + 40d10 fogo
+    Suprema
+    Ragnarök de Muspelheim — 100d10 fogo; área 30m; terreno queima por 3 turnos.
+    ♾️ Passiva
+    Imune a fogo; ataques de fogo ignoram 30%.
+    Hurras RPG • Compêndio Nórdico • Página 21
+    SKADI — DEUSA DO INVERNO E DA CAÇA
+    Nível: 15
+    Atributo Valor
+    Vitalidade 155
+    Mana 100
+    Gelo 22
+    Ataques
+    Flecha Congelante — 35d10 gelo
+    Lança de Gelo — 30d10 físico + 25d10 gelo
+    Tempestade de Neve — 50d10 gelo; área 15m
+    Caçada de Skadi — marca o alvo; +10d10 dano
+    Suprema
+    Inverno Eterno — 75d10 gelo; área 25m; paralisa 1 turno.
+    ♾️ Passiva
+    Imune a gelo; +5d10 dano na neve.
+    Hurras RPG • Compêndio Nórdico • Página 22
+    FRIGG — DEUSA DO DESTINO E DA MATERNIDADE
+    Nível: 17
+    Atributo Valor
+    Vitalidade 170
+    Mana 140
+    Força 12
+    Destreza 16
+    Vigor 15
+    Percepção 24
+    Inteligência 28
+    Reação 18
+    Magia 26
+    Poderes / Técnicas
+    Visão do Destino — vê possibilidades futuras
+    Fio do Destino — +5 sucessos para um aliado em uma rolagem
+    Proteção de Frigg — +10d10 Defesa e +10d10 Vitalidade por 3 turnos
+    Palavra do Destino — 50d10 mágico; alvo não pode repetir a rolagem
+    Suprema
+    Destino Inevitável — 80d10 mágico; Frigg escolhe o resultado de uma rolagem importante.
+    ♾️ Passiva
+    Mãe dos Deuses — 1 vez por combate impede um aliado de chegar a 0 Vitalidade.
+    Hurras RPG • Compêndio Nórdico • Página 23
+    FORSETI — DEUS DA JUSTIÇA
+    Nível: 16
+    Atributo Valor
+    Vitalidade 180
+    Mana 100
+    Força 18
+    Destreza 16
+    Vigor 20
+    Percepção 21
+    Inteligência 24
+    Reação 19
+    Sagrado 22
+    Ataques
+    Martelo da Justiça — 40d10 físico + 15d10 sagrado
+    Sentença Divina — 55d10 sagrado
+    Corte do Julgamento — 45d10 físico; ignora 40% da Defesa
+    Condenação — 35d10 sagrado; -8d10 Defesa por 3 turnos
+    Suprema
+    Julgamento Final — 85d10 sagrado; dano dobrado contra traidores.
+    ♾️ Passiva
+    Justiça Absoluta — não pode ser enganado por ilusões ou mentiras.
+    Hurras RPG • Compêndio Nórdico • Página 24
+    BRAGI — DEUS DA POESIA
+    Nível: 14
+    Atributo Valor
+    Vitalidade 130
+    Mana 150
+    Inteligência 27
+    Percepção 20
+    Magia 25
+    Reação 17
+    Poderes / Técnicas
+    Canção de Bragi — +5d10 Ataque para aliados por 3 turnos
+    Verso Encantado — 35d10 mágico; confunde por 1 turno
+    Hino dos Heróis — +8d10 dano para aliados
+    Canção do Sono — teste mental; falha faz dormir por 1 turno
+    Suprema
+    Canção dos Nove Reinos — 70d10 mágico; área 20m; inimigos perdem a próxima ação.
+    ♾️ Passiva
+    Voz Divina — pode conjurar através da voz sem contato direto.
+    Hurras RPG • Compêndio Nórdico • Página 25
+    IDUNN — DEUSA DA JUVENTUDE
+    Nível: 15
+    Atributo Valor
+    Vitalidade 150
+    Mana 130
+    Poderes / Técnicas
+    Maçã de Idunn — cura 40d10
+    Juventude Divina — +20d10 Vitalidade por 3 turnos
+    Renovação — remove veneno, maldição e efeitos negativos
+    Bênção da Juventude — +5d10 Defesa e +5d10 Reação por 3 turnos
+    Suprema
+    Maçã Dourada — cura todos os aliados em 60d10.
+    ♾️ Passiva
+    Juventude Eterna — não sofre efeitos de envelhecimento.
+    Hurras RPG • Compêndio Nórdico • Página 26
+    ULLR — DEUS DA CAÇA E DO ARCO
+    Nível: 16
+    Atributo Valor
+    Vitalidade 160
+    Mana 80
+    Arma
+    • Arco de Ullr: 20d10 físico
+    • Alcance 50m
+    • +8d10 dano
+    Ataques
+    Flecha Perfeita — 45d10 físico
+    Flecha Congelante — 35d10 físico + 20d10 gelo; pode congelar por 1 turno
+    Chuva de Flechas — 5 ataques de 20d10 físico
+    Flecha do Caçador — marca o alvo; +10d10 dano
+    Suprema
+    Flecha de Ullr — 80d10 físico; alcance 100m; ignora 60% da Defesa.
+    ♾️ Passiva
+    Caçador Perfeito — não sofre penalidade por distância.
+    Hurras RPG • Compêndio Nórdico • Página 27
+    ÆGIR — DEUS DOS MARES
+    Nível: 17
+    Atributo Valor
+    Vitalidade 200
+    Mana 130
+    Poderes / Técnicas
+    Onda — 45d10 água; área 10m
+    Abismo Marinho — 55d10 água; prende 2 turnos
+    Banquete dos Mares — cura todos os aliados em 25d10
+    Fúria do Oceano — 65d10 água; área 20m
+    Suprema
+    Abismo de Ægir — 90d10 água; área 30m; empurra 15m.
+    ♾️ Passiva
+    Senhor das Águas — na água: +10d10 dano, +8d10 Defesa, +5d10 regeneração.
+    Hurras RPG • Compêndio Nórdico • Página 28
+    RÁN — DEUSA DAS TEMPESTADES E DO MAR
+    Nível: 17
+    Atributo Valor
+    Vitalidade 180
+    Mana 140
+    Ataques
+    Rede de Rán — 30d10 água; prende 2 turnos
+    Maré Mortal — 50d10 água
+    Tempestade Negra — 35d10 água + 35d10 vento; área 15m
+    Afogamento — 60d10 água; impede ações físicas por 1 turno
+    Suprema
+    Mar Sem Fim — 100d10 água; área 30m; prende todos por 1 turno.
+    ♾️ Passiva
+    Respira e luta normalmente debaixo d'água.
+    Hurras RPG • Compêndio Nórdico • Página 29
+    SIF — DEUSA DA COLHEITA
+    Nível: 14
+    Atributo Valor
+    Vitalidade 160
+    Mana 100
+    Poderes / Técnicas
+    Bênção da Terra — cura 30d10
+    Raízes Vivas — 30d10 mágico; prende
+    Colheita Divina — 45d10 mágico; cura aliados 15d10
+    Campo de Asgard — +5d10 Defesa para aliados por 3 turnos
+    Suprema
+    Floresta Divina — 70d10 mágico; área 25m; prende por 2 turnos.
+    ♾️ Passiva
+    +5d10 regeneração por turno em natureza.
+    Hurras RPG • Compêndio Nórdico • Página 30
+    VILI — IRMÃO DE ODIN
+    Nível: 18
+    Atributo Valor
+    Vitalidade 180
+    Mana 150
+    Poderes / Técnicas
+    Força de Vili — 45d10 físico
+    Mente Divina — controla um inimigo por 1 turno
+    Criação — cria objetos simples
+    Ruptura Mental — 55d10 mágico; -8d10 Inteligência
+    Suprema
+    Poder Primordial — 80d10 físico + 40d10 mágico.
+    ♾️ Passiva
+    Pode alterar pequenas partes do ambiente.
+    Hurras RPG • Compêndio Nórdico • Página 31
+    VÉ — IRMÃO DE ODIN
+    Nível: 18
+    Atributo Valor
+    Vitalidade 180
+    Mana 130
+    Poderes / Técnicas
+    Lâmina Primordial — 50d10 físico
+    Golpe Divino — 40d10 sagrado
+    Bênção de Vé — +10d10 Defesa e +10d10 dano
+    Ruptura do Mundo — 60d10 físico; área 10m
+    Suprema
+    Poder dos Primórdios — 90d10 físico + 30d10 sagrado.
+    ♾️ Passiva
+    Pode criar matéria simples.
+    Hurras RPG • Compêndio Nórdico • Página 32
+    MÍMIR — GUARDIÃO DA SABEDORIA
+    Nível: 18
+    Atributo Valor
+    Vitalidade 140
+    Mana 200
+    Poderes / Técnicas
+    Conhecimento dos Nove Reinos — descobre a fraqueza do inimigo
+    Sabedoria de Mímir — +5 sucessos
+    Olho da Verdade — revela ilusões, mentiras e transformações
+    Conhecimento Proibido — 60d10 mágico
+    Suprema
+    Sabedoria Absoluta — descobre instantaneamente fraquezas, resistências, habilidades, passivas e
+    limitações.
+    ♾️ Passiva
+    1 vez por combate pode perguntar ao mestre qualquer informação verdadeira sobre o inimigo.
+    Hurras RPG • Compêndio Nórdico • Página 33
+    SLEIPNIR — CORCEL DE ODIN
+    Nível: 18
+    Atributo Valor
+    Vitalidade 200
+    Mana 80
+    Ataques
+    Coice Divino — 35d10 físico
+    Investida — 50d10 físico; 20m
+    Galope dos Nove Reinos — teleporta 4 aliados
+    Pisada de Asgard — 45d10 físico; área 8m
+    Suprema
+    Corrida do Ragnarök — 80d10 físico; atravessa todo o campo.
+    ♾️ Passiva
+    Corre sobre água, ar, fogo, paredes e vazio.
+    Hurras RPG • Compêndio Nórdico • Página 34
+    NÍÐHÖGGR — DEVORADOR DAS RAÍZES
+    Nível: 19
+    Atributo Valor
+    Vitalidade 270
+    Mana 80
+    Ataques
+    Mordida Corrosiva — 50d10 físico + 20d10 veneno
+    Veneno das Raízes — 45d10 veneno; -8d10 Vigor
+    Destruir Raiz — 60d10 físico
+    Voo Sombrio — 40d10 mágico; área 15m
+    Suprema
+    Devoração de Yggdrasil — 100d10 veneno; área 30m; dano extra contra criaturas ligadas a Yggdrasil.
+    ♾️ Passiva
+    Cura 15d10 quando causa dano de veneno.
+    Hurras RPG • Compêndio Nórdico • Página 35
+    NORNAS — URÐR, VERÐANDI E SKULD
+    Nível: 20
+    Atributo Valor
+    Vitalidade 250
+    Mana 250
+    Poderes / Técnicas
+    Urðr — Passado — reverte a última ação
+    Verðandi — Presente — garante um sucesso
+    Skuld — Futuro — escolhe um evento para o próximo turno
+    Suprema
+    Tecido do Destino — por 3 turnos, escolhem uma rolagem automaticamente; inimigo não pode repetir e
+    aliado pode repetir.
+    ♾️ Passiva
+    Não podem ser surpreendidas nem enganadas sobre o futuro.
+    Hurras RPG • Compêndio Nórdico • Página 36
+    EIR — DEUSA DA CURA
+    Nível: 15
+    Atributo Valor
+    Vitalidade 140
+    Mana 180
+    Poderes / Técnicas
+    Cura Divina — cura 50d10
+    Grande Cura — cura todos os aliados em 30d10
+    Purificação — remove veneno, maldição, sangramento e efeitos negativos
+    Regeneração — +10d10 Vitalidade por 3 turnos
+    Barreira Vital — +10d10 Defesa; absorve 30d10 dano
+    Suprema
+    Milagre de Eir — todos os aliados recuperam 70d10 Vitalidade; quem estiver abaixo de 10% volta para
+    30%.
+    ♾️ Passiva
+    Médica dos Deuses — curas de Eir são 50% mais eficientes.
+    Hurras RPG • Compêndio Nórdico • Página 37
+    SYN — DEUSA DA PROTEÇÃO
+    Nível: 15
+    Atributo Valor
+    Vitalidade 175
+    Mana 110
+    Arma
+    • Escudo de Syn: 20d10 Defesa; 10d10 dano físico
+    Poderes / Técnicas
+    Muralha de Syn — +15d10 Defesa para aliados próximos
+    Proteção Divina — reduz pela metade o próximo dano de um aliado
+    Contra-Ataque — 40d10 físico após bloquear
+    Escudo Absoluto — bloqueia completamente um ataque
+    Suprema
+    Muralha dos Deuses — aliados recebem +20d10 Defesa por 3 turnos.
+    ♾️ Passiva
+    Quando um aliado próximo seria derrubado, Syn pode receber o dano.
+    Hurras RPG • Compêndio Nórdico • Página 38
+    FULLA — GUARDIÃ DE FRIGG
+    Nível: 14
+    Atributo Valor
+    Vitalidade 140
+    Mana 130
+    Poderes / Técnicas
+    Bênção de Frigg — cura 30d10
+    Véu de Fulla — +8d10 Defesa
+    Luz Serena — 35d10 sagrado; remove medo e confusão
+    Proteção da Rainha — aliado fica imune a efeitos negativos por 2 turnos
+    Suprema
+    Véu de Asgard — aliados: +10d10 Defesa, +5d10 Reação e +5d10 resistência mágica por 3 turnos.
+    ♾️ Passiva
+    Enquanto Frigg estiver viva, Fulla recebe +5d10 Defesa.
+    Hurras RPG • Compêndio Nórdico • Página 39
+    GEFJON — DEUSA DAS TERRAS
+    Nível: 15
+    Atributo Valor
+    Vitalidade 160
+    Mana 120
+    Poderes / Técnicas
+    Lança da Terra — 40d10 natureza
+    Ruptura do Solo — 50d10 natureza; área 12m
+    Muralha de Pedra — barreira com 40d10 resistência
+    Raízes de Gefjon — 35d10 natureza; prende por 2 turnos
+    Suprema
+    Transformação da Terra — 75d10 natureza; área 25m; controla o terreno por 3 turnos.
+    ♾️ Passiva
+    Pode alterar o terreno natural durante o combate.
+    Hurras RPG • Compêndio Nórdico • Página 40
+    KVASIR — DEUS DA SABEDORIA
+    Nível: 17
+    Atributo Valor
+    Vitalidade 150
+    Mana 190
+    Poderes / Técnicas
+    Palavra de Kvasir — 45d10 mágico; -5d10 Inteligência
+    Sangue da Sabedoria — +5 sucessos em uma rolagem
+    Conhecimento Divino — revela todas as habilidades do inimigo
+    Palavra Impossível — alvo não pode usar sua próxima habilidade
+    Suprema
+    Sabedoria dos Nove Reinos — revela fraquezas, resistências, passivas, habilidades e limitações; aliados
+    +3 sucessos.
+    ♾️ Passiva
+    Não pode ser enganado duas vezes pelo mesmo truque.
+    Hurras RPG • Compêndio Nórdico • Página 41
+    SKÖLL — LOBO DO SOL
+    Nível: 18
+    Atributo Valor
+    Vitalidade 220
+    Mana 60
+    Força 25
+    Destreza 27
+    Vigor 21
+    Reação 28
+    Ataques
+    Mordida Solar — 50d10 físico
+    Corrida Celestial — 45d10 físico; avança 30m
+    Devorar a Luz — 60d10 contra criaturas de Luz; recupera 20d10 Vitalidade
+    Caçada do Sol — marca alvo; +10d10 Reação contra ele
+    Suprema
+    Eclipse — 90d10 físico + 30d10 trevas; área 20m; apaga a luz.
+    ♾️ Passiva
+    Perseguindo um alvo: +8d10 Reação e +8d10 dano.
+    Hurras RPG • Compêndio Nórdico • Página 42
+    HATI — LOBO DA LUA
+    Nível: 18
+    Atributo Valor
+    Vitalidade 220
+    Mana 60
+    Força 24
+    Destreza 28
+    Vigor 20
+    Reação 29
+    Trevas 22
+    Ataques
+    Mordida Lunar — 50d10 físico + 15d10 trevas
+    Garra da Lua — 45d10 físico
+    Eclipse Lunar — 60d10 trevas; área 15m
+    Caçada da Lua — marca alvo; +12d10 dano
+    Suprema
+    Lua Devorada — 95d10 trevas; área 25m; -10d10 Defesa.
+    ♾️ Passiva
+    À noite: +10d10 Reação e +10d10 Trevas.
+    Hurras RPG • Compêndio Nórdico • Página 43
+    GARMR — CÃO DE HEL
+    Nível: 18
+    Atributo Valor
+    Vitalidade 240
+    Mana 50
+    Ataques
+    Mordida de Hel — 50d10 físico + 15d10 morte
+    Uivo dos Mortos — 45d10 morte; área 15m; -5d10 Defesa
+    Garra Infernal — 40d10 físico
+    Caçada dos Mortos — marca alvo; perde 5d10 Vitalidade por 3 turnos
+    Suprema
+    Portão de Hel — 90d10 morte; área 20m; paralisa 1 turno.
+    ♾️ Passiva
+    Em Helheim: +10d10 Vitalidade/turno e +10d10 dano de Morte.
+    Hurras RPG • Compêndio Nórdico • Página 44
+    CHEFES DO RAGNARÖK
+    Os chefes abaixo formam a escala maior do Ragnarök: origem, corrupção, monstros, gigantes e o fim dos
+    Nove Reinos.
+    Hurras RPG • Compêndio Nórdico • Página 45
+    YMIR — O PRIMEIRO GIGANTE
+    Nível: 25
+    Atributo Valor
+    Vitalidade 600
+    Mana 250
+    Função: Chefe primordial / origem dos gigantes
+    Poderes / Técnicas
+    Sangue de Ymir — cria rios e mares; pode inundar áreas
+    Corpo Primordial — ataques físicos causam apenas 70% do dano
+    Nascimento dos Gigantes — invoca gigantes menores
+    Punho Primordial — 100d10 físico; área 10m
+    Gelo do Ginnungagap — 80d10 gelo; área 20m
+    Suprema
+    Corpo do Mundo — 150d10 físico + 80d10 gelo; área 40m; altera o terreno.
+    ♾️ Passiva
+    Enquanto vivo, gigantes recebem +10d10 dano e criaturas de gelo +10d10 Defesa.
+    Hurras RPG • Compêndio Nórdico • Página 46
+    SURTR — SENHOR DE MUSPELHEIM
+    Nível: 25
+    Atributo Valor
+    Vitalidade 500
+    Mana 200
+    Fogo 30
+    Função: Chefe final do Ragnarök
+    Arma
+    • Espada do Fim: 30d10 físico + 30d10 fogo
+    Poderes / Técnicas
+    Chamas de Muspelheim — 100d10 fogo; área 20m
+    Corte do Ragnarök — 80d10 físico + 50d10 fogo
+    Exército de Muspelheim — invoca 10 gigantes de fogo
+    Terra em Chamas — terreno queima por 5 turnos
+    Suprema
+    Ragnarök de Muspelheim — 180d10 fogo; área 40m; céu e terreno entram em combustão.
+    ♾️ Passiva
+    Imune a fogo; ataques de fogo ignoram 50% da resistência.
+    Hurras RPG • Compêndio Nórdico • Página 47
+    NÍÐHÖGGR — DEVORADOR DE YGGDRASIL
+    Nível: 22
+    Atributo Valor
+    Vitalidade 450
+    Mana 100
+    Veneno 30
+    Função: Chefe de destruição e corrupção
+    Poderes / Técnicas
+    Mordida Corrosiva — 70d10 físico + 30d10 veneno
+    Veneno das Raízes — 70d10 veneno; -10d10 Vigor
+    Destruir Raiz — 90d10 físico contra Yggdrasil
+    Voo Sombrio — 60d10 mágico; área 15m
+    Suprema
+    Devoração de Yggdrasil — 150d10 veneno; área 30m; causa dano massivo às raízes.
+    ♾️ Passiva
+    Sempre que causa dano de veneno, recupera 15d10 Vitalidade.
+    Hurras RPG • Compêndio Nórdico • Página 48
+    FÁFNIR — DRAGÃO DO OURO
+    Nível: 21
+    Atributo Valor
+    Vitalidade 400
+    Mana 150
+    Função: Chefe opcional / guardião de tesouro
+    Poderes / Técnicas
+    Mordida do Dragão — 70d10 físico
+    Sopro de Fogo — 80d10 fogo; área 15m
+    Cauda do Dragão — 60d10 físico; área 10m
+    Maldição do Ouro — portadores do tesouro recebem -5d10 Defesa e -5d10 Reação
+    Suprema
+    Tesouro Maldito — 130d10 fogo; área 25m; riquezas viram armas.
+    ♾️ Passiva
+    Escamas de Dragão — reduz 40% do dano físico recebido.
+    Hurras RPG • Compêndio Nórdico • Página 49
+    FENRIR — DESTRUIDOR DE DEUSES
+    Nível: 23
+    Atributo Valor
+    Vitalidade 500
+    Função: Destruidor de deuses
+    Poderes / Técnicas
+    Mordida dos Deuses — 90d10 físico
+    Garras do Ragnarök — 70d10 físico
+    Uivo do Fim — 60d10 físico; área 25m; -5d10 Defesa
+    Devoração — 110d10 físico; recupera 30d10 Vitalidade
+    Suprema
+    Fim dos Deuses — 180d10 físico; contra deuses +40d10 dano.
+    ♾️ Passiva
+    Não pode ser preso duas vezes pelo mesmo método.
+    Hurras RPG • Compêndio Nórdico • Página 50
+    JÖRMUNGANDR — SERPENTE DO MUNDO
+    Nível: 23
+    Atributo Valor
+    Vitalidade 480
+    Mana 150
+    Veneno 30
+    Função: Chefe marítimo / destruidor de Midgard
+    Poderes / Técnicas
+    Mordida do Mundo — 80d10 físico + 30d10 veneno
+    Cauda de Midgard — 90d10 físico; área 20m
+    Veneno do Mundo — 100d10 veneno; área 20m
+    Espiral de Midgard — 100d10 físico; prende
+    Suprema
+    Veneno do Ragnarök — 180d10 veneno; área 35m; +10d10 veneno por 3 turnos.
+    ♾️ Passiva
+    Quem atacar Jörmungandr corpo a corpo sofre 10d10 veneno.
+    Hurras RPG • Compêndio Nórdico • Página 51
+    THRYM — REI DOS GIGANTES
+    Nível: 20
+    Atributo Valor
+    Vitalidade 350
+    Função: General dos Jötnar
+    Poderes / Técnicas
+    Machado de Gelo — 60d10 físico + 30d10 gelo
+    Exército dos Gigantes — invoca 5 gigantes
+    Terremoto de Jotunheim — 70d10 físico; área 20m
+    Suprema
+    Ira de Jotunheim — 120d10 gelo + 80d10 físico.
+    ♾️ Passiva
+    Gigantes aliados recebem +10d10 dano e +10d10 Defesa.
+    Hurras RPG • Compêndio Nórdico • Página 52
+    UTGARD-LOKI — SENHOR DAS ILUSÕES
+    Nível: 20
+    Atributo Valor
+    Vitalidade 300
+    Mana 250
+    Função: Chefe de inteligência e manipulação
+    Poderes / Técnicas
+    Ilusão de Utgard — cria uma cópia de todos os inimigos
+    Gigante Invisível — fica invisível até atacar
+    Labirinto de Jotunheim — leva os jogadores a uma dimensão ilusória
+    Mentira Perfeita — próximo ataque parece vir de direção diferente
+    Suprema
+    Jotunheim Ilusória — realidade falsa por 3 turnos; jogadores precisam encontrar o verdadeiro.
+    ♾️ Passiva
+    Ao sofrer dano mortal, 1 vez revela-se uma ilusão e retorna com 50% da Vitalidade.
+    Hurras RPG • Compêndio Nórdico • Página 53
+    HRUNGNIR — GIGANTE DE PEDRA
+    Nível: 19
+    Atributo Valor
+    Vitalidade 380
+    Função: Chefe físico / destruidor de cidades
+    Poderes / Técnicas
+    Machado de Pedra — 70d10 físico
+    Arremesso de Pedra — 60d10 físico; alcance 40m
+    Pisada Gigante — 65d10 físico; área 12m
+    Suprema
+    Queda do Gigante — 120d10 físico; área 20m.
+    ♾️ Passiva
+    Corpo de Pedra — 40% de resistência a dano físico.
+    Hurras RPG • Compêndio Nórdico • Página 54
+    GARMR — GUARDIÃO DE HEL
+    Nível: 20
+    Atributo Valor
+    Vitalidade 400
+    Função: Guardião dos mortos
+    Poderes / Técnicas
+    Mordida de Hel — 70d10 físico + 25d10 morte
+    Uivo dos Mortos — 60d10 morte; área 20m
+    Sangue de Helheim — alvo perde 10d10 Vitalidade por 3 turnos
+    Suprema
+    Portões de Helheim — 130d10 morte; área 25m; invoca 5 Draugr.
+    ♾️ Passiva
+    Em Helheim, recupera 10d10 Vitalidade por turno.
+    Hurras RPG • Compêndio Nórdico • Página 55
+    ☠️ EVENTOS DO RAGNARÖK
+    EVENTO 1 — A MORTE DE HEL
+    Hel abre os portões de Helheim e libera seu exército contra Asgard.
+    Quando sua Vitalidade chega a 0, ela usa Último Suspiro de Hel: 100d10 Morte, área 30m, e os atingidos
+    perdem 10d10 Vitalidade por 3 turnos.
+    Consequências: o exército perde sua comandante; os portões de Helheim começam a ruir; Garmr entra
+    em fúria; o equilíbrio entre vivos e mortos é destruído.
+    EVENTO 2 — A MORTE DE HEIMDALL
+    Heimdall toca o Gjallarhorn para anunciar o início do Ragnarök.
+    Loki e Heimdall travam seu último duelo. Os dois conseguem atingir um ao outro e caem juntos.
+    Consequências: Bifröst fica sem guardião; a ponte começa a ruir; Asgard perde seu sistema de alerta; o
+    Ragnarök entra na fase final.
+    FASE FINAL — VÍGRÍDR
+    Após a queda de Hel e Heimdall, Fenrir está livre, Jörmungandr domina os mares, Surtr marcha contra os
+    deuses e Yggdrasil começa a ruir. Os sobreviventes dos Nove Reinos se reúnem para a última batalha.
+    Hurras RPG • Compêndio Nórdico • Página 56
+    SERES DO RAGNARÖK
+    Ser Nível / Vida Poderes principais
+    Draugr de Hel Nível 12 — 100 Vitalidade Garra 20d10 físico; Mordida 25d10 físico + 5d10
+    morte; 30% de chance de levantar com 30d10.
+    Alma Perdida de Helheim Nível 13 — 70 Vitalidade /
+    80 Mana
+    Toque 25d10 morte; Lamento 30d10 morte área 8m;
+    Possessão por 1 turno; corpo etéreo reduz dano físico
+    pela metade.
+    Valquíria Caída Nível 15 — 140 Vitalidade Espada 30d10 físico + 10d10 sagrado; Investida
+    40d10; Asas avançam 20m; Suprema 65d10 físico +
+    20d10 sagrado.
+    Filho de Muspel Nível 16 — 180 Vitalidade
+    / Fogo 25
+    Espada 35d10 físico + 20d10 fogo; Punho 40d10;
+    Explosão 50d10 fogo área 10m; imune a fogo.
+    Lobo de Fim Nível 17 — 200 Vitalidade Mordida 45d10; Garras 35d10; Uivo 30d10 área 15m;
+    contra alvo abaixo de 50%, +15d10 dano.
+    Sombra de Loki Nível 16 — 100 Vitalidade
+    / 120 Mana
+    Cria 3 cópias; Lâmina 35d10 físico + 15d10 mágico;
+    Explosão 45d10 mágico; 50% de chance de ser ilusão
+    ao sofrer golpe mortal.
+    Serpente de Midgard Nível 17 — 220 Vitalidade Mordida 45d10 + 15d10 veneno; Cauda 50d10 área
+    12m; Veneno 40d10 e -5d10 Vigor; sangue causa
+    5d10 veneno no atacante.
+    Guardião de Yggdrasil Nível 18 — 250 Vitalidade
+    / 100 Mana
+    Punho 45d10; Raízes 35d10 e prende; Esmagamento
+    60d10; Suprema 80d10 natureza área 20m; regenera
+    10d10 conectado à árvore.
+    Guerreiro do Einherjar Nível 14 — 130 Vitalidade Golpe 30d10; Investida 35d10; Espada 40d10; ao
+    morrer pode retornar uma vez com 50d10.
+    Gigante do Ragnarök Nível 19 — 300 Vitalidade Soco 55d10; Pisada 60d10 área 8m; Pedra 45d10
+    alcance 30m; Suprema 90d10 área 15m; 30%
+    resistência física.
+    Devorador do Sol Nível 20 — 260 Vitalidade
+    / 100 Mana
+    Mordida 50d10; Absorção 40d10 luz e cura 20d10;
+    Eclipse 60d10 trevas; Suprema 100d10 trevas área
+    25m.
+    Rei dos Mortos Nível 20 — 350 Vitalidade
+    / 150 Mana
+    Coroa 60d10 morte; invoca 5 Draugr; Toque Final
+    70d10; Suprema 100d10 morte área 25m e invoca 10
+    mortos-vivos.
+    Aberração do Ragnarök Nível 21 — 380 Vitalidade
+    / 100 Mana
+    Garras 60d10; Mordida 70d10 + 20d10 morte; Grito
+    50d10 área 20m; Suprema 110d10 físico + 50d10
+    morte; ao chegar a 50%, ganha +15 dano, +10
+    Reação e +10 Defesa.
+    Hierarquia sugerida
+    Grandes chefes: Fáfnir, Hrungnir, Thrym, Garmr.
+    Chefes maiores: Utgard-Loki, Níðhöggr, Jörmungandr, Fenrir.
+    Chefes primordiais: Ymir e Surtr.
+    Chefe final sugerido: Surtr — representa o próprio fim dos Nove Reinos.
+    Hurras RPG • Compêndio Nórdico • Página 57
+    REFERÊNCIA RÁPIDA — MITOLOGIA NÓRDICA
+    Nove Reinos
+    Asgard • Midgard • Jotunheim • Muspelheim • Niflheim • Helheim • Alfheim • Svartalfheim • Vanaheim
+    Principais grupos
+    Æsir • Vanir • Jötnar • forças do Ragnarök • Nornas • Valquírias
+    Nornas
+    Urðr — passado • Verðandi — presente • Skuld — futuro
+    Valquírias
+    Brynhildr • Sigrún • Hildr • Göndul • Skögul • Geirskögul • Mist • Hrist • Randgríðr • Reginleif • Herfjötur •
+    Kára • Sváva • Þrúðr
+    Criaturas centrais
+    Fenrir • Jörmungandr • Níðhöggr • Garmr • Sköll • Hati • Fáfnir • Yggdrasil
+    Artefatos
+    Mjölnir • Gungnir • Draupnir • Skíðblaðnir • Gullinbursti • cabelos de Sif
+    Compêndio preparado para uso no Hurras RPG. Os valores são regras de campanha e podem ser ajustados
+    pelo Mestre.
