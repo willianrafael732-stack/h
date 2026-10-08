@@ -70,7 +70,7 @@ function moveCard(m,c){
  const card=make("article",null,"f-move-card");
  const top=make("div",null,"f-move-top");
  const title=make("div");title.append(make("small","Criação adicional • "+m.kind),make("h4",m.name));
- const tag=make("span",(m.cost.mana?m.cost.mana+" Mana":"0 Mana")+" • "+m.hits+" "+(m.hits===1?"acerto":"acertos"),"f-move-tag");
+ const tag=make("span","Dano físico • "+(m.cost.mana?m.cost.mana+" Mana":"0 Mana")+" • "+m.hits+" "+(m.hits===1?"acerto":"acertos"),"f-move-tag");
  top.append(title,tag);card.append(top);
  card.append(make("p",m.effect,"f-move-effect"));
  const details=make("p",null,"f-move-details");
@@ -112,7 +112,7 @@ function movesSection(c){
  const section=make("section",null,"f-section f-moves");
  const header=make("div",null,"f-moves-header");
  header.append(make("h3","⚔️ Golpes de combate — "+(c.attacks.moves?.length||0)+" adicionais + 2 originais"));
- const intro=make("p","Os seis golpes abaixo foram criados para a campanha com base nas armas e elementos da ficha. Dano, alcance, custo, recarga e efeitos são sugestões; os golpes original e supremo do PDF continuam preservados.","f-moves-intro");
+ const intro=make("p","Todos os seis ataques novos causam dano físico em d10. Nomes elementais representam apenas efeitos e aparência, sem parcelas de dano por raio, magia ou outros tipos. Não dependem automaticamente de Força, Destreza ou Inteligência. Os golpes originais do PDF não foram alterados.","f-moves-intro");
  section.append(header,intro);
  const grid=make("div",null,"f-moves-grid");
  for(const move of c.attacks.moves||[])grid.append(moveCard(move,c));
