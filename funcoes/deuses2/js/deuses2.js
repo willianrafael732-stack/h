@@ -157,7 +157,7 @@ function d2DamageType(text){
  return "dano não classificado";
 }
 function d2DamageDice(text){
- const rx=/(\d+)d(6|8|10|12|20)\s*(f[ií]sico|m[aá]gico|raio|el[eé]trico|sagrado|fogo|gelo|luz|trevas|morte|veneno|[aá]gua|natureza|terra|vento|sombra)/giu;
+ const rx=/(\d+)d(6|8|10|12|20)\s*(?:dano\s+(?:de\s+)?)?(f[ií]sico|m[aá]gico|raio|el[eé]trico|sagrado|fogo|gelo|luz|trevas|morte|veneno|[aá]gua|natureza|terra|vento|sombra)/giu;
  return [...String(text).matchAll(rx)].map(m=>({count:Number(m[1]),sides:Number(m[2]),type:d2DamageType(m[3])}));
 }
 function d2IsDamageBonus(line){
