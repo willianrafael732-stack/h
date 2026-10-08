@@ -79,6 +79,13 @@ function document(c,fields,stored,groups,parse,variantsFor,dynamicDetails){
      }
    }
  }
+ section("Inventario de itens");
+ const items=Array.isArray(stored.inventory)?stored.inventory.filter(x=>x&&typeof x==="object"):[];
+ if(!items.length)line("Sem itens cadastrados.",{color:soft});
+ for(const it of items){
+  line(String(it.name||"Item")+" | Quantidade: "+(Number(it.qty)||0)+(it.dice?" | Dados: "+it.dice:""),{bold:true});
+  if(it.note)line(String(it.note),{indent:48,color:soft,size:8});
+ }
  const manual=stored.modifiers||{};
  if(manual.physical||manual.elemental){section("Modificadores de dano inseridos manualmente");
    line("Fisico adicional: "+(manual.physical||0)+"d10; Elemental ou magico adicional: "+(manual.elemental||0)+"d10");

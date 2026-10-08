@@ -324,3 +324,30 @@
 .d2-skill-points{grid-column:1/-1;min-width:0}
 .d2-skill-points .d2-dot-track{font-size:.73rem;letter-spacing:.045em}
 @media print{.d2-skill-points .d2-dot-track{color:#111!important}}
+
+/* Inventário por personagem e rolagem manual de dados */
+.d2-items-panel{margin:12px 13px 15px;padding:16px;border:1px solid #a99464;border-radius:13px;background:#172729;scroll-margin-top:75px}
+.d2-items-panel h3,.d2-items-panel h4{color:#f5d99d;margin:0 0 10px}
+.d2-items-help{color:#bfd0c7;font-size:.83rem;margin:6px 0 12px}
+.d2-items-layout{display:grid;grid-template-columns:1.3fr 1fr;gap:14px}
+.d2-items-column{padding:12px;border:1px solid #577168;background:#213335;border-radius:10px;min-width:0}
+.d2-inventory-list{display:grid;gap:8px}
+.d2-item-record{padding:10px;border:1px solid #60796c;background:#14272a;border-radius:9px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:7px}
+.d2-item-info{display:grid;gap:4px;flex:1;min-width:160px}.d2-item-info strong{color:#ffdf9c}.d2-item-info code{color:#b7ecdf}.d2-item-info p{margin:0;font-size:.78rem}
+.d2-item-buttons,.d2-dice-shortcuts{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.d2-items-panel button{padding:7px 10px;border:1px solid #a39473;background:#384a3d;color:#fff0cd;border-radius:7px;cursor:pointer;font:inherit;font-size:.8rem}
+.d2-items-panel button:disabled{opacity:.4;cursor:not-allowed}
+.d2-item-form{margin:12px 0;display:grid;grid-template-columns:1fr 115px;gap:8px}
+.d2-item-form input,.d2-item-form textarea,.d2-dice-custom input,.d2-dice-custom select{background:#0e1e22;color:#f5e7cf;border:1px solid #79877d;border-radius:7px;padding:9px;min-width:0;width:100%;font:inherit}
+.d2-item-form input:nth-child(3),.d2-item-form textarea{grid-column:1/-1}
+.d2-items-notice,.d2-items-roll-result{display:block;color:#d5ebcb;font-size:.82rem;overflow-wrap:anywhere;white-space:pre-wrap}
+.d2-items-roll-result{border:1px solid #607a75;background:#102225;border-radius:8px;padding:10px;min-height:50px;margin-top:12px}
+.d2-items-source{border:1px solid #637964;padding:10px;border-radius:8px;margin-top:13px;font-size:.83rem}
+.d2-items-source summary{color:#f3d49d;cursor:pointer;font-weight:750}
+.d2-items-source ul{padding-left:20px}
+.d2-source-weapon{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.d2-dice-custom{display:flex;gap:8px;margin-top:12px}
+.d2-dice-custom input{max-width:92px}.d2-dice-custom select{max-width:90px}
+@media(max-width:800px){.d2-items-layout{grid-template-columns:1fr}.d2-items-panel{margin:9px 8px;padding:11px}}
+@media(max-width:450px){.d2-item-form{grid-template-columns:1fr}.d2-item-form input:nth-child(3),.d2-item-form textarea{grid-column:auto}}
+@media print{.d2-items-panel,.d2-items-column,.d2-item-record{background:white!important;color:#111!important;border-color:#888!important}.d2-item-form,.d2-item-buttons,.d2-items-source,.d2-items-column[id^="d2-dados-"]{display:none!important}.d2-item-info *{color:#111!important}}
