@@ -453,7 +453,12 @@
             "count": 20
           }
         ],
-        "conditional": [],
+        "conditional": [
+          {
+            "count": 3,
+            "type": "físico"
+          }
+        ],
         "baseText": "20d10 físico + 15d10 raio",
         "bonusText": "+5d10 físico + 5d10 raio"
       },
@@ -2119,12 +2124,7 @@
             "count": 27
           }
         ],
-        "conditional": [
-          {
-            "count": 30,
-            "type": "morte"
-          }
-        ],
+        "conditional": [],
         "baseText": "12d10 físico + 20d10 morte",
         "bonusText": "+3d10 físico + 7d10 morte"
       },
@@ -5440,12 +5440,7 @@
             "count": 22
           }
         ],
-        "conditional": [
-          {
-            "count": 3,
-            "type": "veneno"
-          }
-        ],
+        "conditional": [],
         "baseText": "23d10 físico + 16d10 veneno",
         "bonusText": "+7d10 físico + 6d10 veneno"
       },
