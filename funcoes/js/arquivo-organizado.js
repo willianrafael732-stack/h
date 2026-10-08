@@ -143,7 +143,7 @@ const ENEMY_GROUPS=[
  ["drops","🎁 Drops e recompensas"]
 ];
 function enemyCategory(heading){
- const h=normalize(heading).trim();
+ const h=normalize(heading).trim().replace(/^[^a-z]+/u,"");
  if(/^(ataques?|armas?|arma principal|equipamento de combate)/.test(h))return "combat";
  if(/^(magias|tecnicas|poderes|habilidades especiais|arvores de magia)/.test(h))return "powers";
  if(/^(passivas?|suprema|metamorfose|evolucao)/.test(h))return "passives";
