@@ -104,7 +104,7 @@
       const image = mk("img");
       image.loading = "lazy";
       image.decoding = "async";
-      image.src = "../assets/i/thor_o_deus_do_trovão_em_asgard.png";
+      image.src = (document.querySelector('meta[name="hurras-assets"]')?.content || "../assets/i/") + "thor_o_deus_do_trovão_em_asgard.png";
       image.alt = "Retrato de Thor no acervo de Hurras";
       image.onerror = () => {
         image.remove();
