@@ -942,8 +942,8 @@ function sheetCard(c){
   right.append(result);
   left.id="d2-atributos-"+c.id;right.id="d2-habilidades-"+c.id;
   const links=el("nav",null,"d2-sheet-jumps");links.setAttribute("aria-label","Atalhos para esta ficha");
-  for(const [title,target] of [["🗡️ Armas","#d2-arsenal-"+c.id],["💪 Atributos","#d2-atributos-"+c.id],["🔮 Habilidades","#d2-habilidades-"+c.id],["✍️ Editar atributos","#d2-registro-"+c.id],["📚 Texto completo","#texto-integral"]]){
-   const a=el("a",title);a.href=target;if(target==="#texto-integral")a.addEventListener("click",()=>window.HurrasTextoIntegral?.open(c.id));links.append(a)}
+  for(const [title,target] of [["🗡️ Armas","#d2-arsenal-"+c.id],["💪 Atributos","#d2-atributos-"+c.id],["🔮 Habilidades","#d2-habilidades-"+c.id],["✍️ Editar atributos","#d2-registro-"+c.id]]){
+   const a=el("a",title);a.href=target;links.append(a)}
   tracker.panel.id="d2-registro-"+c.id;
   det.insertBefore(links,arsenal);
   columns.append(left,right);det.append(columns);
