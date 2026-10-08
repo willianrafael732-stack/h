@@ -7,7 +7,11 @@ try{const existing=JSON.parse(localStorage.getItem(KEY)||"{}");if(existing&&type
 const el=(tag,content,cls)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(content!==null&&content!==undefined)node.textContent=String(content);return node};
 const norm=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase("pt-BR");
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));return true}catch(e){return false}}
-function userState(c){if(!state[c.id]||typeof state[c.id]!=="object")state[c.id]={};const v=state[c.id];if(!v.points||typeof v.points!=="object")v.points={};if(!v.attributes||typeof v.attributes!=="object"||Array.isArray(v.attributes))v.attributes={...v.points};if(!v.modifiers||typeof v.modifiers!=="object")v.modifiers={physical:0,elemental:0};if(!v.resources||typeof v.resources!=="object")v.resources={};if(!Array.isArray(v.log))v.log=[];return v}
+function userState(c){if(!state[c.id]||typeof state[c.id]!=="object")state[c.id]={};const v=state[c.id];if(!v.points||typeof v.points!=="object")v.points={};if(!v.attributes||typeof v.attributes!=="object"||Array.isArray(v.attributes))v.attributes={...v.points};if(!v.modifiers||typeof v.modifiers!=="object")v.modifiers={physical:0,elemental:0};if(!v.resources||typeof v.resources!=="object")v.resources={};if(!Array.isArray(v.log))v.log=[];
+ if(!v.skillLinks||typeof v.skillLinks!=="object"||Array.isArray(v.skillLinks))v.skillLinks={};
+ if(!v.transformation||typeof v.transformation!=="object"||Array.isArray(v.transformation))v.transformation={active:null,forms:[]};
+ if(!Array.isArray(v.transformation.forms))v.transformation.forms=[];
+ return v}
 function titlePane(name){const pane=el("div",null,"d2-pane");pane.append(el("h3",name));return pane}
 function log(c,label,type,notify){const s=userState(c);s.log.unshift({time:new Date().toISOString(),text:String(label).slice(0,750),type:type||"ação"});s.log=s.log.slice(0,250);save();if(notify)notify()}
 function dice(expr){const all=[...String(expr).matchAll(/\b(\d+)d(6|8|10|12|20)\b/gi)];if(!all.length)return null;return all.map(m=>({count:Number(m[1]),sides:Number(m[2])}))}
@@ -98,7 +102,7 @@ function pointsWidget(c,onEdit){
  add.type="button";add.addEventListener("click",()=>{if(!note.value.trim()){status.textContent="Digite o acontecimento.";return}log(c,note.value.trim(),"ação do Mestre",refresh);note.value="";status.textContent="Evento registrado."});
  clear.type="button";clear.addEventListener("click",()=>{if(!s.log.length)return;if(confirm("Apagar somente o histórico de "+c.name+"?")){s.log=[];save();refresh();status.textContent="Histórico apagado. Atributos mantidos."}});
  reset.type="button";reset.addEventListener("click",()=>{if(!confirm("Restaurar os atributos, recursos e bônus originais de "+c.name+"? O histórico de batalha será mantido."))return;
-  s.attributes={};s.points={};s.resources={};s.modifiers={physical:0,elemental:0};log(c,"Atributos e recursos restaurados aos valores originais.","restauração",refresh);
+  s.attributes={};s.points={};s.resources={};s.modifiers={physical:0,elemental:0};s.skillLinks={};s.transformation={active:null,forms:[]};log(c,"Atributos e recursos restaurados aos valores originais.","restauração",refresh);
   renderSheets();const updated=document.getElementById(c.id);if(updated)updated.open=true;
  });
  actions.append(add,clear,reset);
@@ -474,29 +478,194 @@ function d2AbilityEntries(lines,group){
  }
  return cards;
 }
-function d2ActionSection(c,group,lines,update,result){
+
+/* Transformações configuráveis e vínculo entre atributos e dados dos golpes. */
+function d2Live(){return window.HurrasDadosVivos}
+function d2AbilityKey(c,group,entryIndex,lineIndex){return c.id+"|"+group.id+"|"+entryIndex+"|"+lineIndex}
+function d2ResolveSkill(c,line,key){
+ const engine=d2Live();return engine.resolve(line,userState(c),key,attr=>d2OfficialValue(c,attr));
+}
+function d2TransformationHints(c){
+ const lines=[...(c.actions||[]),...(c.stats||[])],found=[];
+ for(const line of lines){
+  const title=d2Clean(line).split(/[—–:]/)[0].trim();
+  if(title.length>=6&&title.length<60&&/\b(furia|forma|despertar|transformacao|ascensao|sangue de|modo divino|ira de)\b/iu.test(norm(title))&&!found.includes(title))found.push(title);
+ }
+ return found.slice(0,8);
+}
+function d2TransformationPanel(c,onUpdate){
+ const saved=userState(c),model=saved.transformation,engine=d2Live();
+ const wrap=el("details",null,"d2-transform-panel"),summary=el("summary"),body=el("div",null,"d2-transform-body");
+ const heading=el("strong","🜂 Transformações e bônus d10"),activeLabel=el("span","","d2-transform-active");
+ summary.append(heading,activeLabel);wrap.append(summary,body);
+ const help=el("p","Crie as formas do seu deus e informe os bônus em dados d10. A forma Normal não acrescenta nada. Formas sugeridas pelo documento servem apenas como nomes: os bônus não são inventados.","d2-transform-help");body.append(help);
+ const controls=el("div",null,"d2-transform-toolbar"),picker=el("select"),nameInput=el("input"),addBtn=el("button","＋ Criar transformação"),removeBtn=el("button","Excluir forma","secondary");
+ nameInput.placeholder="Nome da forma, ex.: Fúria Divina";nameInput.maxLength=60;
+ addBtn.type="button";removeBtn.type="button";picker.setAttribute("aria-label","Transformação ativa");
+ controls.append(el("label","Forma ativa"),picker,nameInput,addBtn,removeBtn);body.append(controls);
+ const bonuses=el("div",null,"d2-transform-bonuses"),suggestions=el("div",null,"d2-transform-suggestions");body.append(bonuses,suggestions);
+ function notify(){save();onUpdate()}
+ function refresh(){
+  const selected=engine.currentForm(saved);
+  activeLabel.textContent=selected?"Ativa: "+selected.name:"Forma normal";
+  picker.replaceChildren();
+  const n=el("option","Normal • sem bônus");n.value="";picker.append(n);
+  for(const f of model.forms){const o=el("option",f.name);o.value=f.id;picker.append(o)}
+  picker.value=selected?.id||"";removeBtn.disabled=!selected;
+  bonuses.replaceChildren();
+  if(!selected){bonuses.append(el("p","Escolha ou crie uma transformação para editar os dados extras de Força, Raio, Sagrado e outros atributos.","d2-transform-help"))}
+  else{
+   const entries=Object.entries(selected.bonuses||{}).filter(([k,v])=>Number.isInteger(Number(v))&&Number(v)>=0);
+   bonuses.append(el("h5","Bônus da transformação ativa"));
+   const grid=el("div",null,"d2-transform-bonus-grid");
+   for(const [attr,amount] of entries){
+    const line=el("label",null,"d2-transform-bonus");
+    line.append(el("span",attr+" (+d10)"));
+    const input=el("input");input.type="number";input.min="0";input.max="500";input.step="1";input.value=amount;
+    input.setAttribute("aria-label","Bônus da transformação "+attr);
+    input.addEventListener("input",()=>{
+     const v=engine.integer(input.value,500);if(v===null)return;
+     selected.bonuses[attr]=v;notify();
+    });
+    const drop=el("button","×");drop.type="button";
+    drop.setAttribute("aria-label","Remover bônus "+attr);
+    drop.addEventListener("click",()=>{delete selected.bonuses[attr];notify();refresh()});
+    line.append(input,drop);grid.append(line);
+   }
+   bonuses.append(grid);
+   const addRow=el("div",null,"d2-transform-add"),select=el("select"),value=el("input"),btn=el("button","＋ Incluir bônus");
+   select.setAttribute("aria-label","Atributo da transformação");
+   for(const group of data.fields){
+    const groupNode=el("optgroup");groupNode.label=group.label;
+    for(const attr of group.keys){
+     const opt=el("option",attr);opt.value=attr;groupNode.append(opt);
+    }select.append(groupNode);
+   }
+   value.type="number";value.step="1";value.min="0";value.max="500";value.value="0";value.setAttribute("aria-label","Dados d10 extras da transformação");
+   btn.type="button";btn.addEventListener("click",()=>{
+    const n=engine.integer(value.value,500);if(n===null)return;
+    selected.bonuses[select.value]=n;notify();refresh();
+   });
+   addRow.append(select,value,btn);bonuses.append(addRow);
+  }
+  suggestions.replaceChildren();
+  const hints=d2TransformationHints(c);
+  if(hints.length){
+   suggestions.append(el("p","Nomes encontrados nos poderes do personagem (sem aplicar bônus automaticamente):","d2-transform-help"));
+   const line=el("div",null,"d2-transform-hints");
+   for(const hint of hints){
+    const btn=el("button",hint);btn.type="button";
+    btn.addEventListener("click",()=>{nameInput.value=hint;addBtn.click()});
+    line.append(btn);
+   }suggestions.append(line);
+  }
+ }
+ picker.addEventListener("change",()=>{model.active=picker.value||null;notify();refresh()});
+ addBtn.addEventListener("click",()=>{
+  const name=nameInput.value.trim();if(!name||name.length>60||model.forms.length>=12)return;
+  const id="forma-"+Date.now()+"-"+(model.forms.length+1);
+  model.forms.push({id,name,bonuses:{}});model.active=id;nameInput.value="";
+  notify();refresh();wrap.open=true;
+ });
+ removeBtn.addEventListener("click",()=>{
+  const current=engine.currentForm(saved);if(!current)return;
+  if(!confirm('Excluir a transformação "'+current.name+'"?'))return;
+  model.forms=model.forms.filter(f=>f.id!==current.id);model.active=null;notify();refresh();
+ });
+ refresh();return wrap;
+}
+function d2PdfDetails(c,group,lines){
+ const entries=d2AbilityEntries(lines,group),out=[];
+ entries.forEach((entry,i)=>{
+  const formulas=[];
+  entry.lines.forEach((line,j)=>{
+   if(!d2Live().candidates([line]).length)return;
+   const r=d2ResolveSkill(c,line,d2AbilityKey(c,group,i,j));
+   if(r.formula)formulas.push({original:line,calculated:r.formula,mode:r.mode,changed:r.changed});
+  });
+  if(formulas.length)out.push({name:entry.title,formulas});
+ });
+ return out;
+}
+
+function d2ActionSection(c,group,lines,update,result,refreshers,onEdit){
  if(!lines.length)return null;
- const cards=d2AbilityEntries(lines,group);
+ const cards=d2AbilityEntries(lines,group),engine=d2Live();
  const section=el("section",null,"d2-ability-block "+group.id),
- title=el("div",null,"d2-ability-heading");
- title.append(el("h4",group.title),el("span",cards.length+" carta"+(cards.length===1?"":"s"),"d2-ability-count"));
- section.append(title,el("p",group.hint,"d2-ability-hint"));
+ heading=el("div",null,"d2-ability-heading");
+ heading.append(el("h4",group.title),el("span",cards.length+" carta"+(cards.length===1?"":"s"),"d2-ability-count"));
+ section.append(heading,el("p",group.hint,"d2-ability-hint"));
  const grid=el("div",null,"d2-ability-list");
- for(const skill of cards){
-  const tile=el("article",null,"d2-skill-card");
-  tile.append(el("h5",skill.title));
-  const detail=el("div",null,"d2-skill-details");
-  for(const line of skill.lines)detail.append(el("p",line,"d2-skill-effect"));
-  if(skill.lines.length)tile.append(detail);
+ cards.forEach((skill,i)=>{
+  const tile=el("article",null,"d2-skill-card");tile.append(el("h5",skill.title));
+  const details=el("div",null,"d2-skill-details");
+  for(const line of skill.lines)details.append(el("p",line,"d2-skill-effect"));
+  if(skill.lines.length)tile.append(details);
+  const formulas=skill.lines.map((line,j)=>({line,j,key:d2AbilityKey(c,group,i,j)}))
+    .filter(x=>engine.candidates([x.line]).length);
+  if(formulas.length){
+   const live=el("div",null,"d2-skill-live"),custom=el("details",null,"d2-skill-config");
+   custom.append(el("summary","⚙️ Configurar vínculo de dados"));
+   const form=el("div",null,"d2-skill-form");
+   for(const item of formulas){
+    const setting=engine.config(userState(c),item.key),typed=engine.candidates([item.line]);
+    const line=el("div",null,"d2-skill-config-line");
+    const modeLabel=el("label","Regra da habilidade"),modeSelect=el("select");
+    for(const [id,label] of [["auto","Seguir atributos editados"],["original","Manter dados originais"],["add","Somar dados do atributo"]]){
+     const opt=el("option",label);opt.value=id;modeSelect.append(opt);
+    }
+    modeSelect.value=setting.mode||"auto";
+    modeSelect.addEventListener("change",()=>{
+     const saved=userState(c);saved.skillLinks[item.key]??={mode:"auto",sources:{}};
+     saved.skillLinks[item.key].mode=modeSelect.value;save();onEdit();
+    });
+    modeLabel.append(modeSelect);line.append(modeLabel);
+    typed.forEach(type=>{
+     const label=el("label",type+" depende de"),select=el("select");
+     for(const group of data.fields){
+      const optgroup=el("optgroup");optgroup.label=group.label;
+      for(const name of group.keys){const opt=el("option",name);opt.value=name;optgroup.append(opt)}
+      select.append(optgroup);
+     }
+     select.value=setting.sources?.[type]||engine.attrFor(type);
+     select.addEventListener("change",()=>{
+      const saved=userState(c);saved.skillLinks[item.key]??={mode:"auto",sources:{}};
+      saved.skillLinks[item.key].sources??={};
+      saved.skillLinks[item.key].sources[type]=select.value;save();onEdit();
+     });
+     label.append(select);line.append(label);
+    });
+    form.append(line);
+   }
+   custom.append(form);
+   tile.append(live,custom);
+   refreshers.push(()=>{
+    live.replaceChildren();
+    for(const item of formulas){
+     const r=d2ResolveSkill(c,item.line,item.key);
+     const info=el("div",null,"d2-skill-live-row");
+     info.append(el("small",r.changed?"🎲 Dados ajustados":"🎲 Dados da fonte"),el("strong",r.formula||item.line));
+     const descriptions=r.parts.map(x=>{
+      const reason=x.reason?"":"(original)";
+      return x.type+" → "+x.attribute+(x.attributeDice===null?" (não preenchido)":" "+x.attributeDice+"d10")+
+       (x.transformationDice>0?" + "+x.transformationDice+"d10 transformação":"")+" "+reason;
+     }).join(" • ");
+     info.append(el("p",descriptions,"d2-skill-live-info"));
+     if(r.form!=="Normal")info.append(el("small","Forma ativa: "+r.form,"d2-skill-form-active"));
+     live.append(info);
+    }
+   });
+  }
   const controls=el("div",null,"d2-attack-buttons d2-skill-actions");
-  const formulas=skill.lines.filter(x=>dice(x));
-  if(!skill.lines.length&&dice(skill.raw[0]))formulas.push(skill.raw[0]);
-  formulas.forEach((line,i)=>{
-   const btn=el("button",i===0?"🎲 Rolar":"🎲 Rolar "+(i+1));btn.type="button";
-   btn.setAttribute("aria-label","Rolar "+skill.title+" ("+(i+1)+") de "+c.name);
+  const rollable=skill.lines.map((line,j)=>({line,j})).filter(x=>dice(x.line));
+  rollable.forEach(({line,j},n)=>{
+   const btn=el("button",n===0?"🎲 Rolar":"🎲 Rolar "+(n+1));btn.type="button";
+   btn.setAttribute("aria-label","Rolar "+skill.title+" ("+(n+1)+") de "+c.name);
    btn.addEventListener("click",()=>{
-    const total=roll(c,line,skill.title,update);
-    result.textContent=skill.title+" — "+line+" | Resultado: "+total;
+    const key=d2AbilityKey(c,group,i,j),resolved=d2ResolveSkill(c,line,key);
+    const actual=resolved.changed?resolved.calculated:line;
+    const total=roll(c,actual,skill.title,update);
+    result.textContent=skill.title+" — "+actual+" | Resultado: "+total;
    });controls.append(btn);
   });
   const register=el("button","Registrar");register.type="button";
@@ -504,7 +673,7 @@ function d2ActionSection(c,group,lines,update,result){
   register.addEventListener("click",()=>log(c,"Habilidade/ação: "+skill.title+" — "+skill.lines.join(" | "),"uso",update));
   controls.append(register);
   tile.append(controls);grid.append(tile);
- }
+ });
  section.append(grid);return section;
 }
 
@@ -519,7 +688,7 @@ function sheetCard(c){
   const parsed=d2Split(c),columns=el("div",null,"d2-sheet-columns"),
    left=titlePane("🧬 Atributos e características"),right=titlePane("⚔ Ataques, magias e habilidades");
   left.classList.add("d2-attributes-pane");right.classList.add("d2-abilities-pane");
-  let arsenal,stats,extra,currentPdf=null;
+  let arsenal,stats,extra,currentPdf=null;const liveRefreshers=[];
   const update=()=>tracker.refresh();
   function refreshSheet(){
    if(!built)return;
@@ -533,14 +702,17 @@ function sheetCard(c){
    }
    const nextExtra=d2ExtraAttributes(c,parsed);extra.replaceWith(nextExtra);extra=nextExtra;
    if(arsenal){const next=d2WeaponSection(c,parsed.weapons,update);arsenal.replaceWith(next);arsenal=next}
+   for(const refresh of liveRefreshers)refresh();
    try{
     if(!window.HurrasFichaPDF)throw Error("Gerador de PDF não carregado");
-    currentPdf=window.HurrasFichaPDF.create(c,data.fields,userState(c),D2_ABILITIES,d2Split,d2PdfVariants);
+    currentPdf=window.HurrasFichaPDF.create(c,data.fields,userState(c),D2_ABILITIES,d2Split,d2PdfVariants,(g,lines)=>d2PdfDetails(c,g,lines));
     pdfStatus.textContent="✓ PDF atualizado automaticamente • "+currentPdf.pages+" página(s) • pronto para baixar";
    }catch(err){pdfStatus.textContent="Erro ao preparar PDF: "+err.message}
   }
   const tracker=pointsWidget(c,refreshSheet);
   stats=el("div",null,"d2-stat-summary");det.append(stats);
+  const transformation=d2TransformationPanel(c,refreshSheet);
+  det.append(transformation);
   const toolbar=el("div",null,"d2-autosave-toolbar"),pdfDownload=el("button","⬇ Baixar PDF atualizado"),pdfStatus=el("span","Preparando PDF...");
   pdfDownload.type="button";pdfDownload.className="d2-pdf-download";pdfStatus.className="d2-pdf-status";
   pdfDownload.addEventListener("click",()=>{
@@ -563,7 +735,7 @@ function sheetCard(c){
   extra=d2ExtraAttributes(c,parsed);left.append(extra);
   if(parsed.misc.length)d2SourceSection(left,"📋 Observações do documento",parsed.misc,c);
   const result=el("output","", "d2-roll-output");
-  for(const group of D2_ABILITIES){const section=d2ActionSection(c,group,parsed.abilities[group.id],update,result);if(section)right.append(section)}
+  for(const group of D2_ABILITIES){const section=d2ActionSection(c,group,parsed.abilities[group.id],update,result,liveRefreshers,refreshSheet);if(section)right.append(section)}
   if(!D2_ABILITIES.some(g=>parsed.abilities[g.id].length))right.append(el("p","Sem poderes ou ataques descritos nesta ficha.","d2-empty"));
   right.append(result);
   left.id="d2-atributos-"+c.id;right.id="d2-habilidades-"+c.id;
