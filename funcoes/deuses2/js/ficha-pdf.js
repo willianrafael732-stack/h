@@ -86,6 +86,17 @@ function document(c,fields,stored,groups,parse,variantsFor,dynamicDetails){
   line(String(it.name||"Item")+" | Quantidade: "+(Number(it.qty)||0)+(it.dice?" | Dados: "+it.dice:""),{bold:true});
   if(it.note)line(String(it.note),{indent:48,color:soft,size:8});
  }
+ const fusion=stored.elementalFusion||{},fa=fusion.a||"Magia",fb=fusion.b||"Sagrado";
+ if(fusion.a||fusion.b||Object.keys(fusion.power||{}).length||fusion.saved?.length){
+  section("Fusao elemental (regra opcional)");
+  const a=Object.prototype.hasOwnProperty.call(fusion.power||{},fa)?Number(fusion.power[fa]):currentValue(c,stored,fa);
+  const b=Object.prototype.hasOwnProperty.call(fusion.power||{},fb)?Number(fusion.power[fb]):currentValue(c,stored,fb);
+  const aa=Number.isSafeInteger(a)&&a>=0?a:0,bb=Number.isSafeInteger(b)&&b>=0?b:0;
+  line("Elementos: "+fa+" + "+fb,{bold:true});
+  line("Dados: "+aa+"d10 + "+bb+"d10 = "+(aa+bb)+"d10; custo sugerido: "+Math.max(1,Math.ceil((aa+bb)/2))+" Mana.",{indent:48});
+  for(const x of (Array.isArray(fusion.saved)?fusion.saved:[]).slice(0,20))if(x&&x.a&&x.b)line("Fusao salva: "+x.a+" + "+x.b+" | "+(Number(x.pa)||0)+"d10 + "+(Number(x.pb)||0)+"d10",{indent:48});
+  line("O efeito especial depende do Mestre e nao altera o ataque original.",{indent:48,size:8,color:soft});
+ }
  const manual=stored.modifiers||{};
  if(manual.physical||manual.elemental){section("Modificadores de dano inseridos manualmente");
    line("Fisico adicional: "+(manual.physical||0)+"d10; Elemental ou magico adicional: "+(manual.elemental||0)+"d10");

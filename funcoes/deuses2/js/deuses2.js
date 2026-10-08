@@ -12,6 +12,7 @@ function userState(c){if(!state[c.id]||typeof state[c.id]!=="object")state[c.id]
  if(!v.transformation||typeof v.transformation!=="object"||Array.isArray(v.transformation))v.transformation={active:null,forms:[]};
  if(!Array.isArray(v.transformation.forms))v.transformation.forms=[];
  if(!Array.isArray(v.inventory))v.inventory=[];
+ if(!v.elementalFusion||typeof v.elementalFusion!=="object"||Array.isArray(v.elementalFusion))v.elementalFusion={};
  return v}
 function titlePane(name){const pane=el("div",null,"d2-pane");pane.append(el("h3",name));return pane}
 function log(c,label,type,notify){const s=userState(c);s.log.unshift({time:new Date().toISOString(),text:String(label).slice(0,750),type:type||"ação"});s.log=s.log.slice(0,250);save();if(notify)notify()}
@@ -1002,7 +1003,7 @@ function sheetCard(c){
   const parsed=d2Split(c),columns=el("div",null,"d2-sheet-columns"),
    left=titlePane("🧬 Atributos e características"),right=titlePane("⚔ Ataques, magias e habilidades");
   left.classList.add("d2-attributes-pane");right.classList.add("d2-abilities-pane");
-  let arsenal,stats,extra,overviewPanel,skillsPanel,currentPdf=null;const liveRefreshers=[];
+  let arsenal,stats,extra,overviewPanel,skillsPanel,fusionPanel=null,currentPdf=null;const liveRefreshers=[];
   const update=()=>tracker.refresh();
   function refreshSheet(){
    if(!built)return;
@@ -1015,7 +1016,7 @@ function sheetCard(c){
      block.replaceChildren(...Array.from(temp.childNodes));
    }
    const updatedOverview=d2MainOverview(c,refreshSheet);overviewPanel.replaceWith(updatedOverview);overviewPanel=updatedOverview;
-   tracker.refresh();skillsPanel?.refresh();
+   tracker.refresh();skillsPanel?.refresh();fusionPanel?.refresh();
    const nextExtra=d2ExtraAttributes(c,parsed);extra.replaceWith(nextExtra);extra=nextExtra;
    if(arsenal){const next=d2WeaponSection(c,parsed.weapons,update);arsenal.replaceWith(next);arsenal=next}
    for(const refresh of liveRefreshers)refresh();
@@ -1044,6 +1045,13 @@ function sheetCard(c){
   toolbar.append(pdfDownload,pdfStatus);det.append(toolbar);
   arsenal=d2WeaponSection(c,parsed.weapons,update);det.append(arsenal);
   det.append(d2ItemDiceWidget(c,parsed,refreshSheet));
+  fusionPanel=window.HurrasFusaoElemental?.create({
+   id:c.id,settings:userState(c).elementalFusion,
+   getLevel:element=>d2EffectiveValue(c,element),
+   onChange:()=>{const saved=save();refreshSheet();return saved},
+   onRoll:message=>log(c,message,"fusão elemental",update)
+  });
+  if(fusionPanel)det.append(fusionPanel.panel);
   const buffs=d2BuffsSection(c);if(buffs)det.append(buffs);
   const visibleTraitBlocks=[];
   for(const group of D2_ATTR){
@@ -1060,7 +1068,7 @@ function sheetCard(c){
   right.append(result);
   left.id="d2-atributos-"+c.id;right.id="d2-habilidades-"+c.id;
   const links=el("nav",null,"d2-sheet-jumps");links.setAttribute("aria-label","Atalhos para esta ficha");
-  for(const [title,target] of [["🗡️ Armas","#d2-arsenal-"+c.id],["🎒 Itens","#d2-itens-"+c.id],["🎲 Dados","#d2-dados-"+c.id],["💪 Atributos","#d2-atributos-"+c.id],["🔮 Habilidades","#d2-habilidades-"+c.id],["✍️ Editar atributos","#d2-registro-"+c.id]]){
+  for(const [title,target] of [["🗡️ Armas","#d2-arsenal-"+c.id],["🎒 Itens","#d2-itens-"+c.id],["🜂 Fusão","#d2-fusao-"+c.id],["🎲 Dados","#d2-dados-"+c.id],["💪 Atributos","#d2-atributos-"+c.id],["🔮 Habilidades","#d2-habilidades-"+c.id],["✍️ Editar atributos","#d2-registro-"+c.id]]){
    const a=el("a",title);a.href=target;links.append(a)}
   tracker.panel.id="d2-registro-"+c.id;
   det.insertBefore(links,arsenal);

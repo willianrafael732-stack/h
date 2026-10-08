@@ -1,0 +1,16 @@
+.h-fusion{margin:13px;padding:18px;border:1px solid #b39b68;border-radius:12px;background:linear-gradient(120deg,#142a2b,#1d262c);scroll-margin-top:70px}
+.h-fusion h3,.h-fusion h4{color:#ffdda5;margin:4px 0 10px}.h-fusion-help{color:#c1d8ca;font-size:.84rem;line-height:1.5}
+.h-fusion-controls{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.h-fusion-controls label{display:grid;gap:5px;color:#f3ddb0;font-size:.83rem;min-width:0}
+.h-fusion-controls select,.h-fusion-controls input{background:#102326;border:1px solid #69887c;border-radius:7px;padding:9px;color:#fff1d4;min-width:0;width:100%;font:inherit}
+.h-fusion-result{border:1px solid #85795d;background:#233937;border-radius:9px;padding:12px;display:grid;gap:7px;overflow-wrap:anywhere}
+.h-fusion-result p{margin:0;color:#c6e1d1;font-size:.86rem}.h-fusion-result strong{color:#ffe2aa;font-size:1rem}.h-fusion-result small{color:#d0d5c3}
+.h-fusion-buttons{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+.h-fusion button{border:1px solid #bcaa80;background:#3b5044;color:#ffe3af;border-radius:7px;padding:7px 10px;font-weight:750;cursor:pointer;font-size:.83rem}
+.h-fusion button:disabled{opacity:.36;cursor:not-allowed}.h-fusion button:hover:not(:disabled){background:#506b51}
+.h-fusion-output{display:block;min-height:36px;background:#102325;border:1px solid #657e6d;border-radius:8px;padding:10px;white-space:pre-wrap;overflow-wrap:anywhere;color:#dbf0db}
+.h-fusion-notice{color:#e5d1a6;font-size:.8rem}.h-fusion-saved{display:grid;gap:7px}
+.h-fusion-entry{display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid #607967;background:#203433;padding:9px;border-radius:8px}
+.h-fusion-entry>div:first-child{display:grid;gap:4px}.h-fusion-entry strong{color:#fee0ae}.h-fusion-entry small{font-size:.78rem;color:#c5ddcf}
+@media(max-width:680px){.h-fusion{margin:9px 8px;padding:11px}.h-fusion-controls{grid-template-columns:1fr}.h-fusion-entry{flex-direction:column;align-items:stretch}}
+@media print{.h-fusion,.h-fusion-result,.h-fusion-entry{background:white!important;color:#111!important;border-color:#888!important}.h-fusion-controls,.h-fusion-buttons,.h-fusion-output{display:none!important}.h-fusion *{color:#111!important}}

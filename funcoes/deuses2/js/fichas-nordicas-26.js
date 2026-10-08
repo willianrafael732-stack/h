@@ -57,6 +57,12 @@ function values(title,arr,type,c,scope){
  }
  card.append(rows);return card;
 }
+const FUSION_KEY="hurras_nordicos26_fusao_v1";
+let fusionState={};
+try{const previous=JSON.parse(localStorage.getItem(FUSION_KEY)||"{}");if(previous&&typeof previous==="object"&&!Array.isArray(previous))fusionState=previous}catch(e){}
+function fusionFor(c){if(!fusionState[c.id]||typeof fusionState[c.id]!=="object")fusionState[c.id]={};return fusionState[c.id]}
+function saveFusion(){try{localStorage.setItem(FUSION_KEY,JSON.stringify(fusionState));return true}catch(e){return false}}
+function magicLevel(c,element){const e=(c.attributes?.mystical||[]).find(x=>fold(x.name)===fold(element));return e?pointValue(c,"attr:mystical",e):null}
 function item(c){
  const card=make("article",null,"f-card");card.id=c.id;
  const head=make("div",null,"f-card-head");
@@ -91,6 +97,11 @@ function item(c){
  }
  card.append(specials);
  card.append(window.HurrasInventarioNordico.create(c));
+ const fusion=window.HurrasFusaoElemental?.create({
+  id:"26-"+c.id,settings:fusionFor(c),getLevel:element=>magicLevel(c,element),
+  onChange:saveFusion
+ });
+ if(fusion)card.append(fusion.panel);
  const source=make("details",null,"f-source");source.append(make("summary","📜 Conferir os dados originais da ficha (PDF)"));
  const original=make("div",null,"f-source-content");
  for(const [label,value] of Object.entries(c.sourceSections)){const row=make("p");row.append(make("strong",label+": "),make("span",value));original.append(row)}
