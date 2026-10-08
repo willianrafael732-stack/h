@@ -184,3 +184,42 @@
  .d2-ability-list,.d2-attributes-pane .d2-trait-rows{grid-template-columns:repeat(2,minmax(0,1fr))}
  .d2-ability-heading{background:#fff!important;border-color:#999!important}
 }
+
+
+/* Dados variáveis, atributos relacionados e transformação configurável */
+.d2-transform-panel{margin:0 13px 14px;border-radius:12px;border:1px solid #a6884e;background:#202e2c;overflow:hidden}
+.d2-transform-panel>summary{display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;color:#f7dea1;background:linear-gradient(120deg,#3b3a29,#253c36);padding:14px 16px;font-weight:850}
+.d2-transform-active{font-size:.75rem;font-weight:650;color:#d5dfc6}
+.d2-transform-body{padding:13px 16px;display:grid;gap:13px}
+.d2-transform-help{font-size:.79rem;color:#c6d1c6;line-height:1.45;margin:0}
+.d2-transform-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.d2-transform-toolbar>label{font-size:.85rem;font-weight:850;color:#f2d897}
+.d2-transform-toolbar select,.d2-transform-toolbar input,.d2-transform-add select,.d2-transform-add input,.d2-transform-bonus input,.d2-skill-config select{max-width:100%;min-width:0;background:#132325;border:1px solid #789381;color:#f4ead0;border-radius:7px;padding:9px;font-size:.87rem}
+.d2-transform-toolbar select{flex:1 1 170px}.d2-transform-toolbar input{flex:1 1 195px}
+.d2-transform-toolbar button,.d2-transform-add button,.d2-transform-bonus button,.d2-transform-hints button{background:#4d4330;border:1px solid #ac935e;color:#f8e6c1;border-radius:7px;padding:9px 12px;cursor:pointer;font-weight:750}
+.d2-transform-toolbar button:disabled{opacity:.45;cursor:not-allowed}
+.d2-transform-bonuses{border:1px solid #587065;background:#172729;padding:13px;border-radius:10px}
+.d2-transform-bonuses h5{margin:0 0 12px;color:#f3d593}
+.d2-transform-bonus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:9px}
+.d2-transform-bonus{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px;align-items:center;border-radius:9px;background:#293b3a;padding:10px}
+.d2-transform-bonus>span{grid-column:1/-1;color:#f5deb0;font-size:.84rem}
+.d2-transform-bonus input{width:100%;font-weight:800}
+.d2-transform-add{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.d2-transform-add select{flex:1 1 220px}.d2-transform-add input{flex:0 1 95px}
+.d2-transform-hints{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.d2-transform-hints button{font-size:.77rem;padding:7px 9px}
+.d2-skill-live{display:grid;gap:6px;margin:2px 0 4px}
+.d2-skill-live-row{background:#213e36;border:1px solid #679380;border-radius:8px;padding:9px;display:grid;gap:5px}
+.d2-skill-live-row>small{color:#c3e4d4;font-size:.73rem;font-weight:800}
+.d2-skill-live-row>strong{color:#fff0c4;font-family:ui-monospace,monospace;font-size:clamp(.82rem,1.5vw,.96rem);overflow-wrap:anywhere}
+.d2-skill-live-info{margin:0;font-size:.72rem;line-height:1.4;color:#c8d6cd}
+.d2-skill-form-active{color:#f4d69d!important}
+.d2-skill-config{border:1px solid #627d72;border-radius:7px;margin-bottom:7px}
+.d2-skill-config>summary{cursor:pointer;color:#d5dbcb;font-size:.78rem;padding:8px 10px;font-weight:750}
+.d2-skill-config[open]>summary{border-bottom:1px solid #61766d}
+.d2-skill-form{padding:9px;display:grid;gap:10px}
+.d2-skill-config-line{display:grid;gap:8px;background:#142b2b;padding:9px;border-radius:8px}
+.d2-skill-config-line label{display:grid;gap:5px;font-size:.75rem;color:#e5dbc5}
+.d2-skill-config-line select{width:100%}
+@media(max-width:520px){.d2-transform-panel{margin:0 8px 11px}.d2-transform-body{padding:12px}.d2-transform-panel>summary{align-items:flex-start;flex-direction:column}.d2-skill-config-line{padding:7px}.d2-skill-live-row{padding:7px}}
+@media print{.d2-skill-config,.d2-transform-panel button,.d2-transform-panel input,.d2-transform-panel select{display:none!important}.d2-skill-live-row,.d2-transform-panel{background:#fff!important;color:#111!important;border-color:#777!important}.d2-skill-live-row strong,.d2-transform-panel strong{color:#111!important}}

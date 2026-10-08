@@ -18,7 +18,7 @@ function linesOf(t,limit){
  if((line?line.length+1:0)+word.length>limit){lines.push(line);line=word}else line+=(line?" ":"")+word}
  if(line)lines.push(line);return lines.length?lines:[" "];
 }
-function document(c,fields,stored,groups,parse,variantsFor){
+function document(c,fields,stored,groups,parse,variantsFor,dynamicDetails){
  const commands=[];let y=0,pageNumber=0;
  const cream="0.94 0.87 0.68",dark="0.10 0.16 0.17",ink="0.12 0.17 0.19",soft="0.35 0.40 0.42";
  function page(){pageNumber++;y=764;commands.push([]);
@@ -39,6 +39,16 @@ function document(c,fields,stored,groups,parse,variantsFor){
  section("Recursos");
  const resources=stored.resources||{};
  for(const [key,label,original]of [["life","Vitalidade",c.vitality],["mana","Mana",c.mana]]){const actual=Object.prototype.hasOwnProperty.call(resources,key)?resources[key]:original;line(label+": "+(actual??"Nao informado")+(String(actual)!==String(original)?" | Original: "+original:""),{bold:true})}
+ const transform=stored.transformation||{};
+ const active=Array.isArray(transform.forms)?transform.forms.find(f=>f.id===transform.active):null;
+ section("Transformacao do deus");
+ line("Forma ativa: "+(active?.name||"Normal"),{bold:true});
+ if(active){
+  const bonus=Object.entries(active.bonuses||{}).filter(([key,value])=>Number.isInteger(Number(value))&&Number(value)>0);
+  for(const [attr,value]of bonus)line(attr+": +"+value+"d10 (somente durante "+active.name+")",{indent:49});
+  if(!bonus.length)line("Forma nomeada, sem bonus de dados cadastrado.",{indent:49,color:soft,size:8});
+ }
+ line("Regra: dados ajustados somente em golpes com vinculo de atributo e modalidade aplicavel.",{size:8.5,color:soft});
  section("Atributos, talentos, pericias e conhecimentos");
  for(const g of fields){line(g.label,{bold:true,color:"0.36 0.27 0.13",size:10});let written=0;
    for(const key of g.keys){const v=currentValue(c,stored,key),original=sourceValue(c,key);if(v===null||v===undefined||v==="")continue;
@@ -68,7 +78,17 @@ function document(c,fields,stored,groups,parse,variantsFor){
    line("Aplicacao manual: nao converter atributos em dano sem uma regra definida.");}
  section("Ataques, habilidades, magias, passivas e recompensas");
  for(const group of groups){const actions=parsed.abilities[group.id]||[];if(!actions.length)continue;
-   line(group.title,{bold:true,color:"0.36 0.27 0.13",size:10});for(const action of actions)line(action,{indent:48});y-=4}
+   line(group.title,{bold:true,color:"0.36 0.27 0.13",size:10});
+   for(const action of actions)line(action,{indent:48});
+   if(typeof dynamicDetails==="function"){
+     for(const skill of dynamicDetails(group,actions)||[]){
+       for(const item of skill.formulas){
+         line("Dados da habilidade "+skill.name+": "+item.calculated,{indent:48,bold:true,color:"0.36 0.27 0.13",size:9});
+         if(!item.changed)line("Valor original mantido: "+item.original,{indent:51,color:soft,size:7.6});
+       }
+     }
+   }
+   y-=4}
  if(parsed.misc?.length){section("Observacoes e informacoes complementares");parsed.misc.forEach(t=>line(t,{indent:48}))}
  section("Informacoes de salvamento");
  line("Atributos preenchidos e recursos atuais foram exportados da memoria deste navegador.");
