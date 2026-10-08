@@ -134,6 +134,7 @@ function d2Heading(line){
  if(/^(?:atributos|niveis magicos):?$/.test(t))return "dados";
  if(/^bonus:?$/.test(t))return "bonus";
  if(/^(?:poderes|magias|habilidades(?: especiais)?)(?:\s*\/.*)?$/.test(t))return "magias";
+ if(/^(?:magias e tecnicas|magias ?\/ ?tecnicas|magias & tecnicas)$/.test(t))return "tecnicas";
  if(/^(?:tecnicas)(?:\s*\/.*)?$/.test(t))return "tecnicas";
  if(/^(?:ataques)(?:\s*\/.*)?$/.test(t))return "ataques";
  if(/^suprema(?:\s|$)/.test(t))return "supremas";
@@ -193,7 +194,7 @@ function d2Split(c){
  let actionMode="outros";
  for(const line of c.actions){
    const head=d2Heading(line);
-   if(head){actionMode=head;if(head==="supremas"||head==="passivas"){abilities[actionMode].push(line);}continue}
+   if(head){actionMode=head;if((head==="supremas"||head==="passivas")&&/[-—–:]\s*\S/.test(d2Clean(line))){abilities[actionMode].push(line);}continue}
    abilities[actionMode].push(line);
  }
  return {sections,weapons,abilities,misc,resources};
@@ -449,26 +450,62 @@ function d2Historical(c){
  }
  return group;
 }
+/* Apresentação em cartões: cada poder conserva seu nome, efeitos e dados de origem. */
+function d2AbilityEntries(lines,group){
+ const cards=[];let current=null;
+ const begin=(title,raw)=>{current={title,lines:[],raw:[raw]};cards.push(current)};
+ for(const original of lines){
+  const line=String(original),plain=d2Clean(line);
+  const namedSpecial=(group.id==="supremas"||group.id==="passivas")?
+   plain.match(/^(?:SUPREMA|PASSIVA)\s*[-–—:]\s*(.+)$/iu):null;
+  if(namedSpecial){begin(namedSpecial[1].trim(),line);continue}
+  const inline=plain.match(/^([^—–]{3,75}?)\s+[—–]\s+(.+)$/u);
+  if(inline&&!/^\d/.test(inline[1])){
+   begin(inline[1].trim(),line);current.lines.push(inline[2].trim());continue;
+  }
+  const hasDice=Boolean(dice(line)),emoji=/^[^\p{L}\d]/u.test(line.trim()),
+   punctuation=/[.,;:!?]$/.test(plain);
+  const verb=/\b(?:recebe|podem?|possui|escolhe|ataca|impede|reduz|causa|cura|recupera|ganha|passa|perde|sofre|tem|atinge|aplica|ignora|revela|cria|move|retorna|teleporta|durante|quando|sempre|permite|controla|avança|aumenta|diminui|mantém|protege|inimigos|aliados|alvo|abaixo)\b/iu.test(plain);
+  const heading=!hasDice&&!emoji&&!punctuation&&!verb&&plain.length>=3&&plain.length<=65&&/^\p{Lu}/u.test(plain);
+  if(heading){begin(plain,line);continue}
+  if(!current)begin(group.title,line);
+  current.lines.push(line);
+  if(current.raw.at(-1)!==line)current.raw.push(line);
+ }
+ return cards;
+}
 function d2ActionSection(c,group,lines,update,result){
  if(!lines.length)return null;
- const block=el("section",null,"d2-ability-block "+group.id);
- block.append(el("h4",group.title),el("p",group.hint,"d2-ability-hint"));
- let action="";
- const list=el("div",null,"d2-ability-list");
- for(const line of lines){
-   const row=el("div",null,"d2-combat-line"),text=el("span",line),actions=el("div",null,"d2-attack-buttons"),formula=dice(line);
-   if(formula){
-     const button=el("button","🎲 Rolar");button.type="button";
-     const title=action||c.name;
-     button.addEventListener("click",()=>{const val=roll(c,line,title,update);result.textContent="Rolagem: "+val});
-     actions.append(button);
-   }
-   const register=el("button","Registrar");register.type="button";register.addEventListener("click",()=>log(c,"Habilidade/ação: "+line,"uso",update));
-   actions.append(register);
-   row.append(text,actions);list.append(row);
-   if(!formula&&!/^(?:[^\p{L}]*)(?:SUPREMA|PASSIVA|Ataques|Magias|Técnicas)\b/iu.test(line)&&line.length<90)action=line;
+ const cards=d2AbilityEntries(lines,group);
+ const section=el("section",null,"d2-ability-block "+group.id),
+ title=el("div",null,"d2-ability-heading");
+ title.append(el("h4",group.title),el("span",cards.length+" carta"+(cards.length===1?"":"s"),"d2-ability-count"));
+ section.append(title,el("p",group.hint,"d2-ability-hint"));
+ const grid=el("div",null,"d2-ability-list");
+ for(const skill of cards){
+  const tile=el("article",null,"d2-skill-card");
+  tile.append(el("h5",skill.title));
+  const detail=el("div",null,"d2-skill-details");
+  for(const line of skill.lines)detail.append(el("p",line,"d2-skill-effect"));
+  if(skill.lines.length)tile.append(detail);
+  const controls=el("div",null,"d2-attack-buttons d2-skill-actions");
+  const formulas=skill.lines.filter(x=>dice(x));
+  if(!skill.lines.length&&dice(skill.raw[0]))formulas.push(skill.raw[0]);
+  formulas.forEach((line,i)=>{
+   const btn=el("button",i===0?"🎲 Rolar":"🎲 Rolar "+(i+1));btn.type="button";
+   btn.setAttribute("aria-label","Rolar "+skill.title+" ("+(i+1)+") de "+c.name);
+   btn.addEventListener("click",()=>{
+    const total=roll(c,line,skill.title,update);
+    result.textContent=skill.title+" — "+line+" | Resultado: "+total;
+   });controls.append(btn);
+  });
+  const register=el("button","Registrar");register.type="button";
+  register.setAttribute("aria-label","Registrar "+skill.title+" de "+c.name);
+  register.addEventListener("click",()=>log(c,"Habilidade/ação: "+skill.title+" — "+skill.lines.join(" | "),"uso",update));
+  controls.append(register);
+  tile.append(controls);grid.append(tile);
  }
- block.append(list);return block;
+ section.append(grid);return section;
 }
 
 function sheetCard(c){
@@ -481,6 +518,7 @@ function sheetCard(c){
   if(built)return;built=true;
   const parsed=d2Split(c),columns=el("div",null,"d2-sheet-columns"),
    left=titlePane("🧬 Atributos e características"),right=titlePane("⚔ Ataques, magias e habilidades");
+  left.classList.add("d2-attributes-pane");right.classList.add("d2-abilities-pane");
   let arsenal,stats,extra,currentPdf=null;
   const update=()=>tracker.refresh();
   function refreshSheet(){
@@ -534,11 +572,11 @@ function sheetCard(c){
    const a=el("a",title);a.href=target;links.append(a)}
   tracker.panel.id="d2-registro-"+c.id;
   det.insertBefore(links,arsenal);
+  columns.append(left,right);det.append(columns);
   const editor=el("details",null,"d2-editor-wrap");
   editor.append(el("summary","✍️ Editar atributos e habilidades • atualização e PDF automáticos"),tracker.panel);
-  det.insertBefore(editor,arsenal);
+  det.append(editor);
   links.querySelectorAll?.("a").forEach(a=>{if(a.href?.includes("#d2-registro-"))a.addEventListener("click",()=>{editor.open=true})});
-  columns.append(left,right);det.append(columns);
   const historic=d2Historical(c);if(historic)det.append(historic);
   const exact=el("details",null,"d2-details-note");
   exact.append(el("summary","📜 Ver transcrição integral sem alterações"),el("pre",c.raw));det.append(exact);
