@@ -60,7 +60,8 @@ const D2_ABILITIES=[
 function d2Clean(line){return String(line||"").replace(/^[^\p{L}\d]+/u,"").trim()}
 function d2Heading(line){
  const s=d2Clean(line),t=norm(s);
- if(/^(?:atributos|niveis magicos|bonus):?$/.test(t))return "dados";
+ if(/^(?:atributos|niveis magicos):?$/.test(t))return "dados";
+ if(/^bonus:?$/.test(t))return "bonus";
  if(/^(?:poderes|magias|habilidades(?: especiais)?)(?:\s*\/.*)?$/.test(t))return "magias";
  if(/^(?:tecnicas)(?:\s*\/.*)?$/.test(t))return "tecnicas";
  if(/^(?:ataques)(?:\s*\/.*)?$/.test(t))return "ataques";
@@ -70,15 +71,15 @@ function d2Heading(line){
  return null;
 }
 function d2WeaponName(line){
- const plain=d2Clean(line);
- if(!/^(?:espadas?|laminas?|lancas?|arcos?|cajados?|escudos?|machados?|martelos?|marretas?|adagas?|tridentes?|garras?|botas?|hrafnr|hofund|gungnir|mjolnir|Mjölnir|lâminas?|lanças?)(?:\s|:|$)/iu.test(plain))return null;
- if(/^(?:espada|escudo|machado|arco|lança|cajado|lâmina|adagas?|marreta|martelo|tridente|garras?|botas?|hrafnr|hofund|gungnir|mjolnir|lâminas?|lanças?)/iu.test(plain)){
-   const m=plain.match(/^(.+?):\s*(.+)$/u);
-   if(m){if(!/^\d+d(?:6|8|10|12|20)\b|^\+\d|defesa|bloqueio/i.test(m[2]))return null;return {name:m[1],first:m[2]};}
-   if(/\b\d+d(?:6|8|10|12|20)\b/i.test(plain))return null;
-   return {name:plain,first:null};
+ const plain=d2Clean(line),fold=norm(plain);
+ if(!/^(?:espadas?|laminas?|lancas?|arcos?|cajados?|escudos?|machados?|martelos?|marretas?|adagas?|tridentes?|garras?|botas?|hrafnr|hofund|gungnir|mjolnir)(?:\s|:|$)/i.test(fold))return null;
+ const m=plain.match(/^(.+?):\s*(.+)$/u);
+ if(m){
+   if(!/^\d+d(?:6|8|10|12|20)\b|^\+\d|defesa|bloqueio/i.test(m[2]))return null;
+   return {name:m[1],first:m[2]};
  }
- return null;
+ if(/\b\d+d(?:6|8|10|12|20)\b/i.test(plain))return null;
+ return {name:plain,first:null};
 }
 function d2Stat(line){
  const plain=d2Clean(line);
@@ -97,7 +98,10 @@ function d2Split(c){
  for(const line of c.stats){
    const clean=d2Clean(line),heading=d2Heading(line);
    if(heading){
-     if(heading==="dados"){mode="dados";weapon=null;subrecord=false;}
+     if(heading==="bonus"){
+       if(mode==="arma"&&weapon)weapon.lines.push(line);
+       else misc.push(line);
+     }else if(heading==="dados"){mode="dados";weapon=null;subrecord=false;}
      else{mode=heading;weapon=null;}
      continue;
    }
