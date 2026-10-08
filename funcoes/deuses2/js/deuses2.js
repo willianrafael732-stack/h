@@ -114,14 +114,14 @@ function pointsWidget(c,onEdit){
 /* Organização visual sem alterações nos valores das fichas originais. */
 const D2_ATTR=[
  {id:"fisico",title:"💪 Atributos físicos",names:["Força","Destreza","Vigor"]},
- {id:"mental",title:"🧠 Atributos mentais",names:["Percepção","Inteligência","Reação","Força de Vontade"]},
- {id:"social",title:"🗣️ Atributos sociais",names:["Empatia","Manipulação","Persuasão","Carisma","Aparência","Lábia"]},
+ {id:"social",title:"🗣️ Atributos sociais",names:["Empatia","Manipulação","Persuasão"]},
+ {id:"mental",title:"🧠 Atributos mentais",names:["Percepção","Inteligência","Reação"]},
  {id:"magico",title:"✨ Níveis mágicos e especialidades",names:["Magia","Sagrado","Raio","Luz","Água","Vento","Natureza","Morte","Gelo","Trevas","Fogo","Terra","Veneno","Fúria"]},
  {id:"talentos",title:"⚔️ Talentos de combate",names:["Intimidação","Liderança","Manha","Esquiva","Briga","Investida","Crítico","Bloqueio","Avaliação","Disparada"]},
  {id:"pericias",title:"🏹 Perícias e habilidades práticas",names:["Animais","Adestramento","Ofício","Condução","Armas 1H","Armas brancas","Armas à distância","Segurança","Furtividade","Armadura","Investigação","Sobrevivência"]},
  {id:"conhecimentos",title:"📖 Conhecimentos",names:["Ocultação","Ocultismo","Acadêmicos","Geografia","Encantamento","Selos","Medicina","Ciências","Tecnologia","Linguística"]},
  {id:"resistencias",title:"🛡️ Resistências",names:["Resistência Física","Resistência Mágica","Resistência Fogo","Resistência Água/Gelo","Resistência Vento","Resistência Terra/Natureza","Resistência Raio","Resistência Veneno","Resistência Mental","Resistência Sagrado","Resistência Sombra"]},
- {id:"outros",title:"📋 Outros atributos documentados",names:[]}
+ {id:"outros",title:"📋 Outros atributos documentados",names:["Força de Vontade","Carisma","Aparência","Lábia"]}
 ];
 const D2_ABILITIES=[
  {id:"ataques",title:"⚔️ Ataques e golpes",hint:"Golpes e danos conforme a fonte"},
@@ -688,6 +688,36 @@ function d2ActionSection(c,group,lines,update,result,refreshers,onEdit){
  section.append(grid);return section;
 }
 
+
+const D2_MAIN_ATTR=[
+ {id:"fisico",label:"💪 Físico",names:["Força","Destreza","Vigor"]},
+ {id:"social",label:"🗣️ Social",names:["Empatia","Manipulação","Persuasão"]},
+ {id:"mental",label:"🧠 Mental",names:["Percepção","Inteligência","Reação"]}
+];
+function d2MainOverview(c){
+ const container=el("section",null,"d2-primary-attributes");
+ container.setAttribute("aria-label","Atributos físicos, sociais e mentais");
+ container.append(el("h3","🧬 Atributos principais"));
+ const row=el("div",null,"d2-main-groups");
+ for(const group of D2_MAIN_ATTR){
+  const card=el("section",null,"d2-main-group d2-main-"+group.id);
+  card.append(el("h4",group.label));
+  const list=el("div",null,"d2-main-values");
+  for(const name of group.names){
+   const official=d2OfficialValue(c,name),value=d2EffectiveValue(c,name),bonus=d2FormBonus(c,name),saved=userState(c).attributes;
+   const unit=el("div",null,"d2-main-attribute");
+   unit.append(el("span",name),el("strong",value===null?"—":String(value)));
+   if(bonus>0&&value!==null)unit.append(el("small","+ "+bonus+"d10 transformação"));
+   else if(Object.prototype.hasOwnProperty.call(saved,name)&&official!==null&&Number(saved[name])!==official)unit.append(el("small","Original: "+official));
+   else if(value===null)unit.append(el("small","Não informado"));
+   list.append(unit);
+  }
+  card.append(list);row.append(card);
+ }
+ container.append(row,el("p","Os valores acompanham o editor e a transformação ativa. Para alterá-los, abra “Editar atributos e habilidades” nesta ficha.","d2-main-hint"));
+ return container;
+}
+
 function sheetCard(c){
  const det=el("details",null,"d2-sheet");det.id=c.id;
  const sum=el("summary"),intro=el("div");
@@ -699,7 +729,7 @@ function sheetCard(c){
   const parsed=d2Split(c),columns=el("div",null,"d2-sheet-columns"),
    left=titlePane("🧬 Atributos e características"),right=titlePane("⚔ Ataques, magias e habilidades");
   left.classList.add("d2-attributes-pane");right.classList.add("d2-abilities-pane");
-  let arsenal,stats,extra,currentPdf=null;const liveRefreshers=[];
+  let arsenal,stats,extra,overviewPanel,currentPdf=null;const liveRefreshers=[];
   const update=()=>tracker.refresh();
   function refreshSheet(){
    if(!built)return;
@@ -711,6 +741,7 @@ function sheetCard(c){
      const temp=el("div");d2SourceSection(temp,group.title,parsed.sections[group.id],c);
      block.replaceChildren(...Array.from(temp.childNodes));
    }
+   const updatedOverview=d2MainOverview(c);overviewPanel.replaceWith(updatedOverview);overviewPanel=updatedOverview;
    const nextExtra=d2ExtraAttributes(c,parsed);extra.replaceWith(nextExtra);extra=nextExtra;
    if(arsenal){const next=d2WeaponSection(c,parsed.weapons,update);arsenal.replaceWith(next);arsenal=next}
    for(const refresh of liveRefreshers)refresh();
@@ -722,6 +753,7 @@ function sheetCard(c){
   }
   const tracker=pointsWidget(c,refreshSheet);
   stats=el("div",null,"d2-stat-summary");det.append(stats);
+  overviewPanel=d2MainOverview(c);det.append(overviewPanel);
   const transformation=d2TransformationPanel(c,refreshSheet);
   det.append(transformation);
   const toolbar=el("div",null,"d2-autosave-toolbar"),pdfDownload=el("button","⬇ Baixar PDF atualizado"),pdfStatus=el("span","Preparando PDF...");
@@ -739,6 +771,7 @@ function sheetCard(c){
   const buffs=d2BuffsSection(c);if(buffs)det.append(buffs);
   const visibleTraitBlocks=[];
   for(const group of D2_ATTR){
+   if(D2_MAIN_ATTR.some(main=>main.id===group.id))continue;
    if(!parsed.sections[group.id]?.length)continue;
    const wrapper=el("div",null,"d2-live-trait-group");d2SourceSection(wrapper,group.title,parsed.sections[group.id],c);
    left.append(wrapper);visibleTraitBlocks.push([group,wrapper]);
