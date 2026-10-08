@@ -513,9 +513,10 @@ function sheetCard(c){
   }
   extra=d2ExtraAttributes(c,parsed);left.append(extra);
   if(parsed.misc.length)d2SourceSection(left,"📋 Observações do documento",parsed.misc,c);
+  const result=el("output","", "d2-roll-output");
   for(const group of D2_ABILITIES){const section=d2ActionSection(c,group,parsed.abilities[group.id],update,result);if(section)right.append(section)}
   if(!D2_ABILITIES.some(g=>parsed.abilities[g.id].length))right.append(el("p","Sem poderes ou ataques descritos nesta ficha.","d2-empty"));
-  const result=el("output","", "d2-roll-output");right.append(result);
+  right.append(result);
   left.id="d2-atributos-"+c.id;right.id="d2-habilidades-"+c.id;
   const links=el("nav",null,"d2-sheet-jumps");links.setAttribute("aria-label","Atalhos para esta ficha");
   for(const [title,target] of [["🗡️ Armas","#d2-arsenal-"+c.id],["💪 Atributos","#d2-atributos-"+c.id],["🔮 Habilidades","#d2-habilidades-"+c.id],["✍️ Editar atributos","#d2-registro-"+c.id]]){
