@@ -718,6 +718,80 @@ function d2MainOverview(c){
  return container;
 }
 
+
+/* Organização das 27 habilidades solicitadas: rótulos externos não alteram os nomes do banco. */
+const D2_SKILL_COLUMNS=[
+ {id:"esquerda",title:"⚔️ Habilidades • esquerda",fields:[
+  ["Intimidação","Intimidação"],["Liderança","Liderança"],["Lábia","Lábia"],
+  ["Bloqueio","Bloqueio"],["Esquiva","Esquiva"],["Briga","Briga"],
+  ["Disparada","Disparada"],["Crítico","Crítico"],["Ocultismo","Ocultismo"]]},
+ {id:"meio",title:"🏹 Habilidades • meio",fields:[
+  ["Adestramento","Adestramento"],["Ofício","Ofício"],["Conduta","Condução"],
+  ["Arma de distância","Armas à distância"],["Arma branca","Armas brancas"],["Segurança","Segurança"],
+  ["Furtividade","Furtividade"],["Armadura","Armadura"],["Investigação","Investigação"]]},
+ {id:"direita",title:"📚 Habilidades • direita",fields:[
+  ["Acadêmico","Acadêmicos"],["Geografia","Geografia"],["Encantamento","Encantamento"],
+  ["Selos","Selos"],["Medicina","Medicina"],["Ciência","Ciências"],
+  ["Tecnologia","Tecnologia"],["Linguística","Linguística"],["Sobrevivência","Sobrevivência"]]}
+];
+function d2SkillsBoard(c,onEdit,editor){
+ const s=userState(c),container=el("section",null,"d2-skills-board");
+ container.setAttribute("aria-label","Habilidades organizadas em três colunas");
+ container.append(el("h3","🎯 Habilidades"));
+ const columns=el("div",null,"d2-skills-columns"),inputRefs=[];
+ for(const group of D2_SKILL_COLUMNS){
+  const card=el("section",null,"d2-skills-column d2-skills-"+group.id);
+  card.append(el("h4",group.title));
+  const list=el("div",null,"d2-skills-list");
+  for(const [label,key] of group.fields){
+   const row=el("label",null,"d2-skill-stat");
+   const original=d2OfficialValue(c,key),name=el("span",label,"d2-skill-stat-name");
+   const input=el("input");
+   input.type="number";input.min="0";input.max="9999";input.step="1";input.inputMode="numeric";
+   input.placeholder="—";
+   input.setAttribute("aria-label","Habilidade "+label+" de "+c.name);
+   input.title="Edite os dados de "+label+" (salvamento automático)";
+   input.value=String(Object.prototype.hasOwnProperty.call(s.attributes,key)?s.attributes[key]:(original??""));
+   const extra=el("small","","d2-skill-stat-extra");
+   let prior=Object.prototype.hasOwnProperty.call(s.attributes,key)?s.attributes[key]:original;
+   input.addEventListener("input",()=>{
+     const raw=input.value.trim(),value=raw===""?null:Number(raw);
+     if(value!==null&&(!Number.isSafeInteger(value)||value<0||value>9999)){
+       extra.textContent="Insira um inteiro de 0 a 9999.";return;
+     }
+     if(value===null)delete s.attributes[key];else s.attributes[key]=value;
+     const persisted=save();
+     if(persisted){
+       for(const sibling of editor.querySelectorAll("input")){
+        if(sibling.getAttribute("aria-label")===key+" de "+c.name){
+          sibling.value=String(value===null?(original??""):value);break;
+        }
+       }
+     }
+     onEdit();
+     if(!persisted)extra.textContent="Não foi possível salvar neste navegador.";
+   });
+   input.addEventListener("change",()=>{
+     const next=Object.prototype.hasOwnProperty.call(s.attributes,key)?s.attributes[key]:original;
+     if(next!==prior){log(c,label+": "+(prior??"—")+" → "+(next??"—"),"habilidade");prior=next}
+   });
+   row.append(name,input,extra);list.append(row);
+   inputRefs.push({input,extra,key,original});
+  }
+  card.append(list);columns.append(card);
+ }
+ container.append(columns,el("p","As alterações são salvas automaticamente e atualizam a ficha, os bônus da forma ativa e o PDF. Um traço indica dado não informado.","d2-skills-note"));
+ function refresh(){
+  for(const {input,extra,key,original}of inputRefs){
+   const current=Object.prototype.hasOwnProperty.call(s.attributes,key)?s.attributes[key]:original;
+   if(input!==document.activeElement)input.value=String(current??"");
+   const bonus=d2FormBonus(c,key),effective=current===null?null:Number(current)+bonus;
+   extra.textContent=bonus>0&&effective!==null?"Com transformação: "+effective:(original!==null&&current!==null&&Number(current)!==original?"Original: "+original:"");
+  }
+ }
+ refresh();return {panel:container,refresh};
+}
+
 function sheetCard(c){
  const det=el("details",null,"d2-sheet");det.id=c.id;
  const sum=el("summary"),intro=el("div");
@@ -729,7 +803,7 @@ function sheetCard(c){
   const parsed=d2Split(c),columns=el("div",null,"d2-sheet-columns"),
    left=titlePane("🧬 Atributos e características"),right=titlePane("⚔ Ataques, magias e habilidades");
   left.classList.add("d2-attributes-pane");right.classList.add("d2-abilities-pane");
-  let arsenal,stats,extra,overviewPanel,currentPdf=null;const liveRefreshers=[];
+  let arsenal,stats,extra,overviewPanel,skillsPanel,currentPdf=null;const liveRefreshers=[];
   const update=()=>tracker.refresh();
   function refreshSheet(){
    if(!built)return;
@@ -742,6 +816,7 @@ function sheetCard(c){
      block.replaceChildren(...Array.from(temp.childNodes));
    }
    const updatedOverview=d2MainOverview(c);overviewPanel.replaceWith(updatedOverview);overviewPanel=updatedOverview;
+   skillsPanel?.refresh();
    const nextExtra=d2ExtraAttributes(c,parsed);extra.replaceWith(nextExtra);extra=nextExtra;
    if(arsenal){const next=d2WeaponSection(c,parsed.weapons,update);arsenal.replaceWith(next);arsenal=next}
    for(const refresh of liveRefreshers)refresh();
@@ -754,6 +829,7 @@ function sheetCard(c){
   const tracker=pointsWidget(c,refreshSheet);
   stats=el("div",null,"d2-stat-summary");det.append(stats);
   overviewPanel=d2MainOverview(c);det.append(overviewPanel);
+  skillsPanel=d2SkillsBoard(c,refreshSheet,tracker.panel);det.append(skillsPanel.panel);
   const transformation=d2TransformationPanel(c,refreshSheet);
   det.append(transformation);
   const toolbar=el("div",null,"d2-autosave-toolbar"),pdfDownload=el("button","⬇ Baixar PDF atualizado"),pdfStatus=el("span","Preparando PDF...");
