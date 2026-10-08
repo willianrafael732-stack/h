@@ -118,7 +118,7 @@ function pointsWidget(c,onEdit){
  const s=userState(c),panel=el("section",null,"d2-battle");
  panel.append(el("h3","✍️ Editar atributos, habilidades e status"),
   el("p","Os valores originais aparecem como ponto de partida. Edite qualquer campo: as alterações são aplicadas ao personagem, salvas imediatamente neste navegador e incluídas no PDF. Campos vazios continuam sem valor informado.","d2-battle-intro"));
- const wrap=el("div",null,"d2-battle-grid"),left=el("div",null,"d2-battle-column"),right=el("div",null,"d2-battle-column");
+ const wrap=el("div",null,"d2-battle-grid"),left=el("div",null,"d2-battle-column"),right=el("div",null,"d2-battle-column"),inputRefs=[];
  const status=el("p","", "d2-log-status"),list=el("ol",null,"d2-log-list");
  function changed(){const saved=save();status.textContent=saved?"✓ Ficha salva automaticamente; status e PDF atualizados.":"Não foi possível salvar no navegador. Exporte o PDF para guardar a ficha.";onEdit?.()}
  function beginVal(key){
@@ -148,7 +148,8 @@ function pointsWidget(c,onEdit){
    });
    const title=el("span",key,"d2-point-name"),official=d2OfficialValue(c,key);
    if(official!==null)title.append(el("small","Original: "+official,"d2-point-original"));
-   row.append(title,field);grid.append(row);
+   const dots=el("span",null,"d2-editor-dots");dots.append(d2Dots(d2EffectiveValue(c,key),key));
+    row.append(title,field,dots);grid.append(row);inputRefs.push({key,field,dots});
   });
   block.append(grid);left.append(block);
  });
@@ -187,6 +188,7 @@ function pointsWidget(c,onEdit){
  const note=el("textarea",null,"d2-log-note");note.rows=2;note.maxLength=750;note.placeholder="Ex.: usou a suprema, sofreu dano, protegeu aliado...";
  const add=el("button","Registrar evento"),clear=el("button","Limpar histórico","secondary"),reset=el("button","Restaurar valores originais","secondary"),actions=el("div",null,"d2-log-actions");
  function refresh(){
+  for(const {key,field,dots}of inputRefs){const current=beginVal(key);if(field!==document.activeElement)field.value=current==null?"":String(current);dots.replaceChildren(d2Dots(d2EffectiveValue(c,key),key))}
   list.replaceChildren();
   if(!s.log.length){list.append(el("li","Nenhum evento registrado."));return}
   s.log.forEach(e=>{const li=el("li"),time=new Date(e.time);
@@ -868,7 +870,29 @@ function d2Dots(value,name){
  bar.setAttribute("role","img");bar.setAttribute("aria-label",name+": "+count+" pontos");
  return bar;
 }
-function d2MainOverview(c){
+function d2PointButtons(c,key,onEdit){
+ const s=userState(c),official=d2OfficialValue(c,key),base=Object.prototype.hasOwnProperty.call(s.attributes,key)?Number(s.attributes[key]):(official===null?0:Number(official));
+ const node=el("div",null,"d2-points-actions");
+ for(const [step,label,sign]of [[-1,"Retirar ponto","−"],[1,"Adicionar ponto","+"]]){
+  const button=el("button",sign,"d2-point-action");button.type="button";
+  button.disabled=step===-1?base<=0:base>=9999;
+  button.setAttribute("aria-label",label+" em "+key+" de "+c.name);
+  button.title=label+" em "+key;
+  button.addEventListener("click",()=>{
+   const stored=userState(c).attributes;
+   const original=d2OfficialValue(c,key);
+   const old=Object.prototype.hasOwnProperty.call(stored,key)?Number(stored[key]):(original===null?0:Number(original));
+   const next=Math.max(0,Math.min(9999,old+step));if(next===old)return;
+   stored[key]=next;
+   log(c,key+": "+old+" → "+next,"pontos");
+   onEdit?.();
+  });
+  node.append(button);
+ }
+ node.append(el("small","Base: "+base,"d2-point-base"));
+ return node;
+}
+function d2MainOverview(c,onEdit){
  const container=el("section",null,"d2-primary-attributes");
  container.setAttribute("aria-label","Atributos físicos, sociais e mentais");
  container.append(el("h3","🧬 Atributos principais"));
@@ -880,7 +904,7 @@ function d2MainOverview(c){
   for(const name of group.names){
    const official=d2OfficialValue(c,name),value=d2EffectiveValue(c,name),bonus=d2FormBonus(c,name),saved=userState(c).attributes;
    const unit=el("div",null,"d2-main-attribute");
-   unit.append(el("span",name),el("strong",value===null?"—":String(value)),d2Dots(value,name));
+   unit.append(el("span",name),el("strong",value===null?"—":String(value)),d2Dots(value,name),d2PointButtons(c,name,onEdit));
    if(bonus>0&&value!==null)unit.append(el("small","+ "+bonus+"d10 transformação"));
    else if(Object.prototype.hasOwnProperty.call(saved,name)&&official!==null&&Number(saved[name])!==official)unit.append(el("small","Original: "+official));
    else if(value===null)unit.append(el("small","Não informado"));
@@ -888,7 +912,7 @@ function d2MainOverview(c){
   }
   card.append(list);row.append(card);
  }
- container.append(row,el("p","Os valores acompanham o editor e a transformação ativa. Para alterá-los, abra “Editar atributos e habilidades” nesta ficha.","d2-main-hint"));
+ container.append(row,el("p","Cada bolinha representa 1 ponto. Use − e + para ajustar; os bônus da transformação são exibidos à parte. O PDF acompanha as alterações.","d2-main-hint"));
  return container;
 }
 
@@ -918,7 +942,7 @@ function d2SkillsBoard(c,onEdit,editor){
   card.append(el("h4",group.title));
   const list=el("div",null,"d2-skills-list");
   for(const [label,key] of group.fields){
-   const row=el("label",null,"d2-skill-stat");
+   const row=el("div",null,"d2-skill-stat"),fieldLabel=el("label",null,"d2-skill-field");
    const original=d2OfficialValue(c,key),name=el("span",label,"d2-skill-stat-name");
    const input=el("input");
    input.type="number";input.min="0";input.max="9999";input.step="1";input.inputMode="numeric";
@@ -949,18 +973,18 @@ function d2SkillsBoard(c,onEdit,editor){
      const next=Object.prototype.hasOwnProperty.call(s.attributes,key)?s.attributes[key]:original;
      if(next!==prior){log(c,label+": "+(prior??"—")+" → "+(next??"—"),"habilidade");prior=next}
    });
-   row.append(name,input,points,extra);list.append(row);
+   fieldLabel.append(name,input);row.append(fieldLabel,points,extra);list.append(row);
    inputRefs.push({input,extra,points,key,original});
   }
   card.append(list);columns.append(card);
  }
- container.append(columns,el("p","As alterações são salvas automaticamente e atualizam a ficha, os bônus da forma ativa e o PDF. Um traço indica dado não informado.","d2-skills-note"));
+ container.append(columns,el("p","Use − e + para ajustar os pontos, ou digite o valor. Alterações são salvas automaticamente e atualizam o PDF e os bônus.","d2-skills-note"));
  function refresh(){
   for(const {input,extra,points,key,original}of inputRefs){
    const current=Object.prototype.hasOwnProperty.call(s.attributes,key)?s.attributes[key]:original;
    if(input!==document.activeElement)input.value=String(current??"");
    const bonus=d2FormBonus(c,key),effective=current===null?null:Number(current)+bonus;
-   points.replaceChildren(d2Dots(effective,key));
+   points.replaceChildren(d2Dots(effective,key),d2PointButtons(c,key,onEdit));
    extra.textContent=bonus>0&&effective!==null?"Com transformação: "+effective:(original!==null&&current!==null&&Number(current)!==original?"Original: "+original:"");
   }
  }
@@ -990,7 +1014,7 @@ function sheetCard(c){
      const temp=el("div");d2SourceSection(temp,group.title,parsed.sections[group.id],c);
      block.replaceChildren(...Array.from(temp.childNodes));
    }
-   const updatedOverview=d2MainOverview(c);overviewPanel.replaceWith(updatedOverview);overviewPanel=updatedOverview;
+   const updatedOverview=d2MainOverview(c,refreshSheet);overviewPanel.replaceWith(updatedOverview);overviewPanel=updatedOverview;
    tracker.refresh();skillsPanel?.refresh();
    const nextExtra=d2ExtraAttributes(c,parsed);extra.replaceWith(nextExtra);extra=nextExtra;
    if(arsenal){const next=d2WeaponSection(c,parsed.weapons,update);arsenal.replaceWith(next);arsenal=next}
@@ -1003,7 +1027,7 @@ function sheetCard(c){
   }
   const tracker=pointsWidget(c,refreshSheet);
   stats=el("div",null,"d2-stat-summary");det.append(stats);
-  overviewPanel=d2MainOverview(c);det.append(overviewPanel);
+  overviewPanel=d2MainOverview(c,refreshSheet);det.append(overviewPanel);
   skillsPanel=d2SkillsBoard(c,refreshSheet,tracker.panel);det.append(skillsPanel.panel);
   const transformation=d2TransformationPanel(c,refreshSheet);
   det.append(transformation);

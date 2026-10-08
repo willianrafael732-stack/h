@@ -351,3 +351,16 @@
 @media(max-width:800px){.d2-items-layout{grid-template-columns:1fr}.d2-items-panel{margin:9px 8px;padding:11px}}
 @media(max-width:450px){.d2-item-form{grid-template-columns:1fr}.d2-item-form input:nth-child(3),.d2-item-form textarea{grid-column:auto}}
 @media print{.d2-items-panel,.d2-items-column,.d2-item-record{background:white!important;color:#111!important;border-color:#888!important}.d2-item-form,.d2-item-buttons,.d2-items-source,.d2-items-column[id^="d2-dados-"]{display:none!important}.d2-item-info *{color:#111!important}}
+
+/* Pontos editáveis dos deuses, de 0 a 9999 sem limite artificial nos atributos. */
+.d2-points-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap;width:100%}
+.d2-point-action{background:#354b3f;border:1px solid #b5a071;color:#ffe5ac;border-radius:7px;padding:3px 9px;min-width:34px;min-height:31px;cursor:pointer;font-weight:850;font-size:1.15rem}
+.d2-point-action:disabled{opacity:.37;cursor:not-allowed}
+.d2-point-action:not(:disabled):focus-visible,.d2-point-action:not(:disabled):hover{outline:2px solid #f2cd85;outline-offset:1px}
+.d2-point-base{color:#cbd6ce!important;width:auto!important;font-size:.7rem!important}
+.d2-main-attribute .d2-points-actions{flex:1 1 100%}
+.d2-skill-field{display:grid;grid-template-columns:minmax(0,1fr) 74px;gap:7px;align-items:center;min-width:0;grid-column:1/-1}
+.d2-skill-points .d2-points-actions{margin-top:4px}
+.d2-editor-dots{display:block;width:100%}
+.d2-editor-dots .d2-dot-track{font-size:.74rem;letter-spacing:.04em}
+@media print{.d2-points-actions{display:none!important}.d2-editor-dots .d2-dot-track{color:#111!important}}
