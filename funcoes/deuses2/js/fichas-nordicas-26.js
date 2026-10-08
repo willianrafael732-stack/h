@@ -3,6 +3,20 @@
 const $=id=>document.getElementById(id),fold=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
 const make=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined&&text!==null)n.textContent=String(text);if(cls)n.className=cls;return n};
 const diceStr=parts=>parts?.length?parts.map(p=>p.count+"d10 "+p.type).join(" + "):"Não especificado";
+/* Pontos editáveis da coleção nórdica, sem sobrescrever o PDF original. */
+const POINT_KEY="hurras_nordicos26_pontos_v1";
+let pointState={};
+try{const data=JSON.parse(localStorage.getItem(POINT_KEY)||"{}");if(data&&typeof data==="object"&&!Array.isArray(data))pointState=data}catch(e){}
+function pointValue(c,scope,entry){
+ const value=pointState[c.id]?.[scope+"|"+entry.name];
+ return Number.isSafeInteger(value)&&value>=0&&value<=9999?value:entry.points;
+}
+function savePoint(c,scope,entry,value){
+ if(!pointState[c.id]||typeof pointState[c.id]!=="object")pointState[c.id]={};
+ const key=scope+"|"+entry.name;
+ if(value===entry.points)delete pointState[c.id][key];else pointState[c.id][key]=value;
+ try{localStorage.setItem(POINT_KEY,JSON.stringify(pointState));return true}catch(e){return false}
+}
 function fDots(points,name){
  const value=Number(points),bar=make("span",null,"f-field-points");
  if(!Number.isFinite(value)||value<0){bar.textContent="—";return bar}
@@ -10,11 +24,37 @@ function fDots(points,name){
  bar.textContent="●".repeat(Math.min(n,slots))+"○".repeat(Math.max(0,slots-n))+(n>slots?" +"+(n-slots):"");
  bar.setAttribute("role","img");bar.setAttribute("aria-label",name+": "+n+" pontos");return bar;
 }
-function values(title,arr,type){
+function values(title,arr,type,c,scope){
  const card=make("section",null,"f-box f-"+type);
  card.append(make("h3",title));
  const rows=make("div",null,"f-field-list");
- for(const entry of arr){const field=make("div",null,"f-field");field.append(make("span",entry.name),make("strong",entry.points),fDots(entry.points,entry.name));rows.append(field)}
+ for(const entry of arr){
+  const field=make("div",null,"f-field"),head=make("div",null,"f-point-head"),value=make("strong"),dots=make("div",null,"f-point-dots");
+  head.append(make("span",entry.name),value);field.append(head,dots);
+  const controls=make("div",null,"f-point-controls"),original=make("small","","f-point-original");
+  const minus=make("button","−"),plus=make("button","+"),reset=make("button","↺");
+  for(const button of [minus,plus,reset])button.type="button";
+  minus.setAttribute("aria-label","Retirar um ponto de "+entry.name+" de "+c.name);
+  plus.setAttribute("aria-label","Adicionar um ponto de "+entry.name+" de "+c.name);
+  reset.setAttribute("aria-label","Restaurar os pontos originais de "+entry.name+" de "+c.name);
+  reset.title="Restaurar os pontos originais do PDF";
+  function refresh(){
+   const current=Number(pointValue(c,scope,entry));
+   value.textContent=String(current);dots.replaceChildren(fDots(current,entry.name));
+   minus.disabled=current<=0;plus.disabled=current>=9999;reset.disabled=current===entry.points;
+   original.textContent=current===entry.points?"":"Original: "+entry.points;
+  }
+  for(const [button,delta]of [[minus,-1],[plus,1]]){
+   button.addEventListener("click",()=>{
+    const current=Number(pointValue(c,scope,entry)),next=Math.max(0,Math.min(9999,current+delta));
+    if(current===next)return;
+    const saved=savePoint(c,scope,entry,next);refresh();
+    if(!saved)original.textContent="Erro ao salvar pontos no navegador";
+   });
+  }
+  reset.addEventListener("click",()=>{savePoint(c,scope,entry,entry.points);refresh()});
+  controls.append(minus,plus,reset,original);field.append(controls);rows.append(field);refresh();
+ }
  card.append(rows);return card;
 }
 function item(c){
@@ -24,12 +64,12 @@ function item(c){
  const badges=make("div",null,"f-stats");
  for(const [k,v] of [["NÍVEL",c.level],["❤️ VIDA",c.life],["🔵 MANA",c.mana]]){const badge=make("span",k+" "+v);badges.append(badge)}
  head.append(identity,badges);card.append(head);
- const attrs=make("section",null,"f-section");attrs.append(make("h3","🧬 Atributos"));
- const attrGrid=make("div",null,"f-four");for(const [title,key] of [["💪 Físico","physical"],["🗣️ Social","social"],["🧠 Mental","mental"],["✨ Místico","mystical"]])attrGrid.append(values(title,c.attributes[key],key));
+ const attrs=make("section",null,"f-section");attrs.append(make("h3","🧬 Atributos"),make("p","● preenchido • ○ vazio • −/+ ajusta os pontos • ↺ restaura o PDF. Os danos originais dos golpes não são alterados.","f-points-note"));
+ const attrGrid=make("div",null,"f-four");for(const [title,key] of [["💪 Físico","physical"],["🗣️ Social","social"],["🧠 Mental","mental"],["✨ Místico","mystical"]])attrGrid.append(values(title,c.attributes[key],key,c,"attr:"+key));
  attrs.append(attrGrid);card.append(attrs);
  const skills=make("section",null,"f-section");skills.append(make("h3","🎯 Habilidades"));
  const skillGrid=make("div",null,"f-three");
- for(const [title,key] of [["⚔️ Esquerda","left"],["🏹 Meio","middle"],["📚 Direita","right"]])skillGrid.append(values(title,c.skills[key],key));
+ for(const [title,key] of [["⚔️ Esquerda","left"],["🏹 Meio","middle"],["📚 Direita","right"]])skillGrid.append(values(title,c.skills[key],key,c,"skill:"+key));
  skills.append(skillGrid);card.append(skills);
  const attacks=make("section",null,"f-section");
  attacks.append(make("h3","🗡️ Arma principal: "+c.weapon));

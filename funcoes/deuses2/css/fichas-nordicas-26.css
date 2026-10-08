@@ -40,3 +40,15 @@
 /* Escala de pontos dos atributos e 27 habilidades de cada ficha nórdica. */
 .f-field{flex-wrap:wrap}.f-field-points{flex:0 0 100%;font-size:.75rem;line-height:1.4;letter-spacing:.07em;color:#f4ca79;overflow-wrap:anywhere}
 @media print{.f-field-points{color:#111!important;letter-spacing:0}}
+
+/* Controles de pontos das 26 fichas; impressão preserva os pontos atuais. */
+.f-point-head{width:100%;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.f-point-dots{width:100%}
+.f-point-dots .f-field-points{font-size:.79rem;letter-spacing:.055em}
+.f-point-controls{display:flex;align-items:center;flex-wrap:wrap;gap:5px;width:100%}
+.f-point-controls button{min-width:28px;background:#344940;color:#ffe3b1;border:1px solid #b5a06d;border-radius:6px;padding:4px 9px;font-size:.86rem;font-weight:850;cursor:pointer}
+.f-point-controls button:disabled{opacity:.38;cursor:not-allowed}
+.f-point-controls button:not(:disabled):hover,.f-point-controls button:not(:disabled):focus-visible{outline:2px solid #ffe0a0;outline-offset:1px}
+.f-point-original{color:#cfe2c5;font-size:.7rem}
+.f-points-note{font-size:.8rem;color:#decda9;line-height:1.4;margin:0 0 13px}
+@media print{.f-point-controls{display:none!important}.f-point-dots .f-field-points{color:#111!important}}
