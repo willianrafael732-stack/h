@@ -47,8 +47,7 @@ const groups=[
 ['Armas instrumentais','armas/Instrumentais.html','Ferramentas especiais']]},
 {label:'Mundo & seres',icon:'♜',items:[
 ['Bestiário • fichas completas','funcoes/bestiario/index.html','110 criaturas do arquivo + 19 seres nórdicos'],
-['Deuses & mitologias','funcoes/deuses/index.html','Panteões, semideuses e combate nórdico'],
-['Deuses 2 • arquivo completo','funcoes/deuses2/index.html','66 fichas, panteões, bestiário, NPCs e saga'],
+['✦ Deuses • compêndio completo','funcoes/deuses2/index.html','66 fichas, 228 divindades, bestiário, NPCs e Ragnarök'],
 ['Galeria de imagens','funcoes/galeria-i.html','192 imagens originais assets/i'],
 ['Animais','animais/animais.html','Criaturas e companheiros'],
 ['NPCs conhecidos','funcoes/npcs.html','Revelados aos jogadores'],
@@ -59,7 +58,7 @@ const groups=[
 ['NPCs do mestre','funcoes/mestre-npcs.html','Notas e segredos da campanha'],
 ['Arquivo de NPCs','funcoes/arquivo-npcs.html','43 NPCs da campanha'],
 ['☠ Bestiário completo','funcoes/bestiario/index.html','Criaturas e chefes + textos originais'],
-['✦ Panteão dos Deuses','funcoes/deuses/index.html','Divindades, Thor e semideuses'],
+['✦ Panteão dos Deuses','funcoes/deuses2/index.html','Divindades, Thor e semideuses'],
 ['Regras completas','funcoes/sistema-completo.html','Livro do mestre'],
 ['Forja de ficha','funcoes/clan.html','Gerenciar personagens']]},
 {label:'Raças',icon:'♟',items:[
@@ -85,7 +84,7 @@ const groups=[
 ['Ninja','raca/ninja.html','Classe'],['Tecnomante','raca/tecnomancer.html','Classe'],
 ['Transmutador','raca/transmutador.html','Classe']]}
 ];
-const mainLinks=[['Início','index.html'],['Fichas','funcoes/criacao-de-ficha.html'],['Dark Fantasy','funcoes/ficha-dark-fantasy.html'],['Regras','funcoes/sistema-completo.html'],['☠ Bestiário','funcoes/bestiario/index.html'],['✦ Panteão','funcoes/deuses/index.html'],['NPCs','funcoes/arquivo-npcs.html'],['Mestre','funcoes/mestre.html']];
+const mainLinks=[['Início','index.html'],['Fichas','funcoes/criacao-de-ficha.html'],['Dark Fantasy','funcoes/ficha-dark-fantasy.html'],['Regras','funcoes/sistema-completo.html'],['☠ Bestiário','funcoes/bestiario/index.html'],['✦ Panteão','funcoes/deuses2/index.html'],['NPCs','funcoes/arquivo-npcs.html'],['Mestre','funcoes/mestre.html']];
 const normalize=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 const unique=[...new Map(groups.flatMap(g=>g.items.map(i=>[i[1],{...{group:g.label},name:i[0],path:i[1],detail:i[2]}]))).values()];
 function E(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined&&txt!==null)e.textContent=txt;return e}
@@ -98,12 +97,12 @@ header.setAttribute('role','navigation');header.setAttribute('aria-label','Naveg
 const head=E('div','hnav-top');const brand=A('✦ HURRAS FANTASY','index.html','hnav-brand');brand.setAttribute('aria-label','Hurras Fantasy - início');head.append(brand);
 const compact=E('div','hnav-actions');const search=E('button','hnav-search','⌕  Buscar páginas');search.type='button';search.setAttribute('aria-keyshortcuts','Control+K');const menu=E('button','hnav-menu-btn','☰  Todas as opções');menu.type='button';menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-controls','hnav-drawer');compact.append(search,menu);head.append(compact);header.append(head);
 const shortcuts=E('div','hnav-shortcuts');
-mainLinks.forEach(([label,dest])=>{let a=A(label,dest,'hnav-shortcut');if(dest==='funcoes/bestiario/index.html'||dest==='funcoes/deuses/index.html')a.classList.add('hnav-featured');const target=url(dest).split('?')[0].split('#')[0];if(target===location.href.split('?')[0].split('#')[0]){a.setAttribute('aria-current','page');a.classList.add('active')}shortcuts.append(a)});header.append(shortcuts);
+mainLinks.forEach(([label,dest])=>{let a=A(label,dest,'hnav-shortcut');if(dest==='funcoes/bestiario/index.html'||dest==='funcoes/deuses2/index.html')a.classList.add('hnav-featured');const target=url(dest).split('?')[0].split('#')[0];if(target===location.href.split('?')[0].split('#')[0]){a.setAttribute('aria-current','page');a.classList.add('active')}shortcuts.append(a)});header.append(shortcuts);
 const drawer=E('section','hnav-drawer');drawer.id='hnav-drawer';drawer.hidden=true;
 const intro=E('p','hnav-drawer-hint','Escolha uma categoria. Busca rápida: Ctrl + K.');
 drawer.append(intro);
 const container=E('div','hnav-groups');
-groups.forEach(group=>{const block=E('details','hnav-group');const summary=E('summary',null,group.icon+'  '+group.label);const links=E('div','hnav-group-links');group.items.forEach(i=>{const a=A(i[0],i[1]);if(i[1]==='funcoes/bestiario/index.html'||i[1]==='funcoes/deuses/index.html')a.classList.add('hnav-featured-link');links.append(a)});block.append(summary,links);container.append(block)});drawer.append(container);header.append(drawer);
+groups.forEach(group=>{const block=E('details','hnav-group');const summary=E('summary',null,group.icon+'  '+group.label);const links=E('div','hnav-group-links');group.items.forEach(i=>{const a=A(i[0],i[1]);if(i[1]==='funcoes/bestiario/index.html'||i[1]==='funcoes/deuses2/index.html')a.classList.add('hnav-featured-link');links.append(a)});block.append(summary,links);container.append(block)});drawer.append(container);header.append(drawer);
 const shade=E('div','hnav-search-shade');shade.id='hnav-search-shade';shade.hidden=true;shade.setAttribute('role','presentation');
 const searchBox=E('div','hnav-search-panel');searchBox.setAttribute('role','dialog');searchBox.setAttribute('aria-modal','true');searchBox.setAttribute('aria-label','Buscar páginas do Hurras');const searchHead=E('div','hnav-search-head'),input=E('input','hnav-search-input');
 input.type='search';input.id='hnav-global-search';input.placeholder='Digite: poções, armas, bestiário, classes...';input.setAttribute('aria-label','Pesquisar opções');const close=E('button','hnav-close','✕');close.type='button';close.setAttribute('aria-label','Fechar pesquisa');searchHead.append(input,close);const results=E('div','hnav-results');results.id='hnav-results';searchBox.append(searchHead,results);shade.append(searchBox);
