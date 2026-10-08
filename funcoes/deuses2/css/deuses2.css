@@ -125,3 +125,11 @@
 .d2-resource-grid input{background:#121b20;color:#f6e9c8;border:1px solid #8b855e;border-radius:7px;padding:9px}
 @media(max-width:600px){.d2-autosave-toolbar{padding:0 9px 13px;align-items:stretch;flex-direction:column}.d2-pdf-download{width:100%}}
 @media print{.d2-autosave-toolbar{display:none}}
+
+
+.d2-editor-wrap{margin:0 13px 16px;border:1px solid #8c9e70;background:#192721;border-radius:12px;overflow:hidden}
+.d2-editor-wrap>summary{cursor:pointer;font-weight:900;color:#f0dfa8;padding:15px 19px;background:linear-gradient(110deg,#345041,#25312b);font-size:1rem}
+.d2-editor-wrap[open]>summary{border-bottom:1px solid #648468}
+.d2-editor-wrap .d2-battle{margin:10px;border-color:#718870}
+@media(max-width:600px){.d2-editor-wrap{margin:0 8px 11px}.d2-editor-wrap>summary{padding:12px}}
+@media print{.d2-editor-wrap{display:none}}

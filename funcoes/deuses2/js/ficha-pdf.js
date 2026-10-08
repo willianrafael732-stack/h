@@ -18,7 +18,7 @@ function linesOf(t,limit){
  if((line?line.length+1:0)+word.length>limit){lines.push(line);line=word}else line+=(line?" ":"")+word}
  if(line)lines.push(line);return lines.length?lines:[" "];
 }
-function document(c,fields,stored,groups,parse){
+function document(c,fields,stored,groups,parse,variantsFor){
  const commands=[];let y=0,pageNumber=0;
  const cream="0.94 0.87 0.68",dark="0.10 0.16 0.17",ink="0.12 0.17 0.19",soft="0.35 0.40 0.42";
  function page(){pageNumber++;y=764;commands.push([]);
@@ -55,6 +55,12 @@ function document(c,fields,stored,groups,parse){
  if(!parsed.weapons.length)line("Sem arma declarada nesta ficha; confira os ataques.");
  for(const w of parsed.weapons){
    line(w.name,{bold:true,size:11});for(const item of w.lines)line(item,{indent:48});
+   if(typeof variantsFor==="function"){
+     for(const entry of variantsFor(w,stored)){
+       line(entry.name+": "+entry.formula,{indent:48,bold:true});
+       line("Dano teorico: "+entry.range,{indent:50,color:soft,size:8});
+     }
+   }
  }
  const manual=stored.modifiers||{};
  if(manual.physical||manual.elemental){section("Modificadores de dano inseridos manualmente");

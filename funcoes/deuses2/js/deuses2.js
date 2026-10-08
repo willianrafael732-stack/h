@@ -388,6 +388,17 @@ function d2WeaponSection(c,weapons,notify){
  if(weapons.length)display.append(el("p","Os cálculos distinguem dano base e bônus diretos da arma. Bônus de atributo (Força, Reação etc.) não são convertidos em dano. Golpes já calculados na fonte não recebem bônus adicionais automaticamente.","d2-weapon-note"));
  return display;
 }
+function d2PdfVariants(w,stored){
+ const summary=d2WeaponDamage(w),variants=d2Variants(summary.basics,summary.bonuses),manual=stored.modifiers||{};
+ if(summary.basics.length&&(Number(manual.physical||0)>0||Number(manual.elemental||0)>0)){
+  const extra=[];
+  if(Number(manual.physical||0)>0)extra.push({count:Number(manual.physical),sides:10,type:"físico"});
+  const element=summary.basics.find(x=>x.type!=="físico");
+  if(Number(manual.elemental||0)>0&&element)extra.push({count:Number(manual.elemental),sides:10,type:element.type});
+  if(extra.length)variants.push({name:"Com bônus manuais da ficha",parts:[...summary.basics,...summary.bonuses,...extra]});
+ }
+ return variants.map(v=>({name:v.name,formula:d2Formula(v.parts),range:d2Range(v.parts)}));
+}
 function d2ConditionalBuffs(c){
  const lines=[...(c.stats||[]),...(c.actions||[])],found=[];
  let current="";
@@ -486,7 +497,7 @@ function sheetCard(c){
    if(arsenal){const next=d2WeaponSection(c,parsed.weapons,update);arsenal.replaceWith(next);arsenal=next}
    try{
     if(!window.HurrasFichaPDF)throw Error("Gerador de PDF não carregado");
-    currentPdf=window.HurrasFichaPDF.create(c,data.fields,userState(c),D2_ABILITIES,d2Split);
+    currentPdf=window.HurrasFichaPDF.create(c,data.fields,userState(c),D2_ABILITIES,d2Split,d2PdfVariants);
     pdfStatus.textContent="✓ PDF atualizado automaticamente • "+currentPdf.pages+" página(s) • pronto para baixar";
    }catch(err){pdfStatus.textContent="Erro ao preparar PDF: "+err.message}
   }
@@ -523,7 +534,11 @@ function sheetCard(c){
    const a=el("a",title);a.href=target;links.append(a)}
   tracker.panel.id="d2-registro-"+c.id;
   det.insertBefore(links,arsenal);
-  columns.append(left,right);det.append(columns,tracker.panel);
+  const editor=el("details",null,"d2-editor-wrap");
+  editor.append(el("summary","✍️ Editar atributos e habilidades • atualização e PDF automáticos"),tracker.panel);
+  det.insertBefore(editor,arsenal);
+  links.querySelectorAll?.("a").forEach(a=>{if(a.href?.includes("#d2-registro-"))a.addEventListener("click",()=>{editor.open=true})});
+  columns.append(left,right);det.append(columns);
   const historic=d2Historical(c);if(historic)det.append(historic);
   const exact=el("details",null,"d2-details-note");
   exact.append(el("summary","📜 Ver transcrição integral sem alterações"),el("pre",c.raw));det.append(exact);
