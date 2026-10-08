@@ -38,18 +38,181 @@ function pointsWidget(c,notify){const s=userState(c),panel=el("section",null,"d2
  actions.append(add,clear);right.append(el("label","Registrar ação do combate","d2-log-label"),note,actions,status,list);refresh();wrap.append(left,right);panel.append(wrap);
  return {panel,refresh};
 }
-function sheetCard(c){const det=el("details",null,"d2-sheet");det.id=c.id;const sum=el("summary"),intro=el("div");intro.append(el("div",c.title,"d2-sheet-name"),el("div",c.group+" · Saga do Ragnarök","d2-sheet-meta"));sum.append(intro,el("span","Nível "+c.level,"d2-level"));det.append(sum);
- let built=false;function build(){if(built)return;built=true;const columns=el("div",null,"d2-sheet-columns"),left=titlePane("Atributos • recursos • armas"),right=titlePane("Golpes • magias • passivas"),tracker=pointsWidget(c);const update=tracker.refresh;
- c.stats.forEach(v=>left.append(el("div",v,"d2-source-line")));if(!c.stats.length)left.append(el("p","Sem dados nesta seção.","d2-empty"));
- let previous="";
- c.actions.forEach(line=>{const row=el("div",null,"d2-combat-line"),text=el("span",line),actions=el("div",null,"d2-attack-buttons");const formula=dice(line);if(formula){const button=el("button","🎲 Rolar");button.type="button";const name=previous||c.name;button.addEventListener("click",()=>{const val=roll(c,line,name,update);result.textContent="Rolagem: "+val});actions.append(button)}
- const saveBtn=el("button","Registrar");saveBtn.type="button";saveBtn.addEventListener("click",()=>log(c,"Habilidade/ação: "+line,"uso",update));actions.append(saveBtn);row.append(text,actions);right.append(row);
- if(!formula&&!/^(?:[^\p{L}]*)(?:SUPREMA|PASSIVA|Ataques|Magias|Técnicas|Suprema|Passiva)\b/iu.test(line)&&line.length<80)previous=line;
- });
- if(!c.actions.length)right.append(el("p","Não há golpes separados nesta ficha; consulte a transcrição.","d2-empty"));
- const result=el("output","", "d2-roll-output");right.append(result);columns.append(left,right);det.append(columns,tracker.panel);
- const exact=el("details",null,"d2-details-note");exact.append(el("summary","📜 Ver texto original completo"),el("pre",c.raw));det.append(exact);
- }det.addEventListener("toggle",()=>{if(det.open)build()});return det}
+
+/* Organização visual sem alterações nos valores das fichas originais. */
+const D2_ATTR=[
+ {id:"fisico",title:"💪 Atributos físicos",names:["Força","Destreza","Vigor"]},
+ {id:"mental",title:"🧠 Atributos mentais",names:["Percepção","Inteligência","Reação","Força de Vontade"]},
+ {id:"social",title:"🗣️ Atributos sociais",names:["Empatia","Manipulação","Persuasão","Carisma"]},
+ {id:"magico",title:"✨ Atributos mágicos e elementais",names:["Magia","Sagrado","Raio","Luz","Água","Vento","Natureza","Morte","Gelo","Trevas","Fogo","Terra","Veneno","Fúria","Sombrio"]},
+ {id:"combate",title:"🛡️ Atributos de combate",names:["Defesa","Bloqueio","Armadura","Esquiva","Crítico"]},
+ {id:"outros",title:"📚 Outros atributos",names:[]}
+];
+const D2_ABILITIES=[
+ {id:"ataques",title:"⚔️ Ataques e golpes",hint:"Golpes e danos conforme a fonte"},
+ {id:"tecnicas",title:"🎯 Técnicas e habilidades de combate",hint:"Manobras, defesas e recursos especiais"},
+ {id:"magias",title:"🔮 Magias, habilidades mentais e poderes",hint:"Efeitos mágicos, suporte e habilidades especiais"},
+ {id:"supremas",title:"👑 Habilidades supremas",hint:"Golpes e efeitos de maior impacto"},
+ {id:"passivas",title:"♾️ Habilidades passivas",hint:"Efeitos permanentes e condições especiais"},
+ {id:"drops",title:"🎁 Drops e recompensas",hint:"Itens informados pelo autor"},
+ {id:"outros",title:"📌 Outras ações da ficha",hint:"Detalhes adicionais do documento"}
+];
+function d2Clean(line){return String(line||"").replace(/^[^\p{L}\d]+/u,"").trim()}
+function d2Heading(line){
+ const s=d2Clean(line),t=norm(s);
+ if(/^(?:atributos|niveis magicos|bonus):?$/.test(t))return "dados";
+ if(/^(?:poderes|magias|habilidades(?: especiais)?)(?:\s*\/.*)?$/.test(t))return "magias";
+ if(/^(?:tecnicas)(?:\s*\/.*)?$/.test(t))return "tecnicas";
+ if(/^(?:ataques)(?:\s*\/.*)?$/.test(t))return "ataques";
+ if(/^suprema(?:\s|$)/.test(t))return "supremas";
+ if(/^passiva(?:\s|$)/.test(t))return "passivas";
+ if(/^(?:drop|drops|recompensas)(?:\s|$)/.test(t))return "drops";
+ return null;
+}
+function d2WeaponName(line){
+ const plain=d2Clean(line);
+ if(!/^(?:espadas?|laminas?|lancas?|arcos?|cajados?|escudos?|machados?|martelos?|marretas?|adagas?|tridentes?|garras?|botas?|hrafnr|hofund|gungnir|mjolnir|Mjölnir|lâminas?|lanças?)(?:\s|:|$)/iu.test(plain))return null;
+ if(/^(?:espada|escudo|machado|arco|lança|cajado|lâmina|adagas?|marreta|martelo|tridente|garras?|botas?|hrafnr|hofund|gungnir|mjolnir|lâminas?|lanças?)/iu.test(plain)){
+   const m=plain.match(/^(.+?):\s*(.+)$/u);
+   if(m){if(!/^\d+d(?:6|8|10|12|20)\b|^\+\d|defesa|bloqueio/i.test(m[2]))return null;return {name:m[1],first:m[2]};}
+   if(/\b\d+d(?:6|8|10|12|20)\b/i.test(plain))return null;
+   return {name:plain,first:null};
+ }
+ return null;
+}
+function d2Stat(line){
+ const plain=d2Clean(line);
+ const m=plain.match(/^([\p{L}\p{M}\s]+?)\s*(?::\s*|\s+)(\d+)$/u);
+ if(!m)return null;
+ const title=m[1].trim(),standard=norm(title);
+ const bucket=D2_ATTR.find(g=>g.id!=="outros"&&g.names.some(n=>norm(n)===standard));
+ if(!bucket && /^(?:vitalidade|mana)$/.test(standard))return {id:"recurso",label:title,value:m[2],original:line};
+ if(!bucket && !/^[\p{L}\p{M}\s]{2,50}$/u.test(title))return null;
+ return {id:bucket?.id||"outros",label:title,value:m[2],original:line};
+}
+function d2Split(c){
+ const sections=Object.fromEntries(D2_ATTR.map(g=>[g.id,[]]));
+ const abilities=Object.fromEntries(D2_ABILITIES.map(g=>[g.id,[]]));
+ const weapons=[],misc=[],resources=[];let mode="dados",weapon=null,subrecord=false;
+ for(const line of c.stats){
+   const clean=d2Clean(line),heading=d2Heading(line);
+   if(heading){
+     if(heading==="dados"){mode="dados";weapon=null;subrecord=false;}
+     else{mode=heading;weapon=null;}
+     continue;
+   }
+   const w=d2WeaponName(line);
+   if(w){weapon={name:w.name,lines:w.first?[w.first]:[]};weapons.push(weapon);mode="arma";subrecord=false;continue}
+   if(mode==="arma"&&weapon){weapon.lines.push(line);continue}
+   if(mode==="magias"||mode==="tecnicas"||mode==="ataques"||mode==="supremas"||mode==="passivas"||mode==="drops"){abilities[mode].push(line);continue}
+   if(/^[^\p{L}]*JÖRMUNGANDR$/u.test(line)||/^[^\p{L}]*JORMUNGANDR$/u.test(line)){subrecord=true;misc.push(line);continue}
+   const stat=d2Stat(line);
+   if(stat){
+     if(subrecord){misc.push(line);continue}
+     if(stat.id==="recurso"){resources.push(stat.original);continue}
+     if(!sections[stat.id].includes(stat.original))sections[stat.id].push(stat.original);
+     continue;
+   }
+   if(clean!=="Bônus:"&&clean!=="Bônus")misc.push(line);
+ }
+ let actionMode="outros";
+ for(const line of c.actions){
+   const head=d2Heading(line);
+   if(head){actionMode=head;if(head==="supremas"||head==="passivas"){abilities[actionMode].push(line);}continue}
+   abilities[actionMode].push(line);
+ }
+ return {sections,weapons,abilities,misc,resources};
+}
+function d2SourceSection(parent,title,lines){
+ if(!lines?.length)return;
+ const section=el("section",null,"d2-trait-block");
+ section.append(el("h4",title));
+ const rows=el("div",null,"d2-trait-rows");
+ for(const line of lines){
+   const item=d2Stat(line),row=el("div",null,"d2-trait-row");
+   if(item&&item.id!=="recurso"){row.append(el("span",item.label),el("strong",item.value))}
+   else row.append(el("span",line,"d2-trait-text"));
+   rows.append(row);
+ }
+ section.append(rows);parent.append(section);
+}
+function d2WeaponSection(c,weapons){
+ const display=el("section",null,"d2-weapon-section");
+ display.append(el("div","⚔ ARSENAL DO PERSONAGEM","d2-weapon-kicker"),el("h3","🗡️ Armas e equipamentos"));
+ const collection=el("div",null,"d2-weapons");
+ if(!weapons.length){
+   collection.append(el("p","Não há arma especificada nesta ficha. Consulte os ataques e habilidades abaixo.","d2-weapon-empty"));
+ }else{
+   for(const [i,w]of weapons.entries()){
+     const card=el("article",null,"d2-weapon-card");
+     card.append(el("small",i===0?"EQUIPAMENTO PRINCIPAL":"EQUIPAMENTO "+(i+1)),el("h4",w.name));
+     const damage=[],other=[];
+     for(const line of w.lines){if(/\b\d+d(?:6|8|10|12|20)\b/i.test(line)&&/^(?:[^\p{L}]*)(?:\d+d|dano|fisico|físico|magico|mágico|raio|sagrado|fogo|agua|água|gelo|luz|veneno|morte|terra|natureza|vento)/iu.test(line))damage.push(line);else other.push(line)}
+     const damageGrid=el("div",null,"d2-weapon-damage");
+     for(const line of damage)damageGrid.append(el("span",line,"d2-damage-pill"));
+     if(damage.length)card.append(damageGrid);
+     if(other.length){
+       const label=el("div","Bônus • alcance • efeitos","d2-weapon-subhead"),list=el("div",null,"d2-weapon-effects");
+       other.forEach(t=>list.append(el("div",t,"d2-weapon-effect")));card.append(label,list);
+     }
+     if(!w.lines.length)card.append(el("p","A fonte informa apenas o nome do equipamento.","d2-weapon-empty"));
+     collection.append(card);
+   }
+ }
+ display.append(collection);
+ if(weapons.length)display.append(el("p","Os bônus acima pertencem ao equipamento e não foram somados automaticamente aos golpes. Consulte cada ataque com os valores originais.","d2-weapon-note"));
+ return display;
+}
+function d2ActionSection(c,group,lines,update,result){
+ if(!lines.length)return null;
+ const block=el("section",null,"d2-ability-block "+group.id);
+ block.append(el("h4",group.title),el("p",group.hint,"d2-ability-hint"));
+ let action="";
+ const list=el("div",null,"d2-ability-list");
+ for(const line of lines){
+   const row=el("div",null,"d2-combat-line"),text=el("span",line),actions=el("div",null,"d2-attack-buttons"),formula=dice(line);
+   if(formula){
+     const button=el("button","🎲 Rolar");button.type="button";
+     const title=action||c.name;
+     button.addEventListener("click",()=>{const val=roll(c,line,title,update);result.textContent="Rolagem: "+val});
+     actions.append(button);
+   }
+   const register=el("button","Registrar");register.type="button";register.addEventListener("click",()=>log(c,"Habilidade/ação: "+line,"uso",update));
+   actions.append(register);
+   row.append(text,actions);list.append(row);
+   if(!formula&&!/^(?:[^\p{L}]*)(?:SUPREMA|PASSIVA|Ataques|Magias|Técnicas)\b/iu.test(line)&&line.length<90)action=line;
+ }
+ block.append(list);return block;
+}
+
+function sheetCard(c){
+ const det=el("details",null,"d2-sheet");det.id=c.id;
+ const sum=el("summary"),intro=el("div");
+ intro.append(el("div",c.title,"d2-sheet-name"),el("div",c.group+(c.created?" · Criação/adaptação Hurras":" · Saga do Ragnarök"),"d2-sheet-meta"));
+ sum.append(intro,el("span","Nível "+c.level,"d2-level"));det.append(sum);
+ let built=false;
+ function build(){
+   if(built)return;built=true;
+   const parsed=d2Split(c),columns=el("div",null,"d2-sheet-columns"),left=titlePane("🧬 Atributos e características"),right=titlePane("⚔ Ataques, magias e habilidades"),tracker=pointsWidget(c);
+   const update=tracker.refresh, result=el("output","", "d2-roll-output");
+   const stats=el("div",null,"d2-stat-summary");
+   stats.append(el("span","❤️ Vitalidade: "+(c.vitality??"não informada")),el("span","🔵 Mana: "+(c.mana??"não informada")));
+   det.append(stats,d2WeaponSection(c,parsed.weapons));
+   for(const group of D2_ATTR){d2SourceSection(left,group.title,parsed.sections[group.id])}
+   if(parsed.misc.length)d2SourceSection(left,"📋 Observações do documento",parsed.misc);
+   if(!D2_ATTR.some(g=>parsed.sections[g.id].length)&&!parsed.misc.length){
+     left.append(el("p","Sem atributos numéricos informados nesta ficha. Os campos de registro ficam logo abaixo.","d2-empty"));
+   }
+   for(const group of D2_ABILITIES){const section=d2ActionSection(c,group,parsed.abilities[group.id],update,result);if(section)right.append(section)}
+   if(!D2_ABILITIES.some(g=>parsed.abilities[g.id].length))right.append(el("p","Sem poderes ou ataques descritos nesta ficha.","d2-empty"));
+   right.append(result);
+   columns.append(left,right);det.append(columns,tracker.panel);
+   const exact=el("details",null,"d2-details-note");
+   exact.append(el("summary","📜 Ver transcrição integral sem alterações"),el("pre",c.raw));det.append(exact);
+ }
+ det.addEventListener("toggle",()=>{if(det.open)build()});
+ return det;
+}
 let visibleSheets=[];
 function renderSheets(){const q=norm(ui.sheetSearch.value.trim()),type=ui.sheetCategory.value;visibleSheets=data.dossiers.filter(c=>(!type||c.group===type)&&(!q||norm(c.raw).includes(q)||norm(c.name).includes(q)));
  if(ui.sheetOrder.value==="name")visibleSheets.sort((a,b)=>a.name.localeCompare(b.name,"pt-BR"));if(ui.sheetOrder.value==="level")visibleSheets.sort((a,b)=>b.level-a.level||a.name.localeCompare(b.name,"pt-BR"));

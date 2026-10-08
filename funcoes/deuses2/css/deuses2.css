@@ -26,3 +26,42 @@
 .d2-archive-card pre{background:#0a1115;margin:0;padding:17px;border-top:1px solid #516257;white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.6 ui-monospace,Consolas,monospace;max-height:570px;overflow:auto}
 @media(max-width:800px){.d2-spotlight{grid-template-columns:1fr}}
 @media print{.d2-archive-card,.d2-archive-card pre{background:#fff!important;color:#111!important}.d2-archive-card>summary strong{color:#111!important}.d2-spotlight{display:none!important}}
+
+
+/* Fichas organizadas: equipamento separado e atributos/competências por categoria */
+.d2-stat-summary{display:flex;flex-wrap:wrap;gap:10px;padding:0 13px 13px}
+.d2-stat-summary span{background:#24372e;border:1px solid #6b805f;color:#f2e8c5;font-weight:850;padding:8px 14px;border-radius:8px;font-size:.95rem}
+.d2-weapon-section{margin:0 13px 15px;border:1px solid #c2a366;border-radius:13px;padding:18px;background:linear-gradient(122deg,#373123 0%,#30271b 32%,#162327 95%);box-shadow:0 8px 22px #0004}
+.d2-weapon-kicker{font-size:.7rem;letter-spacing:.17em;color:#f6d590;font-weight:900}
+.d2-weapon-section>h3{font-size:1.65rem;margin:5px 0 15px;color:#ffdf95}
+.d2-weapons{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.d2-weapon-card{border:1px solid #ba965a;background:linear-gradient(145deg,#55452b,#302b22 63%,#212a26);padding:17px;border-radius:11px;min-width:0;box-shadow:inset 0 0 0 1px #efc87912}
+.d2-weapon-card>small{letter-spacing:.12em;font-size:.7rem;color:#f0d29e;font-weight:850}
+.d2-weapon-card h4{margin:6px 0 12px;color:#fff0ce;font-size:clamp(1.18rem,2vw,1.5rem);overflow-wrap:anywhere}
+.d2-weapon-damage{display:flex;gap:7px;flex-wrap:wrap;margin:5px 0 12px}
+.d2-damage-pill{background:#1b1815;border:1px solid #c4a46b;padding:6px 10px;color:#ffe7b9;font-weight:850;border-radius:7px;font-size:.9rem}
+.d2-weapon-subhead{font-size:.73rem;letter-spacing:.06em;text-transform:uppercase;color:#dec694;font-weight:850;margin:9px 0}
+.d2-weapon-effects{display:grid;gap:5px}.d2-weapon-effect{padding:5px 0;border-bottom:1px solid #7c6b4655;font-size:.9rem;overflow-wrap:anywhere}.d2-weapon-effect:last-child{border:0}
+.d2-weapon-empty{color:#e4cf9d;font-size:.9rem;margin:0}.d2-weapon-note{font-size:.77rem;color:#ddd1b1;margin:12px 0 0}
+.d2-pane h3{border-bottom:1px solid #536557;padding-bottom:9px}
+.d2-trait-block{border:1px solid #536357;border-radius:10px;background:#182528;padding:12px;margin:11px 0}
+.d2-trait-block h4{color:#f0d59c;font-size:.98rem;margin:0 0 10px}
+.d2-trait-rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:7px}
+.d2-trait-row{display:flex;justify-content:space-between;gap:9px;align-items:center;background:#263337;border:1px solid #43554e;padding:9px 11px;border-radius:7px;font-size:.84rem;overflow-wrap:anywhere}
+.d2-trait-row strong{color:#ffe7a4;font-size:1.04rem;font-variant-numeric:tabular-nums}
+.d2-trait-text{line-height:1.5}.d2-ability-block{border-radius:10px;background:#19262b;border:1px solid #465e60;margin:11px 0;overflow:hidden}
+.d2-ability-block h4{margin:0;padding:11px 13px;background:#2a3b3b;border-bottom:1px solid #455d5e;color:#f5dda1;font-size:1.04rem}
+.d2-ability-block .d2-ability-hint{font-size:.76rem;color:#aebeb9;margin:8px 13px 4px}
+.d2-ability-list{padding:0 13px 8px}
+.d2-ability-block.supremas{border-color:#d4a452;background:#302821}
+.d2-ability-block.supremas h4{background:#493821;color:#ffdb86;border-bottom-color:#bf9350}
+.d2-ability-block.passivas{border-color:#668369}
+.d2-ability-block.magias{border-color:#79749b}
+.d2-ability-block.magias h4{background:#303149;color:#dfd8ff}
+.d2-ability-block.drops h4{background:#30402e;color:#dbebbb}
+.d2-roll-output{display:block;position:sticky;bottom:0;margin-top:12px;background:#222f2b;border:1px solid #b39255;border-radius:8px;color:#f5d794;font-weight:900;padding:10px;min-height:39px}
+.d2-attr-group>summary{display:flex;align-items:center;min-height:41px;gap:8px}
+.d2-attr-group[open]{border-color:#bda169}
+.d2-attr-group[open]>summary{background:#3c4333;color:#ffe3aa}
+@media(max-width:600px){.d2-weapon-section{margin:0 8px 11px;padding:13px}.d2-weapons{grid-template-columns:1fr}.d2-trait-rows{grid-template-columns:1fr}.d2-sheet-columns{padding:8px;gap:9px}.d2-pane{padding:11px}}
+@media print{.d2-weapon-section,.d2-weapon-card,.d2-trait-block,.d2-trait-row,.d2-ability-block{background:#fff!important;color:#111!important;border-color:#888!important;box-shadow:none!important}.d2-weapon-card h4,.d2-weapon-section>h3,.d2-weapon-kicker,.d2-damage-pill,.d2-ability-block h4,.d2-trait-block h4{color:#111!important;background:#fff!important}.d2-weapon-effects,.d2-weapon-effect{color:#111!important}}
