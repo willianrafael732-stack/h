@@ -118,5 +118,6 @@ more.addEventListener("click",()=>{limit+=18;render()});
 print.addEventListener("click",()=>{limit=Number.MAX_SAFE_INTEGER;render();grid.querySelectorAll("details").forEach(d=>d.open=true);extras.querySelectorAll("details").forEach(d=>d.open=true);window.print()});
 fetch("dados/compendio-nordico.txt").then(r=>{if(!r.ok)throw Error("HTTP "+r.status);return r.text()}).then(text=>{
  const parsed=parse(text);all=parsed.chars.concat(created);buildExtras(parsed.other);render();
+ if(typeof window.HurrasRenderFeaturedTrio==="function")window.HurrasRenderFeaturedTrio(parsed.chars,created);
 }).catch(err=>{count.textContent="Erro ao abrir compêndio: "+err.message;grid.replaceChildren(e("p","Não foi possível carregar as fichas. Recarregue a página.","codex-empty"));});
 })();
