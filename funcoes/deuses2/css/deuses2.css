@@ -107,3 +107,21 @@
 .d2-history-title p{font-size:.82rem;color:#b7c3bc;margin:0}
 .d2-history-collection .d2-historical{margin:9px 13px 0}
 @media(max-width:600px){.d2-history-collection .d2-historical{margin-left:8px;margin-right:8px}}
+
+
+/* Ficha viva: salvamento imediato, PDF pronto e status substituídos com original preservado */
+.d2-autosave-toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:0 13px 14px}
+.d2-pdf-download{background:#d7b76b;color:#1f201a;border:1px solid #eccb87;border-radius:9px;padding:12px 18px;font-weight:900;box-shadow:0 4px 16px #0006}
+.d2-pdf-download:hover,.d2-pdf-download:focus-visible{background:#f3d58a}
+.d2-pdf-status{color:#bfe5c6;font-size:.83rem;font-weight:650}
+.d2-trait-row.d2-overridden{flex-wrap:wrap;background:#2a3a34;border-color:#bba16d}
+.d2-trait-original{width:100%;display:block;font-size:.7rem;color:#eed0a0}
+.d2-extra-traits{border:1px solid #69847b;border-radius:10px;background:#182e2b;padding:13px;margin:12px 0}
+.d2-extra-traits>h4{color:#d3e9c9;font-size:1rem;margin:0 0 12px}
+.d2-extra-attr-group{padding:10px 0;border-top:1px solid #5a7867}
+.d2-extra-attr-group h5{color:#f5dca6;margin:0 0 9px;font-size:.87rem}
+.d2-attr-row input{max-width:88px;background:#101a1c;color:#f7e8c7;border:1px solid #778768;border-radius:6px;padding:6px;text-align:center;font-weight:800}
+.d2-attr-row:focus-within{background:#354338;border-color:#d0af6f}
+.d2-resource-grid input{background:#121b20;color:#f6e9c8;border:1px solid #8b855e;border-radius:7px;padding:9px}
+@media(max-width:600px){.d2-autosave-toolbar{padding:0 9px 13px;align-items:stretch;flex-direction:column}.d2-pdf-download{width:100%}}
+@media print{.d2-autosave-toolbar{display:none}}

@@ -7,7 +7,7 @@ try{const existing=JSON.parse(localStorage.getItem(KEY)||"{}");if(existing&&type
 const el=(tag,content,cls)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(content!==null&&content!==undefined)node.textContent=String(content);return node};
 const norm=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase("pt-BR");
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));return true}catch(e){return false}}
-function userState(c){if(!state[c.id]||typeof state[c.id]!=="object")state[c.id]={};const v=state[c.id];if(!v.points||typeof v.points!=="object")v.points={};if(!v.resources||typeof v.resources!=="object")v.resources={};if(!Array.isArray(v.log))v.log=[];return v}
+function userState(c){if(!state[c.id]||typeof state[c.id]!=="object")state[c.id]={};const v=state[c.id];if(!v.points||typeof v.points!=="object")v.points={};if(!v.attributes||typeof v.attributes!=="object"||Array.isArray(v.attributes))v.attributes={...v.points};if(!v.modifiers||typeof v.modifiers!=="object")v.modifiers={physical:0,elemental:0};if(!v.resources||typeof v.resources!=="object")v.resources={};if(!Array.isArray(v.log))v.log=[];return v}
 function titlePane(name){const pane=el("div",null,"d2-pane");pane.append(el("h3",name));return pane}
 function log(c,label,type,notify){const s=userState(c);s.log.unshift({time:new Date().toISOString(),text:String(label).slice(0,750),type:type||"ação"});s.log=s.log.slice(0,250);save();if(notify)notify()}
 function dice(expr){const all=[...String(expr).matchAll(/\b(\d+)d(6|8|10|12|20)\b/gi)];if(!all.length)return null;return all.map(m=>({count:Number(m[1]),sides:Number(m[2])}))}
@@ -17,29 +17,94 @@ function roll(c,line,label,notify){const ds=dice(line);if(!ds)return;
  const message=label+" — "+line+" | Total: "+total+" | "+rolls.join(" / ");
  log(c,message,"rolagem",notify);return total;
 }
-function pointsWidget(c,notify){const s=userState(c),panel=el("section",null,"d2-battle");panel.append(el("h3","⚔ Pontos e histórico de batalha"),el("p",data.fields.reduce((n,g)=>n+g.keys.length,0)+" campos opcionais (0–12), organizados por área. Não substituem os atributos da ficha oficial — valores maiores que 12 permanecem visíveis no quadro acima.","d2-battle-intro"));
+function pointsWidget(c,onEdit){
+ const s=userState(c),panel=el("section",null,"d2-battle");
+ panel.append(el("h3","✍️ Editar atributos, habilidades e status"),
+  el("p","Os valores originais aparecem como ponto de partida. Edite qualquer campo: as alterações são aplicadas ao personagem, salvas imediatamente neste navegador e incluídas no PDF. Campos vazios continuam sem valor informado.","d2-battle-intro"));
  const wrap=el("div",null,"d2-battle-grid"),left=el("div",null,"d2-battle-column"),right=el("div",null,"d2-battle-column");
+ const status=el("p","", "d2-log-status"),list=el("ol",null,"d2-log-list");
+ function changed(){const saved=save();status.textContent=saved?"✓ Ficha salva automaticamente; status e PDF atualizados.":"Não foi possível salvar no navegador. Exporte o PDF para guardar a ficha.";onEdit?.()}
+ function beginVal(key){
+  if(Object.prototype.hasOwnProperty.call(s.attributes,key))return s.attributes[key];
+  return d2OfficialValue(c,key);
+ }
  left.append(el("h4","Atributos, talentos, perícias e conhecimentos"));
- data.fields.forEach((g,ix)=>{const block=el("details",null,"d2-attr-group");block.open=ix<3;block.append(el("summary",g.label+" • "+g.keys.length+" campos"));const grid=el("div",null,"d2-attr-grid");
-  g.keys.forEach(key=>{const row=el("label",null,"d2-attr-row"),field=el("input");field.type="number";field.inputMode="numeric";field.step="1";field.min="0";field.max="12";field.placeholder="—";field.setAttribute("aria-label",key+" de "+c.name);if(Object.prototype.hasOwnProperty.call(s.points,key))field.value=String(s.points[key]);field.addEventListener("change",()=>{const old=Object.prototype.hasOwnProperty.call(s.points,key)?s.points[key]:null;
-   const str=field.value.trim(),n=str===""?null:Number(str);if(n!==null&&(!Number.isInteger(n)||n<0||n>12)){field.value=old===null?"":String(old);status.textContent="Use um número de 0 a 12.";return}
-   if(n===null)delete s.points[key];else s.points[key]=n;if(n!==old)log(c,key+": "+(old??"—")+" → "+(n??"—"),"atributo",refresh);status.textContent="Pontos guardados neste navegador.";
-  });const rowLabel=el("span",key,"d2-point-name");
-   const fromSource=(c.stats||[]).map(v=>d2Stat(v)).find(v=>v&&norm(v.label)===norm(key));
-   if(fromSource)rowLabel.append(el("small","Ficha: "+fromSource.value,"d2-point-original"));
-   row.append(rowLabel,field);grid.append(row)});block.append(grid);left.append(block)});
- right.append(el("h4","Vitalidade, Mana e acontecimentos"));const resources=el("div",null,"d2-resource-grid");
- for(const [key,label,base]of [["life","Vitalidade atual",c.vitality],["mana","Mana atual",c.mana]]){const box=el("label"),input=el("input");input.type="number";input.min="0";input.step="1";input.inputMode="numeric";input.placeholder="Não informado";const v=Object.prototype.hasOwnProperty.call(s.resources,key)?s.resources[key]:base;input.value=v??"";input.addEventListener("change",()=>{const old=Object.prototype.hasOwnProperty.call(s.resources,key)?s.resources[key]:base,v=input.value.trim(),n=v===""?null:Number(v);
-  if(n!==null&&(!Number.isSafeInteger(n)||n<0||n>100000000)){input.value=old??"";status.textContent="Valor inválido.";return}
-  if(n!==old){if(n===null)delete s.resources[key];else s.resources[key]=n;log(c,label+": "+(old??"—")+" → "+(n??"—"),"recurso",refresh);}
- });box.append(el("span",label),input);resources.append(box)}right.append(resources);
- const note=el("textarea",null,"d2-log-note");note.rows=2;note.maxLength=750;note.placeholder="Ex.: usou a suprema, sofreu dano, protegeu aliado…";
- const add=el("button","Registrar evento"),clear=el("button","Limpar histórico","secondary"),actions=el("div",null,"d2-log-actions"),status=el("p","", "d2-log-status"),list=el("ol",null,"d2-log-list");
- function refresh(){list.replaceChildren();if(!s.log.length){list.append(el("li","Nenhum evento registrado."));return}s.log.forEach(e=>{const li=el("li"),time=new Date(e.time);li.append(el("small",(Number.isNaN(+time)?"":time.toLocaleString("pt-BR"))+" • "+e.type),el("div",e.text));list.append(li)})}
+ data.fields.forEach((g,ix)=>{
+  const block=el("details",null,"d2-attr-group");block.open=ix<3;
+  block.append(el("summary",g.label+" • "+g.keys.length+" campos"));
+  const grid=el("div",null,"d2-attr-grid");
+  g.keys.forEach(key=>{
+   const row=el("label",null,"d2-attr-row"),field=el("input"),initial=beginVal(key);
+   field.type="number";field.inputMode="numeric";field.step="1";field.min="0";field.max="9999";
+   field.placeholder="—";field.setAttribute("aria-label",key+" de "+c.name);
+   if(initial!==null&&initial!==undefined)field.value=String(initial);
+   let prior=initial;
+   field.addEventListener("input",()=>{
+     const raw=field.value.trim(),number=raw===""?null:Number(raw);
+     if(number!==null&&(!Number.isSafeInteger(number)||number<0||number>9999)){status.textContent="Use um valor inteiro de 0 a 9999.";return}
+     if(number===null)delete s.attributes[key];else s.attributes[key]=number;
+     changed();
+   });
+   field.addEventListener("change",()=>{
+     const current=beginVal(key);
+     if(current!==prior){log(c,key+": "+(prior??"—")+" → "+(current??"—"),"atributo",refresh);prior=current}
+   });
+   const title=el("span",key,"d2-point-name"),official=d2OfficialValue(c,key);
+   if(official!==null)title.append(el("small","Original: "+official,"d2-point-original"));
+   row.append(title,field);grid.append(row);
+  });
+  block.append(grid);left.append(block);
+ });
+ right.append(el("h4","Vitalidade, Mana e bônus de dano"));
+ const resources=el("div",null,"d2-resource-grid");
+ for(const [key,label,base]of [["life","Vitalidade atual",c.vitality],["mana","Mana atual",c.mana]]){
+  const box=el("label"),input=el("input");
+  input.type="number";input.min="0";input.max="100000000";input.step="1";input.inputMode="numeric";input.placeholder="Não informado";
+  const initial=Object.prototype.hasOwnProperty.call(s.resources,key)?s.resources[key]:base;
+  input.value=initial??"";let prior=initial;
+  input.addEventListener("input",()=>{
+   const raw=input.value.trim(),number=raw===""?null:Number(raw);
+   if(number!==null&&(!Number.isSafeInteger(number)||number<0||number>100000000)){status.textContent="Valor de recurso inválido.";return}
+   if(number===null)delete s.resources[key];else s.resources[key]=number;
+   changed();
+  });
+  input.addEventListener("change",()=>{const v=Object.prototype.hasOwnProperty.call(s.resources,key)?s.resources[key]:base;if(v!==prior){log(c,label+": "+(prior??"—")+" → "+(v??"—"),"recurso",refresh);prior=v}});
+  box.append(el("span",label),input);resources.append(box);
+ }
+ right.append(resources);
+ const bonusInfo=el("p","Bônus opcionais em d10. Informe apenas os dados extras que você quer aplicar; Força e outros atributos não mudam o dano automaticamente sem uma regra definida.","d2-battle-intro");
+ right.append(bonusInfo);
+ const bonusGrid=el("div",null,"d2-resource-grid");
+ for(const [key,label]of [["physical","Dano físico extra (+d10)"],["elemental","Dano mágico/elemental extra (+d10)"]]){
+  const box=el("label"),input=el("input");input.type="number";input.min="0";input.max="1000";input.step="1";input.inputMode="numeric";
+  input.value=String(s.modifiers[key]||0);let prior=Number(s.modifiers[key]||0);
+  input.addEventListener("input",()=>{
+   const n=Number(input.value.trim());
+   if(input.value.trim()===""||!Number.isSafeInteger(n)||n<0||n>1000){status.textContent="Informe um bônus inteiro de 0 a 1000 d10.";return}
+   s.modifiers[key]=n;changed();
+  });
+  input.addEventListener("change",()=>{const now=Number(s.modifiers[key]||0);if(now!==prior){log(c,label+": "+prior+" → "+now,"bônus de dano",refresh);prior=now}});
+  box.append(el("span",label),input);bonusGrid.append(box);
+ }
+ right.append(bonusGrid);
+ const note=el("textarea",null,"d2-log-note");note.rows=2;note.maxLength=750;note.placeholder="Ex.: usou a suprema, sofreu dano, protegeu aliado...";
+ const add=el("button","Registrar evento"),clear=el("button","Limpar histórico","secondary"),reset=el("button","Restaurar valores originais","secondary"),actions=el("div",null,"d2-log-actions");
+ function refresh(){
+  list.replaceChildren();
+  if(!s.log.length){list.append(el("li","Nenhum evento registrado."));return}
+  s.log.forEach(e=>{const li=el("li"),time=new Date(e.time);
+   li.append(el("small",(Number.isNaN(+time)?"":time.toLocaleString("pt-BR"))+" • "+e.type),el("div",e.text));list.append(li)})
+ }
  add.type="button";add.addEventListener("click",()=>{if(!note.value.trim()){status.textContent="Digite o acontecimento.";return}log(c,note.value.trim(),"ação do Mestre",refresh);note.value="";status.textContent="Evento registrado."});
- clear.type="button";clear.addEventListener("click",()=>{if(!s.log.length)return;if(confirm("Apagar somente o histórico de "+c.name+"?")){s.log=[];save();refresh();status.textContent="Histórico apagado. Pontos preservados."}});
- actions.append(add,clear);right.append(el("label","Registrar ação do combate","d2-log-label"),note,actions,status,list);refresh();wrap.append(left,right);panel.append(wrap);
- return {panel,refresh};
+ clear.type="button";clear.addEventListener("click",()=>{if(!s.log.length)return;if(confirm("Apagar somente o histórico de "+c.name+"?")){s.log=[];save();refresh();status.textContent="Histórico apagado. Atributos mantidos."}});
+ reset.type="button";reset.addEventListener("click",()=>{if(!confirm("Restaurar os atributos, recursos e bônus originais de "+c.name+"? O histórico de batalha será mantido."))return;
+  s.attributes={};s.points={};s.resources={};s.modifiers={physical:0,elemental:0};log(c,"Atributos e recursos restaurados aos valores originais.","restauração",refresh);
+  renderSheets();const updated=document.getElementById(c.id);if(updated)updated.open=true;
+ });
+ actions.append(add,clear,reset);
+ right.append(el("h4","Histórico de ações"),el("label","Registrar evento de combate","d2-log-label"),note,actions,status,list);
+ refresh();wrap.append(left,right);panel.append(wrap);
+ return {panel,refresh,status};
 }
 
 /* Organização visual sem alterações nos valores das fichas originais. */
@@ -133,18 +198,61 @@ function d2Split(c){
  }
  return {sections,weapons,abilities,misc,resources};
 }
-function d2SourceSection(parent,title,lines){
+function d2OfficialValue(c,key){
+  for(const line of c.stats||[]){
+    const parsed=d2Stat(line);
+    if(parsed&&norm(parsed.label)===norm(key))return Number(parsed.value);
+  }
+  return null;
+}
+function d2EffectiveValue(c,key){
+  const s=userState(c);
+  if(Object.prototype.hasOwnProperty.call(s.attributes,key))return s.attributes[key];
+  return d2OfficialValue(c,key);
+}
+function d2ResourceValue(c,key){
+ const s=userState(c);return Object.prototype.hasOwnProperty.call(s.resources,key)?s.resources[key]:(key==="life"?c.vitality:c.mana);
+}
+function d2SourceSection(parent,title,lines,c){
  if(!lines?.length)return;
  const section=el("section",null,"d2-trait-block");
  section.append(el("h4",title));
  const rows=el("div",null,"d2-trait-rows");
  for(const line of lines){
-   const item=d2Stat(line),row=el("div",null,"d2-trait-row");
-   if(item&&item.id!=="recurso"){row.append(el("span",item.label),el("strong",item.value))}
-   else row.append(el("span",line,"d2-trait-text"));
-   rows.append(row);
+  const item=d2Stat(line),row=el("div",null,"d2-trait-row");
+  if(item&&item.id!=="recurso"){
+    const actual=d2EffectiveValue(c,item.label);
+    const label=el("span",item.label),number=el("strong",actual??item.value);
+    row.append(label,number);
+    if(actual!==null&&Number(actual)!==Number(item.value)){
+      row.classList.add("d2-overridden");
+      row.append(el("small","Original: "+item.value,"d2-trait-original"));
+    }
+  }else row.append(el("span",line,"d2-trait-text"));
+  rows.append(row);
  }
  section.append(rows);parent.append(section);
+}
+function d2ExtraAttributes(c,parsed){
+ const more=el("section",null,"d2-extra-traits");
+ more.append(el("h4","✏️ Atributos adicionais preenchidos"));
+ const known=new Set(Object.values(parsed.sections).flatMap(lines=>lines.map(line=>d2Stat(line)?.label).filter(Boolean)).map(norm));
+ let any=false;
+ for(const g of data.fields){
+  const subset=g.keys.filter(key=>!known.has(norm(key))&&Object.prototype.hasOwnProperty.call(userState(c).attributes,key));
+  if(!subset.length)continue;
+  any=true;const block=el("div",null,"d2-extra-attr-group");
+  block.append(el("h5",g.label));
+  const list=el("div",null,"d2-trait-rows");
+  for(const key of subset){
+    const row=el("div",null,"d2-trait-row d2-overridden");
+    row.append(el("span",key),el("strong",d2EffectiveValue(c,key)));
+    list.append(row);
+  }
+  block.append(list);more.append(block);
+ }
+ if(!any)more.append(el("p","Preencha os campos sem valor na seção de edição; eles aparecerão aqui automaticamente.","d2-empty"));
+ return more;
 }
 
 const D2_DAMAGE_TYPES=[
@@ -244,6 +352,14 @@ function d2WeaponSection(c,weapons,notify){
        card.append(list);
      }
      const summary=d2WeaponDamage(w),variants=d2Variants(summary.basics,summary.bonuses);
+     const manual=userState(c).modifiers||{};
+     if(summary.basics.length&&(Number(manual.physical||0)>0||Number(manual.elemental||0)>0)){
+       const extras=[];
+       if(Number(manual.physical||0)>0)extras.push({count:Number(manual.physical),sides:10,type:"físico"});
+       const element=summary.basics.find(x=>x.type!=="físico");
+       if(Number(manual.elemental||0)>0&&element)extras.push({count:Number(manual.elemental),sides:10,type:element.type});
+       if(extras.length)variants.push({name:"Com bônus manuais da ficha",parts:[...summary.basics,...summary.bonuses,...extras],explanation:"Variação manual; os bônus selecionados foram adicionados à arma. Não aplique duas vezes a golpes cujo dano já inclua bônus."});
+     }
      const compare=el("div",null,"d2-damage-variants");
      compare.append(el("h5","🎲 Comparação do ataque normal"));
      if(!variants.length){
@@ -351,35 +467,71 @@ function sheetCard(c){
  sum.append(intro,el("span","Nível "+c.level,"d2-level"));det.append(sum);
  let built=false;
  function build(){
-   if(built)return;built=true;
-   const parsed=d2Split(c),columns=el("div",null,"d2-sheet-columns"),left=titlePane("🧬 Atributos e características"),right=titlePane("⚔ Ataques, magias e habilidades"),tracker=pointsWidget(c);
-   const update=tracker.refresh, result=el("output","", "d2-roll-output");
-   const stats=el("div",null,"d2-stat-summary");
-   stats.append(el("span","❤️ Vitalidade: "+(c.vitality??"não informada")),el("span","🔵 Mana: "+(c.mana??"não informada")));
-   det.append(stats,d2WeaponSection(c,parsed.weapons,update));
-   const buffs=d2BuffsSection(c);if(buffs)det.append(buffs);
-   for(const group of D2_ATTR){d2SourceSection(left,group.title,parsed.sections[group.id])}
-   if(parsed.misc.length)d2SourceSection(left,"📋 Observações do documento",parsed.misc);
-   if(!D2_ATTR.some(g=>parsed.sections[g.id].length)&&!parsed.misc.length){
-     left.append(el("p","Sem atributos numéricos informados nesta ficha. Os campos de registro ficam logo abaixo.","d2-empty"));
+  if(built)return;built=true;
+  const parsed=d2Split(c),columns=el("div",null,"d2-sheet-columns"),
+   left=titlePane("🧬 Atributos e características"),right=titlePane("⚔ Ataques, magias e habilidades");
+  let arsenal,stats,extra,currentPdf=null;
+  const update=()=>tracker.refresh();
+  function refreshSheet(){
+   if(!built)return;
+   stats.replaceChildren(
+     el("span","❤️ Vitalidade atual: "+(d2ResourceValue(c,"life")??"não informada")),
+     el("span","🔵 Mana atual: "+(d2ResourceValue(c,"mana")??"não informada"))
+   );
+   for(const [group,block] of visibleTraitBlocks){
+     const temp=el("div");d2SourceSection(temp,group.title,parsed.sections[group.id],c);
+     block.replaceChildren(...Array.from(temp.childNodes));
    }
-   for(const group of D2_ABILITIES){const section=d2ActionSection(c,group,parsed.abilities[group.id],update,result);if(section)right.append(section)}
-   if(!D2_ABILITIES.some(g=>parsed.abilities[g.id].length))right.append(el("p","Sem poderes ou ataques descritos nesta ficha.","d2-empty"));
-   right.append(result);
-   left.id="d2-atributos-"+c.id;right.id="d2-habilidades-"+c.id;
-   const links=el("nav",null,"d2-sheet-jumps");links.setAttribute("aria-label","Atalhos para esta ficha");
-   for(const [title,target] of [["🗡️ Armas","#d2-arsenal-"+c.id],["💪 Atributos","#d2-atributos-"+c.id],["🔮 Habilidades","#d2-habilidades-"+c.id],["🎲 Registro","#d2-registro-"+c.id]]){
-     const a=el("a",title);a.href=target;links.append(a)}
-   tracker.panel.id="d2-registro-"+c.id;
-   det.insertBefore(links,det.querySelector(".d2-weapon-section"));
-   columns.append(left,right);det.append(columns,tracker.panel);
-   const historic=d2Historical(c);if(historic)det.append(historic);
-   const exact=el("details",null,"d2-details-note");
-   exact.append(el("summary","📜 Ver transcrição integral sem alterações"),el("pre",c.raw));det.append(exact);
+   const nextExtra=d2ExtraAttributes(c,parsed);extra.replaceWith(nextExtra);extra=nextExtra;
+   if(arsenal){const next=d2WeaponSection(c,parsed.weapons,update);arsenal.replaceWith(next);arsenal=next}
+   try{
+    if(!window.HurrasFichaPDF)throw Error("Gerador de PDF não carregado");
+    currentPdf=window.HurrasFichaPDF.create(c,data.fields,userState(c),D2_ABILITIES,d2Split);
+    pdfStatus.textContent="✓ PDF atualizado automaticamente • "+currentPdf.pages+" página(s) • pronto para baixar";
+   }catch(err){pdfStatus.textContent="Erro ao preparar PDF: "+err.message}
+  }
+  const tracker=pointsWidget(c,refreshSheet);
+  stats=el("div",null,"d2-stat-summary");det.append(stats);
+  const toolbar=el("div",null,"d2-autosave-toolbar"),pdfDownload=el("button","⬇ Baixar PDF atualizado"),pdfStatus=el("span","Preparando PDF...");
+  pdfDownload.type="button";pdfDownload.className="d2-pdf-download";pdfStatus.className="d2-pdf-status";
+  pdfDownload.addEventListener("click",()=>{
+   if(!currentPdf){pdfStatus.textContent="Ainda não foi possível preparar o PDF.";return}
+   const blob=new Blob([currentPdf.bytes],{type:"application/pdf"});
+   const url=URL.createObjectURL(blob),anchor=el("a");
+   anchor.href=url;anchor.download=window.HurrasFichaPDF.filename(c);anchor.click();
+   setTimeout(()=>URL.revokeObjectURL(url),15000);
+   pdfStatus.textContent="✓ PDF atualizado baixado. Alterações futuras gerarão nova versão.";
+  });
+  toolbar.append(pdfDownload,pdfStatus);det.append(toolbar);
+  arsenal=d2WeaponSection(c,parsed.weapons,update);det.append(arsenal);
+  const buffs=d2BuffsSection(c);if(buffs)det.append(buffs);
+  const visibleTraitBlocks=[];
+  for(const group of D2_ATTR){
+   if(!parsed.sections[group.id]?.length)continue;
+   const wrapper=el("div",null,"d2-live-trait-group");d2SourceSection(wrapper,group.title,parsed.sections[group.id],c);
+   left.append(wrapper);visibleTraitBlocks.push([group,wrapper]);
+  }
+  extra=d2ExtraAttributes(c,parsed);left.append(extra);
+  if(parsed.misc.length)d2SourceSection(left,"📋 Observações do documento",parsed.misc,c);
+  for(const group of D2_ABILITIES){const section=d2ActionSection(c,group,parsed.abilities[group.id],update,result);if(section)right.append(section)}
+  if(!D2_ABILITIES.some(g=>parsed.abilities[g.id].length))right.append(el("p","Sem poderes ou ataques descritos nesta ficha.","d2-empty"));
+  const result=el("output","", "d2-roll-output");right.append(result);
+  left.id="d2-atributos-"+c.id;right.id="d2-habilidades-"+c.id;
+  const links=el("nav",null,"d2-sheet-jumps");links.setAttribute("aria-label","Atalhos para esta ficha");
+  for(const [title,target] of [["🗡️ Armas","#d2-arsenal-"+c.id],["💪 Atributos","#d2-atributos-"+c.id],["🔮 Habilidades","#d2-habilidades-"+c.id],["✍️ Editar atributos","#d2-registro-"+c.id]]){
+   const a=el("a",title);a.href=target;links.append(a)}
+  tracker.panel.id="d2-registro-"+c.id;
+  det.insertBefore(links,arsenal);
+  columns.append(left,right);det.append(columns,tracker.panel);
+  const historic=d2Historical(c);if(historic)det.append(historic);
+  const exact=el("details",null,"d2-details-note");
+  exact.append(el("summary","📜 Ver transcrição integral sem alterações"),el("pre",c.raw));det.append(exact);
+  refreshSheet();
  }
  det.addEventListener("toggle",()=>{if(det.open)build()});
  return det;
 }
+
 let visibleSheets=[];
 function renderSheets(){const q=norm(ui.sheetSearch.value.trim()),type=ui.sheetCategory.value;visibleSheets=data.dossiers.filter(c=>(!type||c.group===type)&&(!q||norm(c.raw).includes(q)||norm(c.name).includes(q)));
  if(ui.sheetOrder.value==="name")visibleSheets.sort((a,b)=>a.name.localeCompare(b.name,"pt-BR"));if(ui.sheetOrder.value==="level")visibleSheets.sort((a,b)=>b.level-a.level||a.name.localeCompare(b.name,"pt-BR"));
