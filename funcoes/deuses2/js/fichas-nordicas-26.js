@@ -50,6 +50,7 @@ function item(c){
   const box=make("div",null,"f-power");box.append(make("h4",title),make("p",value||"Não informado"));specials.append(box);
  }
  card.append(specials);
+ card.append(window.HurrasInventarioNordico.create(c));
  const source=make("details",null,"f-source");source.append(make("summary","📜 Conferir os dados originais da ficha (PDF)"));
  const original=make("div",null,"f-source-content");
  for(const [label,value] of Object.entries(c.sourceSections)){const row=make("p");row.append(make("strong",label+": "),make("span",value));original.append(row)}
