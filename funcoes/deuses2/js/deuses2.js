@@ -210,10 +210,16 @@ function d2OfficialValue(c,key){
   }
   return null;
 }
+function d2FormBonus(c,key){
+ const selected=d2Live().currentForm(userState(c));
+ const raw=selected?.bonuses?.[key];
+ const n=d2Live().integer(raw);
+ return n??0;
+}
 function d2EffectiveValue(c,key){
-  const s=userState(c);
-  if(Object.prototype.hasOwnProperty.call(s.attributes,key))return s.attributes[key];
-  return d2OfficialValue(c,key);
+ const s=userState(c),base=Object.prototype.hasOwnProperty.call(s.attributes,key)?s.attributes[key]:d2OfficialValue(c,key);
+ if(base===null||base===undefined)return null;
+ return Number(base)+d2FormBonus(c,key);
 }
 function d2ResourceValue(c,key){
  const s=userState(c);return Object.prototype.hasOwnProperty.call(s.resources,key)?s.resources[key]:(key==="life"?c.vitality:c.mana);
@@ -229,10 +235,13 @@ function d2SourceSection(parent,title,lines,c){
     const actual=d2EffectiveValue(c,item.label);
     const label=el("span",item.label),number=el("strong",actual??item.value);
     row.append(label,number);
-    if(actual!==null&&Number(actual)!==Number(item.value)){
+    const bonus=d2FormBonus(c,item.label),base=d2OfficialValue(c,item.label);
+    const edited=Object.prototype.hasOwnProperty.call(userState(c).attributes,item.label);
+    if(actual!==null&&(Number(actual)!==Number(item.value)||edited)){
       row.classList.add("d2-overridden");
       row.append(el("small","Original: "+item.value,"d2-trait-original"));
     }
+    if(bonus>0)row.append(el("small","🜂 Forma: +"+bonus+"d10 sobre "+(edited?userState(c).attributes[item.label]:base),"d2-trait-transform"));
   }else row.append(el("span",line,"d2-trait-text"));
   rows.append(row);
  }
@@ -252,6 +261,8 @@ function d2ExtraAttributes(c,parsed){
   for(const key of subset){
     const row=el("div",null,"d2-trait-row d2-overridden");
     row.append(el("span",key),el("strong",d2EffectiveValue(c,key)));
+    const bonus=d2FormBonus(c,key);
+    if(bonus>0)row.append(el("small","🜂 Forma: +"+bonus+"d10","d2-trait-transform"));
     list.append(row);
   }
   block.append(list);more.append(block);

@@ -52,7 +52,10 @@ function document(c,fields,stored,groups,parse,variantsFor,dynamicDetails){
  section("Atributos, talentos, pericias e conhecimentos");
  for(const g of fields){line(g.label,{bold:true,color:"0.36 0.27 0.13",size:10});let written=0;
    for(const key of g.keys){const v=currentValue(c,stored,key),original=sourceValue(c,key);if(v===null||v===undefined||v==="")continue;
-     line(key+": "+v+(original!==null&&Number(v)!==Number(original)?" (original "+original+")":""),{indent:49});written++}
+     const formBonus=active&&Object.prototype.hasOwnProperty.call(active.bonuses||{},key)?Number(active.bonuses[key]):0;
+     const bonus=Number.isInteger(formBonus)&&formBonus>=0&&formBonus<=500?formBonus:0;
+     const effective=Number(v)+bonus;
+     line(key+": "+effective+(bonus?" (base "+v+" + "+bonus+"d10 de "+active.name+")":"")+(original!==null&&Number(v)!==Number(original)?" (original "+original+")":""),{indent:49});written++}
    if(!written)line("Sem valor informado.",{indent:49,color:soft,size:8});
  }
  // Extra original attributes outside the 70 registered labels.
