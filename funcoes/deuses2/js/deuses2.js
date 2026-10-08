@@ -295,22 +295,32 @@ function d2BuffsSection(c){
  section.append(list);return section;
 }
 function d2Historical(c){
- const h=data.previousVersions?.[c.name];if(!h)return null;
- const wrap=el("details",null,"d2-historical");
- wrap.append(el("summary","📚 Ficha anterior completa — "+h.title));
- wrap.append(el("p","Fonte: "+h.source,"d2-historical-source"),el("p",h.note,"d2-historical-warning"));
- const blocks=el("div",null,"d2-historical-blocks");
- const paragraphs=h.text.split(/\n\s*\n/g).map(x=>x.trim()).filter(Boolean);
- for(const [i,part] of paragraphs.entries()){
-  const block=el("article",null,"d2-historical-block");
-  const lines=part.split("\n").map(x=>x.trim()).filter(Boolean);
-  const first=lines[0]||"";
-  const heading=lines.length>1&&first.length<=65;
-  if(heading)block.append(el("h5",first));
-  block.append(el("pre",heading?lines.slice(1).join("\n"):part));
-  blocks.append(block);
+ const versions=[];
+ if(data.previousVersions?.[c.name])versions.push(data.previousVersions[c.name]);
+ if(data.previousCompendium?.[c.name])versions.push(data.previousCompendium[c.name]);
+ if(!versions.length)return null;
+ const group=el("section",null,"d2-history-collection");
+ const heading=el("div",null,"d2-history-title");
+ heading.append(el("h3","📚 Arquivo histórico e versões anteriores"),el("p","Material integral enviado anteriormente. Cada edição é independente da ficha principal, para preservar habilidades, atributos, golpes e recompensas sem criar combinações contraditórias."));
+ group.append(heading);
+ for(const h of versions){
+  const wrap=el("details",null,"d2-historical");
+  wrap.append(el("summary","📚 "+h.title));
+  wrap.append(el("p","Fonte: "+h.source,"d2-historical-source"),el("p",h.note,"d2-historical-warning"));
+  const blocks=el("div",null,"d2-historical-blocks");
+  const paragraphs=h.text.split(/\n\s*\n/g).map(x=>x.trim()).filter(Boolean);
+  for(const part of paragraphs){
+    const block=el("article",null,"d2-historical-block");
+    const lines=part.split("\n").map(x=>x.trim()).filter(Boolean);
+    const first=lines[0]||"";
+    const heading=lines.length>1&&first.length<=65;
+    if(heading)block.append(el("h5",first));
+    block.append(el("pre",heading?lines.slice(1).join("\n"):part));
+    blocks.append(block);
+  }
+  wrap.append(blocks);group.append(wrap);
  }
- wrap.append(blocks);return wrap;
+ return group;
 }
 function d2ActionSection(c,group,lines,update,result){
  if(!lines.length)return null;

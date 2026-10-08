@@ -100,3 +100,10 @@
 .d2-point-name{display:grid;gap:2px}.d2-point-original{display:block;color:#c8d39f;font-size:.71rem}
 @media(max-width:600px){.d2-sheet-jumps{padding:2px 9px 12px}.d2-buffs-section,.d2-historical{margin:0 8px 11px}.d2-historical-blocks{grid-template-columns:1fr}}
 @media print{.d2-variation,.d2-buffs-section,.d2-buff-item,.d2-historical,.d2-historical-block{background:#fff!important;color:#111!important;border-color:#777!important}.d2-variation-formula,.d2-variation-header strong,.d2-historical-block h5{color:#111!important}.d2-sheet-jumps,.d2-variation-header button{display:none!important}}
+
+.d2-history-collection{margin:13px 0 15px;padding:2px 0}
+.d2-history-title{padding:4px 15px 9px}
+.d2-history-title h3{color:#e7d2a1;margin:2px 0 6px;font-size:1.2rem}
+.d2-history-title p{font-size:.82rem;color:#b7c3bc;margin:0}
+.d2-history-collection .d2-historical{margin:9px 13px 0}
+@media(max-width:600px){.d2-history-collection .d2-historical{margin-left:8px;margin-right:8px}}
