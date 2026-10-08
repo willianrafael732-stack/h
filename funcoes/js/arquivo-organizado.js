@@ -153,11 +153,17 @@ function enemyCategory(heading){
 }
 function enemySections(item,category){
  const original=extractSections(item.raw||"").filter(s=>enemyCategory(s.heading)===category);
- if(category==="combat"&&Array.isArray(item.abilities)&&item.abilities.length){
-  return [{heading:"Golpes documentados",lines:item.abilities}];
+ const allAttacks=Array.isArray(item.abilities)?item.abilities:[];
+ const normal=allAttacks.filter(line=>!/^(?:suprema|passiva)\s*[-–—:]/i.test(String(line).trim()));
+ const ultimate=allAttacks.filter(line=>/^(?:suprema|passiva)\s*[-–—:]/i.test(String(line).trim()));
+ if(category==="combat"&&allAttacks.length){
+  return normal.length?[{heading:"Golpes documentados",lines:normal}]:[];
  }
- if(category==="passives"&&Array.isArray(item.specials)&&item.specials.length){
-  return [{heading:"Efeitos especiais",lines:item.specials},...original];
+ if(category==="passives"){
+  const additional=[];
+  if(ultimate.length)additional.push({heading:"Supremas documentadas",lines:ultimate});
+  if(Array.isArray(item.specials)&&item.specials.length)additional.push({heading:"Efeitos especiais",lines:item.specials});
+  return [...additional,...original];
  }
  return original;
 }
