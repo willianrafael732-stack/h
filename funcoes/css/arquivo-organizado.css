@@ -44,3 +44,47 @@
 @media(max-width:620px){.organ-layout{padding:15px 9px 50px}.organ-card-top{grid-template-columns:110px minmax(0,1fr);gap:10px;padding:10px}.organ-cover{width:110px;min-height:170px}.organ-cover img,.organ-cover-placeholder{min-height:170px}.organ-cover-symbol{font-size:2.6rem}.organ-cover-caption{font-size:.66rem}.organ-card h3{font-size:1.15rem}.organ-description{font-size:.9rem}.organ-habitat{font-size:.8rem}.organ-toolbar{gap:7px}.organ-toolbar input{flex-basis:100%}}
 @media(max-width:380px){.organ-card-top{grid-template-columns:1fr}.organ-cover{width:100%;max-height:240px}.organ-cover img,.organ-cover-placeholder{max-height:240px}.organ-card h3{font-size:1.28rem}}
 @media print{.organ-toolbar,.organ-nav,.organ-more,.noprint{display:none!important}.organ-layout{padding:0}.organ-grid{display:block}.organ-card{break-inside:avoid;box-shadow:none;border:1px solid #777;margin:11px 0;background:#fff;color:#111}.organ-card *{color:#111!important}.organ-cover{max-width:115px;min-height:130px}.organ-cover img,.organ-cover-placeholder{min-height:130px}.organ-original{font-size:10pt}}
+
+
+/* Ragnarök: eventos em etapas e fichas dos 13 seres adicionais. */
+.rag-guide{margin:30px 0 42px;padding:22px;border:1px solid #80613e;border-radius:15px;background:linear-gradient(155deg,#211c21,#111718);box-shadow:0 9px 28px #0005}
+.rag-guide-header h2,.rag-section-heading h2{color:#f5ce8b;font-size:clamp(1.45rem,2.7vw,2rem);margin:8px 0}
+.rag-guide-header p,.rag-section-heading p{color:#d3c2ae;line-height:1.62;margin:7px 0 15px}
+.rag-progress{color:#d2b987;line-height:1.5;font-size:.86rem}
+.rag-events{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:19px}
+.rag-event{background:#191c20;border:1px solid #786143;border-radius:12px;padding:17px;overflow-wrap:anywhere}
+.rag-event--hel{border-top:4px solid #975358}
+.rag-event--heimdall{border-top:4px solid #c39a50}
+.rag-event--vigridr{border-top:4px solid #946045}
+.rag-event-top{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.rag-event-step{display:inline-block;padding:5px 8px;border-radius:6px;background:#3a2a25;color:#ffdda7;font-size:.78rem;font-weight:bold}
+.rag-page{color:#aea18d;font-size:.78rem}
+.rag-event h3{color:#f7d9a8;font-size:1.35rem;margin:15px 0 9px}
+.rag-event h4,.rag-reference-card h4,.rag-hierarchy-card h4{color:#ebc791;margin:17px 0 9px}
+.rag-event-description{color:#e4d7c6;line-height:1.65;font-size:.94rem}
+.rag-attacks,.rag-consequences{margin:7px 0;padding:0;list-style:none;display:grid;gap:7px}
+.rag-attacks li{padding:9px 11px;background:#302324;border:1px solid #6d4541;border-radius:7px;color:#f0d8c8;line-height:1.5;font-size:.89rem}
+.rag-consequences li{border-left:3px solid #957a58;padding:7px 10px;background:#232324;color:#e4d8c8;border-radius:4px;line-height:1.5;font-size:.88rem}
+.rag-source{padding:10px;margin-top:14px;border:1px solid #5e513f;border-radius:8px}
+.rag-source>summary{cursor:pointer;color:#e6bf86;font-weight:bold;font-size:.86rem}
+.rag-source pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;font-size:.85rem;line-height:1.65;color:#e3ddd0}
+.rag-section-heading{margin:32px 0 13px}
+.rag-hierarchy{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.rag-hierarchy-card,.rag-reference-card{border:1px solid #685239;background:#1b2022;padding:16px;border-radius:11px;min-width:0}
+.rag-compact-list{margin:8px 0;padding-left:20px;color:#f0dfc6;line-height:1.8}
+.rag-last-boss{grid-column:1/-1;padding:13px 16px;background:#493021;border:1px solid #9f784b;border-radius:10px;color:#f9dfb7}
+.rag-last-boss p{margin:6px 0;color:#f7e8d2}
+.rag-hierarchy>.rag-source{grid-column:1/-1}
+.rag-reference{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.rag-reference>.rag-source{grid-column:1/-1}
+.rag-chip-list{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:9px 0;padding:0}
+.rag-chip-list li{background:#322d29;border:1px solid #706047;border-radius:20px;padding:6px 9px;color:#ead7ba;font-size:.84rem}
+.rag-link-beasts{margin:21px 0 5px;padding:15px;border-left:3px solid #d6aa6d;background:#2a2521;border-radius:7px}
+.rag-link-beasts p{color:#e9d5b9;line-height:1.6;margin:0 0 9px}
+.rag-link-beasts a{color:#fbd89a}
+.organ-power-list{list-style:none;margin:8px 0 13px;padding:0;display:grid;gap:6px}
+.organ-power-list li{padding:8px 10px;border-radius:6px;border-left:3px solid #bc955a;background:#302924;color:#f4dfbd;line-height:1.5;font-size:.85rem}
+.organ-special-list li{border-left-color:#77a5ac;background:#263035;color:#d7ebea}
+@media(max-width:1050px){.rag-events{grid-template-columns:1fr 1fr}.rag-event--vigridr{grid-column:span 2}}
+@media(max-width:670px){.rag-guide{padding:13px}.rag-events,.rag-reference,.rag-hierarchy{grid-template-columns:1fr}.rag-event--vigridr{grid-column:auto}.rag-last-boss,.rag-hierarchy>.rag-source,.rag-reference>.rag-source{grid-column:auto}.rag-event{padding:13px}.rag-chip-list li{font-size:.8rem}}
+@media print{.rag-guide{background:white;box-shadow:none;color:#111}.rag-events,.rag-reference,.rag-hierarchy{display:block}.rag-event,.rag-reference-card,.rag-hierarchy-card{background:#fff!important;color:#111!important;break-inside:avoid;margin:10px 0}.rag-guide :is(h2,h3,h4,p,span,li,strong,pre){color:#111!important}.rag-source{display:block}}
