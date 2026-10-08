@@ -116,8 +116,8 @@ function buildExtras(arr){
 for(const input of [search,kind,order])input.addEventListener(input===search?"input":"change",()=>{limit=18;render()});
 more.addEventListener("click",()=>{limit+=18;render()});
 print.addEventListener("click",()=>{limit=Number.MAX_SAFE_INTEGER;render();grid.querySelectorAll("details").forEach(d=>d.open=true);extras.querySelectorAll("details").forEach(d=>d.open=true);window.print()});
-fetch("dados/compendio-nordico.txt").then(r=>{if(!r.ok)throw Error("HTTP "+r.status);return r.text()}).then(text=>{
- const parsed=parse(text);all=parsed.chars.concat(created);buildExtras(parsed.other);render();
+fetch((document.querySelector('meta[name="hurras-data-base"]')?.content||"dados/")+"compendio-nordico.txt").then(r=>{if(!r.ok)throw Error("HTTP "+r.status);return r.text()}).then(text=>{
+ const parsed=parse(text);const exclusive=document.body.dataset.nordicCollection==="deuses";all=(exclusive?parsed.chars.filter(x=>!["Seres nórdicos","Chefes do Ragnarök"].includes(x.type)):parsed.chars).concat(created);buildExtras(exclusive?[]:parsed.other);render();
  if(typeof window.HurrasRenderFeaturedTrio==="function")window.HurrasRenderFeaturedTrio(parsed.chars,created);
 }).catch(err=>{count.textContent="Erro ao abrir compêndio: "+err.message;grid.replaceChildren(e("p","Não foi possível carregar as fichas. Recarregue a página.","codex-empty"));});
 })();
