@@ -1102,7 +1102,7 @@ function featured(){
    stage.append(button);
  }
 }
-function begin(d){if(d.dossiers.length!==66||d.chapters.length!==8)throw Error("Contagem da fonte inválida");data=d;
+function begin(d){if(!Array.isArray(d.dossiers)||d.chapters.length!==8)throw Error("Contagem da fonte inválida");data=d;
  const cats=[...new Set(d.dossiers.map(x=>x.group))];cats.forEach(x=>{let opt=el("option",x);opt.value=x;ui.sheetCategory.append(opt)});
  const groups=$("d2-groups");if(groups)for(const group of ["",...cats]){const count=group?d.dossiers.filter(c=>c.group===group).length:d.dossiers.length;const button=el("button",(group||"Todas as fichas")+" · "+count);button.type="button";button.addEventListener("click",()=>{ui.sheetCategory.value=group;ui.sheetSearch.value="";sheetLimit=14;renderSheets();ui.sheets.scrollIntoView({behavior:"smooth",block:"start"})});groups.append(button)}
  ui.sheetSearch.addEventListener("input",()=>{sheetLimit=14;renderSheets()});ui.sheetCategory.addEventListener("change",()=>{sheetLimit=14;renderSheets()});ui.sheetOrder.addEventListener("change",renderSheets);
@@ -1111,5 +1111,5 @@ function begin(d){if(d.dossiers.length!==66||d.chapters.length!==8)throw Error("
  $("d2-import").addEventListener("change",async e=>{const file=e.target.files?.[0];if(!file)return;try{if(file.size>4e6)throw Error("Arquivo muito grande");const obj=JSON.parse(await file.text());if(obj.format!=="hurras_deuses2_batalhas_v1"||!obj.history||typeof obj.history!=="object"||Array.isArray(obj.history))throw Error("Backup incompatível");if(!confirm("Substituir os históricos locais pelo backup?"))return;state=obj.history;save();renderSheets();ui.backupStatus.textContent="Históricos importados."}catch(err){ui.backupStatus.textContent="Erro: "+err.message}finally{e.target.value=""}});
  renderSheets();narrative();featured();
 }
-fetch("dados/arquivo.json").then(res=>{if(!res.ok)throw Error("HTTP "+res.status);return res.json()}).then(begin).catch(e=>{ui.sheetCount.textContent="Não foi possível abrir as fichas: "+e.message;});
+Promise.all(["dados/arquivo.json","dados/panteoes-hurras.json"].map(url=>fetch(url).then(res=>{if(!res.ok)throw Error("HTTP "+res.status);return res.json()}))).then(([base,extra])=>{const ids=new Set(base.dossiers.map(c=>c.id));for(const c of extra.dossiers)if(!ids.has(c.id)){base.dossiers.push(c);ids.add(c.id)}for(const link of extra.links){const c=base.dossiers.find(c=>c.id===link.dossierId);if(c)c.group="Panteão "+link.culture}const counter=document.querySelector(".d2-counters strong");if(counter)counter.textContent=String(base.dossiers.length);begin(base)}).catch(e=>{ui.sheetCount.textContent="Não foi possível abrir as fichas: "+e.message;});
 })();
