@@ -12,3 +12,11 @@ Acesse `/mesa/`. E-mail e senha são gerenciados pelo Supabase Auth; nenhuma sen
 A estrutura do banco está em `database/hurras-mesa.sql` e já foi aplicada. A biblioteca Supabase JS 2.57.4 está incluída localmente. Para recuperação de senha e retorno da confirmação de e-mail, autorize a URL pública da instalação na lista de redirecionamentos do Supabase Auth. Login de contas já confirmadas não depende do redirecionamento.
 
 Validação local: `node tests/d10.cjs`. Login, microfone e aparência devem ser verificados no navegador da publicação. A página funciona como HTML estático no Netlify. Autenticação necessária apenas para as mesas; consulta às fichas continua livre.
+
+## Portal inspirado na referência Dark Fantasy
+
+A página inicial agora reúne personagens, fichas, deuses, mesa, guia e livro. O conteúdo vem do repositório Hurras/Nexalis. A pesquisa usa 174 entradas e o leitor reúne 12 capítulos do sistema original.
+
+O cofre unificado exporta/importa backup, lê fichas clássicas do IndexedDB e Dark/animal do navegador, salva cópias online e compartilha com o mestre. Abrir uma ficha online cria uma cópia local. O mestre só pode atualizar vida/mana de fichas explicitamente compartilhadas; o nível limita os recursos.
+
+A mesa tem abas de conversa, dados, fichas e participantes; enquetes de voto único, emojis, preferências pessoais de cor e conversas privadas entre membros que já dividem uma mesa. Conversas privadas não permitem convites. As tabelas e funções adicionais estão em `database/hurras-portal-social.sql`.

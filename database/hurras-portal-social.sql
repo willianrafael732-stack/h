@@ -1,0 +1,76 @@
+-- Extensão do portal: fichas online, compartilhamento e enquetes.
+create table public.hf_sheets(id uuid primary key default gen_random_uuid(),owner_id uuid not null default auth.uid() references auth.users(id),kind text not null check(kind in('classic','dark','animal')),local_id text not null check(length(local_id) between 1 and 150),name text not null check(length(name) between 1 and 120),data jsonb not null check(jsonb_typeof(data)='object' and octet_length(data::text)<1048576),updated_at timestamptz not null default now(),unique(owner_id,kind,local_id));
+create table public.hf_sheet_shares(sheet_id uuid references public.hf_sheets(id) on delete cascade,room_id uuid references public.hf_rooms(id) on delete cascade,primary key(sheet_id,room_id));
+alter table public.hf_sheets enable row level security;
+alter table public.hf_sheet_shares enable row level security;
+create policy hf_shares_read on public.hf_sheet_shares for select to authenticated using(hf_private.member(room_id));
+create policy hf_sheets_read on public.hf_sheets for select to authenticated using(owner_id=(select auth.uid()) or exists(select 1 from public.hf_sheet_shares s where s.sheet_id=hf_sheets.id and hf_private.owner(s.room_id) and hf_private.member(s.room_id)));
+create policy hf_sheets_add on public.hf_sheets for insert to authenticated with check(owner_id=(select auth.uid()));
+create policy hf_sheets_edit on public.hf_sheets for update to authenticated using(owner_id=(select auth.uid())) with check(owner_id=(select auth.uid()));
+create policy hf_sheets_remove on public.hf_sheets for delete to authenticated using(owner_id=(select auth.uid()));
+create policy hf_shares_add on public.hf_sheet_shares for insert to authenticated with check(hf_private.member(room_id) and exists(select 1 from public.hf_sheets s where s.id=sheet_id and s.owner_id=(select auth.uid())));
+create policy hf_shares_remove on public.hf_sheet_shares for delete to authenticated using(hf_private.owner(room_id) or exists(select 1 from public.hf_sheets s where s.id=sheet_id and s.owner_id=(select auth.uid())));
+grant select,insert,update,delete on public.hf_sheets to authenticated;
+grant select,insert,delete on public.hf_sheet_shares to authenticated;
+create index hf_shares_room on public.hf_sheet_shares(room_id);
+create table public.hf_polls(id uuid primary key default gen_random_uuid(),room_id uuid not null references public.hf_rooms(id) on delete cascade,user_id uuid not null default auth.uid() references auth.users(id),question text not null check(length(question) between 1 and 240),options text[] not null check(cardinality(options) between 2 and 8 and length(array_to_string(options,''))<=640),created_at timestamptz default now(),unique(id,room_id));
+create table public.hf_poll_votes(poll_id uuid references public.hf_polls(id) on delete cascade,user_id uuid not null default auth.uid() references auth.users(id),option_index int not null,primary key(poll_id,user_id));
+alter table public.hf_polls enable row level security;
+alter table public.hf_poll_votes enable row level security;
+create policy hf_polls_read on public.hf_polls for select to authenticated using(hf_private.member(room_id));
+create policy hf_polls_add on public.hf_polls for insert to authenticated with check(user_id=(select auth.uid()) and hf_private.member(room_id));
+create policy hf_votes_read on public.hf_poll_votes for select to authenticated using(exists(select 1 from public.hf_polls p where p.id=poll_id and hf_private.member(p.room_id)));
+create policy hf_votes_add on public.hf_poll_votes for insert to authenticated with check(user_id=(select auth.uid()) and exists(select 1 from public.hf_polls p where p.id=poll_id and hf_private.member(p.room_id) and option_index>=0 and option_index<cardinality(p.options)));
+create policy hf_votes_edit on public.hf_poll_votes for update to authenticated using(user_id=(select auth.uid())) with check(user_id=(select auth.uid()) and exists(select 1 from public.hf_polls p where p.id=poll_id and hf_private.member(p.room_id) and option_index>=0 and option_index<cardinality(p.options)));
+grant select,insert on public.hf_polls to authenticated;
+grant select,insert,update on public.hf_poll_votes to authenticated;
+create index hf_polls_room on public.hf_polls(room_id);
+create index hf_polls_user on public.hf_polls(user_id);
+create index hf_votes_user on public.hf_poll_votes(user_id);
+alter table public.hf_messages add column poll_id uuid;
+alter table public.hf_messages add constraint hf_message_poll_room foreign key(poll_id,room_id) references public.hf_polls(id,room_id);
+-- DM acessível somente a pessoas que já dividem uma mesa.
+alter table public.hf_rooms add column is_direct boolean not null default false;
+create table hf_private.direct_threads(room_id uuid primary key references public.hf_rooms(id) on delete cascade,a uuid references auth.users(id),b uuid references auth.users(id),unique(a,b));
+alter table hf_private.direct_threads enable row level security;
+create function hf_private.open_dm(p_user uuid) returns uuid language plpgsql security definer set search_path='' as $$ declare rid uuid;lo uuid;hi uuid;my_name text;other_name text;begin
+ if auth.uid() is null or p_user=auth.uid() then raise exception 'Contato inválido';end if;
+ if not exists(select 1 from public.hf_members a join public.hf_members b on a.room_id=b.room_id where a.user_id=auth.uid() and b.user_id=p_user and not a.blocked and not b.blocked) then raise exception 'Este contato precisa participar de uma mesa com você';end if;
+ lo:=least(auth.uid(),p_user);hi:=greatest(auth.uid(),p_user);
+ perform pg_advisory_xact_lock(hashtextextended(lo::text||hi::text,0));
+ select room_id into rid from hf_private.direct_threads where a=lo and b=hi;
+ if rid is not null then return rid;end if;
+ select display_name into my_name from public.hf_members where user_id=auth.uid() and not blocked limit 1;
+ select display_name into other_name from public.hf_members where user_id=p_user and not blocked limit 1;
+ insert into public.hf_rooms(name,owner_id,is_direct) values('Conversa privada',auth.uid(),true) returning id into rid;
+ insert into public.hf_members(room_id,user_id,display_name) values(rid,auth.uid(),my_name),(rid,p_user,other_name);
+ insert into hf_private.direct_threads values(rid,lo,hi);return rid;
+end $$;
+create function public.hf_open_dm(p_user uuid) returns uuid language sql security invoker set search_path='' as $$select hf_private.open_dm(p_user)$$;
+revoke all on function hf_private.open_dm(uuid),public.hf_open_dm(uuid) from public,anon;
+grant execute on function hf_private.open_dm(uuid),public.hf_open_dm(uuid) to authenticated;
+create function public.hf_create_poll(p_room uuid,p_question text,p_options text[]) returns uuid language plpgsql security invoker set search_path='' as $$declare pid uuid;begin
+ insert into public.hf_polls(room_id,user_id,question,options) values(p_room,auth.uid(),trim(p_question),p_options) returning id into pid;
+ insert into public.hf_messages(room_id,user_id,kind,body,poll_id) values(p_room,auth.uid(),'text','📊 '||trim(p_question),pid);return pid;
+end $$;
+revoke all on function public.hf_create_poll(uuid,text,text[]) from public,anon;
+grant execute on function public.hf_create_poll(uuid,text,text[]) to authenticated;
+create or replace function hf_private.rotate_invite(p_room uuid) returns text language plpgsql security definer set search_path='' as $$ declare token text; begin
+if auth.uid() is null or not hf_private.owner(p_room) then raise exception 'Somente o mestre pode gerar convites'; end if;
+if exists(select 1 from public.hf_rooms where id=p_room and is_direct) then raise exception 'Conversas privadas não aceitam convites'; end if;
+token:=translate(encode(extensions.gen_random_bytes(9),'base64'),'+/','-_');
+insert into hf_private.invites values(p_room,extensions.digest(token,'sha256'),now()+interval '7 days') on conflict(room_id) do update set token_hash=excluded.token_hash,expires_at=excluded.expires_at;
+return token;end $$;
+create function hf_private.sheet_resources(p_sheet uuid,p_hp int,p_mp int) returns void language plpgsql security definer set search_path='' as $$ declare s public.hf_sheets;lvl int;track jsonb;begin
+if auth.uid() is null then raise exception 'Entre na conta';end if;
+select * into s from public.hf_sheets where id=p_sheet for update;
+if s.id is null or not(s.owner_id=auth.uid() or exists(select 1 from public.hf_sheet_shares sh where sh.sheet_id=p_sheet and hf_private.owner(sh.room_id) and hf_private.member(sh.room_id))) then raise exception 'Acesso à ficha negado';end if;
+lvl:=case s.kind when 'classic' then coalesce((s.data#>>'{data,inputs,level}')::int,1) when 'dark' then coalesce((s.data#>>'{fields,Nível}')::int,1) else coalesce((s.data->>'nivel')::int,1) end;
+lvl:=greatest(1,least(100,lvl));if p_hp is null or p_mp is null or p_hp not between 0 and lvl*10 or p_mp not between 0 and lvl*5 then raise exception 'Vida ou mana fora dos limites do nível';end if;
+if s.kind='classic' then s.data:=jsonb_set(jsonb_set(s.data,'{data,state,wounds}',to_jsonb(lvl*10-p_hp)),'{data,state,mana}',to_jsonb(p_mp));
+elsif s.kind='dark' then select coalesce(jsonb_agg(i),'[]') into track from generate_series(0,p_hp-1) i;s.data:=jsonb_set(s.data,'{vitality}',track);select coalesce(jsonb_agg(i),'[]') into track from generate_series(0,p_mp-1) i;s.data:=jsonb_set(s.data,'{mana}',track);
+else s.data:=jsonb_set(jsonb_set(s.data,'{pv}',to_jsonb(p_hp::text)),'{mana}',to_jsonb(p_mp::text));end if;
+update public.hf_sheets set data=s.data,updated_at=now() where id=p_sheet;end $$;
+create function public.hf_sheet_resources(p_sheet uuid,p_hp int,p_mp int) returns void language sql security invoker set search_path='' as $$select hf_private.sheet_resources(p_sheet,p_hp,p_mp)$$;
+revoke all on function hf_private.sheet_resources(uuid,int,int),public.hf_sheet_resources(uuid,int,int) from public,anon;
+grant execute on function hf_private.sheet_resources(uuid,int,int),public.hf_sheet_resources(uuid,int,int) to authenticated;
