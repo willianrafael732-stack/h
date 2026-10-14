@@ -7,4 +7,13 @@ const api={db,origin:origin.href,providers,error,google,signup(email,password,na
 db.auth.onAuthStateChange((event,session)=>{if(event!=='SIGNED_IN'||!googleReturn||session?.user?.app_metadata?.provider!=='google')return;const pending=Number(sessionStorage.getItem('hurras-pending-google-login')||0);if(!pending||Date.now()-pending>10*60000)return;sessionStorage.removeItem('hurras-pending-google-login');const marker=session.user.id+':'+session.expires_at;if(sessionStorage.getItem('hurras-google-verification-request')===marker)return;sessionStorage.setItem('hurras-google-verification-request',marker);setTimeout(async()=>{try{await api.emailLink(session.user.email);window.dispatchEvent(new CustomEvent('hurras-auth-notice',{detail:'Você entrou com Google. A verificação adicional por e-mail foi solicitada.'}))}catch(e){window.dispatchEvent(new CustomEvent('hurras-auth-notice',{detail:'Você entrou com Google. '+error(e)}))}},0)});
 // Finish token processing before the portal changes its route.
 api.ready=db.auth.getSession().then(r=>{if(r.error)throw r.error;return r.data.session});
+
+async function saveAccountProfile(user){
+ if(!user)return;
+ const result=await db.from('hf_profiles').upsert({id:user.id,display_name:String(user.user_metadata?.display_name||user.user_metadata?.full_name||'Aventureiro').slice(0,80)},{onConflict:'id'});
+ if(result.error)window.dispatchEvent(new CustomEvent('hurras-auth-notice',{detail:'Sua conta está conectada, mas o perfil não pôde ser sincronizado. Tente novamente.'}));
+}
+db.auth.onAuthStateChange((event,session)=>{if(session?.user&&['SIGNED_IN','INITIAL_SESSION','USER_UPDATED'].includes(event))setTimeout(()=>saveAccountProfile(session.user),0)});
+api.ready.then(session=>saveAccountProfile(session?.user)).catch(()=>{});
+
 })();
