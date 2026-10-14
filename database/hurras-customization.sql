@@ -1,0 +1,21 @@
+create table hf_private.site_admins(user_id uuid primary key references auth.users(id) on delete cascade);
+create table hf_private.admin_activation(token_hash bytea primary key,expires_at timestamptz not null,used_by uuid references auth.users(id));
+alter table hf_private.site_admins enable row level security;
+alter table hf_private.admin_activation enable row level security;
+create function hf_private.is_site_admin() returns boolean language sql stable security definer set search_path='' as $$select auth.uid() is not null and exists(select 1 from hf_private.site_admins where user_id=auth.uid())$$;
+create function hf_private.claim_admin(p_code text) returns boolean language plpgsql security definer set search_path='' as $$begin
+if auth.uid() is null or not exists(select 1 from auth.users where id=auth.uid() and email_confirmed_at is not null) then raise exception 'Entre com um e-mail verificado antes de ativar o Mestre';end if;
+update hf_private.admin_activation set used_by=auth.uid() where token_hash=extensions.digest(p_code,'sha256') and used_by is null and expires_at>now();
+if not found then raise exception 'Código inválido, usado ou expirado';end if;
+insert into hf_private.site_admins values(auth.uid()) on conflict do nothing;return true;end $$;
+create table public.hf_site_appearance(id int primary key check(id=1),config jsonb not null default '{}',updated_at timestamptz not null default now());
+insert into public.hf_site_appearance(id) values(1);
+alter table public.hf_site_appearance enable row level security;
+create policy hf_appearance_read on public.hf_site_appearance for select to anon,authenticated using(true);
+create policy hf_appearance_edit on public.hf_site_appearance for update to authenticated using(hf_private.is_site_admin()) with check(hf_private.is_site_admin());
+grant select on public.hf_site_appearance to anon,authenticated;
+grant update(config,updated_at) on public.hf_site_appearance to authenticated;
+create function public.hf_is_site_admin() returns boolean language sql security invoker set search_path='' as $$select hf_private.is_site_admin()$$;
+create function public.hf_claim_admin(p_code text) returns boolean language sql security invoker set search_path='' as $$select hf_private.claim_admin(p_code)$$;
+revoke all on function hf_private.is_site_admin(),hf_private.claim_admin(text),public.hf_is_site_admin(),public.hf_claim_admin(text) from public,anon;
+grant execute on function hf_private.is_site_admin(),hf_private.claim_admin(text),public.hf_is_site_admin(),public.hf_claim_admin(text) to authenticated;

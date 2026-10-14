@@ -20,3 +20,15 @@ A página inicial agora reúne personagens, fichas, deuses, mesa, guia e livro. 
 O cofre unificado exporta/importa backup, lê fichas clássicas do IndexedDB e Dark/animal do navegador, salva cópias online e compartilha com o mestre. Abrir uma ficha online cria uma cópia local. O mestre só pode atualizar vida/mana de fichas explicitamente compartilhadas; o nível limita os recursos.
 
 A mesa tem abas de conversa, dados, fichas e participantes; enquetes de voto único, emojis, preferências pessoais de cor e conversas privadas entre membros que já dividem uma mesa. Conversas privadas não permitem convites. As tabelas e funções adicionais estão em `database/hurras-portal-social.sql`.
+
+## Ficha única, acesso e personalização
+
+O portal apresenta a ficha Hurras e seus companheiros. Os editores independentes Dark foram removidos; URLs antigas encaminham ao editor Hurras. Dados antigos não são apagados. A ficha Hurras recebeu bolinhas coloridas, navegação por teclado e backup JSON.
+
+`portal/auth-client.js` centraliza a sessão e aguarda o retorno de autenticação antes de mudar a rota. Suporta cadastro, reenvio de confirmação, link de acesso e confirmação por código. O template de e-mail precisa incluir `{{ .Token }}` para a confirmação por código. O botão Google consulta o estado real do provedor e só inicia OAuth quando ativo. O retorno Google solicita verificação adicional por e-mail.
+
+Dependências externas pendentes: ativar Google no Supabase com cliente OAuth, autorizar a URL pública nos redirecionamentos e configurar SMTP próprio para evitar o limite de envio padrão. Segredos OAuth/SMTP não são incluídos no cliente.
+
+Personalização local de cores, fontes, espaçamento, imagens, textos, menus, chat e ficha. O Mestre do site pode aplicar a aparência para todos. A ativação exige conta com e-mail confirmado e código aleatório de uso único, protegido por hash no schema privado. Esse acesso não abre conversas privadas de outros usuários.
+
+`portal/teste-mestre.html` é uma simulação local de conversa, dados, fichas e controles de mestre, sem credenciais compartilhadas ou mensagens reais.

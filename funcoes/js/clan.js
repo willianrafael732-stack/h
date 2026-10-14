@@ -30,7 +30,7 @@ function baseDefault(stat){const r=currentRace();const key=(aliases[stat]||[])[0
 function base(stat){if(state.base[stat]==null)state.base[stat]=baseDefault(stat);return state.base[stat]}
 function final(stat){return Math.max(0,Math.min(10,base(stat)+modifier(stat).total))}
 function setFinal(stat,target){state.base[stat]=Math.max(0,Math.min(10,target-modifier(stat).total));renderSheets()}
-function dots(stat){const v=final(stat),safe=stat.replaceAll("'","\\'");return `<div class="dots">${Array.from({length:10},(_,i)=>`<i class="dot ${i<v?'on':''}" onclick="setFinal('${safe}',${i+1})" title="${i+1}"></i>`).join('')}</div>`}
+function dots(stat){const v=final(stat),safe=stat.replaceAll("'","\\'");return `<div class="dots">${Array.from({length:10},(_,i)=>`<i class="dot ${i<v?'on':''}" onclick="setFinal('${safe}',${i+1})" style="--dot-color:${['#ce7167','#e0ae6c','#6fa4d3','#79bd9a'][Math.floor(i/3)]}" title="${i+1}" role="button" tabindex="0" aria-label="${stat}: ${i+1} pontos"></i>`).join('')}</div>`}
 function statRow(stat){const m=modifier(stat);return `<div class="stat-row"><span class="stat-name">${stat}:</span>${dots(stat)}<span class="mod ${m.p?'plus':'empty'}">${m.p||''}</span><span class="mod ${m.n?'minus':'empty'}">${m.n||''}</span></div>`}
 function fillOptions(){
  E('level').innerHTML=Array.from({length:10},(_,i)=>`<option value="${i+1}">Nível ${i+1} · ${10*(i+1)} Vida · ${5*(i+1)} Mana</option>`).join('');

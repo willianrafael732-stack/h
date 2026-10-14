@@ -1,3 +1,6 @@
 # Antigas URLs da autenticação removida; manter links externos válidos
-/entrar/cadastro.html /index.html 301
-/entrar/tela-de-login.html /index.html 301
+/entrar/cadastro.html /index.html#inicio 301
+/entrar/tela-de-login.html /index.html#inicio 301
+
+/funcoes/ficha-dark-fantasy /funcoes/clan.html 301
+/funcoes/dark-personagens /cofre.html 301
