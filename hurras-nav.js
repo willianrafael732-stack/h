@@ -29,6 +29,7 @@ const groups=[
 ['Sistema completo','funcoes/sistema-completo.html','Regras detalhadas da campanha'],
 ['Habilidades','funcoes/habilidades.html','Habilidades dos personagens'],
 ['Grimório de magia','funcoes/magia.html','Magias e feitiços'],
+['Mistura de elementos','funcoes/mistura-elementos.html','Todas as combinações elementais em d10'],
 ['Grimório legado','funcoes/grimorio-elemental-legado.html','Magias do sistema antigo'],
 ['Alquimia','funcoes/alquimia.html','Preparos de alquimia'],
 ['Poções','funcoes/porcao.html','Poções e efeitos'],
