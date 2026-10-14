@@ -112,19 +112,19 @@ function item(c){
 /* Golpes autorais de campanha: os seis adicionais não substituem o especial/suprema do PDF. */
 function d10Result(parts,hits){
  if(!Array.isArray(parts)||!parts.length||hits<1||hits>3)return null;
- const rolls=[];let total=0,successes=0,critical=0,failures=0;
+ const rolls=[],values=[];let total=0;
  for(let k=0;k<hits;k++){
   let sum=0;
   for(const p of parts){
    if(!Number.isInteger(p.count)||p.count<1||p.count>200)return null;
    for(let j=0;j<p.count;j++){
-    const die=1+Math.floor(Math.random()*10);sum+=die;
-    if(die===10)critical++;else if(die===1)failures++;else if(die>=6)successes++;
+    const die=HurrasD10.face(10);sum+=die;values.push(die);
+    
    }
   }
   rolls.push(sum);total+=sum;
  }
- return {rolls,total,successes,critical,failures};
+ return {rolls,total,...HurrasD10.score(values)};
 }
 function moveCard(m,c){
  const card=make("article",null,"f-move-card");
@@ -157,8 +157,7 @@ function moveCard(m,c){
    roll.addEventListener("click",()=>{
     const result=d10Result(parts,m.hits);
     if(!result){output.textContent="Dados inválidos.";return}
-    output.textContent="Dano: "+result.total+(result.rolls.length>1?" ("+result.rolls.join(" + ")+")":"")+
-      " • Sucessos 6–9: "+result.successes+" • 10: "+result.critical+" • 1: "+result.failures;
+    output.textContent=HurrasD10.describe(result)+" | Dados: "+result.values.join(", ");
    });
    buttons.append(roll,output);
   }else buttons.append(make("small","Sem bônus de dano documentado para esta passiva."));

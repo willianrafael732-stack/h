@@ -18,10 +18,11 @@ function titlePane(name){const pane=el("div",null,"d2-pane");pane.append(el("h3"
 function log(c,label,type,notify){const s=userState(c);s.log.unshift({time:new Date().toISOString(),text:String(label).slice(0,750),type:type||"ação"});s.log=s.log.slice(0,250);save();if(notify)notify()}
 function dice(expr){const all=[...String(expr).matchAll(/\b(\d+)d(6|8|10|12|20)\b/gi)];if(!all.length)return null;return all.map(m=>({count:Number(m[1]),sides:Number(m[2])}))}
 function roll(c,line,label,notify){const ds=dice(line);if(!ds)return;
- const rolls=[];let total=0;
- for(const set of ds){const values=[];for(let i=0;i<Math.min(500,set.count);i++){const n=1+Math.floor(Math.random()*set.sides);values.push(n);total+=n;}rolls.push(set.count+"d"+set.sides+": "+values.join(", "));}
- const message=label+" — "+line+" | Total: "+total+" | "+rolls.join(" / ");
- log(c,message,"rolagem",notify);return total;
+ const rolls=[],d10Values=[];let total=0;
+ for(const set of ds){const values=[];for(let i=0;i<Math.min(500,set.count);i++){const n=HurrasD10.face(set.sides);values.push(n);total+=n;if(set.sides===10)d10Values.push(n)}rolls.push(set.count+"d"+set.sides+": "+values.join(", "))}
+ const scoring=d10Values.length?HurrasD10.describe(HurrasD10.score(d10Values)):"Soma: "+total;
+ const message=label+" — "+line+" | "+scoring+" | "+rolls.join(" / ");
+ log(c,message,"rolagem",notify);return scoring;
 }
 /* Itens e rolagem personalizada, independentes das armas e dos drops originais. */
 function d2ItemDiceParts(expr){
@@ -30,15 +31,15 @@ function d2ItemDiceParts(expr){
 }
 function d2ItemDiceRoll(c,expr,output,onEdit){
  const parts=d2ItemDiceParts(expr);if(!parts){output.textContent="Dados inválidos (máximo: 200).";return}
- let total=0,successes=0,criticals=0,criticalFailures=0,hasD10=false;const detail=[];
+ let total=0,hasD10=false;const detail=[],d10Values=[];
  for(const part of parts){
   const values=[];for(let i=0;i<part.n;i++){
-   const v=1+Math.floor(Math.random()*part.faces);values.push(v);total+=v;
-   if(part.faces===10){hasD10=true;if(v>=6)successes++;if(v===10)criticals++;if(v===1)criticalFailures++}
+   const v=HurrasD10.face(part.faces);values.push(v);total+=v;
+   if(part.faces===10){hasD10=true;d10Values.push(v)}
   }
   detail.push(part.n+"d"+part.faces+" ["+values.join(", ")+"]");
  }
- const result=expr+" = "+total+(hasD10?" | Sucessos (6–10): "+successes+" | 10: "+criticals+" | 1: "+criticalFailures:"")+" | "+detail.join(" + ");
+ const result=expr+" = "+total+(hasD10?" | "+HurrasD10.describe(HurrasD10.score(d10Values)):"")+" | "+detail.join(" + ");
  output.textContent=result;log(c,result,"rolagem");onEdit();
 }
 function d2ItemDiceWidget(c,parsed,onEdit){
@@ -105,7 +106,7 @@ function d2ItemDiceWidget(c,parsed,onEdit){
   const drops=el("details",null,"d2-items-source");drops.append(el("summary","🎁 Drops e recompensas (não possuídos)"));
   const ul=el("ul");parsed.abilities.drops.forEach(x=>ul.append(el("li",x)));drops.append(ul);itemsCol.append(drops);
  }
- diceCol.id="d2-dados-"+c.id;diceCol.append(el("h4","🎲 Rolador de dados"),el("p","No d10: resultados 6–9 são sucessos; 10 é sucesso crítico e 1 é falha crítica.","d2-items-help"));
+ diceCol.id="d2-dados-"+c.id;diceCol.append(el("h4","🎲 Rolador de dados"),el("p","D10: 6–9 +1; 2–4 −1; 5 neutro; 10 +2; 1 −2. Cada par 1/10 se anula.","d2-items-help"));
  const quick=el("div",null,"d2-dice-shortcuts");
  for(const code of ["1d10","5d10","1d20"]){const btn=el("button","🎲 "+code);btn.type="button";btn.addEventListener("click",()=>rollItem(code));quick.append(btn)}
  const custom=el("form",null,"d2-dice-custom"),count=el("input"),faces=el("select"),submit=el("button","Rolar");
@@ -1103,6 +1104,7 @@ function featured(){
 }
 function begin(d){if(d.dossiers.length!==66||d.chapters.length!==8)throw Error("Contagem da fonte inválida");data=d;
  const cats=[...new Set(d.dossiers.map(x=>x.group))];cats.forEach(x=>{let opt=el("option",x);opt.value=x;ui.sheetCategory.append(opt)});
+ const groups=$("d2-groups");if(groups)for(const group of ["",...cats]){const count=group?d.dossiers.filter(c=>c.group===group).length:d.dossiers.length;const button=el("button",(group||"Todas as fichas")+" · "+count);button.type="button";button.addEventListener("click",()=>{ui.sheetCategory.value=group;ui.sheetSearch.value="";sheetLimit=14;renderSheets();ui.sheets.scrollIntoView({behavior:"smooth",block:"start"})});groups.append(button)}
  ui.sheetSearch.addEventListener("input",()=>{sheetLimit=14;renderSheets()});ui.sheetCategory.addEventListener("change",()=>{sheetLimit=14;renderSheets()});ui.sheetOrder.addEventListener("change",renderSheets);
  ui.sheetMore.addEventListener("click",()=>{sheetLimit+=14;renderSheets()});
  $("d2-export").addEventListener("click",()=>{const txt=JSON.stringify({format:"hurras_deuses2_batalhas_v1",saved:new Date().toISOString(),history:state},null,2),blob=new Blob([txt],{type:"application/json"}),url=URL.createObjectURL(blob),a=el("a");a.href=url;a.download="deuses2-historicos.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);ui.backupStatus.textContent="Backup gerado."});

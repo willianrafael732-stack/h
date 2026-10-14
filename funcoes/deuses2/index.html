@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description"
         content="Deuses 2 Hurras: saga do Ragnarök e fichas de combate com ataques, magias e atributos dos deuses nórdicos.">
-    <title>Deuses 2 • Hurras Fantasy</title>
+    <title>Deuses e seres nórdicos • Hurras Fantasy</title>
     <link rel="icon" href="../../hurras-icon.svg">
     <link rel="stylesheet" href="css/deuses2.css">
     <link rel="stylesheet" href="css/fusao-elemental.css">
     <script defer src="../../hurras-nav.js"></script>
+    <script defer src="../../hurras-d10.js"></script>
     <script defer src="js/dados-vivos.js"></script>
     <script defer src="js/ficha-pdf.js"></script>
     <script defer src="js/fusao-elemental.js"></script>
@@ -24,13 +25,13 @@
     </header>
     <main>
         <section class="d2-hero"><span class="eyebrow">HURRAS RPG • COLEÇÃO ORGANIZADA</span>
-            <h1>Deuses <span>2</span></h1>
+            <h1>Deuses <span>de Hurras</span></h1>
             <p>Compêndio de Hurras com fichas de combate, personagens adicionais e a Saga do Ragnarök.</p>
             <div class="d2-counters">
                 <div><strong>66</strong><span>Fichas de combate</span></div>
                 <div><strong>8</strong><span>Capítulos da saga</span></div>
             </div>
-            <div class="d2-shortcuts"><a href="#fichas">⚔ Fichas de combate</a><a href="#fichas-adicionais">🐺 Sköll, Hati e Brynja</a><a href="fichas-nordicas-26.html">📘 26 fichas nórdicas</a><a href="#saga">📜 Saga</a></div>
+            <div class="d2-shortcuts"><a href="../../mesa/">🎲 Mesa e chat</a><a href="#fichas">⚔ Fichas de combate</a><a href="#fichas-adicionais">🐺 Sköll, Hati e Brynja</a><a href="fichas-nordicas-26.html">📘 26 fichas nórdicas</a><a href="#saga">📜 Saga</a></div>
             <p class="d2-info">Os pontos representam os atributos de cada deus. Para modificá-los, use os campos de edição da ficha; os dados de origem continuam preservados.</p>
         </section>
         <section class="d2-section" id="fichas">
@@ -44,9 +45,10 @@
                         <option value="">Todos os grupos</option>
                     </select></label><label>Ordem<select id="d2-sheet-order">
                         <option value="original">Ordem do arquivo</option>
-                        <option value="name">Nome A–Z</option>
+                        <option value="name" selected>Nome A–Z</option>
                         <option value="level">Nível maior</option>
                     </select></label></div>
+            <nav id="d2-groups" class="d2-shortcuts" aria-label="Grupos de fichas"></nav>
             <p id="d2-sheet-count" class="d2-count" role="status" aria-live="polite">Carregando as fichas...</p>
             <div id="d2-sheets" class="d2-sheet-grid"></div><button id="d2-sheet-more" class="d2-more" type="button"
                 hidden>Mostrar mais fichas</button>

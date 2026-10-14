@@ -9,7 +9,7 @@ const url=(path)=>new URL(path,origin).href;
 const path=decodeURIComponent(location.pathname).toLowerCase();
 const groups=[
 {label:'Começar',icon:'⌂',items:[
-['Início','index.html','Portal Player e Mestre'],['Catálogo geral','funcoes/catalogo.html'],['Catálogo especial','funcoes/catalogo/index.html','Adversários e eventos do Ragnarök'],
+['Início','index.html','Portal Player e Mestre'],['Mesa • Login e chat','mesa/index.html','Mestre, jogadores, d10, PDF e áudio'],['Catálogo geral','funcoes/catalogo.html'],['Catálogo especial','funcoes/catalogo/index.html','Adversários e eventos do Ragnarök'],
 ['Minhas fichas','funcoes/criacao-de-ficha.html','Retomar personagens clássicos'],
 ['Nova ficha clássica','funcoes/clan.html?new=1','Forja original'],
 ['Fichário Dark Fantasy','funcoes/ficha-dark-fantasy.html','Segundo sistema de ficha'],['Cofre Dark Fantasy','funcoes/dark-personagens.html','Gerenciar fichas do novo modelo'],
@@ -84,7 +84,7 @@ const groups=[
 ['Ninja','raca/ninja.html','Classe'],['Tecnomante','raca/tecnomancer.html','Classe'],
 ['Transmutador','raca/transmutador.html','Classe']]}
 ];
-const mainLinks=[['Início','index.html'],['Fichas','funcoes/criacao-de-ficha.html'],['Dark Fantasy','funcoes/ficha-dark-fantasy.html'],['Regras','funcoes/sistema-completo.html'],['☠ Bestiário','funcoes/bestiario/index.html'],['✦ Panteão','funcoes/deuses2/index.html'],['NPCs','funcoes/arquivo-npcs.html'],['Mestre','funcoes/mestre.html']];
+const mainLinks=[['Mesa e chat','mesa/index.html'],['Início','index.html'],['Fichas','funcoes/criacao-de-ficha.html'],['Dark Fantasy','funcoes/ficha-dark-fantasy.html'],['Regras','funcoes/sistema-completo.html'],['☠ Bestiário','funcoes/bestiario/index.html'],['✦ Panteão','funcoes/deuses2/index.html'],['NPCs','funcoes/arquivo-npcs.html'],['Mestre','funcoes/mestre.html']];
 const normalize=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 const unique=[...new Map(groups.flatMap(g=>g.items.map(i=>[i[1],{...{group:g.label},name:i[0],path:i[1],detail:i[2]}]))).values()];
 function E(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined&&txt!==null)e.textContent=txt;return e}
